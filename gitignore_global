@@ -1,0 +1,51 @@
+# Genral Backup files
+*~
+*.~*
+*.bak
+.*.swp
+
+# Python compiled files
+*.py[cod]
+dist
+build
+
+# IDE project files
+*.spyderproject
+*.project
+*.pydevproject
+
+# (La)TeX temp files
+*.acn
+*.acr
+*.alg
+*.aux
+*.bbl
+*.blg
+*.dvi
+*.fdb_latexmk
+*.fls
+*.glg
+*.glo
+*.gls
+*.idx
+*.ilg
+*.ind
+*.ist
+*.lof
+*.log
+*.lot
+*.maf
+*.mtc
+*.mtc0
+*.nav
+*.nlo
+*.out
+/*.pdf
+*.pdfsync
+/*.ps
+*.snm
+*.synctex.*
+*.toc
+*.vrb
+*.xdy
+*.tdo
