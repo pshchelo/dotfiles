@@ -473,4 +473,4 @@ c.InlineBackend.figure_format = 'svg'
 c.NotebookManager.save_script = True
 
 # The directory to use for notebooks.
-c.NotebookManager.notebook_dir = u'd:\pasha\ipynb'
+c.NotebookManager.notebook_dir = u'~/devel/ipynb'
