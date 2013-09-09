@@ -194,7 +194,7 @@ c = get_config()
 # c.TerminalInteractiveShell.screen_length = 0
 
 # Set the editor used by IPython (default to $EDITOR/vi/notepad).
-c.TerminalInteractiveShell.editor = u'gvim +{line} {filename}'
+c.TerminalInteractiveShell.editor = u'vim +{line} {filename}'
 
 # Deprecated, use PromptManager.justify
 # c.TerminalInteractiveShell.prompts_pad_left = True
