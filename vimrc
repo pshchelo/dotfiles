@@ -1,4 +1,5 @@
-set nocompatible               " be iMproved
+" be iMproved!
+set nocompatible
 
 " Find what OS being run under
 if has ("win32") || has("win64") || has("win16") || has("win95")
@@ -39,18 +40,25 @@ if osname is "win"
     endfunction
 endif
 
+" Character encoding settings
 set encoding=utf-8
 set fileencodings=utf-8,cp1251
 
+" Tabulation settings
 set tabstop=8
 set expandtab
 set softtabstop=4
 set shiftwidth=4
+" Show colored border column
 set colorcolumn=80
+" Show line numbers
 set number
+" Diff shows vertical split by default
 set diffopt+=vertical
+" Autoremove trailing whitespace in Python files
 autocmd FileType python autocmd BufWritePre <buffer> :%s/\s\+$//e
 
+" alter tab settings for C files according to Python/C suggestions
 fu Select_c_style()
     if search('^\t', 'n', 150)
 
@@ -61,7 +69,6 @@ fu Select_c_style()
         set expandtab
     en
 endf
-
 au BufRead,BufNewFile *.c,*.h call Select_c_style()
 au BufRead,BufNewFile Makefile* set noexpandtab
 
@@ -78,12 +85,13 @@ au BufRead,BufNewFile *.py,*.pyw*,.pyx,*.c,*.h match BadWhitespace /\s\+$/
 " C: 79
 au BufRead,BufNewFile *.py,*.pyw,*.pyx,*.c,*.h set textwidth=79
 
-" Set interaction with system clipboard
+" Set interaction with system clipboard and mouse
 if osname is "win"
     set clipboard=unnamed
 else
     set clipboard=unnamedplus
 endif
+set mouse=a
 
 " required for Vundle
 filetype off                   
@@ -106,7 +114,7 @@ Bundle 'majutsushi/tagbar'
 Bundle 'davidhalter/jedi-vim'
 Bundle 'Rykka/riv.vim'
 Bundle 'Lokaltog/vim-powerline', {'rtp': 'powerline/bindings/vim/'}
-Bundle 'jmcantrell/vim-virtualenv'
+"Bundle 'jmcantrell/vim-virtualenv'
 "Bundle 'garbas/vim-snipmate'
 " needed by vim-snipmate
 "Bundle 'tomtom/tlib_vim'
@@ -115,13 +123,15 @@ Bundle 'jmcantrell/vim-virtualenv'
 syntax on
 filetype plugin indent on
 
+" Higllight, indent and folding settings
 let python_highlight_all=1
 filetype indent on
 filetype plugin on
 set foldmethod=indent
 set foldlevelstart=999
 set autoindent
-set mouse=a
+" Needed for Powerline
+set laststatus=2
 
 " set color scheme
 if has('gui_running')
@@ -133,8 +143,8 @@ if has('gui_running')
     elseif has("gui_win32")
         set guifont=Anonymous_Pro:h11:cRUSSIAN
     endif
-" endif
 else
+    set t_Co=16
     set background=dark
     colorscheme solarized
 endif
@@ -206,6 +216,20 @@ let g:jedi#rename_command = "<leader>rn"
 autocmd FileType python setlocal completeopt-=preview
 
 "======================
+
+" Add the virtualenv's site-packages to vim path
+py << EOF
+import os.path
+import sys
+import vim
+if 'VIRTUAL_ENV' in os.environ:
+    project_base_dir = os.environ['VIRTUAL_ENV']
+    sys.path.insert(0, project_base_dir)
+    activate_this = os.path.join(project_base_dir, 'bin/activate_this.py')
+    execfile(activate_this, dict(__file__=activate_this))
+EOF
+
+"=========================
 
 " filter on *.pyc files in NERDTree plugin
 let NERDTreeIgnore = ['\.pyc$']
