@@ -1,3 +1,5 @@
+set nocompatible               " be iMproved
+
 " Find what OS being run under
 if has ("win32") || has("win64") || has("win16") || has("win95")
     let osname="win"
@@ -7,7 +9,6 @@ endif
 
 " Default Windows customizations
 if osname is "win"
-    set nocompatible
     source $VIMRUNTIME/vimrc_example.vim
     " source $VIMRUNTIME/mswin.vim
     " behave mswin
@@ -38,27 +39,6 @@ if osname is "win"
     endfunction
 endif
 
-" My personal customizations
-" Installed plugins from github:
-"
-" tpope/vim-pathogen
-" tpope/vim-fugitive
-" tpope/vim-sensible
-" scrooloose/nerdcommenter
-" scrooloose/nerdtree
-" scrooloose/syntastic
-" altercation/vim-colors-solarized
-" msanders/snipmate.vim
-" ervandew/supertab
-" majutsushi/tagbar
-" klen/python-mode
-" davidhalter/jedi-vim
-" Rykka/riv.vim
-
-" Enable Pathogen
-runtime bundle/vim-pathogen/autoload/pathogen.vim
-execute pathogen#infect()
-
 set encoding=utf-8
 set fileencodings=utf-8,cp1251
 
@@ -67,8 +47,9 @@ set expandtab
 set softtabstop=4
 set shiftwidth=4
 set colorcolumn=80
-
+set number
 set diffopt+=vertical
+autocmd FileType python autocmd BufWritePre <buffer> :%s/\s\+$//e
 
 fu Select_c_style()
     if search('^\t', 'n', 150)
@@ -97,25 +78,6 @@ au BufRead,BufNewFile *.py,*.pyw*,.pyx,*.c,*.h match BadWhitespace /\s\+$/
 " C: 79
 au BufRead,BufNewFile *.py,*.pyw,*.pyx,*.c,*.h set textwidth=79
 
-syntax on
-filetype plugin indent on
-
-let python_highlight_all=1
-filetype indent on
-set foldmethod=indent
-set autoindent
-
-if has('gui_running')
-    set background=light
-    "set background=dark
-    colorscheme solarized
-    if has("gui_gtk2")
-        set guifont=Anonymous\ Pro\ 11
-    elseif has("gui_win32")
-        set guifont=Anonymous_Pro:h11:cRUSSIAN
-    endif
-endif
-
 " Set interaction with system clipboard
 if osname is "win"
     set clipboard=unnamed
@@ -123,8 +85,70 @@ else
     set clipboard=unnamedplus
 endif
 
+" required for Vundle
+filetype off                   
+" Vundle initialization
+set rtp+=~/.vim/bundle/vundle/
+call vundle#rc()
+" Use Vundle
+Bundle 'gmarik/vundle'
+
+" My other Bundles
+Bundle 'tpope/vim-fugitive'
+"Bundle 'tpope/vim-sensible'
+Bundle 'scrooloose/nerdcommenter'
+Bundle 'scrooloose/nerdtree'
+Bundle 'scrooloose/syntastic'
+Bundle 'altercation/vim-colors-solarized'
+Bundle 'ervandew/supertab'
+Bundle 'majutsushi/tagbar'
+"Bundle 'klen/python-mode'
+Bundle 'davidhalter/jedi-vim'
+Bundle 'Rykka/riv.vim'
+Bundle 'Lokaltog/vim-powerline', {'rtp': 'powerline/bindings/vim/'}
+Bundle 'jmcantrell/vim-virtualenv'
+"Bundle 'garbas/vim-snipmate'
+" needed by vim-snipmate
+"Bundle 'tomtom/tlib_vim'
+"Bundle 'MarcWeber/vim-addon-mw-utils'
+
+syntax on
+filetype plugin indent on
+
+let python_highlight_all=1
+filetype indent on
+filetype plugin on
+set foldmethod=indent
+set foldlevelstart=999
+set autoindent
+set mouse=a
+
+" set color scheme
+if has('gui_running')
+    set background=light
+    "set background=dark
+    colorscheme solarized
+    if has("gui_gtk2")
+        set guifont=Anonymice\ Powerline\ 11
+    elseif has("gui_win32")
+        set guifont=Anonymous_Pro:h11:cRUSSIAN
+    endif
+" endif
+else
+    set background=dark
+    colorscheme solarized
+endif
+
+" Initialize Powerline
+python from powerline.vim import setup as powerline_setup
+python powerline_setup()
+python del powerline_setup
+
+"=====================
+" Python mode settings
+"---------------------
 " Load the whole python-mode
-" let g:pymode = 1
+"let g:pymode = 1
 
 " Python-mode
 " Activate rope
@@ -142,8 +166,8 @@ endif
 let g:pymode_rope = 0 
 
 " Documentation
-" let g:pymode_doc = 0
-" let g:pymode_doc_key = 'K'
+let g:pymode_doc = 0
+let g:pymode_doc_key = 'K'
 
 "Linting
 let g:pymode_lint = 1
@@ -152,11 +176,11 @@ let g:pymode_lint_checker = "pyflakes,pep8"
 let g:pymode_lint_write = 1
 
 " Support virtualenv
-" let g:pymode_virtualenv = 1
+let g:pymode_virtualenv = 1
 
 " Enable breakpoints plugin
-" let g:pymode_breakpoint = 1
-" let g:pymode_breakpoint_key = '<leader>b'
+let g:pymode_breakpoint = 1
+let g:pymode_breakpoint_key = '<leader>b'
 
 " syntax highlighting
 let g:pymode_syntax = 1
@@ -167,11 +191,29 @@ let g:pymode_syntax_space_errors = g:pymode_syntax_all
 " Don't autofold code
 let g:pymode_folding = 0
 
+" Load run code plugin
+let g:pymode_run = 1
+
+" Key for run python code
+let g:pymode_run_key = '<leader>r'
+"======================
+" Jedi-vim configuration
+
 " Change default binding of jedi's rename command
 let g:jedi#rename_command = "<leader>rn"
 
+" Disable doctext from popping while autocompleting
+autocmd FileType python setlocal completeopt-=preview
+
+"======================
+
+" filter on *.pyc files in NERDTree plugin
+let NERDTreeIgnore = ['\.pyc$']
+
 " Key to run current python buffer with python
-nmap <buffer> <F5> :w<CR>:!/usr/bin/env python % <CR>
+"nmap <buffer> <F5> :w<CR>:!/usr/bin/env python % <CR>
+"===================
+
 
 " Key to toggle NERDTree sidebar
 map <F3> :NERDTreeToggle<CR>
@@ -189,3 +231,5 @@ nmap <silent> <A-Right> :wincmd l<CR>
 map <C-Tab> :bnext<cr>
 map <C-S-Tab> :bprevious<cr>
 
+" make vim understand commands without leaving russian keyboard layout
+" set langmap=ёйцукенгшщзхъфывапролджэячсмитьбю;`qwertyuiop[]asdfghjkl\;'zxcvbnm\,.;ЙЦУКЕHГШЩЗХЪФЫВАПРОЛДЖЭЯЧСМИТЬБЮ;QWERTYUIOP{}ASDFGHJKL:\"ZXCVBNM<>
