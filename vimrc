@@ -1,34 +1,42 @@
+" Find what OS being run under
+if has ("win32") || has("win64") || has("win16") || has("win95")
+    let osname="win"
+else
+    let osname="other"
+endif
+
 " Default Windows customizations
+if osname is "win"
+    set nocompatible
+    source $VIMRUNTIME/vimrc_example.vim
+    " source $VIMRUNTIME/mswin.vim
+    " behave mswin
 
-set nocompatible
-source $VIMRUNTIME/vimrc_example.vim
-" source $VIMRUNTIME/mswin.vim
-" behave mswin
-
-set diffexpr=MyDiff()
-function MyDiff()
-  let opt = '-a --binary '
-  if &diffopt =~ 'icase' | let opt = opt . '-i ' | endif
-  if &diffopt =~ 'iwhite' | let opt = opt . '-b ' | endif
-  let arg1 = v:fname_in
-  if arg1 =~ ' ' | let arg1 = '"' . arg1 . '"' | endif
-  let arg2 = v:fname_new
-  if arg2 =~ ' ' | let arg2 = '"' . arg2 . '"' | endif
-  let arg3 = v:fname_out
-  if arg3 =~ ' ' | let arg3 = '"' . arg3 . '"' | endif
-  let eq = ''
-  if $VIMRUNTIME =~ ' '
-    if &sh =~ '\<cmd'
-      let cmd = '""' . $VIMRUNTIME . '\diff"'
-      let eq = '"'
-    else
-      let cmd = substitute($VIMRUNTIME, ' ', '" ', '') . '\diff"'
-    endif
-  else
-    let cmd = $VIMRUNTIME . '\diff'
-  endif
-  silent execute '!' . cmd . ' ' . opt . arg1 . ' ' . arg2 . ' > ' . arg3 . eq
-endfunction
+    set diffexpr=MyDiff()
+    function MyDiff()
+      let opt = '-a --binary '
+      if &diffopt =~ 'icase' | let opt = opt . '-i ' | endif
+      if &diffopt =~ 'iwhite' | let opt = opt . '-b ' | endif
+      let arg1 = v:fname_in
+      if arg1 =~ ' ' | let arg1 = '"' . arg1 . '"' | endif
+      let arg2 = v:fname_new
+      if arg2 =~ ' ' | let arg2 = '"' . arg2 . '"' | endif
+      let arg3 = v:fname_out
+      if arg3 =~ ' ' | let arg3 = '"' . arg3 . '"' | endif
+      let eq = ''
+      if $VIMRUNTIME =~ ' '
+        if &sh =~ '\<cmd'
+          let cmd = '""' . $VIMRUNTIME . '\diff"'
+          let eq = '"'
+        else
+          let cmd = substitute($VIMRUNTIME, ' ', '" ', '') . '\diff"'
+        endif
+      else
+        let cmd = $VIMRUNTIME . '\diff'
+      endif
+      silent execute '!' . cmd . ' ' . opt . arg1 . ' ' . arg2 . ' > ' . arg3 . eq
+    endfunction
+endif
 
 " My personal customizations
 " Installed plugins from github:
@@ -47,18 +55,20 @@ endfunction
 " davidhalter/jedi-vim
 " Rykka/riv.vim
 
-
 " Enable Pathogen
 runtime bundle/vim-pathogen/autoload/pathogen.vim
 execute pathogen#infect()
 
 set encoding=utf-8
+set fileencodings=utf-8,cp1251
 
 set tabstop=8
 set expandtab
 set softtabstop=4
 set shiftwidth=4
 set colorcolumn=80
+
+set diffopt+=vertical
 
 fu Select_c_style()
     if search('^\t', 'n', 150)
@@ -99,14 +109,19 @@ if has('gui_running')
     set background=light
     "set background=dark
     colorscheme solarized
-    set guifont=Anonymous_Pro:h11:cRUSSIAN
+    if has("gui_gtk2")
+        set guifont=Anonymous\ Pro\ 11
+    elseif has("gui_win32")
+        set guifont=Anonymous_Pro:h11:cRUSSIAN
+    endif
 endif
 
 " Set interaction with system clipboard
-" For Windows
-set clipboard=unnamed
-" For *nix
-"set clipboard=unnamedplus
+if osname is "win"
+    set clipboard=unnamed
+else
+    set clipboard=unnamedplus
+endif
 
 " Load the whole python-mode
 " let g:pymode = 1
