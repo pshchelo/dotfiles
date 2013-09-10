@@ -102,6 +102,7 @@ call vundle#rc()
 Bundle 'gmarik/vundle'
 
 " My other Bundles
+Bundle 'moll/vim-bbye'
 Bundle 'tpope/vim-fugitive'
 "Bundle 'tpope/vim-sensible'
 Bundle 'scrooloose/nerdcommenter'
@@ -254,6 +255,9 @@ nmap <silent> <A-Right> :wincmd l<CR>
 " Switch to alternate file
 map <C-Tab> :bnext<cr>
 map <C-S-Tab> :bprevious<cr>
+
+" Mapping for gracefully closing buffers with vim-bbye
+:nnoremap <Leader>q :Bdelete<CR>
 
 " make vim understand commands without leaving russian keyboard layout
 " set langmap=ёйцукенгшщзхъфывапролджэячсмитьбю;`qwertyuiop[]asdfghjkl\;'zxcvbnm\,.;ЙЦУКЕHГШЩЗХЪФЫВАПРОЛДЖЭЯЧСМИТЬБЮ;QWERTYUIOP{}ASDFGHJKL:\"ZXCVBNM<>
