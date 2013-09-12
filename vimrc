@@ -207,6 +207,7 @@ let g:pymode_run = 1
 
 " Key for run python code
 let g:pymode_run_key = '<leader>r'
+
 "======================
 " Jedi-vim configuration
 
@@ -217,7 +218,6 @@ let g:jedi#rename_command = "<leader>rn"
 autocmd FileType python setlocal completeopt-=preview
 
 "======================
-
 " Add the virtualenv's site-packages to vim path
 py << EOF
 import os.path
@@ -231,14 +231,40 @@ if 'VIRTUAL_ENV' in os.environ:
 EOF
 
 "=========================
+" Syntastic configuration
+
+" Define nice error symbols
+let g:syntastic_error_symbol='✗'
+let g:syntastic_warning_symbol='⚠'
+
+" Allways stick found errors to loclist
+let g:syntastic_always_populate_loc_list=1
+
+" Aggregate errors from all checkers
+let g:syntastic_aggregate_errors=1
+
+" Automatically closa and open loclist
+let g:syntastic_auto_loc_list=1
+
+" Use Pylama as a sole checker for Python files
+" Available are pep8,pep257,pyflakes,pylint,py3kwarn,python,flake8,pylama
+let g:syntastic_python_checkers = ['pylama']
+" Select which checkers Pylama runs
+" Available are pep8,pep257,pyflakes,pylint,mccabe
+let g:syntastic_python_pylama_args = '-l pep8,pyflakes'
+
+"=========================
+" NERDTree configuration
 
 " filter on *.pyc files in NERDTree plugin
 let NERDTreeIgnore = ['\.pyc$']
 
+
+"=========================
+" Various keymappings
+
 " Key to run current python buffer with python
 "nmap <buffer> <F5> :w<CR>:!/usr/bin/env python % <CR>
-"===================
-
 
 " Key to toggle NERDTree sidebar
 map <F3> :NERDTreeToggle<CR>
