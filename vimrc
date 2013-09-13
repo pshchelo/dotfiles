@@ -136,19 +136,21 @@ set laststatus=2
 
 " set color scheme
 if has('gui_running')
-    set background=light
-    "set background=dark
+    "set background=light
+    set background=dark
     colorscheme solarized
     if has("gui_gtk2")
-        set guifont=Anonymice\ Powerline\ 11
+        set guifont=Anonymice\ Powerline\ 12
     elseif has("gui_win32")
-        set guifont=Anonymous_Pro:h11:cRUSSIAN
+        set guifont=Anonymous_Pro:h12:cRUSSIAN
     endif
 else
     set t_Co=16
     set background=dark
     colorscheme solarized
 endif
+
+:set guioptions-=T  "remove toolbar
 
 " Initialize Powerline
 python from powerline.vim import setup as powerline_setup
@@ -259,6 +261,10 @@ let g:syntastic_python_pylama_args = '-l pep8,pyflakes'
 " filter on *.pyc files in NERDTree plugin
 let NERDTreeIgnore = ['\.pyc$']
 
+
+"=========================
+" Tagbar configuration
+let g:tagbar_width = 32
 
 "=========================
 " Various keymappings
