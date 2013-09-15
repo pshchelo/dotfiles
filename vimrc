@@ -115,7 +115,7 @@ Bundle 'majutsushi/tagbar'
 Bundle 'davidhalter/jedi-vim'
 Bundle 'Rykka/riv.vim'
 Bundle 'Lokaltog/vim-powerline', {'rtp': 'powerline/bindings/vim/'}
-"Bundle 'jmcantrell/vim-virtualenv'
+Bundle 'jmcantrell/vim-virtualenv'
 "Bundle 'garbas/vim-snipmate'
 " needed by vim-snipmate
 "Bundle 'tomtom/tlib_vim'
@@ -157,59 +157,6 @@ python from powerline.vim import setup as powerline_setup
 python powerline_setup()
 python del powerline_setup
 
-"=====================
-" Python mode settings
-"---------------------
-" Load the whole python-mode
-"let g:pymode = 1
-
-" Python-mode
-" Activate rope
-" Keys:
-" K             Show python docs
-" <Ctrl-Space>  Rope autocomplete
-" <Ctrl-c>g     Rope goto definition
-" <Ctrl-c>d     Rope show documentation
-" <Ctrl-c>f     Rope find occurrences
-" <Leader>b     Set, unset breakpoint (g:pymode_breakpoint enabled)
-" [[            Jump on previous class or function (normal, visual, operator modes)
-" ]]            Jump on next class or function (normal, visual, operator modes)
-" [M            Jump on previous class or method (normal, visual, operator modes)
-" ]M            Jump on next class or method (normal, visual, operator modes)
-let g:pymode_rope = 0 
-
-" Documentation
-let g:pymode_doc = 0
-let g:pymode_doc_key = 'K'
-
-"Linting
-let g:pymode_lint = 1
-let g:pymode_lint_checker = "pyflakes,pep8"
-" Auto check on save
-let g:pymode_lint_write = 1
-
-" Support virtualenv
-let g:pymode_virtualenv = 1
-
-" Enable breakpoints plugin
-let g:pymode_breakpoint = 1
-let g:pymode_breakpoint_key = '<leader>b'
-
-" syntax highlighting
-let g:pymode_syntax = 1
-let g:pymode_syntax_all = 1
-let g:pymode_syntax_indent_errors = g:pymode_syntax_all
-let g:pymode_syntax_space_errors = g:pymode_syntax_all
-
-" Don't autofold code
-let g:pymode_folding = 0
-
-" Load run code plugin
-let g:pymode_run = 1
-
-" Key for run python code
-let g:pymode_run_key = '<leader>r'
-
 "======================
 " Jedi-vim configuration
 
@@ -217,20 +164,28 @@ let g:pymode_run_key = '<leader>r'
 let g:jedi#rename_command = "<leader>rn"
 
 " Disable doctext from popping while autocompleting
-autocmd FileType python setlocal completeopt-=preview
+"autocmd FileType python setlocal completeopt-=preview
 
 "======================
+" Other Python-related settings
+
 " Add the virtualenv's site-packages to vim path
-py << EOF
-import os.path
-import sys
-import vim
-if 'VIRTUAL_ENV' in os.environ:
-    project_base_dir = os.environ['VIRTUAL_ENV']
-    sys.path.insert(0, project_base_dir)
-    activate_this = os.path.join(project_base_dir, 'bin/activate_this.py')
-    execfile(activate_this, dict(__file__=activate_this))
-EOF
+"py << EOF
+"import os.path
+"import sys
+"import vim
+"if 'VIRTUAL_ENV' in os.environ:
+    "project_base_dir = os.environ['VIRTUAL_ENV']
+    "sys.path.insert(0, project_base_dir)
+    "activate_this = os.path.join(project_base_dir, 'bin/activate_this.py')
+    "execfile(activate_this, dict(__file__=activate_this))
+"EOF
+
+" key map to insert ipdb breakpoint
+nnoremap <leader>b yyP^Cimport ipdb; ipdb.set_trace()  # XXX:breakpoint
+
+" key map to insert pdb breakpoint
+"nnoremap <leader>b yyP^Cimport pdb; pdb.set_trace()  # XXX:breakpoint
 
 "=========================
 " Syntastic configuration
@@ -261,22 +216,18 @@ let g:syntastic_python_pylama_args = '-l pep8,pyflakes'
 " filter on *.pyc files in NERDTree plugin
 let NERDTreeIgnore = ['\.pyc$']
 
+" Key to toggle NERDTree sidebar
+map <F3> :NERDTreeToggle<CR>
 
 "=========================
 " Tagbar configuration
 let g:tagbar_width = 32
 
-"=========================
-" Various keymappings
-
-" Key to run current python buffer with python
-"nmap <buffer> <F5> :w<CR>:!/usr/bin/env python % <CR>
-
-" Key to toggle NERDTree sidebar
-map <F3> :NERDTreeToggle<CR>
-
 " Key to toggle TagBar sidebar
 nmap <F4> :TagbarToggle<CR>
+
+"=========================
+" Working with buffers and windows
 
 " Keys to move between split windows
 nmap <silent> <A-Up> :wincmd k<CR>
@@ -290,6 +241,61 @@ map <C-S-Tab> :bprevious<cr>
 
 " Mapping for gracefully closing buffers with vim-bbye
 :nnoremap <Leader>q :Bdelete<CR>
+
+"=====================
+" Python mode settings
+"---------------------
+" Load the whole python-mode
+"let g:pymode = 1
+
+" Python-mode
+" Activate rope
+" Keys:
+" K             Show python docs
+" <Ctrl-Space>  Rope autocomplete
+" <Ctrl-c>g     Rope goto definition
+" <Ctrl-c>d     Rope show documentation
+" <Ctrl-c>f     Rope find occurrences
+" <Leader>b     Set, unset breakpoint (g:pymode_breakpoint enabled)
+" [[            Jump on previous class or function (normal, visual, operator modes)
+" ]]            Jump on next class or function (normal, visual, operator modes)
+" [M            Jump on previous class or method (normal, visual, operator modes)
+" ]M            Jump on next class or method (normal, visual, operator modes)
+"let g:pymode_rope = 0 
+
+" Documentation
+"let g:pymode_doc = 0
+"let g:pymode_doc_key = 'K'
+
+"Linting
+"let g:pymode_lint = 1
+"let g:pymode_lint_checker = "pyflakes,pep8"
+" Auto check on save
+"let g:pymode_lint_write = 1
+
+" Support virtualenv
+"let g:pymode_virtualenv = 1
+
+" Enable breakpoints plugin
+"let g:pymode_breakpoint = 1
+"let g:pymode_breakpoint_key = '<leader>b'
+
+" syntax highlighting
+"let g:pymode_syntax = 1
+"let g:pymode_syntax_all = 1
+"let g:pymode_syntax_indent_errors = g:pymode_syntax_all
+"let g:pymode_syntax_space_errors = g:pymode_syntax_all
+
+" Don't autofold code
+"let g:pymode_folding = 0
+
+" Load run code plugin
+"let g:pymode_run = 1
+
+" Key for run python code
+"let g:pymode_run_key = '<leader>r'
+
+"=========================
 
 " make vim understand commands without leaving russian keyboard layout
 " set langmap=ёйцукенгшщзхъфывапролджэячсмитьбю;`qwertyuiop[]asdfghjkl\;'zxcvbnm\,.;ЙЦУКЕHГШЩЗХЪФЫВАПРОЛДЖЭЯЧСМИТЬБЮ;QWERTYUIOP{}ASDFGHJKL:\"ZXCVBNM<>
