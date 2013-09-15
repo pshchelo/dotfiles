@@ -26,15 +26,21 @@ c = get_config()
 # lines of code to run at IPython startup.
 # c.InteractiveShellApp.exec_lines = []
 
-# Enable GUI event loop integration ('qt', 'wx', 'gtk', 'glut', 'pyglet',
-# 'osx').
+# Enable GUI event loop integration with any of ('glut', 'gtk', 'gtk3', 'none',
+# 'osx', 'pyglet', 'qt', 'qt4', 'tk', 'wx').
 # c.InteractiveShellApp.gui = None
 
 # Pre-load matplotlib and numpy for interactive use, selecting a particular
 # matplotlib backend and loop integration.
 # c.InteractiveShellApp.pylab = None
 
-# If true, an 'import *' is done from numpy and pylab, when using pylab
+# Configure matplotlib for interactive use with the default matplotlib backend.
+# c.InteractiveShellApp.matplotlib = None
+
+# If true, IPython will populate the user namespace with numpy, pylab, etc. and
+# an 'import *' is done from numpy and pylab, when using pylab mode.
+#
+# When False, pylab mode should not import any names into the user namespace.
 # c.InteractiveShellApp.pylab_import_all = True
 
 # A list of dotted module names of IPython extensions to load.
@@ -59,41 +65,69 @@ c = get_config()
 # TerminalIPythonApp will inherit config from: BaseIPythonApplication,
 # Application, InteractiveShellApp
 
-# Execute the given command string.
-# c.TerminalIPythonApp.code_to_run = ''
-
-# The IPython profile to use.
-# c.TerminalIPythonApp.profile = u'default'
-
-# Set the log level by value or name.
-# c.TerminalIPythonApp.log_level = 30
-
-# Whether to display a banner upon starting IPython.
-# c.TerminalIPythonApp.display_banner = True
-
-# lines of code to run at IPython startup.
-# c.TerminalIPythonApp.exec_lines = []
-
-# Enable GUI event loop integration ('qt', 'wx', 'gtk', 'glut', 'pyglet',
-# 'osx').
-# c.TerminalIPythonApp.gui = None
-
 # Pre-load matplotlib and numpy for interactive use, selecting a particular
 # matplotlib backend and loop integration.
 # c.TerminalIPythonApp.pylab = None
-
-# Suppress warning messages about legacy config files
-# c.TerminalIPythonApp.ignore_old_config = False
 
 # Create a massive crash report when IPython encounters what may be an internal
 # error.  The default is to append a short message to the usual traceback
 # c.TerminalIPythonApp.verbose_crash = False
 
+# Run the module as a script.
+# c.TerminalIPythonApp.module_to_run = ''
+
+# The date format used by logging formatters for %(asctime)s
+# c.TerminalIPythonApp.log_datefmt = '%Y-%m-%d %H:%M:%S'
+
+# Whether to overwrite existing config files when copying
+# c.TerminalIPythonApp.overwrite = False
+
+# Execute the given command string.
+# c.TerminalIPythonApp.code_to_run = ''
+
+# Set the log level by value or name.
+# c.TerminalIPythonApp.log_level = 30
+
+# lines of code to run at IPython startup.
+# c.TerminalIPythonApp.exec_lines = []
+
+# Suppress warning messages about legacy config files
+# c.TerminalIPythonApp.ignore_old_config = False
+
+# Path to an extra config file to load.
+#
+# If specified, load this config file in addition to any other IPython config.
+# c.TerminalIPythonApp.extra_config_file = u''
+
+# dotted module name of an IPython extension to load.
+# c.TerminalIPythonApp.extra_extension = ''
+
+# A file to be run
+# c.TerminalIPythonApp.file_to_run = ''
+
+# The IPython profile to use.
+# c.TerminalIPythonApp.profile = u'default'
+
+# Configure matplotlib for interactive use with the default matplotlib backend.
+# c.TerminalIPythonApp.matplotlib = None
+
 # If a command or file is given via the command-line, e.g. 'ipython foo.py
 # c.TerminalIPythonApp.force_interact = False
 
-# If true, an 'import *' is done from numpy and pylab, when using pylab
+# If true, IPython will populate the user namespace with numpy, pylab, etc. and
+# an 'import *' is done from numpy and pylab, when using pylab mode.
+#
+# When False, pylab mode should not import any names into the user namespace.
 # c.TerminalIPythonApp.pylab_import_all = True
+
+# The name of the IPython directory. This directory is used for logging
+# configuration (through profiles), history storage, etc. The default is usually
+# $HOME/.ipython. This options can also be specified through the environment
+# variable IPYTHONDIR.
+# c.TerminalIPythonApp.ipython_dir = u'/home/pshchelo/.config/ipython'
+
+# Whether to display a banner upon starting IPython.
+# c.TerminalIPythonApp.display_banner = True
 
 # Whether to install the default config files into the profile dir. If a new
 # profile is being created, and IPython contains config files for that profile,
@@ -101,35 +135,21 @@ c = get_config()
 # files will be automatically generated.
 # c.TerminalIPythonApp.copy_config_files = False
 
-# The name of the IPython directory. This directory is used for logging
-# configuration (through profiles), history storage, etc. The default is usually
-# $HOME/.ipython. This options can also be specified through the environment
-# variable IPYTHONDIR.
-# c.TerminalIPythonApp.ipython_dir = u'C:\\Users\\family\\.ipython'
+# List of files to run at IPython startup.
+# c.TerminalIPythonApp.exec_files = []
 
-# Run the module as a script.
-# c.TerminalIPythonApp.module_to_run = ''
-
-# Start IPython quickly by skipping the loading of config files.
-# c.TerminalIPythonApp.quick = False
+# Enable GUI event loop integration with any of ('glut', 'gtk', 'gtk3', 'none',
+# 'osx', 'pyglet', 'qt', 'qt4', 'tk', 'wx').
+# c.TerminalIPythonApp.gui = None
 
 # A list of dotted module names of IPython extensions to load.
 # c.TerminalIPythonApp.extensions = []
 
+# Start IPython quickly by skipping the loading of config files.
+# c.TerminalIPythonApp.quick = False
+
 # The Logging format template
-# c.TerminalIPythonApp.log_format = '[%(name)s] %(message)s'
-
-# dotted module name of an IPython extension to load.
-# c.TerminalIPythonApp.extra_extension = ''
-
-# List of files to run at IPython startup.
-# c.TerminalIPythonApp.exec_files = []
-
-# Whether to overwrite existing config files when copying
-# c.TerminalIPythonApp.overwrite = False
-
-# A file to be run
-# c.TerminalIPythonApp.file_to_run = ''
+# c.TerminalIPythonApp.log_format = '[%(name)s]%(highlevel)s %(message)s'
 
 #------------------------------------------------------------------------------
 # TerminalInteractiveShell configuration
@@ -144,6 +164,10 @@ c = get_config()
 # is passed through a pager (like 'less'), and some pagers get confused with
 # color codes, this capability can be turned off.
 # c.TerminalInteractiveShell.color_info = True
+
+# A list of ast.NodeTransformer subclass instances, which will be applied to
+# user input before code is run.
+# c.TerminalInteractiveShell.ast_transformers = []
 
 #
 # c.TerminalInteractiveShell.history_length = 10000
@@ -163,9 +187,6 @@ c = get_config()
 #
 # c.TerminalInteractiveShell.separate_in = '\n'
 
-# Enable magic commands to be called without the leading %.
-# c.TerminalInteractiveShell.automagic = True
-
 # Deprecated, use PromptManager.in2_template
 # c.TerminalInteractiveShell.prompt_in2 = '   .\\D.: '
 
@@ -175,13 +196,13 @@ c = get_config()
 # Deprecated, use PromptManager.in_template
 # c.TerminalInteractiveShell.prompt_in1 = 'In [\\#]: '
 
-# Enable deep (recursive) reloading by default. IPython can use the deep_reload
-# module which reloads changes in modules recursively (it replaces the reload()
-# function, so you don't need to change anything to use it). deep_reload()
-# forces a full reload of modules whose code may have changed, which the default
-# reload() function does not.  When deep_reload is off, IPython will use the
-# normal reload(), but deep_reload will still be available as dreload().
-# c.TerminalInteractiveShell.deep_reload = False
+# Make IPython automatically call any callable object even if you didn't type
+# explicit parentheses. For example, 'str 43' becomes 'str(43)' automatically.
+# The value can be '0' to disable the feature, '1' for 'smart' autocall, where
+# it is not applied if there are no more arguments on the line, and '2' for
+# 'full' autocall, where all callable objects are automatically called (even if
+# no arguments are present).
+# c.TerminalInteractiveShell.autocall = 0
 
 # Number of lines of your screen, used to control printing of very long strings.
 # Strings longer than this number of lines will be sent through a pager instead
@@ -194,13 +215,13 @@ c = get_config()
 # c.TerminalInteractiveShell.screen_length = 0
 
 # Set the editor used by IPython (default to $EDITOR/vi/notepad).
-c.TerminalInteractiveShell.editor = u'vim +{line} {filename}'
+# c.TerminalInteractiveShell.editor = u'vim +{line} {filename}'
 
 # Deprecated, use PromptManager.justify
 # c.TerminalInteractiveShell.prompts_pad_left = True
 
 # The part of the banner to be printed before the profile
-# c.TerminalInteractiveShell.banner1 = 'Python 2.7.3 (default, Apr 10 2012, 23:24:47) [MSC v.1500 64 bit (AMD64)]\nType "copyright", "credits" or "license" for more information.\n\nIPython 0.13.1 -- An enhanced Interactive Python.\n?         -> Introduction and overview of IPython\'s features.\n%quickref -> Quick reference.\nhelp      -> Python\'s own help system.\nobject?   -> Details about \'object\', use \'object??\' for extra details.\n'
+# c.TerminalInteractiveShell.banner1 = 'Python 2.7.3 (default, Apr 10 2013, 05:46:21) \nType "copyright", "credits" or "license" for more information.\n\nIPython 1.1.0 -- An enhanced Interactive Python.\n?         -> Introduction and overview of IPython\'s features.\n%quickref -> Quick reference.\nhelp      -> Python\'s own help system.\nobject?   -> Details about \'object\', use \'object??\' for extra details.\n'
 
 #
 # c.TerminalInteractiveShell.readline_parse_and_bind = ['tab: complete', '"\\C-l": clear-screen', 'set show-all-if-ambiguous on', '"\\C-o": tab-insert', '"\\C-r": reverse-search-history', '"\\C-s": forward-search-history', '"\\C-p": history-search-backward', '"\\C-n": history-search-forward', '"\\e[A": history-search-backward', '"\\e[B": history-search-forward', '"\\C-k": kill-line', '"\\C-u": unix-line-discard']
@@ -237,19 +258,22 @@ c.TerminalInteractiveShell.editor = u'vim +{line} {filename}'
 # The shell program to be used for paging.
 # c.TerminalInteractiveShell.pager = 'less'
 
-# Make IPython automatically call any callable object even if you didn't type
-# explicit parentheses. For example, 'str 43' becomes 'str(43)' automatically.
-# The value can be '0' to disable the feature, '1' for 'smart' autocall, where
-# it is not applied if there are no more arguments on the line, and '2' for
-# 'full' autocall, where all callable objects are automatically called (even if
-# no arguments are present).
-# c.TerminalInteractiveShell.autocall = 0
+# Enable magic commands to be called without the leading %.
+# c.TerminalInteractiveShell.automagic = True
 
 # Save multi-line entries as one entry in readline history
-# c.TerminalInteractiveShell.multiline_history = False
+# c.TerminalInteractiveShell.multiline_history = True
 
 #
 # c.TerminalInteractiveShell.readline_use = True
+
+# Enable deep (recursive) reloading by default. IPython can use the deep_reload
+# module which reloads changes in modules recursively (it replaces the reload()
+# function, so you don't need to change anything to use it). deep_reload()
+# forces a full reload of modules whose code may have changed, which the default
+# reload() function does not.  When deep_reload is off, IPython will use the
+# normal reload(), but deep_reload will still be available as dreload().
+# c.TerminalInteractiveShell.deep_reload = False
 
 # Start logging to the given file in append mode.
 # c.TerminalInteractiveShell.logappend = ''
@@ -316,6 +340,9 @@ c.TerminalInteractiveShell.editor = u'vim +{line} {filename}'
 #
 # c.HistoryManager.db_log_output = False
 
+#
+# c.HistoryManager.db_cache_size = 0
+
 # Path to file to use for SQLite history database.
 #
 # By default, IPython will put the history database in the IPython profile
@@ -329,8 +356,18 @@ c.TerminalInteractiveShell.editor = u'vim +{line} {filename}'
 #     ipython --HistoryManager.hist_file=/tmp/ipython_hist.sqlite
 # c.HistoryManager.hist_file = u''
 
+# Options for configuring the SQLite connection
 #
-# c.HistoryManager.db_cache_size = 0
+# These options are passed as keyword args to sqlite3.connect when establishing
+# database conenctions.
+# c.HistoryManager.connection_options = {}
+
+# enable the SQLite history
+#
+# set enabled=False to disable the SQLite history, in which case there will be
+# no stored history, no SQLite connection, and no background saving thread.
+# This may be necessary in some threaded environments where IPython is embedded.
+# c.HistoryManager.enabled = True
 
 #------------------------------------------------------------------------------
 # ProfileDir configuration
@@ -463,3 +500,15 @@ c.TerminalInteractiveShell.editor = u'vim +{line} {filename}'
 # Only necessary for items in script_magics where the default path will not find
 # the right interpreter.
 # c.ScriptMagics.script_paths = {}
+
+#------------------------------------------------------------------------------
+# StoreMagics configuration
+#------------------------------------------------------------------------------
+
+# Lightweight persistence for python variables.
+#
+# Provides the %store magic.
+
+# If True, any %store-d variables will be automatically restored when IPython
+# starts.
+# c.StoreMagics.autorestore = False
