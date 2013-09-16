@@ -1,0 +1,39 @@
+# setting paths
+#PATH DEFAULT=/usr/local/texlive/2012/bin/x86_64-linux:${PATH}
+PYTHONPATH DEFAULT=${HOME}/devel:${PYTHONPATH}
+
+# setting vim/gvim as default editor
+#EDITOR="/usr/bin/vim"
+#VISUAL="gvim"
+
+# setting java options for better font smoothing
+#_JAVA_OPTIONS="-Dawt.useSystemAAFontSettings=on"
+
+#setting alias for opening files with system GUI apps
+#alias xopen=xdg-open
+
+# setting locale
+#LC_NUMERIC=en_GB.UTF-8
+#LC_TIME=en_GB.UTF-8
+#LC_MONETARY=en_GB.UTF-8
+#LC_PAPER=en_GB.UTF-8
+#LC_NAME=en_GB.UTF-8
+#LC_ADDRESS=en_GB.UTF-8
+#LC_TELEPHONE=en_GB.UTF-8
+#LC_MEASUREMENT=en_GB.UTF-8
+#LC_IDENTIFICATION=en_GB.UTF-8
+
+# set locale to sane Euro(pean) defaults plus english language
+#LANG=en_US.UTF-8
+#LANGUAGE="en_US:en"
+#LC_MESSAGES="en_US.UTF-8"
+#LC_CTYPE="nl_NL@euro"
+#LC_COLLATE="nl_NL@euro"
+#LC_TIME="nl_NL"
+#LC_NUMERIC="nl_NL"
+#LC_MONETARY="nl_NL@euro"
+#LC_PAPER="nl_NL"
+#LC_TELEPHONE="nl_NL"
+#LC_ADDRESS="nl_NL"
+#LC_MEASUREMENT="nl_NL"
+#LC_NAME="nl_NL"
