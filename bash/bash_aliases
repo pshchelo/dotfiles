@@ -1,0 +1,5 @@
+#!/usr/bin/env sh
+#Define custom personal aliases
+
+#open files from terminal with GUI default application
+alias xopen=xdg-open
