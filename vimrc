@@ -243,6 +243,12 @@ map <C-S-Tab> :bprevious<cr>
 :nnoremap <Leader>q :Bdelete<CR>
 
 "=====================
+" Inserting a line belllow the current line, with the same length,
+" but consisting only from the char that's given after this command.
+" Useful for inserting RST headers.
+nmap <leader>h yypVr
+
+"=====================
 " Python mode settings
 "---------------------
 " Load the whole python-mode
