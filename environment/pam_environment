@@ -2,16 +2,6 @@
 #PATH DEFAULT=/usr/local/texlive/2012/bin/x86_64-linux:${PATH}
 PYTHONPATH DEFAULT=${HOME}/devel:${PYTHONPATH}
 
-# setting vim/gvim as default editor
-#EDITOR="/usr/bin/vim"
-#VISUAL="gvim"
-
-# setting java options for better font smoothing
-#_JAVA_OPTIONS="-Dawt.useSystemAAFontSettings=on"
-
-#setting alias for opening files with system GUI apps
-#alias xopen=xdg-open
-
 # setting locale
 #LC_NUMERIC=en_GB.UTF-8
 #LC_TIME=en_GB.UTF-8

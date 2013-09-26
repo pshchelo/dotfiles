@@ -21,6 +21,7 @@ if [ -d "$HOME/bin" ] ; then
     PATH="$HOME/bin:$PATH"
 fi
 
+# for ssh-agent - adding existing ssh private keys 
 ssh-add &>/dev/null
 
 # set vim/gvim as default editor
