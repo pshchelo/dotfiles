@@ -116,6 +116,7 @@ Bundle 'davidhalter/jedi-vim'
 Bundle 'Rykka/riv.vim'
 Bundle 'Lokaltog/vim-powerline', {'rtp': 'powerline/bindings/vim/'}
 Bundle 'jmcantrell/vim-virtualenv'
+Bundle 'kien/ctrlp.vim'
 "Bundle 'garbas/vim-snipmate'
 " needed by vim-snipmate
 "Bundle 'tomtom/tlib_vim'
