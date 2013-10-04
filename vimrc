@@ -40,6 +40,23 @@ if osname is "win"
     endfunction
 endif
 
+" do not force to save buffers when switching to new ones
+set hidden
+
+" disable auxillary files creation
+set nobackup
+set noswapfile
+
+" allow backspacing over everything in insert mode
+set backspace=indent,eol,start
+set showmatch     " set show matching parenthesis
+set ignorecase    " ignore case when searching
+set smartcase     " ignore case if search pattern is all lowercase,
+                  "    case-sensitive otherwise
+set hlsearch      " highlight search terms
+set incsearch 
+:nnoremap <silent> <Esc> :nohlsearch<Bar>:echo<CR>
+
 " Character encoding settings
 set encoding=utf-8
 set fileencodings=utf-8,cp1251
@@ -49,6 +66,11 @@ set tabstop=8
 set expandtab
 set softtabstop=4
 set shiftwidth=4
+" use multiple of shiftwidth when indenting with '<' and '>'
+set shiftround    
+" insert tabs on the start of a line according to shiftwidth, not tabstop
+set smarttab
+
 " Show colored border column
 set colorcolumn=80
 " Show line numbers
@@ -117,6 +139,8 @@ Bundle 'Rykka/riv.vim'
 Bundle 'Lokaltog/vim-powerline', {'rtp': 'powerline/bindings/vim/'}
 Bundle 'jmcantrell/vim-virtualenv'
 Bundle 'kien/ctrlp.vim'
+Bundle 'nvie/vim-togglemouse'
+"Bundle 'vim-scripts/YankRing.vim'
 "Bundle 'garbas/vim-snipmate'
 " needed by vim-snipmate
 "Bundle 'tomtom/tlib_vim'
@@ -132,6 +156,8 @@ filetype plugin on
 set foldmethod=indent
 set foldlevelstart=999
 set autoindent
+" copy the previous indentation on autoindenting
+set copyindent    
 " Needed for Powerline
 set laststatus=2
 
@@ -158,6 +184,8 @@ python from powerline.vim import setup as powerline_setup
 python powerline_setup()
 python del powerline_setup
 
+" ignore these files when searching etc
+set wildignore=*.swp,*.bak,*.pyc,*.class
 "======================
 " Jedi-vim configuration
 
@@ -230,15 +258,31 @@ nmap <F4> :TagbarToggle<CR>
 "=========================
 " Working with buffers and windows
 
-" Keys to move between split windows
-nmap <silent> <A-Up> :wincmd k<CR>
-nmap <silent> <A-Down> :wincmd j<CR>
-nmap <silent> <A-Left> :wincmd h<CR>
-nmap <silent> <A-Right> :wincmd l<CR>
+" disable arrow keys to force working with standard HJKL movement keys
+"map <up> <nop>
+"map <down> <nop>
+"map <left> <nop>
+"map <right> <nop>
+
+" move up and down per visual line, not real line
+"nnoremap j gj
+"nnoremap k gk
+nnoremap <Down> gj
+nnoremap <Up> gk
+
+" Keys to move between windows
+nmap <silent> <C-Up> :wincmd k<CR>
+nmap <silent> <C-Down> :wincmd j<CR>
+nmap <silent> <C-Left> :wincmd h<CR>
+nmap <silent> <C-Right> :wincmd l<CR>
+"map <C-h> <C-w>h
+"map <C-j> <C-w>j
+"map <C-k> <C-w>k
+"map <C-l> <C-w>l
 
 " Switch to alternate file
-map <C-Tab> :bnext<cr>
-map <C-S-Tab> :bprevious<cr>
+nmap <C-Tab> :bnext<cr>
+nmap <C-S-Tab> :bprevious<cr>
 
 " Mapping for gracefully closing buffers with vim-bbye
 :nnoremap <Leader>q :Bdelete<CR>
