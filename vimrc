@@ -55,7 +55,7 @@ set smartcase     " ignore case if search pattern is all lowercase,
                   "    case-sensitive otherwise
 set hlsearch      " highlight search terms
 set incsearch 
-:nnoremap <silent> <Esc> :nohlsearch<Bar>:echo<CR>
+:nnoremap <silent> <Space> :nohlsearch<Bar>:echo<CR>
 
 " Character encoding settings
 set encoding=utf-8
