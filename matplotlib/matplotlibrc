@@ -427,14 +427,15 @@ image.cmap   : gray               # gray | jet etc...
 #examples.directory : ''   # directory to look in for custom installation
 
 ###ANIMATION settings
-#animation.writer : ffmpeg         # MovieWriter 'backend' to use
-#animation.codec : mp4             # Codec to use for writing movie
-#animation.bitrate: -1             # Controls size/quality tradeoff for movie.
-                                   # -1 implies let utility auto-determine
+animation.writer : ffmpeg         # MovieWriter 'backend' to use
+animation.codec : mp4             # Codec to use for writing movie
+animation.bitrate: -1             # Controls size/quality tradeoff for movie.
+                                  # -1 implies let utility auto-determine
+animation.fps: 30
 #animation.frame_format: 'png'     # Controls frame format used by temp files
 #animation.ffmpeg_path: 'ffmpeg'   # Path to ffmpeg binary. Without full path
                                    # $PATH is searched
-#animation.ffmpeg_args: ''         # Additional arugments to pass to mencoder
+animation.ffmpeg_args: '-vcodec libx264'         # Additional arugments to pass to mencoder
 #animation.mencoder_path: 'ffmpeg' # Path to mencoder binary. Without full path
                                    # $PATH is searched
 #animation.mencoder_args: ''       # Additional arugments to pass to mencoder
