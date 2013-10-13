@@ -179,13 +179,21 @@ endif
 
 :set guioptions-=T  "remove toolbar
 
+" ignore these files when searching etc
+set wildignore=*.swp,*.bak,*.pyc,*.class
+
+"======================
 " Initialize Powerline
+
 python from powerline.vim import setup as powerline_setup
 python powerline_setup()
 python del powerline_setup
 
-" ignore these files when searching etc
-set wildignore=*.swp,*.bak,*.pyc,*.class
+"======================
+" Configure CtrlP fuzzy search
+
+let g:ctrlp_cmd = 'CtrlPMixed'
+
 "======================
 " Jedi-vim configuration
 
