@@ -126,9 +126,6 @@ export WORKON_HOME=$HOME/.virtualenvs
 export PROJECT_HOME=$HOME/devel
 source /usr/local/bin/virtualenvwrapper.sh
 
-# set alias for opening files with system GUI apps
-alias xopen=xdg-open
-
 # solarized scheme for Midnight Commander
 export MC_SKIN=$HOME/.config/mc/solarized.ini
 
