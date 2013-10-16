@@ -1,45 +1,6 @@
 " be iMproved!
 set nocompatible
 
-" Find what OS being run under
-if has ("win32") || has("win64") || has("win16") || has("win95")
-    let osname="win"
-else
-    let osname="other"
-endif
-
-" Default Windows customizations
-if osname is "win"
-    source $VIMRUNTIME/vimrc_example.vim
-    " source $VIMRUNTIME/mswin.vim
-    " behave mswin
-
-    set diffexpr=MyDiff()
-    function MyDiff()
-      let opt = '-a --binary '
-      if &diffopt =~ 'icase' | let opt = opt . '-i ' | endif
-      if &diffopt =~ 'iwhite' | let opt = opt . '-b ' | endif
-      let arg1 = v:fname_in
-      if arg1 =~ ' ' | let arg1 = '"' . arg1 . '"' | endif
-      let arg2 = v:fname_new
-      if arg2 =~ ' ' | let arg2 = '"' . arg2 . '"' | endif
-      let arg3 = v:fname_out
-      if arg3 =~ ' ' | let arg3 = '"' . arg3 . '"' | endif
-      let eq = ''
-      if $VIMRUNTIME =~ ' '
-        if &sh =~ '\<cmd'
-          let cmd = '""' . $VIMRUNTIME . '\diff"'
-          let eq = '"'
-        else
-          let cmd = substitute($VIMRUNTIME, ' ', '" ', '') . '\diff"'
-        endif
-      else
-        let cmd = $VIMRUNTIME . '\diff'
-      endif
-      silent execute '!' . cmd . ' ' . opt . arg1 . ' ' . arg2 . ' > ' . arg3 . eq
-    endfunction
-endif
-
 " do not force to save buffers when switching to new ones
 set hidden
 
@@ -54,8 +15,8 @@ set ignorecase    " ignore case when searching
 set smartcase     " ignore case if search pattern is all lowercase,
                   "    case-sensitive otherwise
 set hlsearch      " highlight search terms
-set incsearch 
-:nnoremap <silent> <Space> :nohlsearch<Bar>:echo<CR>
+set incsearch
+nnoremap <silent> <Space> :nohlsearch<Bar>:echo<CR>
 
 " Character encoding settings
 set encoding=utf-8
@@ -108,11 +69,7 @@ au BufRead,BufNewFile *.py,*.pyw*,.pyx,*.c,*.h match BadWhitespace /\s\+$/
 au BufRead,BufNewFile *.py,*.pyw,*.pyx,*.c,*.h set textwidth=79
 
 " Set interaction with system clipboard and mouse
-if osname is "win"
-    set clipboard=unnamed
-else
-    set clipboard=unnamedplus
-endif
+set clipboard=unnamedplus
 set mouse=a
 
 " required for Vundle
@@ -154,23 +111,18 @@ let python_highlight_all=1
 filetype indent on
 filetype plugin on
 set foldmethod=indent
+" start with all open folds
 set foldlevelstart=999
 set autoindent
 " copy the previous indentation on autoindenting
 set copyindent    
-" Needed for Powerline
-set laststatus=2
 
 " set color scheme
 if has('gui_running')
     "set background=light
     set background=dark
     colorscheme solarized
-    if has("gui_gtk2")
-        set guifont=Anonymice\ Powerline\ 12
-    elseif has("gui_win32")
-        set guifont=Anonymous_Pro:h12:cRUSSIAN
-    endif
+    set guifont=Anonymice\ Powerline\ 12
 else
     set t_Co=16
     set background=dark
@@ -185,6 +137,7 @@ set wildignore=*.swp,*.bak,*.pyc,*.class
 "======================
 " Initialize Powerline
 
+set laststatus=2
 python from powerline.vim import setup as powerline_setup
 python powerline_setup()
 python del powerline_setup
@@ -200,23 +153,8 @@ let g:ctrlp_cmd = 'CtrlPMixed'
 " Change default binding of jedi's rename command
 let g:jedi#rename_command = "<leader>rn"
 
-" Disable doctext from popping while autocompleting
-"autocmd FileType python setlocal completeopt-=preview
-
 "======================
 " Other Python-related settings
-
-" Add the virtualenv's site-packages to vim path
-"py << EOF
-"import os.path
-"import sys
-"import vim
-"if 'VIRTUAL_ENV' in os.environ:
-    "project_base_dir = os.environ['VIRTUAL_ENV']
-    "sys.path.insert(0, project_base_dir)
-    "activate_this = os.path.join(project_base_dir, 'bin/activate_this.py')
-    "execfile(activate_this, dict(__file__=activate_this))
-"EOF
 
 " key map to insert ipdb breakpoint
 nnoremap <leader>b yyP^Cimport ipdb; ipdb.set_trace()  # XXX:breakpoint
@@ -300,59 +238,6 @@ nmap <C-S-Tab> :bprevious<cr>
 " but consisting only from the char that's given after this command.
 " Useful for inserting RST headers.
 nmap <leader>h yypVr
-
-"=====================
-" Python mode settings
-"---------------------
-" Load the whole python-mode
-"let g:pymode = 1
-
-" Python-mode
-" Activate rope
-" Keys:
-" K             Show python docs
-" <Ctrl-Space>  Rope autocomplete
-" <Ctrl-c>g     Rope goto definition
-" <Ctrl-c>d     Rope show documentation
-" <Ctrl-c>f     Rope find occurrences
-" <Leader>b     Set, unset breakpoint (g:pymode_breakpoint enabled)
-" [[            Jump on previous class or function (normal, visual, operator modes)
-" ]]            Jump on next class or function (normal, visual, operator modes)
-" [M            Jump on previous class or method (normal, visual, operator modes)
-" ]M            Jump on next class or method (normal, visual, operator modes)
-"let g:pymode_rope = 0 
-
-" Documentation
-"let g:pymode_doc = 0
-"let g:pymode_doc_key = 'K'
-
-"Linting
-"let g:pymode_lint = 1
-"let g:pymode_lint_checker = "pyflakes,pep8"
-" Auto check on save
-"let g:pymode_lint_write = 1
-
-" Support virtualenv
-"let g:pymode_virtualenv = 1
-
-" Enable breakpoints plugin
-"let g:pymode_breakpoint = 1
-"let g:pymode_breakpoint_key = '<leader>b'
-
-" syntax highlighting
-"let g:pymode_syntax = 1
-"let g:pymode_syntax_all = 1
-"let g:pymode_syntax_indent_errors = g:pymode_syntax_all
-"let g:pymode_syntax_space_errors = g:pymode_syntax_all
-
-" Don't autofold code
-"let g:pymode_folding = 0
-
-" Load run code plugin
-"let g:pymode_run = 1
-
-" Key for run python code
-"let g:pymode_run_key = '<leader>r'
 
 "=========================
 
