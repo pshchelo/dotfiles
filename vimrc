@@ -28,7 +28,7 @@ set expandtab
 set softtabstop=4
 set shiftwidth=4
 " use multiple of shiftwidth when indenting with '<' and '>'
-set shiftround    
+"set shiftround
 " insert tabs on the start of a line according to shiftwidth, not tabstop
 set smarttab
 
@@ -64,9 +64,9 @@ au BufRead,BufNewFile *.py,*.pyw,*.pyx match BadWhitespace /^\t\+/
 au BufRead,BufNewFile *.py,*.pyw*,.pyx,*.c,*.h match BadWhitespace /\s\+$/
 
 " Wrap text after a certain number of characters
-" Python: 79 
+" Python: 79
 " C: 79
-au BufRead,BufNewFile *.py,*.pyw,*.pyx,*.c,*.h set textwidth=79
+"au BufRead,BufNewFile *.py,*.pyw,*.pyx,*.c,*.h set textwidth=79
 
 " Set interaction with system clipboard and mouse
 set clipboard=unnamedplus
