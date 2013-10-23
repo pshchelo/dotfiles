@@ -90,11 +90,11 @@ Bundle 'scrooloose/syntastic'
 Bundle 'altercation/vim-colors-solarized'
 Bundle 'ervandew/supertab'
 Bundle 'majutsushi/tagbar'
-"Bundle 'klen/python-mode'
+Bundle 'klen/python-mode'
 Bundle 'davidhalter/jedi-vim'
 Bundle 'Rykka/riv.vim'
 Bundle 'Lokaltog/vim-powerline', {'rtp': 'powerline/bindings/vim/'}
-Bundle 'jmcantrell/vim-virtualenv'
+"Bundle 'jmcantrell/vim-virtualenv'
 Bundle 'kien/ctrlp.vim'
 Bundle 'nvie/vim-togglemouse'
 "Bundle 'vim-scripts/YankRing.vim'
@@ -152,6 +152,35 @@ let g:ctrlp_cmd = 'CtrlPMixed'
 
 " Change default binding of jedi's rename command
 let g:jedi#rename_command = "<leader>rn"
+
+"======================
+" Python-mode configuration
+
+let g:pymode = 1
+let g:pymode_options = 1
+let g:pymode_run = 1
+let g:pymode_run_key = '<leader>r'
+let g:pymode_doc = 0
+let g:pymode_lint = 0
+let g:pymode_rope = 0
+let g:pymode_folding = 1
+let g:pymode_motion = 1
+let g:pymode_virtualenv = 1
+let g:pymode_breakpoint = 0
+
+" Autoremove unused whitespaces
+let g:pymode_utils_whitespaces = 1
+
+" Enable pymode indentation
+let g:pymode_indent = 1
+
+" Set default pymode python options
+"let g:pymode_options = 1
+" Enable pymode's custom syntax highlighting
+let g:pymode_syntax = 1
+
+" Enable all python highlightings
+let g:pymode_syntax_all = 1
 
 "======================
 " Other Python-related settings
@@ -233,6 +262,7 @@ nmap <C-S-Tab> :bprevious<cr>
 " Mapping for gracefully closing buffers with vim-bbye
 :nnoremap <Leader>q :Bdelete<CR>
 
+nmap W :write<cr>
 "=====================
 " Inserting a line belllow the current line, with the same length,
 " but consisting only from the char that's given after this command.
