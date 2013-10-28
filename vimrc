@@ -97,6 +97,7 @@ Bundle 'Lokaltog/vim-powerline', {'rtp': 'powerline/bindings/vim/'}
 "Bundle 'jmcantrell/vim-virtualenv'
 Bundle 'kien/ctrlp.vim'
 Bundle 'nvie/vim-togglemouse'
+Bundle 'mileszs/ack.vim'
 "Bundle 'vim-scripts/YankRing.vim'
 "Bundle 'garbas/vim-snipmate'
 " needed by vim-snipmate
@@ -262,7 +263,6 @@ nmap <C-S-Tab> :bprevious<cr>
 " Mapping for gracefully closing buffers with vim-bbye
 :nnoremap <Leader>q :Bdelete<CR>
 
-nmap W :write<cr>
 "=====================
 " Inserting a line belllow the current line, with the same length,
 " but consisting only from the char that's given after this command.
