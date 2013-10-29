@@ -137,3 +137,5 @@ eval "$(pyenv init -)"
 bind '"\e[A":history-search-backward'
 ## Down Arrow: search and complete from next history
 bind '"\e[B":history-search-forward'
+
+. /usr/local/lib/python2.7/dist-packages/powerline/bindings/bash/powerline.sh
