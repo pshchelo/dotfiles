@@ -119,18 +119,13 @@ set autoindent
 set copyindent    
 
 " set color scheme
-if has('gui_running')
-    "set background=light
-    set background=dark
-    colorscheme solarized
-    set guifont=Anonymice\ Powerline\ 12
-else
-    set t_Co=16
-    set background=dark
-    colorscheme solarized
-endif
-
-:set guioptions-=T  "remove toolbar
+set background=dark
+colorscheme solarized
+" set gui options
+set guifont=Anonymous\ Pro\ 12
+set guioptions-=T  "remove toolbar
+" set terminal colors
+set t_Co=16
 
 " ignore these files when searching etc
 set wildignore=*.swp,*.bak,*.pyc,*.class
