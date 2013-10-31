@@ -148,6 +148,7 @@ let g:ctrlp_cmd = 'CtrlPMixed'
 
 " Change default binding of jedi's rename command
 let g:jedi#rename_command = "<leader>rn"
+let g:jedi#popup_select_first = 1
 
 "======================
 " Python-mode configuration

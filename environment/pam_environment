@@ -1,6 +1,6 @@
 # setting paths
 #PATH DEFAULT=/usr/local/texlive/2012/bin/x86_64-linux:${PATH}
-PYTHONPATH DEFAULT=${HOME}/devel:${PYTHONPATH}
+#PYTHONPATH DEFAULT=${HOME}/devel:${PYTHONPATH}
 
 # setting locale
 #LC_NUMERIC=en_GB.UTF-8
