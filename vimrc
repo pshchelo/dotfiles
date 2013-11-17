@@ -93,6 +93,7 @@ Bundle 'majutsushi/tagbar'
 Bundle 'klen/python-mode'
 Bundle 'davidhalter/jedi-vim'
 Bundle 'Rykka/riv.vim'
+"Bundle 'bling/vim-airline'
 Bundle 'Lokaltog/vim-powerline', {'rtp': 'powerline/bindings/vim/'}
 "Bundle 'jmcantrell/vim-virtualenv'
 Bundle 'kien/ctrlp.vim'
@@ -131,12 +132,13 @@ set t_Co=16
 set wildignore=*.swp,*.bak,*.pyc,*.class
 
 "======================
-" Initialize Powerline
+" Initialize Powerline/Airlne
 
 set laststatus=2
 python from powerline.vim import setup as powerline_setup
 python powerline_setup()
 python del powerline_setup
+"let g:airline_powerline_fonts = 1
 
 "======================
 " Configure CtrlP fuzzy search
