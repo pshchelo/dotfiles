@@ -135,8 +135,8 @@ source /usr/local/bin/virtualenvwrapper.sh
 export MC_SKIN=$HOME/.config/mc/solarized.ini
 
 # setting up PyEnv
-export PYENV_ROOT="$HOME/.pyenv"
-eval "$(pyenv init -)"
+#export PYENV_ROOT="$HOME/.pyenv"
+#eval "$(pyenv init -)"
 
 ## Up Arrow: search and complete from previous history
 bind '"\e[A":history-search-backward'
