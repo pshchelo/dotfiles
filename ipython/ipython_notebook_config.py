@@ -8,32 +8,47 @@ c = get_config()
 
 # NotebookApp will inherit config from: BaseIPythonApplication, Application
 
-# The IPython profile to use.
-# c.NotebookApp.profile = u'default'
-
 # The url for MathJax.js.
 # c.NotebookApp.mathjax_url = ''
 
 # The IP address the notebook server will listen on.
 # c.NotebookApp.ip = '127.0.0.1'
 
-# The base URL for the notebook server
+# The base URL for the notebook server.
+# 
+# Leading and trailing slashes can be omitted, and will automatically be added.
 # c.NotebookApp.base_project_url = '/'
 
 # Create a massive crash report when IPython encounters what may be an internal
 # error.  The default is to append a short message to the usual traceback
 # c.NotebookApp.verbose_crash = False
 
+# The random bytes used to secure cookies. By default this is a new random
+# number every time you start the Notebook. Set it to a value in a config file
+# to enable logins to persist across server sessions.
+# 
+# Note: Cookie secrets should be kept private, do not share config files with
+# cookie_secret stored in plaintext (you can read the value from a file).
+# c.NotebookApp.cookie_secret = ''
+
 # The number of additional ports to try if the specified port is not available.
 # c.NotebookApp.port_retries = 50
 
-# Whether to install the default config files into the profile dir. If a new
-# profile is being created, and IPython contains config files for that profile,
-# then they will be staged into the new directory.  Otherwise, default config
-# files will be automatically generated.
-# c.NotebookApp.copy_config_files = False
+# Whether to open in a browser after starting. The specific browser used is
+# platform dependent and determined by the python standard library `webbrowser`
+# module, unless it is overridden using the --browser (NotebookApp.browser)
+# configuration option.
+# c.NotebookApp.open_browser = True
+
+# The notebook manager class to use.
+# c.NotebookApp.notebook_manager_class = 'IPython.html.services.notebooks.filenbmanager.FileNotebookManager'
+
+# The date format used by logging formatters for %(asctime)s
+# c.NotebookApp.log_datefmt = '%Y-%m-%d %H:%M:%S'
 
 # The base URL for the kernel server
+# 
+# Leading and trailing slashes can be omitted, and will automatically be added.
 # c.NotebookApp.base_kernel_url = '/'
 
 # The port the notebook server will listen on.
@@ -42,50 +57,78 @@ c = get_config()
 # Whether to overwrite existing config files when copying
 # c.NotebookApp.overwrite = False
 
-# Whether to prevent editing/execution of notebooks.
-# c.NotebookApp.read_only = False
-
 # Whether to enable MathJax for typesetting math/TeX
-#
+# 
 # MathJax is the javascript library IPython uses to render math/LaTeX. It is
 # very large, so you may want to disable it if you have a slow internet
 # connection, or for offline use of the notebook.
-#
+# 
 # When disabled, equations etc. will appear as their untransformed TeX source.
 # c.NotebookApp.enable_mathjax = True
-
-# Whether to open in a browser after starting. The specific browser used is
-# platform dependent and determined by the python standard library `webbrowser`
-# module, unless it is overridden using the --browser (NotebookApp.browser)
-# configuration option.
-c.NotebookApp.open_browser = False
 
 # The full path to an SSL/TLS certificate file.
 # c.NotebookApp.certfile = u''
 
-# The hostname for the websocket server.
-# c.NotebookApp.websocket_host = ''
+# Path to an extra config file to load.
+# 
+# If specified, load this config file in addition to any other IPython config.
+# c.NotebookApp.extra_config_file = u''
+
+# The IPython profile to use.
+# c.NotebookApp.profile = u'default'
+
+# The base URL for the websocket server, if it differs from the HTTP server
+# (hint: it almost certainly doesn't).
+# 
+# Should be in the form of an HTTP origin: ws[s]://hostname[:port]
+# c.NotebookApp.websocket_url = ''
 
 # The name of the IPython directory. This directory is used for logging
 # configuration (through profiles), history storage, etc. The default is usually
 # $HOME/.ipython. This options can also be specified through the environment
 # variable IPYTHONDIR.
-# c.NotebookApp.ipython_dir = u'/home/pshchelo/.config/ipython'
+# c.NotebookApp.ipython_dir = u'/home/pshchelokovskyy/.config/ipython'
 
 # Set the log level by value or name.
-# c.NotebookApp.log_level = 20
+# c.NotebookApp.log_level = 30
 
 # Hashed password to use for web authentication.
-#
+# 
 # To generate, type in a python/IPython shell:
-#
+# 
 #   from IPython.lib import passwd; passwd()
-#
+# 
 # The string should be of the form type:salt:hashed-password.
 # c.NotebookApp.password = u''
 
 # The Logging format template
-# c.NotebookApp.log_format = '[%(name)s] %(message)s'
+# c.NotebookApp.log_format = '[%(name)s]%(highlevel)s %(message)s'
+
+# Wether to use Browser Side less-css parsing instead of compiled css version in
+# templates that allows it. This is mainly convenient when working on the less
+# file to avoid a build step, or if user want to overwrite some of the less
+# variables without having to recompile everything.
+# 
+# You will need to install the less.js component in the static directory either
+# in the source tree or in your profile folder.
+# c.NotebookApp.use_less = False
+
+# Extra paths to search for serving static files.
+# 
+# This allows adding javascript/css to be available from the notebook server
+# machine, or overriding individual files in the IPython
+# c.NotebookApp.extra_static_paths = []
+
+# Whether to trust or not X-Scheme/X-Forwarded-Proto and X-Real-Ip/X-Forwarded-
+# For headerssent by the upstream reverse proxy. Neccesary if the proxy handles
+# SSL
+# c.NotebookApp.trust_xheaders = False
+
+# Whether to install the default config files into the profile dir. If a new
+# profile is being created, and IPython contains config files for that profile,
+# then they will be staged into the new directory.  Otherwise, default config
+# files will be automatically generated.
+# c.NotebookApp.copy_config_files = False
 
 # The full path to a private key file for usage with SSL/TLS.
 # c.NotebookApp.keyfile = u''
@@ -106,27 +149,40 @@ c.NotebookApp.open_browser = False
 
 # IPython: an enhanced interactive Python shell.
 
-# IPKernelApp will inherit config from: KernelApp, BaseIPythonApplication,
-# Application, InteractiveShellApp
+# IPKernelApp will inherit config from: BaseIPythonApplication, Application,
+# InteractiveShellApp
 
 # The importstring for the DisplayHook factory
-# c.IPKernelApp.displayhook_class = 'IPython.zmq.displayhook.ZMQDisplayHook'
+# c.IPKernelApp.displayhook_class = 'IPython.kernel.zmq.displayhook.ZMQDisplayHook'
 
 # Set the IP or interface on which the kernel will listen.
-# c.IPKernelApp.ip = '127.0.0.1'
+# c.IPKernelApp.ip = u''
 
-#
-# c.IPKernelApp.parent_appname = u''
+# Pre-load matplotlib and numpy for interactive use, selecting a particular
+# matplotlib backend and loop integration.
+# c.IPKernelApp.pylab = None
 
 # Create a massive crash report when IPython encounters what may be an internal
 # error.  The default is to append a short message to the usual traceback
 # c.IPKernelApp.verbose_crash = False
 
+# The Kernel subclass to be used.
+# 
+# This should allow easy re-use of the IPKernelApp entry point to configure and
+# launch kernels other than IPython's own.
+# c.IPKernelApp.kernel_class = 'IPython.kernel.zmq.ipkernel.Kernel'
+
 # Run the module as a script.
 # c.IPKernelApp.module_to_run = ''
 
+# The date format used by logging formatters for %(asctime)s
+# c.IPKernelApp.log_datefmt = '%Y-%m-%d %H:%M:%S'
+
 # set the shell (ROUTER) port [default: random]
 # c.IPKernelApp.shell_port = 0
+
+# set the control (ROUTER) port [default: random]
+# c.IPKernelApp.control_port = 0
 
 # Whether to overwrite existing config files when copying
 # c.IPKernelApp.overwrite = False
@@ -134,7 +190,7 @@ c.NotebookApp.open_browser = False
 # Execute the given command string.
 # c.IPKernelApp.code_to_run = ''
 
-# set the stdin (DEALER) port [default: random]
+# set the stdin (ROUTER) port [default: random]
 # c.IPKernelApp.stdin_port = 0
 
 # Set the log level by value or name.
@@ -143,14 +199,22 @@ c.NotebookApp.open_browser = False
 # lines of code to run at IPython startup.
 # c.IPKernelApp.exec_lines = []
 
+# Path to an extra config file to load.
+# 
+# If specified, load this config file in addition to any other IPython config.
+# c.IPKernelApp.extra_config_file = u''
+
 # The importstring for the OutStream factory
-# c.IPKernelApp.outstream_class = 'IPython.zmq.iostream.OutStream'
+# c.IPKernelApp.outstream_class = 'IPython.kernel.zmq.iostream.OutStream'
 
 # Whether to create profile dir if it doesn't exist
 # c.IPKernelApp.auto_create = False
 
 # set the heartbeat port [default: random]
 # c.IPKernelApp.hb_port = 0
+
+# 
+# c.IPKernelApp.transport = 'tcp'
 
 # redirect stdout to the null device
 # c.IPKernelApp.no_stdout = False
@@ -164,31 +228,36 @@ c.NotebookApp.open_browser = False
 # The IPython profile to use.
 # c.IPKernelApp.profile = u'default'
 
-# Pre-load matplotlib and numpy for interactive use, selecting a particular
-# matplotlib backend and loop integration.
-# c.IPKernelApp.pylab = None
+# 
+# c.IPKernelApp.parent_appname = u''
 
 # kill this process if its parent dies.  On Windows, the argument specifies the
 # HANDLE of the parent process, otherwise it is simply boolean.
-# c.IPKernelApp.parent = 0
+# c.IPKernelApp.parent_handle = 0
 
 # JSON file in which to store connection info [default: kernel-<pid>.json]
-#
+# 
 # This file will contain the IP, ports, and authentication key needed to connect
-# clients to this kernel. By default, this file will be created in the security-
+# clients to this kernel. By default, this file will be created in the security
 # dir of the current profile, but can be specified by absolute path.
 # c.IPKernelApp.connection_file = ''
 
-# If true, an 'import *' is done from numpy and pylab, when using pylab
+# If true, IPython will populate the user namespace with numpy, pylab, etc. and
+# an 'import *' is done from numpy and pylab, when using pylab mode.
+# 
+# When False, pylab mode should not import any names into the user namespace.
 # c.IPKernelApp.pylab_import_all = True
 
 # The name of the IPython directory. This directory is used for logging
 # configuration (through profiles), history storage, etc. The default is usually
 # $HOME/.ipython. This options can also be specified through the environment
 # variable IPYTHONDIR.
-# c.IPKernelApp.ipython_dir = u'/home/pshchelo/.config/ipython'
+# c.IPKernelApp.ipython_dir = u'/home/pshchelokovskyy/.config/ipython'
 
-# ONLY USED ON WINDOWS Interrupt this process when the parent is signalled.
+# Configure matplotlib for interactive use with the default matplotlib backend.
+# c.IPKernelApp.matplotlib = None
+
+# ONLY USED ON WINDOWS Interrupt this process when the parent is signaled.
 # c.IPKernelApp.interrupt = 0
 
 # Whether to install the default config files into the profile dir. If a new
@@ -200,8 +269,8 @@ c.NotebookApp.open_browser = False
 # List of files to run at IPython startup.
 # c.IPKernelApp.exec_files = []
 
-# Enable GUI event loop integration ('qt', 'wx', 'gtk', 'glut', 'pyglet',
-# 'osx').
+# Enable GUI event loop integration with any of ('glut', 'gtk', 'gtk3', 'none',
+# 'osx', 'pyglet', 'qt', 'qt4', 'tk', 'wx').
 # c.IPKernelApp.gui = None
 
 # A list of dotted module names of IPython extensions to load.
@@ -211,7 +280,7 @@ c.NotebookApp.open_browser = False
 # c.IPKernelApp.no_stderr = False
 
 # The Logging format template
-# c.IPKernelApp.log_format = '[%(name)s] %(message)s'
+# c.IPKernelApp.log_format = '[%(name)s]%(highlevel)s %(message)s'
 
 # set the iopub (PUB) port [default: random]
 # c.IPKernelApp.iopub_port = 0
@@ -229,7 +298,11 @@ c.NotebookApp.open_browser = False
 # color codes, this capability can be turned off.
 # c.ZMQInteractiveShell.color_info = True
 
-#
+# A list of ast.NodeTransformer subclass instances, which will be applied to
+# user input before code is run.
+# c.ZMQInteractiveShell.ast_transformers = []
+
+# 
 # c.ZMQInteractiveShell.history_length = 10000
 
 # Don't call post-execute functions that have failed in the past.
@@ -241,13 +314,13 @@ c.NotebookApp.open_browser = False
 # Set the color scheme (NoColor, Linux, or LightBG).
 # c.ZMQInteractiveShell.colors = 'Linux'
 
-#
+# 
 # c.ZMQInteractiveShell.separate_in = '\n'
 
 # Deprecated, use PromptManager.in2_template
 # c.ZMQInteractiveShell.prompt_in2 = '   .\\D.: '
 
-#
+# 
 # c.ZMQInteractiveShell.separate_out = ''
 
 # Deprecated, use PromptManager.in_template
@@ -269,28 +342,28 @@ c.NotebookApp.open_browser = False
 # no arguments are present).
 # c.ZMQInteractiveShell.autocall = 0
 
-#
+# 
 # c.ZMQInteractiveShell.separate_out2 = ''
 
 # Deprecated, use PromptManager.justify
 # c.ZMQInteractiveShell.prompts_pad_left = True
 
-#
+# 
 # c.ZMQInteractiveShell.readline_parse_and_bind = ['tab: complete', '"\\C-l": clear-screen', 'set show-all-if-ambiguous on', '"\\C-o": tab-insert', '"\\C-r": reverse-search-history', '"\\C-s": forward-search-history', '"\\C-p": history-search-backward', '"\\C-n": history-search-forward', '"\\e[A": history-search-backward', '"\\e[B": history-search-forward', '"\\C-k": kill-line', '"\\C-u": unix-line-discard']
 
 # Enable magic commands to be called without the leading %.
 # c.ZMQInteractiveShell.automagic = True
 
-#
+# 
 # c.ZMQInteractiveShell.debug = False
 
-#
+# 
 # c.ZMQInteractiveShell.object_info_string_level = 0
 
-#
+# 
 # c.ZMQInteractiveShell.ipython_dir = ''
 
-#
+# 
 # c.ZMQInteractiveShell.readline_remove_delims = '-/~'
 
 # Start logging to the default log file.
@@ -299,7 +372,7 @@ c.NotebookApp.open_browser = False
 # The name of the logfile to use.
 # c.ZMQInteractiveShell.logfile = ''
 
-#
+# 
 # c.ZMQInteractiveShell.wildcards_case_sensitive = True
 
 # Save multi-line entries as one entry in readline history
@@ -308,10 +381,10 @@ c.NotebookApp.open_browser = False
 # Start logging to the given file in append mode.
 # c.ZMQInteractiveShell.logappend = ''
 
-#
+# 
 # c.ZMQInteractiveShell.xmode = 'Context'
 
-#
+# 
 # c.ZMQInteractiveShell.quiet = False
 
 # Deprecated, use PromptManager.out_template
@@ -333,14 +406,38 @@ c.NotebookApp.open_browser = False
 # c.ZMQInteractiveShell.pdb = False
 
 #------------------------------------------------------------------------------
+# KernelManager configuration
+#------------------------------------------------------------------------------
+
+# Manages a single kernel in a subprocess on this host.
+# 
+# This version starts kernels with Popen.
+
+# KernelManager will inherit config from: ConnectionFileMixin
+
+# The Popen Command to launch the kernel. Override this if you have a custom
+# c.KernelManager.kernel_cmd = []
+
+# Set the kernel's IP address [default localhost]. If the IP address is
+# something other than localhost, then Consoles on other machines will be able
+# to connect to the Kernel, so be careful!
+# c.KernelManager.ip = '127.0.0.1'
+
+# 
+# c.KernelManager.transport = 'tcp'
+
+# Should we autorestart the kernel if it dies.
+# c.KernelManager.autorestart = False
+
+#------------------------------------------------------------------------------
 # ProfileDir configuration
 #------------------------------------------------------------------------------
 
 # An object to manage the profile directory and its resources.
-#
+# 
 # The profile directory is used by all IPython applications, to manage
 # configuration, logging and security.
-#
+# 
 # This object knows how to find, create and manage these directories. This
 # should be used by any code that wants to handle profiles.
 
@@ -353,27 +450,27 @@ c.NotebookApp.open_browser = False
 #------------------------------------------------------------------------------
 
 # Object for handling serialization and sending of messages.
-#
+# 
 # The Session object handles building messages and sending them with ZMQ sockets
 # or ZMQStream objects.  Objects can communicate with each other over the
 # network via Session objects, and only need to work with the dict-based IPython
 # message spec. The Session will handle serialization/deserialization, security,
 # and metadata.
-#
+# 
 # Sessions support configurable serialiization via packer/unpacker traits, and
 # signing with HMAC digests via the key/keyfile traits.
-#
+# 
 # Parameters ----------
-#
+# 
 # debug : bool
 #     whether to trigger extra debugging statements
 # packer/unpacker : str : 'json', 'pickle' or import_string
 #     importstrings for methods to serialize message parts.  If just
 #     'json' or 'pickle', predefined JSON and pickle packers will be used.
 #     Otherwise, the entire importstring must be used.
-#
+# 
 #     The functions must accept at least valid JSON input, and output *bytes*.
-#
+# 
 #     For example, to use msgpack:
 #     packer = 'msgpack.packb', unpacker='msgpack.unpackb'
 # pack/unpack : callables
@@ -390,14 +487,30 @@ c.NotebookApp.open_browser = False
 #     to the contents of the file.
 
 # Username for the Session. Default is your system username.
-# c.Session.username = 'pshchelo'
+# c.Session.username = u'pshchelokovskyy'
+
+# The name of the unpacker for unserializing messages. Only used with custom
+# functions for `packer`.
+# c.Session.unpacker = 'json'
+
+# Threshold (in bytes) beyond which a buffer should be sent without copying.
+# c.Session.copy_threshold = 65536
 
 # The name of the packer for serializing messages. Should be one of 'json',
 # 'pickle', or an import name for a custom callable serializer.
 # c.Session.packer = 'json'
 
+# The maximum number of digests to remember.
+# 
+# The digest history will be culled when it exceeds this value.
+# c.Session.digest_history_size = 65536
+
 # The UUID identifying this session.
 # c.Session.session = u''
+
+# The digest scheme used to construct the message signatures. Must have the form
+# 'hmac-HASH'.
+# c.Session.signature_scheme = 'hmac-sha256'
 
 # execution key, for extra authentication.
 # c.Session.key = ''
@@ -405,12 +518,20 @@ c.NotebookApp.open_browser = False
 # Debug output in the Session
 # c.Session.debug = False
 
-# The name of the unpacker for unserializing messages. Only used with custom
-# functions for `packer`.
-# c.Session.unpacker = 'json'
+# The maximum number of items for a container to be introspected for custom
+# serialization. Containers larger than this are pickled outright.
+# c.Session.item_threshold = 64
 
 # path to file containing execution key.
 # c.Session.keyfile = ''
+
+# Threshold (in bytes) beyond which an object's buffer should be extracted to
+# avoid pickling.
+# c.Session.buffer_threshold = 1024
+
+# Metadata dictionary, which serves as the default top-level metadata dict for
+# each message.
+# c.Session.metadata = {}
 
 #------------------------------------------------------------------------------
 # InlineBackend configuration
@@ -422,12 +543,12 @@ c.NotebookApp.open_browser = False
 c.InlineBackend.figure_format = 'svg'
 
 # Close all figures at the end of each cell.
-#
+# 
 # When True, ensures that each cell starts with no active figures, but it also
 # means that one must keep track of references in order to edit or redraw
 # figures in subsequent cells. This mode is ideal for the notebook, where
 # residual plots from other cells might be surprising.
-#
+# 
 # When False, one must call figure() to create new figures. This means that
 # gcf() and getfigs() can reference figures created in other cells, and the
 # active figure can continue to be edited with pylab/pyplot methods that
@@ -437,40 +558,44 @@ c.InlineBackend.figure_format = 'svg'
 # c.InlineBackend.close_figures = True
 
 # Subset of matplotlib rcParams that should be different for the inline backend.
-# c.InlineBackend.rc = {'font.size': 10, 'savefig.dpi': 72, 'figure.figsize': (6.0, 4.0), 'figure.subplot.bottom': 0.125}
+# c.InlineBackend.rc = {'font.size': 10, 'figure.figsize': (6.0, 4.0), 'figure.facecolor': 'white', 'savefig.dpi': 72, 'figure.subplot.bottom': 0.125, 'figure.edgecolor': 'white'}
 
 #------------------------------------------------------------------------------
 # MappingKernelManager configuration
 #------------------------------------------------------------------------------
 
-# A KernelManager that handles notebok mapping and HTTP error handling
+# A KernelManager that handles notebook mapping and HTTP error handling
 
 # MappingKernelManager will inherit config from: MultiKernelManager
 
-# The max raw message size accepted from the browser over a WebSocket
-# connection.
-# c.MappingKernelManager.max_msg_size = 65536
-
-# Kernel heartbeat interval in seconds.
-# c.MappingKernelManager.time_to_dead = 3.0
-
 # The kernel manager class.  This is configurable to allow subclassing of the
 # KernelManager for customized behavior.
-# c.MappingKernelManager.kernel_manager_class = 'IPython.zmq.blockingkernelmanager.BlockingKernelManager'
-
-# Delay (in seconds) before sending first heartbeat.
-# c.MappingKernelManager.first_beat = 5.0
+# c.MappingKernelManager.kernel_manager_class = 'IPython.kernel.ioloop.IOLoopKernelManager'
 
 #------------------------------------------------------------------------------
 # NotebookManager configuration
 #------------------------------------------------------------------------------
 
+# The directory to use for notebooks.
+# c.NotebookManager.notebook_dir = u'/home/pshchelokovskyy/dotfiles'
+
+#------------------------------------------------------------------------------
+# FileNotebookManager configuration
+#------------------------------------------------------------------------------
+
+# FileNotebookManager will inherit config from: NotebookManager
+
+# The location in which to keep notebook checkpoints
+# 
+# By default, it is notebook-dir/.ipynb_checkpoints
+# c.FileNotebookManager.checkpoint_dir = u''
+
 # Automatically create a Python script when saving the notebook.
-#
+# 
 # For easier use of import, %run and %load across notebooks, a <notebook-
 # name>.py script will be created next to any <notebook-name>.ipynb on each
 # save.  This can also be set with the short `--script` flag.
-c.NotebookManager.save_script = True
+c.FileNotebookManager.save_script = True
 
 # The directory to use for notebooks.
-c.NotebookManager.notebook_dir = u'~/devel/ipynb'
+c.FileNotebookManager.notebook_dir = u'~/devel/ipynb'

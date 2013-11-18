@@ -11,7 +11,7 @@ ln -s bash/bash_aliases ~/.bash_aliases
 
 # colors for ls command
 # github.com/sigurdga/ls-colors-solarized
-ln -s colors/ls-colors-solarized ~/.dircolors
+ln -s colors/dircolorss-solarized ~/.dircolors
 # colors for mc
 # github.com/peel/mc
 ls -s colors/mc-solarized.ini ~/.config/mc/solarized.ini
@@ -25,3 +25,13 @@ ln -s vim/vimrc ~/.vimrc
 # install vundle to manage other plugins
 # mkdir -p ~/.vim/bundle && cd ~/.vim/bundle
 # git clone git://github.com/gmarik/vundle.git
+
+# matplotlib
+ln -s matplotlib/matplotlibrc ~/.config/matplotlib/matplotlibrc
+
+# ipython
+# ipython profile create
+ln -s ipython/ipython_config.py ~/.config/ipython/profile_default/ipython_config.py
+ln -s ipython/ipython_notebook_config.py ~/.config/ipython/profile_default/ipython_notebook_config.py
+ln -s ipython/ipython_qtconsole_config.py ~/.config/ipython/profile_default/ipython_qtconsole_config.py
+ln -s ipython/ipython_nbconvert_config.py ~/.config/ipython/profile_default/ipython_nbconvert_config.py
