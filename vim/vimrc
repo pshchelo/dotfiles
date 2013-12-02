@@ -164,7 +164,8 @@ let g:pymode_run = 1
 let g:pymode_run_key = '<leader>r'
 
 " use inserting breakpoints
-let g:pymode_breakpoint = 0
+let g:pymode_breakpoint = 1
+let g:pymode_breakpoint_bind = '<leader>b'
 
 " Code checking (uses Pylama)
 let g:pymode_lint = 1
