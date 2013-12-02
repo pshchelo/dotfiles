@@ -16,6 +16,7 @@ set smartcase     " ignore case if search pattern is all lowercase,
                   "    case-sensitive otherwise
 set hlsearch      " highlight search terms
 set incsearch
+" turn off active search highlighting
 nnoremap <silent> <Space> :nohlsearch<Bar>:echo<CR>
 
 " Character encoding settings
@@ -27,8 +28,6 @@ set tabstop=8
 set expandtab
 set softtabstop=4
 set shiftwidth=4
-" use multiple of shiftwidth when indenting with '<' and '>'
-"set shiftround
 " insert tabs on the start of a line according to shiftwidth, not tabstop
 set smarttab
 
@@ -38,8 +37,6 @@ set colorcolumn=80
 set number
 " Diff shows vertical split by default
 set diffopt+=vertical
-" Autoremove trailing whitespace in Python files
-autocmd FileType python autocmd BufWritePre <buffer> :%s/\s\+$//e
 
 " alter tab settings for C files according to Python/C suggestions
 fu Select_c_style()
@@ -63,17 +60,12 @@ au BufRead,BufNewFile *.py,*.pyw,*.pyx match BadWhitespace /^\t\+/
 " Make trailing whitespace be flagged as bad.
 au BufRead,BufNewFile *.py,*.pyw*,.pyx,*.c,*.h match BadWhitespace /\s\+$/
 
-" Wrap text after a certain number of characters
-" Python: 79
-" C: 79
-"au BufRead,BufNewFile *.py,*.pyw,*.pyx,*.c,*.h set textwidth=79
-
 " Set interaction with system clipboard and mouse
 set clipboard=unnamedplus
 set mouse=a
 
 " required for Vundle
-filetype off                   
+filetype off
 " Vundle initialization
 set rtp+=~/.vim/bundle/vundle/
 call vundle#rc()
@@ -83,33 +75,25 @@ Bundle 'gmarik/vundle'
 " My other Bundles
 Bundle 'moll/vim-bbye'
 Bundle 'tpope/vim-fugitive'
-"Bundle 'tpope/vim-sensible'
 Bundle 'scrooloose/nerdcommenter'
 Bundle 'scrooloose/nerdtree'
-Bundle 'scrooloose/syntastic'
+"Bundle 'scrooloose/syntastic'
 Bundle 'altercation/vim-colors-solarized'
 Bundle 'ervandew/supertab'
 Bundle 'majutsushi/tagbar'
 Bundle 'klen/python-mode'
 Bundle 'davidhalter/jedi-vim'
 Bundle 'Rykka/riv.vim'
-"Bundle 'bling/vim-airline'
 Bundle 'Lokaltog/vim-powerline', {'rtp': 'powerline/bindings/vim/'}
-"Bundle 'jmcantrell/vim-virtualenv'
 Bundle 'kien/ctrlp.vim'
 Bundle 'nvie/vim-togglemouse'
 Bundle 'mileszs/ack.vim'
-"Bundle 'vim-scripts/YankRing.vim'
-"Bundle 'garbas/vim-snipmate'
-" needed by vim-snipmate
-"Bundle 'tomtom/tlib_vim'
-"Bundle 'MarcWeber/vim-addon-mw-utils'
 
 syntax on
 filetype plugin indent on
 
 " Higllight, indent and folding settings
-let python_highlight_all=1
+"let python_highlight_all=1
 filetype indent on
 filetype plugin on
 set foldmethod=indent
@@ -117,7 +101,7 @@ set foldmethod=indent
 set foldlevelstart=999
 set autoindent
 " copy the previous indentation on autoindenting
-set copyindent    
+set copyindent
 
 " set color scheme
 set background=dark
@@ -132,13 +116,12 @@ set t_Co=16
 set wildignore=*.swp,*.bak,*.pyc,*.class
 
 "======================
-" Initialize Powerline/Airlne
+" Initialize Powerline
 
 set laststatus=2
 python from powerline.vim import setup as powerline_setup
 python powerline_setup()
 python del powerline_setup
-"let g:airline_powerline_fonts = 1
 
 "======================
 " Configure CtrlP fuzzy search
@@ -156,40 +139,64 @@ let g:jedi#popup_select_first = 1
 " Python-mode configuration
 
 let g:pymode = 1
+
+" disable Rope refactoring and completion support (using Jedi for this)
+let g:pymode_rope = 0
+" disable pymode documentation lookup (using Jedi for this)
+let g:pymode_doc = 0
+
+" trim whitespace on save
+let g:pymode_trim_whitespaces = 1
+" load some code formatting defaults
 let g:pymode_options = 1
+
+" use PEP8-compatible indent
+let g:pymode_indent = 1
+" use advanced pymode folding
+let g:pymode_folding = 1
+" use pymode motions
+let g:pymode_motion = 1
+" use virualenv support
+let g:pymode_virtualenv = 1
+
+" use running the code facilities
 let g:pymode_run = 1
 let g:pymode_run_key = '<leader>r'
-let g:pymode_doc = 0
-let g:pymode_lint = 0
-let g:pymode_rope = 0
-let g:pymode_folding = 1
-let g:pymode_motion = 1
-let g:pymode_virtualenv = 1
+
+" use inserting breakpoints
 let g:pymode_breakpoint = 0
 
-let g:pymode_lint_hold = 0
-let g:pymode_lint_maxheight = 5
-let g:pymode_lint_minheight = 5
+" Code checking (uses Pylama)
+let g:pymode_lint = 1
+let g:pymode_lint_on_write = 1
+let g:pymode_lint_unmodified = 0
+let g:pymode_lint_on_fly = 0
+let g:pymode_lint_message = 1
+" supported are 'pylint', 'pep257', 'pep8', 'pyflakes', 'mccabe'
+let g:pymode_lint_checkers = ['pyflakes', 'pep8']
+let g:pymode_lint_cwindow = 1
+" set quickfix window size
+let g:pymode_quickfix_minheight = 3
+let g:pymode_quickfix_maxheight = 6
+" error signs
+let g:pymode_lint_signs = 1
+let g:pymode_lint_todo_symbol = '⚠'
+let g:pymode_lint_comment_symbol = 'CC'
+let g:pymode_lint_visual_symbol = 'RR'
+let g:pymode_lint_error_symbol = '✗' " 'EE'
+let g:pymode_lint_info_symbol = 'II'
+let g:pymode_lint_pyflakes_symbol = '⚠' " 'FF'
 
-" Autoremove unused whitespaces
-let g:pymode_utils_whitespaces = 1
-
-" Enable pymode indentation
-let g:pymode_indent = 1
-
-" Set default pymode python options
-"let g:pymode_options = 1
-" Enable pymode's custom syntax highlighting
+" Pymode custom syntax highlight
 let g:pymode_syntax = 1
-
-" Enable all python highlightings
 let g:pymode_syntax_all = 1
+
 
 "======================
 " Other Python-related settings
 
 " key map to insert ipdb breakpoint
-nnoremap <leader>b yyP^Cimport ipdb; ipdb.set_trace()  # XXX:breakpoint
+"nnoremap <leader>b yyP^Cimport ipdb; ipdb.set_trace()  # XXX:breakpoint
 
 " key map to insert pdb breakpoint
 "nnoremap <leader>b yyP^Cimport pdb; pdb.set_trace()  # XXX:breakpoint
@@ -198,24 +205,24 @@ nnoremap <leader>b yyP^Cimport ipdb; ipdb.set_trace()  # XXX:breakpoint
 " Syntastic configuration
 
 " Define nice error symbols
-let g:syntastic_error_symbol='✗'
-let g:syntastic_warning_symbol='⚠'
+"let g:syntastic_error_symbol='✗'
+"let g:syntastic_warning_symbol='⚠'
 
 " Allways stick found errors to loclist
-let g:syntastic_always_populate_loc_list=1
+"let g:syntastic_always_populate_loc_list=1
 
 " Aggregate errors from all checkers
-let g:syntastic_aggregate_errors=1
+"let g:syntastic_aggregate_errors=1
 
 " Automatically closa and open loclist
-let g:syntastic_auto_loc_list=1
+"let g:syntastic_auto_loc_list=1
 
 " Use Pylama as a sole checker for Python files
 " Available are pep8,pep257,pyflakes,pylint,py3kwarn,python,flake8,pylama
-let g:syntastic_python_checkers = ['pylama']
+"let g:syntastic_python_checkers = ['pylama']
 " Select which checkers Pylama runs
 " Available are pep8,pep257,pyflakes,pylint,mccabe
-let g:syntastic_python_pylama_args = '-l pep8,pyflakes'
+"let g:syntastic_python_pylama_args = '-l pep8,pyflakes'
 
 "=========================
 " NERDTree configuration
