@@ -1,4 +1,6 @@
+ipython[all]
 ipdb
 pygments-style-solarized
-pyside
 https://github.com/Lokaltog/powerline.git
+jedi
+#pyside

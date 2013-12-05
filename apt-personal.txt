@@ -1,0 +1,4 @@
+git
+htop
+guake
+ttf-anonymous-pro
