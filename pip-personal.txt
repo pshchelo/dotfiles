@@ -4,3 +4,4 @@ pygments-style-solarized
 https://github.com/Lokaltog/powerline.git
 jedi
 #pyside
+#howdoi
