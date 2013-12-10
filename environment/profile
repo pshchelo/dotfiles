@@ -17,7 +17,7 @@ if [ -n "$BASH_VERSION" ]; then
 fi
 
 # for ssh-agent - adding existing ssh private keys 
-ssh-add &>/dev/null
+ssh-add ~/.ssh/*.rsa &>/dev/null
 
 # set vim/gvim as default editor
 export EDITOR="vim"
