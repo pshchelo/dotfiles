@@ -1,0 +1,7 @@
+Host *
+    ControlMaster auto
+    ControlPath ~/.ssh/master-%r@%h:%p
+    IdentityFile ~/.ssh/pshchelo.rsa
+
+Host devstack-heat 
+    HostName 192.168.122.201
