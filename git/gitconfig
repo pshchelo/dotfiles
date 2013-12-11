@@ -13,3 +13,5 @@
 	tool = meld
 [diff]
 	guitool = meld
+[gitreview]
+	username = pshchelo

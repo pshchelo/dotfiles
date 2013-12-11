@@ -1,7 +1,8 @@
 ipython[all]
 ipdb
 pygments-style-solarized
-https://github.com/Lokaltog/powerline.git
+git+https://github.com/Lokaltog/powerline.git
 jedi
 #pyside
 #howdoi
+#git+https://github.com/dolph/next-review.git

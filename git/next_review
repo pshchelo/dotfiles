@@ -1,0 +1,5 @@
+[DEFAULT]
+username = pshchelo
+email = pshchelokovskyy@mirantis.com
+key = /home/pshchelokovskyy/.ssh/pshchelo.rsa
+projects = openstack/heat
