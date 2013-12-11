@@ -13,6 +13,7 @@ build
 *.spyderproject
 *.project
 *.pydevproject
+.ropeproject
 
 # (La)TeX temp files
 *.acn

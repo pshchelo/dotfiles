@@ -1,11 +1,14 @@
 #!/usr/bin/env sh
-#Define custom personal aliases
+# Define custom personal aliases
 
-#open files from terminal with GUI default application
+# open files from terminal with GUI default application
 alias xopen=xdg-open
 
-#change directory two levels up
+# change directory two levels up
 alias ...="cd ../.."
 
-#go to the previous directory
+# go to the previous directory
 alias back="cd -"
+
+# copy command for big files, with progress indication
+alias longcp='rsync --progress -ah'
