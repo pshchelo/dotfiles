@@ -77,7 +77,7 @@ c = get_config()
 # configuration (through profiles), history storage, etc. The default is usually
 # $HOME/.ipython. This options can also be specified through the environment
 # variable IPYTHONDIR.
-# c.IPythonQtConsoleApp.ipython_dir = u'/home/pshchelokovskyy/.config/ipython'
+# c.IPythonQtConsoleApp.ipython_dir = u'/home/pshchelo/.config/ipython'
 
 # Whether to install the default config files into the profile dir. If a new
 # profile is being created, and IPython contains config files for that profile,
@@ -327,7 +327,7 @@ c.IPythonWidget.paging = 'hsplit'
 # configuration (through profiles), history storage, etc. The default is usually
 # $HOME/.ipython. This options can also be specified through the environment
 # variable IPYTHONDIR.
-# c.IPKernelApp.ipython_dir = u'/home/pshchelokovskyy/.config/ipython'
+# c.IPKernelApp.ipython_dir = u'/home/pshchelo/.config/ipython'
 
 # Configure matplotlib for interactive use with the default matplotlib backend.
 # c.IPKernelApp.matplotlib = None
@@ -562,7 +562,7 @@ c.IPythonWidget.paging = 'hsplit'
 #     to the contents of the file.
 
 # Username for the Session. Default is your system username.
-# c.Session.username = u'pshchelokovskyy'
+# c.Session.username = u'pshchelo'
 
 # The name of the unpacker for unserializing messages. Only used with custom
 # functions for `packer`.

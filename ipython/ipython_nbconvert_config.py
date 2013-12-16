@@ -45,7 +45,7 @@ c = get_config()
 # configuration (through profiles), history storage, etc. The default is usually
 # $HOME/.ipython. This options can also be specified through the environment
 # variable IPYTHONDIR.
-# c.NbConvertApp.ipython_dir = u'/home/pshchelokovskyy/.config/ipython'
+# c.NbConvertApp.ipython_dir = u'/home/pshchelo/.config/ipython'
 
 # Whether to install the default config files into the profile dir. If a new
 # profile is being created, and IPython contains config files for that profile,

@@ -87,7 +87,7 @@ c = get_config()
 # configuration (through profiles), history storage, etc. The default is usually
 # $HOME/.ipython. This options can also be specified through the environment
 # variable IPYTHONDIR.
-# c.NotebookApp.ipython_dir = u'/home/pshchelokovskyy/.config/ipython'
+# c.NotebookApp.ipython_dir = u'/home/pshchelo/.config/ipython'
 
 # Set the log level by value or name.
 # c.NotebookApp.log_level = 30
@@ -252,7 +252,7 @@ c = get_config()
 # configuration (through profiles), history storage, etc. The default is usually
 # $HOME/.ipython. This options can also be specified through the environment
 # variable IPYTHONDIR.
-# c.IPKernelApp.ipython_dir = u'/home/pshchelokovskyy/.config/ipython'
+# c.IPKernelApp.ipython_dir = u'/home/pshchelo/.config/ipython'
 
 # Configure matplotlib for interactive use with the default matplotlib backend.
 # c.IPKernelApp.matplotlib = None
@@ -487,7 +487,7 @@ c = get_config()
 #     to the contents of the file.
 
 # Username for the Session. Default is your system username.
-# c.Session.username = u'pshchelokovskyy'
+# c.Session.username = u'pshchelo'
 
 # The name of the unpacker for unserializing messages. Only used with custom
 # functions for `packer`.
@@ -577,7 +577,7 @@ c.InlineBackend.figure_format = 'svg'
 #------------------------------------------------------------------------------
 
 # The directory to use for notebooks.
-# c.NotebookManager.notebook_dir = u'/home/pshchelokovskyy/dotfiles'
+# c.NotebookManager.notebook_dir = u'/home/pshchelo/dotfiles'
 
 #------------------------------------------------------------------------------
 # FileNotebookManager configuration
@@ -598,4 +598,4 @@ c.InlineBackend.figure_format = 'svg'
 c.FileNotebookManager.save_script = True
 
 # The directory to use for notebooks.
-c.FileNotebookManager.notebook_dir = u'/home/pshchelokovskyy/devel/ipynb'
+c.FileNotebookManager.notebook_dir = u'/home/pshchelo/devel/ipynb'

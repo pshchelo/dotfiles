@@ -124,7 +124,7 @@ c.InteractiveShellApp.extensions = ['powerline.bindings.ipython.post_0_11']
 # configuration (through profiles), history storage, etc. The default is usually
 # $HOME/.ipython. This options can also be specified through the environment
 # variable IPYTHONDIR.
-# c.TerminalIPythonApp.ipython_dir = u'/home/pshchelokovskyy/.config/ipython'
+# c.TerminalIPythonApp.ipython_dir = u'/home/pshchelo/.config/ipython'
 
 # Whether to display a banner upon starting IPython.
 # c.TerminalIPythonApp.display_banner = True
