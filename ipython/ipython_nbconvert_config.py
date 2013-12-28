@@ -8,7 +8,7 @@ c = get_config()
 
 # This application is used to convert notebook files (*.ipynb) to various other
 # formats.
-# 
+#
 # WARNING: THE COMMANDLINE INTERFACE MAY CHANGE IN FUTURE RELEASES.
 
 # NbConvertApp will inherit config from: BaseIPythonApplication, Application
@@ -30,7 +30,7 @@ c = get_config()
 # c.NbConvertApp.notebooks = []
 
 # Path to an extra config file to load.
-# 
+#
 # If specified, load this config file in addition to any other IPython config.
 # c.NbConvertApp.extra_config_file = u''
 
@@ -45,7 +45,7 @@ c = get_config()
 # configuration (through profiles), history storage, etc. The default is usually
 # $HOME/.ipython. This options can also be specified through the environment
 # variable IPYTHONDIR.
-# c.NbConvertApp.ipython_dir = u'/home/pshchelokovskyy/.config/ipython'
+# c.NbConvertApp.ipython_dir = u'/home/pshchelo/.config/ipython'
 
 # Whether to install the default config files into the profile dir. If a new
 # profile is being created, and IPython contains config files for that profile,
@@ -74,7 +74,7 @@ c = get_config()
 #------------------------------------------------------------------------------
 
 # Global configurable class for shared config
-# 
+#
 # Usefull for display data priority that might be use by many trasnformers
 
 # An ordered list of prefered output type, the first encounterd will usually be
@@ -86,10 +86,10 @@ c = get_config()
 #------------------------------------------------------------------------------
 
 # An object to manage the profile directory and its resources.
-# 
+#
 # The profile directory is used by all IPython applications, to manage
 # configuration, logging and security.
-# 
+#
 # This object knows how to find, create and manage these directories. This
 # should be used by any code that wants to handle profiles.
 
@@ -107,23 +107,23 @@ c = get_config()
 # transformers provided by default suffice, there is no need to inherit from
 # this class.  Instead, override the template_file and file_extension traits via
 # a config file.
-# 
+#
 # - highlight2html - filter_data_type - markdown2html - markdown2rst - get_lines
 # - ansi2latex - strip_ansi - comment_lines - markdown2latex - escape_latex -
 # add_anchor - ipython2python - posix_path - highlight2latex - path2url -
 # ansi2html - wrap_text - strip_math_space - indent - strip_dollars - html2text
 # - strip_files_prefix
 
-# 
+#
 # c.Exporter.jinja_variable_block_start = ''
 
-# 
+#
 # c.Exporter.jinja_logic_block_start = ''
 
 # List of transformers, by name or namespace, to enable.
 # c.Exporter.transformers = []
 
-# 
+#
 # c.Exporter.template_path = ['.']
 
 # Name of the template file to use
@@ -132,22 +132,22 @@ c = get_config()
 # Extension of the file that should be written to disk
 # c.Exporter.file_extension = 'txt'
 
-# 
+#
 # c.Exporter.jinja_comment_block_end = ''
 
 # Dictionary of filters, by name and namespace, to add to the Jinja environment.
 # c.Exporter.filters = {}
 
-# 
+#
 # c.Exporter.jinja_comment_block_start = ''
 
-# 
+#
 # c.Exporter.jinja_logic_block_end = ''
 
-# 
+#
 # c.Exporter.jinja_variable_block_end = ''
 
-# 
+#
 # c.Exporter.template_extension = '.tpl'
 
 # List of transformers available by default, by name, namespace,  instance, or
@@ -165,16 +165,16 @@ c = get_config()
 
 # HTMLExporter will inherit config from: Exporter
 
-# 
+#
 # c.HTMLExporter.jinja_variable_block_start = ''
 
-# 
+#
 # c.HTMLExporter.jinja_logic_block_start = ''
 
 # List of transformers, by name or namespace, to enable.
 # c.HTMLExporter.transformers = []
 
-# 
+#
 # c.HTMLExporter.template_path = ['.']
 
 # Name of the template file to use
@@ -186,22 +186,22 @@ c = get_config()
 # Flavor of the data  format to use.  I.E. 'full' or 'basic'
 # c.HTMLExporter.default_template = 'full'
 
-# 
+#
 # c.HTMLExporter.jinja_comment_block_end = ''
 
 # Dictionary of filters, by name and namespace, to add to the Jinja environment.
 # c.HTMLExporter.filters = {}
 
-# 
+#
 # c.HTMLExporter.jinja_comment_block_start = ''
 
-# 
+#
 # c.HTMLExporter.jinja_logic_block_end = ''
 
-# 
+#
 # c.HTMLExporter.jinja_variable_block_end = ''
 
-# 
+#
 # c.HTMLExporter.template_extension = '.tpl'
 
 # List of transformers available by default, by name, namespace,  instance, or
@@ -221,16 +221,16 @@ c = get_config()
 
 # LatexExporter will inherit config from: Exporter
 
-# 
+#
 # c.LatexExporter.jinja_variable_block_start = '((('
 
-# 
+#
 # c.LatexExporter.jinja_logic_block_start = '((*'
 
 # Path where the template skeleton files are located.
 # c.LatexExporter.template_skeleton_path = '../templates/latex/skeleton'
 
-# 
+#
 # c.LatexExporter.template_path = ['.']
 
 # Name of the template file to use
@@ -245,25 +245,25 @@ c = get_config()
 # Template of the  data format to use.  I.E. 'full' or 'basic'
 # c.LatexExporter.default_template = 'article'
 
-# 
+#
 # c.LatexExporter.jinja_comment_block_end = '=))'
 
 # Dictionary of filters, by name and namespace, to add to the Jinja environment.
 # c.LatexExporter.filters = {}
 
-# 
+#
 # c.LatexExporter.jinja_comment_block_start = '((='
 
 # List of transformers, by name or namespace, to enable.
 # c.LatexExporter.transformers = []
 
-# 
+#
 # c.LatexExporter.jinja_logic_block_end = '*))'
 
-# 
+#
 # c.LatexExporter.jinja_variable_block_end = ')))'
 
-# 
+#
 # c.LatexExporter.template_extension = '.tplx'
 
 # List of transformers available by default, by name, namespace,  instance, or
@@ -278,16 +278,16 @@ c = get_config()
 
 # MarkdownExporter will inherit config from: Exporter
 
-# 
+#
 # c.MarkdownExporter.jinja_variable_block_start = ''
 
-# 
+#
 # c.MarkdownExporter.jinja_logic_block_start = ''
 
 # List of transformers, by name or namespace, to enable.
 # c.MarkdownExporter.transformers = []
 
-# 
+#
 # c.MarkdownExporter.template_path = ['.']
 
 # Name of the template file to use
@@ -296,22 +296,22 @@ c = get_config()
 # Extension of the file that should be written to disk
 # c.MarkdownExporter.file_extension = 'md'
 
-# 
+#
 # c.MarkdownExporter.jinja_comment_block_end = ''
 
 # Dictionary of filters, by name and namespace, to add to the Jinja environment.
 # c.MarkdownExporter.filters = {}
 
-# 
+#
 # c.MarkdownExporter.jinja_comment_block_start = ''
 
-# 
+#
 # c.MarkdownExporter.jinja_logic_block_end = ''
 
-# 
+#
 # c.MarkdownExporter.jinja_variable_block_end = ''
 
-# 
+#
 # c.MarkdownExporter.template_extension = '.tpl'
 
 # List of transformers available by default, by name, namespace,  instance, or
@@ -326,16 +326,16 @@ c = get_config()
 
 # PythonExporter will inherit config from: Exporter
 
-# 
+#
 # c.PythonExporter.jinja_variable_block_start = ''
 
-# 
+#
 # c.PythonExporter.jinja_logic_block_start = ''
 
 # List of transformers, by name or namespace, to enable.
 # c.PythonExporter.transformers = []
 
-# 
+#
 # c.PythonExporter.template_path = ['.']
 
 # Name of the template file to use
@@ -344,22 +344,22 @@ c = get_config()
 # Extension of the file that should be written to disk
 # c.PythonExporter.file_extension = 'py'
 
-# 
+#
 # c.PythonExporter.jinja_comment_block_end = ''
 
 # Dictionary of filters, by name and namespace, to add to the Jinja environment.
 # c.PythonExporter.filters = {}
 
-# 
+#
 # c.PythonExporter.jinja_comment_block_start = ''
 
-# 
+#
 # c.PythonExporter.jinja_logic_block_end = ''
 
-# 
+#
 # c.PythonExporter.jinja_variable_block_end = ''
 
-# 
+#
 # c.PythonExporter.template_extension = '.tpl'
 
 # List of transformers available by default, by name, namespace,  instance, or
@@ -374,16 +374,16 @@ c = get_config()
 
 # RSTExporter will inherit config from: Exporter
 
-# 
+#
 # c.RSTExporter.jinja_variable_block_start = ''
 
-# 
+#
 # c.RSTExporter.jinja_logic_block_start = ''
 
 # List of transformers, by name or namespace, to enable.
 # c.RSTExporter.transformers = []
 
-# 
+#
 # c.RSTExporter.template_path = ['.']
 
 # Name of the template file to use
@@ -392,22 +392,22 @@ c = get_config()
 # Extension of the file that should be written to disk
 # c.RSTExporter.file_extension = 'rst'
 
-# 
+#
 # c.RSTExporter.jinja_comment_block_end = ''
 
 # Dictionary of filters, by name and namespace, to add to the Jinja environment.
 # c.RSTExporter.filters = {}
 
-# 
+#
 # c.RSTExporter.jinja_comment_block_start = ''
 
-# 
+#
 # c.RSTExporter.jinja_logic_block_end = ''
 
-# 
+#
 # c.RSTExporter.jinja_variable_block_end = ''
 
-# 
+#
 # c.RSTExporter.template_extension = '.tpl'
 
 # List of transformers available by default, by name, namespace,  instance, or
@@ -422,16 +422,16 @@ c = get_config()
 
 # SlidesExporter will inherit config from: Exporter
 
-# 
+#
 # c.SlidesExporter.jinja_variable_block_start = ''
 
-# 
+#
 # c.SlidesExporter.jinja_logic_block_start = ''
 
 # List of transformers, by name or namespace, to enable.
 # c.SlidesExporter.transformers = []
 
-# 
+#
 # c.SlidesExporter.template_path = ['.']
 
 # Name of the template file to use
@@ -443,22 +443,22 @@ c = get_config()
 # Template of the  data format to use.  I.E. 'reveal'
 # c.SlidesExporter.default_template = 'reveal'
 
-# 
+#
 # c.SlidesExporter.jinja_comment_block_end = ''
 
 # Dictionary of filters, by name and namespace, to add to the Jinja environment.
 # c.SlidesExporter.filters = {}
 
-# 
+#
 # c.SlidesExporter.jinja_comment_block_start = ''
 
-# 
+#
 # c.SlidesExporter.jinja_logic_block_end = ''
 
-# 
+#
 # c.SlidesExporter.jinja_variable_block_end = ''
 
-# 
+#
 # c.SlidesExporter.template_extension = '.tpl'
 
 # List of transformers available by default, by name, namespace,  instance, or
@@ -481,7 +481,7 @@ c = get_config()
 # CSS highlight class identifier
 # c.CSSHTMLHeaderTransformer.highlight_class = '.highlight'
 
-# 
+#
 # c.CSSHTMLHeaderTransformer.enabled = False
 
 #------------------------------------------------------------------------------
@@ -499,7 +499,7 @@ c = get_config()
 # Format the converter writes
 # c.ConvertFiguresTransformer.to_format = u''
 
-# 
+#
 # c.ConvertFiguresTransformer.enabled = False
 
 # Format the converter accepts
@@ -518,10 +518,10 @@ c = get_config()
 # used when converting discarding the others.
 # c.ExtractOutputTransformer.display_data_priority = ['html', 'pdf', 'svg', 'latex', 'png', 'jpg', 'jpeg', 'text']
 
-# 
+#
 # c.ExtractOutputTransformer.output_filename_template = '{unique_key}_{cell_index}_{index}.{extension}'
 
-# 
+#
 # c.ExtractOutputTransformer.enabled = False
 
 #------------------------------------------------------------------------------
@@ -536,7 +536,7 @@ c = get_config()
 # used when converting discarding the others.
 # c.LatexTransformer.display_data_priority = ['html', 'pdf', 'svg', 'latex', 'png', 'jpg', 'jpeg', 'text']
 
-# 
+#
 # c.LatexTransformer.enabled = False
 
 #------------------------------------------------------------------------------
@@ -553,7 +553,7 @@ c = get_config()
 # used when converting discarding the others.
 # c.RevealHelpTransformer.display_data_priority = ['html', 'pdf', 'svg', 'latex', 'png', 'jpg', 'jpeg', 'text']
 
-# 
+#
 # c.RevealHelpTransformer.enabled = False
 
 #------------------------------------------------------------------------------
@@ -566,15 +566,15 @@ c = get_config()
 # Transformer, NbConvertBase
 
 # The command to use for converting SVG to PDF
-# 
+#
 # This string is a template, which will be formatted with the keys to_filename
 # and from_filename.
-# 
+#
 # The conversion call must read the SVG from {from_flename}, and write a PDF to
 # {to_filename}.
 # c.SVG2PDFTransformer.command = u''
 
-# 
+#
 # c.SVG2PDFTransformer.enabled = False
 
 # Format the converter accepts
@@ -592,7 +592,7 @@ c = get_config()
 #------------------------------------------------------------------------------
 
 # Sphinx utility transformer.
-# 
+#
 # This transformer is used to set variables needed by the latex to build Sphinx
 # stylized templates.
 
@@ -608,7 +608,7 @@ c = get_config()
 # Author name
 # c.SphinxTransformer.author = 'Unknown Author'
 
-# 
+#
 # c.SphinxTransformer.enabled = False
 
 # Sphinx chapter style
@@ -650,7 +650,7 @@ c = get_config()
 # formatting is applied.
 # c.SphinxTransformer.center_output = False
 
-# 
+#
 # c.SphinxTransformer.overridetitle = ''
 
 #------------------------------------------------------------------------------
@@ -658,17 +658,17 @@ c = get_config()
 #------------------------------------------------------------------------------
 
 # A configurable transformer
-# 
+#
 # Inherit from this class if you wish to have configurability for your
 # transformer.
-# 
+#
 # Any configurable traitlets this class exposed will be configurable in profiles
 # using c.SubClassName.atribute=value
-# 
+#
 # you can overwrite :meth:`transform_cell` to apply a transformation
 # independently on each cell or :meth:`call` if you prefer your own logic. See
 # corresponding docstring for informations.
-# 
+#
 # Disabled by default and can be enabled via the config by
 #     'c.YourTransformerName.enabled = True'
 
@@ -678,7 +678,7 @@ c = get_config()
 # used when converting discarding the others.
 # c.Transformer.display_data_priority = ['html', 'pdf', 'svg', 'latex', 'png', 'jpg', 'jpeg', 'text']
 
-# 
+#
 # c.Transformer.enabled = False
 
 #------------------------------------------------------------------------------

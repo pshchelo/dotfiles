@@ -44,7 +44,7 @@ c = get_config()
 # c.InteractiveShellApp.pylab_import_all = True
 
 # A list of dotted module names of IPython extensions to load.
-c.InteractiveShellApp.extensions = ['powerline.bindings.ipython.post_0_11']
+#c.InteractiveShellApp.extensions = ['powerline.bindings.ipython.post_0_11']
 
 # Run the module as a script.
 # c.InteractiveShellApp.module_to_run = ''
@@ -124,7 +124,7 @@ c.InteractiveShellApp.extensions = ['powerline.bindings.ipython.post_0_11']
 # configuration (through profiles), history storage, etc. The default is usually
 # $HOME/.ipython. This options can also be specified through the environment
 # variable IPYTHONDIR.
-# c.TerminalIPythonApp.ipython_dir = u'/home/pshchelokovskyy/.config/ipython'
+# c.TerminalIPythonApp.ipython_dir = u'/home/pshchelo/.config/ipython'
 
 # Whether to display a banner upon starting IPython.
 # c.TerminalIPythonApp.display_banner = True
