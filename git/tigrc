@@ -1,0 +1,1 @@
+bind status + !git commit --amend
