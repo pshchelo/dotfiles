@@ -5,3 +5,4 @@ Host *
 
 Host devstack-heat 
     HostName 192.168.122.201
+    User pshchelokovskyy
