@@ -132,16 +132,7 @@ export PROJECT_HOME=$HOME/devel
 source /usr/local/bin/virtualenvwrapper.sh
 
 # solarized scheme for Midnight Commander
-export MC_SKIN=$HOME/.config/mc/solarized.ini
-
-# setting up PyEnv
-#export PYENV_ROOT="$HOME/.pyenv"
-#eval "$(pyenv init -)"
-
-# Up Arrow: search and complete from previous history
-#bind '"\e[A":history-search-backward'
-# Down Arrow: search and complete from next history
-#bind '"\e[B":history-search-forward'
+export MC_SKIN=$HOME/.config/mc/mc-solarized.ini
 
 # Enable Powerline
 . /usr/local/lib/python2.7/dist-packages/powerline/bindings/bash/powerline.sh
