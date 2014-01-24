@@ -3,6 +3,6 @@ ipdb
 pygments-style-solarized
 git+https://github.com/Lokaltog/powerline.git
 jedi
+howdoi
+git+https://github.com/dolph/next-review.git
 #pyside
-#howdoi
-#git+https://github.com/dolph/next-review.git

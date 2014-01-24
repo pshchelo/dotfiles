@@ -1,4 +1,8 @@
 # ``apt-mark showmanual`` shows only those explicitly installed
+
+####
+#CLI
+####
 build-essential
 python-dev
 git
@@ -6,6 +10,17 @@ tig
 htop
 mc
 ttf-anonymous-pro
+vim-latexsuite   
+vim-runtime      
+vim-scripts      
+vim-tiny         
+vim-addon-manager
+vim-common       
+vim-doc          
+
+####
+#GUI
+####
 guake
 dropbox
 skype
@@ -15,14 +30,8 @@ xchat
 gitg
 diffuse
 keepassx
-vim-addon-manager
-vim-common       
-vim-doc          
 #vim-gnome        
 vim-gtk
 vim-gui-common   
-vim-latexsuite   
-vim-runtime      
-vim-scripts      
-vim-tiny         
 mplayer
+vlc
