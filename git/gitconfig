@@ -10,8 +10,8 @@
 [i18n]
 	filesEncoding = utf-8
 [merge]
-	tool = meld
+	tool = vimdiff
 [diff]
-	guitool = meld
+	guitool = vimdiff
 [gitreview]
 	username = pshchelo
