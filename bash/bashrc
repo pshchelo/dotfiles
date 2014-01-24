@@ -138,9 +138,10 @@ export MC_SKIN=$HOME/.config/mc/solarized.ini
 #export PYENV_ROOT="$HOME/.pyenv"
 #eval "$(pyenv init -)"
 
-## Up Arrow: search and complete from previous history
-bind '"\e[A":history-search-backward'
-## Down Arrow: search and complete from next history
-bind '"\e[B":history-search-forward'
+# Up Arrow: search and complete from previous history
+#bind '"\e[A":history-search-backward'
+# Down Arrow: search and complete from next history
+#bind '"\e[B":history-search-forward'
 
+# Enable Powerline
 . /usr/local/lib/python2.7/dist-packages/powerline/bindings/bash/powerline.sh
