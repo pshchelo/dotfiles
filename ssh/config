@@ -4,5 +4,5 @@ Host *
     IdentityFile ~/.ssh/pshchelo.rsa
 
 Host devstack-heat 
-    HostName 192.168.122.201
+    HostName 192.168.122.246
     User pshchelokovskyy
