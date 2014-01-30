@@ -17,7 +17,7 @@ if [ -n "$BASH_VERSION" ]; then
 fi
 
 # start keychain and load private ssh key
-eval 'keychain --clear --eval ~/.ssh/pshchelo.rsa'
+eval 'keychain --eval ~/.ssh/pshchelo.rsa'
 
 # set vim/gvim as default editor
 export EDITOR="vim"
