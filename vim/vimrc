@@ -125,6 +125,9 @@ if ! has('gui_running')
     augroup END
 endif
 
+" Hide the default mode text (e.g. -- INSERT -- below the statusline)
+set noshowmode
+
 "======================
 " Initialize Powerline
 
