@@ -115,6 +115,16 @@ set t_Co=16
 " ignore these files when searching etc
 set wildignore=*.swp,*.bak,*.pyc,*.class
 
+" leave the insert mode fatser on terminal
+if ! has('gui_running')
+    set ttimeoutlen=10
+    augroup FastEscape
+        autocmd!
+        au InsertEnter * set timeoutlen=0
+        au InsertLeave * set timeoutlen=1000
+    augroup END
+endif
+
 "======================
 " Initialize Powerline
 
