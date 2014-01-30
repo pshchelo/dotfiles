@@ -6,6 +6,7 @@
 build-essential
 python-dev
 git
+keychain
 tig
 htop
 mc
