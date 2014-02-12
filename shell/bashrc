@@ -140,7 +140,7 @@ fi
 # virtualenvwrapper setup
 export WORKON_HOME=$HOME/.virtualenvs
 export PROJECT_HOME=$HOME/devel
-source /usr/local/bin/virtualenvwrapper.sh
+source $HOME/.local/bin/virtualenvwrapper.sh
 
 # solarized scheme for Midnight Commander
 export MC_SKIN=$HOME/.config/mc/mc-solarized.ini
