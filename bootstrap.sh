@@ -71,7 +71,7 @@ ln -s $dir/git/next_review ~/.next_review
 ln -s $dir/vim/vimrc ~/.vimrc
 # install vundle to manage other plugins
 #mkdir -p ~/.vim/bundle
-#git clone git://github.com/gmarik/vundle.git ~/.vim/bundle
+#git clone git://github.com/gmarik/vundle.git ~/.vim/bundle/vundle
 
 # Ack
 ln -s $dir/ack/ackrc ~/.ackrc
