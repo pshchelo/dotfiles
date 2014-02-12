@@ -16,16 +16,13 @@ if [ -n "$BASH_VERSION" ]; then
     fi
 fi
 
-# start keychain and load private ssh key
-eval 'keychain --eval ~/.ssh/pshchelo.rsa'
-
 # set vim/gvim as default editor
 export EDITOR="vim"
 export VISUAL="gvim"
 export VIEWER="vim"
 
 # set java options for better font smoothing
-export _JAVA_OPTIONS='-Dawt.useSystemAAFontSettings=lcd_hrgb -Dswing.aatext=true -Dsun.java2d.xrender=true'
+#export _JAVA_OPTIONS='-Dawt.useSystemAAFontSettings=lcd_hrgb -Dswing.aatext=true -Dsun.java2d.xrender=true'
 
 #LANGUAGE=en_US:en
 #LANG=en_US.UTF-8
