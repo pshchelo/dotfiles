@@ -146,4 +146,4 @@ source $HOME/.local/bin/virtualenvwrapper.sh
 export MC_SKIN=$HOME/.config/mc/mc-solarized.ini
 
 # Enable Powerline
-. /usr/local/lib/python2.7/dist-packages/powerline/bindings/bash/powerline.sh
+. $HOME/.local/lib/python2.7/site-packages/powerline/bindings/bash/powerline.sh

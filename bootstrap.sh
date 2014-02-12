@@ -72,6 +72,7 @@ ln -s $dir/vim/vimrc ~/.vimrc
 # install vundle to manage other plugins
 #mkdir -p ~/.vim/bundle
 #git clone git://github.com/gmarik/vundle.git ~/.vim/bundle/vundle
+#sudo apt-get install ctags
 
 # Ack
 ln -s $dir/ack/ackrc ~/.ackrc
