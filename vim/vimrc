@@ -107,7 +107,7 @@ set copyindent
 set background=dark
 colorscheme solarized
 " set gui options
-set guifont=Anonymous\ Pro\ 12
+set guifont=Anonymous\ Pro\ 11
 set guioptions-=T  "remove toolbar
 " set terminal colors
 set t_Co=16
