@@ -143,7 +143,7 @@ export PROJECT_HOME=$HOME/devel
 source $HOME/.local/bin/virtualenvwrapper.sh
 
 # solarized scheme for Midnight Commander
-export MC_SKIN=$HOME/.config/mc/mc-solarized.ini
+export MC_SKIN=$HOME/dotfiles/colors/mc-solarized.ini
 
 # Enable Powerline
 . $HOME/.local/lib/python2.7/site-packages/powerline/bindings/bash/powerline.sh
