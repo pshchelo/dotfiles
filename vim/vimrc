@@ -77,7 +77,7 @@ Bundle 'moll/vim-bbye'
 Bundle 'tpope/vim-fugitive'
 Bundle 'scrooloose/nerdcommenter'
 Bundle 'scrooloose/nerdtree'
-"Bundle 'scrooloose/syntastic'
+Bundle 'scrooloose/syntastic'
 Bundle 'altercation/vim-colors-solarized'
 Bundle 'ervandew/supertab'
 Bundle 'majutsushi/tagbar'
@@ -180,27 +180,8 @@ let g:pymode_run_key = '<leader>r'
 let g:pymode_breakpoint = 1
 let g:pymode_breakpoint_bind = '<leader>b'
 
-" Code checking (uses Pylama)
-let g:pymode_lint = 1
-let g:pymode_lint_on_write = 1
-let g:pymode_lint_unmodified = 0
-"let g:pymode_modified = 0
-let g:pymode_lint_on_fly = 0
-let g:pymode_lint_message = 1
-" supported are 'pylint', 'pep257', 'pep8', 'pyflakes', 'mccabe'
-let g:pymode_lint_checkers = ['pyflakes', 'pep8']
-let g:pymode_lint_cwindow = 1
-" set quickfix window size
-let g:pymode_quickfix_minheight = 3
-let g:pymode_quickfix_maxheight = 6
-" error signs
-let g:pymode_lint_signs = 1
-let g:pymode_lint_todo_symbol = '⚠'
-let g:pymode_lint_comment_symbol = 'CC'
-let g:pymode_lint_visual_symbol = 'RR'
-let g:pymode_lint_error_symbol = '✗' " 'EE'
-let g:pymode_lint_info_symbol = 'II'
-let g:pymode_lint_pyflakes_symbol = '⚠' " 'FF'
+" Code checking - disable (use Syntastic for this)
+let g:pymode_lint = 0
 
 " Pymode custom syntax highlight
 let g:pymode_syntax = 1
@@ -220,24 +201,21 @@ let g:pymode_syntax_all = 1
 " Syntastic configuration
 
 " Define nice error symbols
-"let g:syntastic_error_symbol='✗'
-"let g:syntastic_warning_symbol='⚠'
+let g:syntastic_error_symbol='✗'
+let g:syntastic_warning_symbol='⚠'
 
 " Allways stick found errors to loclist
-"let g:syntastic_always_populate_loc_list=1
+let g:syntastic_always_populate_loc_list=1
 
 " Aggregate errors from all checkers
-"let g:syntastic_aggregate_errors=1
+let g:syntastic_aggregate_errors=1
 
-" Automatically closa and open loclist
-"let g:syntastic_auto_loc_list=1
+" Automatically close and open loclist
+let g:syntastic_auto_loc_list=1
 
-" Use Pylama as a sole checker for Python files
+" Use flake8 as a sole checker for Python files
 " Available are pep8,pep257,pyflakes,pylint,py3kwarn,python,flake8,pylama
-"let g:syntastic_python_checkers = ['pylama']
-" Select which checkers Pylama runs
-" Available are pep8,pep257,pyflakes,pylint,mccabe
-"let g:syntastic_python_pylama_args = '-l pep8,pyflakes'
+let g:syntastic_python_checkers = ['flake8']
 
 "=========================
 " NERDTree configuration
