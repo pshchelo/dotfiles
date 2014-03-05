@@ -12,3 +12,6 @@ alias back="cd -"
 
 # copy command for big files, with progress indication
 alias longcp='rsync --progress -ah'
+
+# alias for running single Python unit tests with testtools
+alias ttools='python -m testtools.run'
