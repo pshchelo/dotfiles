@@ -234,7 +234,31 @@ let g:tagbar_width = 32
 nmap <F4> :TagbarToggle<CR>
 
 "=========================
+" Riv and other RST settings
+
+" output path for converted file NOT in projects
+let g:riv_temp_path = 0  " the same dir as source
+
+" highlight Python docstrings as RST
+let g:riv_python_rst_hl = 1
+
+" highlight code in RST as Python
+let g:riv_highlight_code = 'python'
+
+" Inserting a line belllow the current line, with the same length,
+" but consisting only from the char that's given after this command.
+" Useful for inserting RST headers.
+nmap <leader>h yypVr
+
+"=========================
 " Working with buffers and windows
+
+" Switch to alternate file
+nmap <F9> :bnext<cr>
+nmap <F8> :bprevious<cr>
+
+" Mapping for gracefully closing buffers with vim-bbye
+:nnoremap <Leader>q :Bdelete<CR>
 
 " disable arrow keys to force working with standard HJKL movement keys
 "map <up> <nop>
@@ -245,33 +269,18 @@ nmap <F4> :TagbarToggle<CR>
 " move up and down per visual line, not real line
 "nnoremap j gj
 "nnoremap k gk
-nnoremap <Down> gj
-nnoremap <Up> gk
+"nnoremap <Down> gj
+"nnoremap <Up> gk
 
 " Keys to move between windows
-nmap <silent> <C-Up> :wincmd k<CR>
-nmap <silent> <C-Down> :wincmd j<CR>
-nmap <silent> <C-Left> :wincmd h<CR>
-nmap <silent> <C-Right> :wincmd l<CR>
+"nmap <silent> <C-Up> :wincmd k<CR>
+"nmap <silent> <C-Down> :wincmd j<CR>
+"nmap <silent> <C-Left> :wincmd h<CR>
+"nmap <silent> <C-Right> :wincmd l<CR>
 "map <C-h> <C-w>h
 "map <C-j> <C-w>j
 "map <C-k> <C-w>k
 "map <C-l> <C-w>l
-
-" Switch to alternate file
-nmap <F9> :bnext<cr>
-nmap <F8> :bprevious<cr>
-
-" Mapping for gracefully closing buffers with vim-bbye
-:nnoremap <Leader>q :Bdelete<CR>
-
-"=====================
-" Inserting a line belllow the current line, with the same length,
-" but consisting only from the char that's given after this command.
-" Useful for inserting RST headers.
-nmap <leader>h yypVr
-
-"=========================
 
 " make vim understand commands without leaving russian keyboard layout
 " set langmap=ёйцукенгшщзхъфывапролджэячсмитьбю;`qwertyuiop[]asdfghjkl\;'zxcvbnm\,.;ЙЦУКЕHГШЩЗХЪФЫВАПРОЛДЖЭЯЧСМИТЬБЮ;QWERTYUIOP{}ASDFGHJKL:\"ZXCVBNM<>
