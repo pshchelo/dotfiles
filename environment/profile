@@ -29,9 +29,3 @@ if [ -z "$DISPLAY" -a -z "$SSH_AUTH_SOCK" -a -x "$SSHAGENT" ]; then
   eval `$SSHAGENT`
   trap "kill $SSH_AGENT_PID" 0
 fi
-
-# set java options for better font smoothing
-#export _JAVA_OPTIONS='-Dawt.useSystemAAFontSettings=lcd_hrgb -Dswing.aatext=true -Dsun.java2d.xrender=true'
-
-#LANGUAGE=en_US:en
-#LANG=en_US.UTF-8

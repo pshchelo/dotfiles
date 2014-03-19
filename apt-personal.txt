@@ -6,7 +6,6 @@
 build-essential
 python-dev
 git
-keychain
 tig
 htop
 mc
@@ -18,6 +17,7 @@ vim-tiny
 vim-addon-manager
 vim-common       
 vim-doc          
+cmus
 
 ####
 #GUI
@@ -26,7 +26,7 @@ guake
 dropbox
 skype
 chromium-browser
-xchat
+hexchat
 #gnu-cash
 gitg
 diffuse

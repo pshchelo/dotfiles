@@ -1,6 +1,6 @@
 # setting langiage to English (US)
+LANGUAGE=en_US:en
 LANG=en_US.UTF-8
-LANGUAGE="en_US:en"
 LC_MESSAGES=en_US.UTF-8
 LC_ALL=en_IE.UTF-8
 
