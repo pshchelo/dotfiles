@@ -534,33 +534,6 @@ c = get_config()
 # c.Session.metadata = {}
 
 #------------------------------------------------------------------------------
-# InlineBackend configuration
-#------------------------------------------------------------------------------
-
-# An object to store configuration of the inline backend.
-
-# The image format for figures with the inline backend.
-c.InlineBackend.figure_format = 'svg'
-
-# Close all figures at the end of each cell.
-#
-# When True, ensures that each cell starts with no active figures, but it also
-# means that one must keep track of references in order to edit or redraw
-# figures in subsequent cells. This mode is ideal for the notebook, where
-# residual plots from other cells might be surprising.
-#
-# When False, one must call figure() to create new figures. This means that
-# gcf() and getfigs() can reference figures created in other cells, and the
-# active figure can continue to be edited with pylab/pyplot methods that
-# reference the current active figure. This mode facilitates iterative editing
-# of figures, and behaves most consistently with other matplotlib backends, but
-# figure barriers between cells must be explicit.
-# c.InlineBackend.close_figures = True
-
-# Subset of matplotlib rcParams that should be different for the inline backend.
-# c.InlineBackend.rc = {'font.size': 10, 'figure.figsize': (6.0, 4.0), 'figure.facecolor': 'white', 'savefig.dpi': 72, 'figure.subplot.bottom': 0.125, 'figure.edgecolor': 'white'}
-
-#------------------------------------------------------------------------------
 # MappingKernelManager configuration
 #------------------------------------------------------------------------------
 
@@ -577,7 +550,7 @@ c.InlineBackend.figure_format = 'svg'
 #------------------------------------------------------------------------------
 
 # The directory to use for notebooks.
-# c.NotebookManager.notebook_dir = u'/home/pshchelo/dotfiles'
+# c.NotebookManager.notebook_dir = u'/home/pshchelo/devel/ipynb'
 
 #------------------------------------------------------------------------------
 # FileNotebookManager configuration
@@ -599,3 +572,31 @@ c.FileNotebookManager.save_script = True
 
 # The directory to use for notebooks.
 c.FileNotebookManager.notebook_dir = u'/home/pshchelo/devel/ipynb'
+
+# leftover after migration to 1.2.1, still needed?
+#------------------------------------------------------------------------------
+# InlineBackend configuration
+#------------------------------------------------------------------------------
+
+# An object to store configuration of the inline backend.
+
+# The image format for figures with the inline backend.
+# c.InlineBackend.figure_format = 'svg'
+
+# Close all figures at the end of each cell.
+#
+# When True, ensures that each cell starts with no active figures, but it also
+# means that one must keep track of references in order to edit or redraw
+# figures in subsequent cells. This mode is ideal for the notebook, where
+# residual plots from other cells might be surprising.
+#
+# When False, one must call figure() to create new figures. This means that
+# gcf() and getfigs() can reference figures created in other cells, and the
+# active figure can continue to be edited with pylab/pyplot methods that
+# reference the current active figure. This mode facilitates iterative editing
+# of figures, and behaves most consistently with other matplotlib backends, but
+# figure barriers between cells must be explicit.
+# c.InlineBackend.close_figures = True
+
+# Subset of matplotlib rcParams that should be different for the inline backend.
+# c.InlineBackend.rc = {'font.size': 11, 'figure.figsize': (6.0, 4.0), 'figure.facecolor': 'white', 'savefig.dpi': 72, 'figure.subplot.bottom': 0.125, 'figure.edgecolor': 'white'}

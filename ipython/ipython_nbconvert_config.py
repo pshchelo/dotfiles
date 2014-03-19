@@ -152,7 +152,7 @@ c = get_config()
 
 # List of transformers available by default, by name, namespace,  instance, or
 # type.
-# c.Exporter.default_transformers = [<function wrappedfunc at 0x520c410>, <class 'IPython.nbconvert.transformers.svg2pdf.SVG2PDFTransformer'>, <class 'IPython.nbconvert.transformers.extractoutput.ExtractOutputTransformer'>, <class 'IPython.nbconvert.transformers.csshtmlheader.CSSHTMLHeaderTransformer'>, <class 'IPython.nbconvert.transformers.revealhelp.RevealHelpTransformer'>, <class 'IPython.nbconvert.transformers.latex.LatexTransformer'>, <class 'IPython.nbconvert.transformers.sphinx.SphinxTransformer'>]
+# c.Exporter.default_transformers = [<function wrappedfunc at 0x2d29579>, <class 'IPython.nbconvert.transformers.svg2pdf.SVG2PDFTransformer'>, <class 'IPython.nbconvert.transformers.extractoutput.ExtractOutputTransformer'>, <class 'IPython.nbconvert.transformers.csshtmlheader.CSSHTMLHeaderTransformer'>, <class 'IPython.nbconvert.transformers.revealhelp.RevealHelpTransformer'>, <class 'IPython.nbconvert.transformers.latex.LatexTransformer'>, <class 'IPython.nbconvert.transformers.sphinx.SphinxTransformer'>]
 
 #------------------------------------------------------------------------------
 # HTMLExporter configuration
@@ -206,7 +206,7 @@ c = get_config()
 
 # List of transformers available by default, by name, namespace,  instance, or
 # type.
-# c.HTMLExporter.default_transformers = [<function wrappedfunc at 0x520c410>, <class 'IPython.nbconvert.transformers.svg2pdf.SVG2PDFTransformer'>, <class 'IPython.nbconvert.transformers.extractoutput.ExtractOutputTransformer'>, <class 'IPython.nbconvert.transformers.csshtmlheader.CSSHTMLHeaderTransformer'>, <class 'IPython.nbconvert.transformers.revealhelp.RevealHelpTransformer'>, <class 'IPython.nbconvert.transformers.latex.LatexTransformer'>, <class 'IPython.nbconvert.transformers.sphinx.SphinxTransformer'>]
+# c.HTMLExporter.default_transformers = [<function wrappedfunc at 0x2d29578>, <class 'IPython.nbconvert.transformers.svg2pdf.SVG2PDFTransformer'>, <class 'IPython.nbconvert.transformers.extractoutput.ExtractOutputTransformer'>, <class 'IPython.nbconvert.transformers.csshtmlheader.CSSHTMLHeaderTransformer'>, <class 'IPython.nbconvert.transformers.revealhelp.RevealHelpTransformer'>, <class 'IPython.nbconvert.transformers.latex.LatexTransformer'>, <class 'IPython.nbconvert.transformers.sphinx.SphinxTransformer'>]
 
 #------------------------------------------------------------------------------
 # LatexExporter configuration
@@ -268,7 +268,7 @@ c = get_config()
 
 # List of transformers available by default, by name, namespace,  instance, or
 # type.
-# c.LatexExporter.default_transformers = [<function wrappedfunc at 0x520c410>, <class 'IPython.nbconvert.transformers.svg2pdf.SVG2PDFTransformer'>, <class 'IPython.nbconvert.transformers.extractoutput.ExtractOutputTransformer'>, <class 'IPython.nbconvert.transformers.csshtmlheader.CSSHTMLHeaderTransformer'>, <class 'IPython.nbconvert.transformers.revealhelp.RevealHelpTransformer'>, <class 'IPython.nbconvert.transformers.latex.LatexTransformer'>, <class 'IPython.nbconvert.transformers.sphinx.SphinxTransformer'>]
+# c.LatexExporter.default_transformers = [<function wrappedfunc at 0x2d29578>, <class 'IPython.nbconvert.transformers.svg2pdf.SVG2PDFTransformer'>, <class 'IPython.nbconvert.transformers.extractoutput.ExtractOutputTransformer'>, <class 'IPython.nbconvert.transformers.csshtmlheader.CSSHTMLHeaderTransformer'>, <class 'IPython.nbconvert.transformers.revealhelp.RevealHelpTransformer'>, <class 'IPython.nbconvert.transformers.latex.LatexTransformer'>, <class 'IPython.nbconvert.transformers.sphinx.SphinxTransformer'>]
 
 #------------------------------------------------------------------------------
 # MarkdownExporter configuration
@@ -316,7 +316,7 @@ c = get_config()
 
 # List of transformers available by default, by name, namespace,  instance, or
 # type.
-# c.MarkdownExporter.default_transformers = [<function wrappedfunc at 0x520c410>, <class 'IPython.nbconvert.transformers.svg2pdf.SVG2PDFTransformer'>, <class 'IPython.nbconvert.transformers.extractoutput.ExtractOutputTransformer'>, <class 'IPython.nbconvert.transformers.csshtmlheader.CSSHTMLHeaderTransformer'>, <class 'IPython.nbconvert.transformers.revealhelp.RevealHelpTransformer'>, <class 'IPython.nbconvert.transformers.latex.LatexTransformer'>, <class 'IPython.nbconvert.transformers.sphinx.SphinxTransformer'>]
+# c.MarkdownExporter.default_transformers = [<function wrappedfunc at 0x2d29578>, <class 'IPython.nbconvert.transformers.svg2pdf.SVG2PDFTransformer'>, <class 'IPython.nbconvert.transformers.extractoutput.ExtractOutputTransformer'>, <class 'IPython.nbconvert.transformers.csshtmlheader.CSSHTMLHeaderTransformer'>, <class 'IPython.nbconvert.transformers.revealhelp.RevealHelpTransformer'>, <class 'IPython.nbconvert.transformers.latex.LatexTransformer'>, <class 'IPython.nbconvert.transformers.sphinx.SphinxTransformer'>]
 
 #------------------------------------------------------------------------------
 # PythonExporter configuration
@@ -364,7 +364,7 @@ c = get_config()
 
 # List of transformers available by default, by name, namespace,  instance, or
 # type.
-# c.PythonExporter.default_transformers = [<function wrappedfunc at 0x520c410>, <class 'IPython.nbconvert.transformers.svg2pdf.SVG2PDFTransformer'>, <class 'IPython.nbconvert.transformers.extractoutput.ExtractOutputTransformer'>, <class 'IPython.nbconvert.transformers.csshtmlheader.CSSHTMLHeaderTransformer'>, <class 'IPython.nbconvert.transformers.revealhelp.RevealHelpTransformer'>, <class 'IPython.nbconvert.transformers.latex.LatexTransformer'>, <class 'IPython.nbconvert.transformers.sphinx.SphinxTransformer'>]
+# c.PythonExporter.default_transformers = [<function wrappedfunc at 0x2d29578>, <class 'IPython.nbconvert.transformers.svg2pdf.SVG2PDFTransformer'>, <class 'IPython.nbconvert.transformers.extractoutput.ExtractOutputTransformer'>, <class 'IPython.nbconvert.transformers.csshtmlheader.CSSHTMLHeaderTransformer'>, <class 'IPython.nbconvert.transformers.revealhelp.RevealHelpTransformer'>, <class 'IPython.nbconvert.transformers.latex.LatexTransformer'>, <class 'IPython.nbconvert.transformers.sphinx.SphinxTransformer'>]
 
 #------------------------------------------------------------------------------
 # RSTExporter configuration
@@ -412,7 +412,7 @@ c = get_config()
 
 # List of transformers available by default, by name, namespace,  instance, or
 # type.
-# c.RSTExporter.default_transformers = [<function wrappedfunc at 0x520c410>, <class 'IPython.nbconvert.transformers.svg2pdf.SVG2PDFTransformer'>, <class 'IPython.nbconvert.transformers.extractoutput.ExtractOutputTransformer'>, <class 'IPython.nbconvert.transformers.csshtmlheader.CSSHTMLHeaderTransformer'>, <class 'IPython.nbconvert.transformers.revealhelp.RevealHelpTransformer'>, <class 'IPython.nbconvert.transformers.latex.LatexTransformer'>, <class 'IPython.nbconvert.transformers.sphinx.SphinxTransformer'>]
+# c.RSTExporter.default_transformers = [<function wrappedfunc at 0x2d29578>, <class 'IPython.nbconvert.transformers.svg2pdf.SVG2PDFTransformer'>, <class 'IPython.nbconvert.transformers.extractoutput.ExtractOutputTransformer'>, <class 'IPython.nbconvert.transformers.csshtmlheader.CSSHTMLHeaderTransformer'>, <class 'IPython.nbconvert.transformers.revealhelp.RevealHelpTransformer'>, <class 'IPython.nbconvert.transformers.latex.LatexTransformer'>, <class 'IPython.nbconvert.transformers.sphinx.SphinxTransformer'>]
 
 #------------------------------------------------------------------------------
 # SlidesExporter configuration
@@ -463,7 +463,7 @@ c = get_config()
 
 # List of transformers available by default, by name, namespace,  instance, or
 # type.
-# c.SlidesExporter.default_transformers = [<function wrappedfunc at 0x520c410>, <class 'IPython.nbconvert.transformers.svg2pdf.SVG2PDFTransformer'>, <class 'IPython.nbconvert.transformers.extractoutput.ExtractOutputTransformer'>, <class 'IPython.nbconvert.transformers.csshtmlheader.CSSHTMLHeaderTransformer'>, <class 'IPython.nbconvert.transformers.revealhelp.RevealHelpTransformer'>, <class 'IPython.nbconvert.transformers.latex.LatexTransformer'>, <class 'IPython.nbconvert.transformers.sphinx.SphinxTransformer'>]
+# c.SlidesExporter.default_transformers = [<function wrappedfunc at 0x2d29578>, <class 'IPython.nbconvert.transformers.svg2pdf.SVG2PDFTransformer'>, <class 'IPython.nbconvert.transformers.extractoutput.ExtractOutputTransformer'>, <class 'IPython.nbconvert.transformers.csshtmlheader.CSSHTMLHeaderTransformer'>, <class 'IPython.nbconvert.transformers.revealhelp.RevealHelpTransformer'>, <class 'IPython.nbconvert.transformers.latex.LatexTransformer'>, <class 'IPython.nbconvert.transformers.sphinx.SphinxTransformer'>]
 
 #------------------------------------------------------------------------------
 # CSSHTMLHeaderTransformer configuration
