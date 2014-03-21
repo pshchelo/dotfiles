@@ -20,6 +20,9 @@
             },
             {
                 "name": "hostname"
+            },
+            {
+                "name": "battery"
             }
         ]
     }
