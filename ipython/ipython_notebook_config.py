@@ -573,7 +573,6 @@ c.FileNotebookManager.save_script = True
 # The directory to use for notebooks.
 c.FileNotebookManager.notebook_dir = u'/home/pshchelo/devel/ipynb'
 
-# leftover after migration to 1.2.1, still needed?
 #------------------------------------------------------------------------------
 # InlineBackend configuration
 #------------------------------------------------------------------------------
