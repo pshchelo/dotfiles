@@ -8,7 +8,7 @@ c = get_config()
 
 # This application is used to convert notebook files (*.ipynb) to various other
 # formats.
-#
+# 
 # WARNING: THE COMMANDLINE INTERFACE MAY CHANGE IN FUTURE RELEASES.
 
 # NbConvertApp will inherit config from: BaseIPythonApplication, Application
@@ -22,17 +22,17 @@ c = get_config()
 # Set the log level by value or name.
 # c.NbConvertApp.log_level = 30
 
-# PostProcessor class used to write the  results of the conversion
-# c.NbConvertApp.post_processor_class = u''
-
 # List of notebooks to convert. Wildcards are supported. Filenames passed
 # positionally will be added to the list.
 # c.NbConvertApp.notebooks = []
 
 # Path to an extra config file to load.
-#
+# 
 # If specified, load this config file in addition to any other IPython config.
 # c.NbConvertApp.extra_config_file = u''
+
+# PostProcessor class used to write the  results of the conversion
+# c.NbConvertApp.postprocessor_class = u''
 
 # Whether to create profile dir if it doesn't exist
 # c.NbConvertApp.auto_create = False
@@ -45,7 +45,7 @@ c = get_config()
 # configuration (through profiles), history storage, etc. The default is usually
 # $HOME/.ipython. This options can also be specified through the environment
 # variable IPYTHONDIR.
-# c.NbConvertApp.ipython_dir = u'/home/pshchelo/.config/ipython'
+# c.NbConvertApp.ipython_dir = u''
 
 # Whether to install the default config files into the profile dir. If a new
 # profile is being created, and IPython contains config files for that profile,
@@ -74,22 +74,25 @@ c = get_config()
 #------------------------------------------------------------------------------
 
 # Global configurable class for shared config
-#
-# Usefull for display data priority that might be use by many trasnformers
+# 
+# Useful for display data priority that might be use by many transformers
 
-# An ordered list of prefered output type, the first encounterd will usually be
-# used when converting discarding the others.
-# c.NbConvertBase.display_data_priority = ['html', 'pdf', 'svg', 'latex', 'png', 'jpg', 'jpeg', 'text']
+# An ordered list of preferred output type, the first encountered will usually
+# be used when converting discarding the others.
+# c.NbConvertBase.display_data_priority = ['html', 'application/pdf', 'svg', 'latex', 'png', 'jpg', 'jpeg', 'text']
+
+# default highlight language
+# c.NbConvertBase.default_language = 'ipython'
 
 #------------------------------------------------------------------------------
 # ProfileDir configuration
 #------------------------------------------------------------------------------
 
 # An object to manage the profile directory and its resources.
-#
+# 
 # The profile directory is used by all IPython applications, to manage
 # configuration, logging and security.
-#
+# 
 # This object knows how to find, create and manage these directories. This
 # should be used by any code that wants to handle profiles.
 
@@ -101,58 +104,19 @@ c = get_config()
 # Exporter configuration
 #------------------------------------------------------------------------------
 
-# Exports notebooks into other file formats.  Uses Jinja 2 templating engine to
-# output new formats.  Inherit from this class if you are creating a new
-# template type along with new filters/transformers.  If the filters/
-# transformers provided by default suffice, there is no need to inherit from
-# this class.  Instead, override the template_file and file_extension traits via
-# a config file.
-#
-# - highlight2html - filter_data_type - markdown2html - markdown2rst - get_lines
-# - ansi2latex - strip_ansi - comment_lines - markdown2latex - escape_latex -
-# add_anchor - ipython2python - posix_path - highlight2latex - path2url -
-# ansi2html - wrap_text - strip_math_space - indent - strip_dollars - html2text
-# - strip_files_prefix
-
-#
-# c.Exporter.jinja_variable_block_start = ''
-
-#
-# c.Exporter.jinja_logic_block_start = ''
-
-# List of transformers, by name or namespace, to enable.
-# c.Exporter.transformers = []
-
-#
-# c.Exporter.template_path = ['.']
-
-# Name of the template file to use
-# c.Exporter.template_file = u'default'
+# Class containing methods that sequentially run a list of preprocessors on a
+# NotebookNode object and then return the modified NotebookNode object and
+# accompanying resources dict.
 
 # Extension of the file that should be written to disk
 # c.Exporter.file_extension = 'txt'
 
-#
-# c.Exporter.jinja_comment_block_end = ''
+# List of preprocessors, by name or namespace, to enable.
+# c.Exporter.preprocessors = []
 
-# Dictionary of filters, by name and namespace, to add to the Jinja environment.
-# c.Exporter.filters = {}
-
-#
-# c.Exporter.jinja_comment_block_start = ''
-
-#
-# c.Exporter.jinja_logic_block_end = ''
-
-#
-# c.Exporter.jinja_variable_block_end = ''
-
-#
-# c.Exporter.template_extension = '.tpl'
-
-# List of transformers available by default, by name, namespace,  instance, or
+# List of preprocessors available by default, by name, namespace,  instance, or
 # type.
-# c.Exporter.default_transformers = [<function wrappedfunc at 0x2d29579>, <class 'IPython.nbconvert.transformers.svg2pdf.SVG2PDFTransformer'>, <class 'IPython.nbconvert.transformers.extractoutput.ExtractOutputTransformer'>, <class 'IPython.nbconvert.transformers.csshtmlheader.CSSHTMLHeaderTransformer'>, <class 'IPython.nbconvert.transformers.revealhelp.RevealHelpTransformer'>, <class 'IPython.nbconvert.transformers.latex.LatexTransformer'>, <class 'IPython.nbconvert.transformers.sphinx.SphinxTransformer'>]
+# c.Exporter.default_preprocessors = ['IPython.nbconvert.preprocessors.coalesce_streams', 'IPython.nbconvert.preprocessors.SVG2PDFPreprocessor', 'IPython.nbconvert.preprocessors.ExtractOutputPreprocessor', 'IPython.nbconvert.preprocessors.CSSHTMLHeaderPreprocessor', 'IPython.nbconvert.preprocessors.RevealHelpPreprocessor', 'IPython.nbconvert.preprocessors.LatexPreprocessor', 'IPython.nbconvert.preprocessors.HighlightMagicsPreprocessor']
 
 #------------------------------------------------------------------------------
 # HTMLExporter configuration
@@ -160,53 +124,53 @@ c = get_config()
 
 # Exports a basic HTML document.  This exporter assists with the export of HTML.
 # Inherit from it if you are writing your own HTML template and need custom
-# transformers/filters.  If you don't need custom transformers/ filters, just
+# preprocessors/filters.  If you don't need custom preprocessors/ filters, just
 # change the 'template_file' config option.
 
-# HTMLExporter will inherit config from: Exporter
+# HTMLExporter will inherit config from: TemplateExporter, Exporter
 
-#
+# 
 # c.HTMLExporter.jinja_variable_block_start = ''
 
-#
-# c.HTMLExporter.jinja_logic_block_start = ''
+# 
+# c.HTMLExporter.jinja_variable_block_end = ''
 
-# List of transformers, by name or namespace, to enable.
-# c.HTMLExporter.transformers = []
-
-#
-# c.HTMLExporter.template_path = ['.']
+# formats of raw cells to be included in this Exporter's output.
+# c.HTMLExporter.raw_mimetypes = []
 
 # Name of the template file to use
 # c.HTMLExporter.template_file = u'default'
 
+# List of preprocessors available by default, by name, namespace,  instance, or
+# type.
+# c.HTMLExporter.default_preprocessors = ['IPython.nbconvert.preprocessors.coalesce_streams', 'IPython.nbconvert.preprocessors.SVG2PDFPreprocessor', 'IPython.nbconvert.preprocessors.ExtractOutputPreprocessor', 'IPython.nbconvert.preprocessors.CSSHTMLHeaderPreprocessor', 'IPython.nbconvert.preprocessors.RevealHelpPreprocessor', 'IPython.nbconvert.preprocessors.LatexPreprocessor', 'IPython.nbconvert.preprocessors.HighlightMagicsPreprocessor']
+
+# 
+# c.HTMLExporter.template_path = ['.']
+
 # Extension of the file that should be written to disk
-# c.HTMLExporter.file_extension = 'html'
+# c.HTMLExporter.file_extension = 'txt'
 
-# Flavor of the data  format to use.  I.E. 'full' or 'basic'
-# c.HTMLExporter.default_template = 'full'
-
-#
+# 
 # c.HTMLExporter.jinja_comment_block_end = ''
 
 # Dictionary of filters, by name and namespace, to add to the Jinja environment.
 # c.HTMLExporter.filters = {}
 
-#
+# 
 # c.HTMLExporter.jinja_comment_block_start = ''
 
-#
+# 
 # c.HTMLExporter.jinja_logic_block_end = ''
 
-#
-# c.HTMLExporter.jinja_variable_block_end = ''
+# 
+# c.HTMLExporter.jinja_logic_block_start = ''
 
-#
+# 
 # c.HTMLExporter.template_extension = '.tpl'
 
-# List of transformers available by default, by name, namespace,  instance, or
-# type.
-# c.HTMLExporter.default_transformers = [<function wrappedfunc at 0x2d29578>, <class 'IPython.nbconvert.transformers.svg2pdf.SVG2PDFTransformer'>, <class 'IPython.nbconvert.transformers.extractoutput.ExtractOutputTransformer'>, <class 'IPython.nbconvert.transformers.csshtmlheader.CSSHTMLHeaderTransformer'>, <class 'IPython.nbconvert.transformers.revealhelp.RevealHelpTransformer'>, <class 'IPython.nbconvert.transformers.latex.LatexTransformer'>, <class 'IPython.nbconvert.transformers.sphinx.SphinxTransformer'>]
+# List of preprocessors, by name or namespace, to enable.
+# c.HTMLExporter.preprocessors = []
 
 #------------------------------------------------------------------------------
 # LatexExporter configuration
@@ -219,56 +183,50 @@ c = get_config()
 # config option.  Place your template in the special "/latex"  subfolder of the
 # "../templates" folder.
 
-# LatexExporter will inherit config from: Exporter
+# LatexExporter will inherit config from: TemplateExporter, Exporter
 
-#
+# 
 # c.LatexExporter.jinja_variable_block_start = '((('
 
-#
-# c.LatexExporter.jinja_logic_block_start = '((*'
+# 
+# c.LatexExporter.jinja_variable_block_end = ')))'
 
-# Path where the template skeleton files are located.
-# c.LatexExporter.template_skeleton_path = '../templates/latex/skeleton'
-
-#
-# c.LatexExporter.template_path = ['.']
+# formats of raw cells to be included in this Exporter's output.
+# c.LatexExporter.raw_mimetypes = []
 
 # Name of the template file to use
 # c.LatexExporter.template_file = u'default'
 
-# Path where the template files are located.
-# c.LatexExporter.default_template_path = '../templates/latex'
+# List of preprocessors available by default, by name, namespace,  instance, or
+# type.
+# c.LatexExporter.default_preprocessors = ['IPython.nbconvert.preprocessors.coalesce_streams', 'IPython.nbconvert.preprocessors.SVG2PDFPreprocessor', 'IPython.nbconvert.preprocessors.ExtractOutputPreprocessor', 'IPython.nbconvert.preprocessors.CSSHTMLHeaderPreprocessor', 'IPython.nbconvert.preprocessors.RevealHelpPreprocessor', 'IPython.nbconvert.preprocessors.LatexPreprocessor', 'IPython.nbconvert.preprocessors.HighlightMagicsPreprocessor']
+
+# 
+# c.LatexExporter.template_path = ['.']
 
 # Extension of the file that should be written to disk
-# c.LatexExporter.file_extension = 'tex'
+# c.LatexExporter.file_extension = 'txt'
 
-# Template of the  data format to use.  I.E. 'full' or 'basic'
-# c.LatexExporter.default_template = 'article'
-
-#
+# 
 # c.LatexExporter.jinja_comment_block_end = '=))'
 
 # Dictionary of filters, by name and namespace, to add to the Jinja environment.
 # c.LatexExporter.filters = {}
 
-#
+# 
 # c.LatexExporter.jinja_comment_block_start = '((='
 
-# List of transformers, by name or namespace, to enable.
-# c.LatexExporter.transformers = []
-
-#
+# 
 # c.LatexExporter.jinja_logic_block_end = '*))'
 
-#
-# c.LatexExporter.jinja_variable_block_end = ')))'
+# 
+# c.LatexExporter.jinja_logic_block_start = '((*'
 
-#
+# 
 # c.LatexExporter.template_extension = '.tplx'
 
-# List of transformers available by default, by name, namespace,  instance, or
-# type.
-# c.LatexExporter.default_transformers = [<function wrappedfunc at 0x2d29578>, <class 'IPython.nbconvert.transformers.svg2pdf.SVG2PDFTransformer'>, <class 'IPython.nbconvert.transformers.extractoutput.ExtractOutputTransformer'>, <class 'IPython.nbconvert.transformers.csshtmlheader.CSSHTMLHeaderTransformer'>, <class 'IPython.nbconvert.transformers.revealhelp.RevealHelpTransformer'>, <class 'IPython.nbconvert.transformers.latex.LatexTransformer'>, <class 'IPython.nbconvert.transformers.sphinx.SphinxTransformer'>]
+# List of preprocessors, by name or namespace, to enable.
+# c.LatexExporter.preprocessors = []
 
 #------------------------------------------------------------------------------
 # MarkdownExporter configuration
@@ -276,47 +234,50 @@ c = get_config()
 
 # Exports to a markdown document (.md)
 
-# MarkdownExporter will inherit config from: Exporter
+# MarkdownExporter will inherit config from: TemplateExporter, Exporter
 
-#
+# 
 # c.MarkdownExporter.jinja_variable_block_start = ''
 
-#
-# c.MarkdownExporter.jinja_logic_block_start = ''
+# 
+# c.MarkdownExporter.jinja_variable_block_end = ''
 
-# List of transformers, by name or namespace, to enable.
-# c.MarkdownExporter.transformers = []
-
-#
-# c.MarkdownExporter.template_path = ['.']
+# formats of raw cells to be included in this Exporter's output.
+# c.MarkdownExporter.raw_mimetypes = []
 
 # Name of the template file to use
 # c.MarkdownExporter.template_file = u'default'
 
-# Extension of the file that should be written to disk
-# c.MarkdownExporter.file_extension = 'md'
+# List of preprocessors available by default, by name, namespace,  instance, or
+# type.
+# c.MarkdownExporter.default_preprocessors = ['IPython.nbconvert.preprocessors.coalesce_streams', 'IPython.nbconvert.preprocessors.SVG2PDFPreprocessor', 'IPython.nbconvert.preprocessors.ExtractOutputPreprocessor', 'IPython.nbconvert.preprocessors.CSSHTMLHeaderPreprocessor', 'IPython.nbconvert.preprocessors.RevealHelpPreprocessor', 'IPython.nbconvert.preprocessors.LatexPreprocessor', 'IPython.nbconvert.preprocessors.HighlightMagicsPreprocessor']
 
-#
+# 
+# c.MarkdownExporter.template_path = ['.']
+
+# Extension of the file that should be written to disk
+# c.MarkdownExporter.file_extension = 'txt'
+
+# 
 # c.MarkdownExporter.jinja_comment_block_end = ''
 
 # Dictionary of filters, by name and namespace, to add to the Jinja environment.
 # c.MarkdownExporter.filters = {}
 
-#
+# 
 # c.MarkdownExporter.jinja_comment_block_start = ''
 
-#
+# 
 # c.MarkdownExporter.jinja_logic_block_end = ''
 
-#
-# c.MarkdownExporter.jinja_variable_block_end = ''
+# 
+# c.MarkdownExporter.jinja_logic_block_start = ''
 
-#
+# 
 # c.MarkdownExporter.template_extension = '.tpl'
 
-# List of transformers available by default, by name, namespace,  instance, or
-# type.
-# c.MarkdownExporter.default_transformers = [<function wrappedfunc at 0x2d29578>, <class 'IPython.nbconvert.transformers.svg2pdf.SVG2PDFTransformer'>, <class 'IPython.nbconvert.transformers.extractoutput.ExtractOutputTransformer'>, <class 'IPython.nbconvert.transformers.csshtmlheader.CSSHTMLHeaderTransformer'>, <class 'IPython.nbconvert.transformers.revealhelp.RevealHelpTransformer'>, <class 'IPython.nbconvert.transformers.latex.LatexTransformer'>, <class 'IPython.nbconvert.transformers.sphinx.SphinxTransformer'>]
+# List of preprocessors, by name or namespace, to enable.
+# c.MarkdownExporter.preprocessors = []
 
 #------------------------------------------------------------------------------
 # PythonExporter configuration
@@ -324,47 +285,50 @@ c = get_config()
 
 # Exports a Python code file.
 
-# PythonExporter will inherit config from: Exporter
+# PythonExporter will inherit config from: TemplateExporter, Exporter
 
-#
+# 
 # c.PythonExporter.jinja_variable_block_start = ''
 
-#
-# c.PythonExporter.jinja_logic_block_start = ''
+# 
+# c.PythonExporter.jinja_variable_block_end = ''
 
-# List of transformers, by name or namespace, to enable.
-# c.PythonExporter.transformers = []
-
-#
-# c.PythonExporter.template_path = ['.']
+# formats of raw cells to be included in this Exporter's output.
+# c.PythonExporter.raw_mimetypes = []
 
 # Name of the template file to use
 # c.PythonExporter.template_file = u'default'
 
-# Extension of the file that should be written to disk
-# c.PythonExporter.file_extension = 'py'
+# List of preprocessors available by default, by name, namespace,  instance, or
+# type.
+# c.PythonExporter.default_preprocessors = ['IPython.nbconvert.preprocessors.coalesce_streams', 'IPython.nbconvert.preprocessors.SVG2PDFPreprocessor', 'IPython.nbconvert.preprocessors.ExtractOutputPreprocessor', 'IPython.nbconvert.preprocessors.CSSHTMLHeaderPreprocessor', 'IPython.nbconvert.preprocessors.RevealHelpPreprocessor', 'IPython.nbconvert.preprocessors.LatexPreprocessor', 'IPython.nbconvert.preprocessors.HighlightMagicsPreprocessor']
 
-#
+# 
+# c.PythonExporter.template_path = ['.']
+
+# Extension of the file that should be written to disk
+# c.PythonExporter.file_extension = 'txt'
+
+# 
 # c.PythonExporter.jinja_comment_block_end = ''
 
 # Dictionary of filters, by name and namespace, to add to the Jinja environment.
 # c.PythonExporter.filters = {}
 
-#
+# 
 # c.PythonExporter.jinja_comment_block_start = ''
 
-#
+# 
 # c.PythonExporter.jinja_logic_block_end = ''
 
-#
-# c.PythonExporter.jinja_variable_block_end = ''
+# 
+# c.PythonExporter.jinja_logic_block_start = ''
 
-#
+# 
 # c.PythonExporter.template_extension = '.tpl'
 
-# List of transformers available by default, by name, namespace,  instance, or
-# type.
-# c.PythonExporter.default_transformers = [<function wrappedfunc at 0x2d29578>, <class 'IPython.nbconvert.transformers.svg2pdf.SVG2PDFTransformer'>, <class 'IPython.nbconvert.transformers.extractoutput.ExtractOutputTransformer'>, <class 'IPython.nbconvert.transformers.csshtmlheader.CSSHTMLHeaderTransformer'>, <class 'IPython.nbconvert.transformers.revealhelp.RevealHelpTransformer'>, <class 'IPython.nbconvert.transformers.latex.LatexTransformer'>, <class 'IPython.nbconvert.transformers.sphinx.SphinxTransformer'>]
+# List of preprocessors, by name or namespace, to enable.
+# c.PythonExporter.preprocessors = []
 
 #------------------------------------------------------------------------------
 # RSTExporter configuration
@@ -372,314 +336,372 @@ c = get_config()
 
 # Exports restructured text documents.
 
-# RSTExporter will inherit config from: Exporter
+# RSTExporter will inherit config from: TemplateExporter, Exporter
 
-#
+# 
 # c.RSTExporter.jinja_variable_block_start = ''
 
-#
-# c.RSTExporter.jinja_logic_block_start = ''
+# 
+# c.RSTExporter.jinja_variable_block_end = ''
 
-# List of transformers, by name or namespace, to enable.
-# c.RSTExporter.transformers = []
-
-#
-# c.RSTExporter.template_path = ['.']
+# formats of raw cells to be included in this Exporter's output.
+# c.RSTExporter.raw_mimetypes = []
 
 # Name of the template file to use
 # c.RSTExporter.template_file = u'default'
 
-# Extension of the file that should be written to disk
-# c.RSTExporter.file_extension = 'rst'
+# List of preprocessors available by default, by name, namespace,  instance, or
+# type.
+# c.RSTExporter.default_preprocessors = ['IPython.nbconvert.preprocessors.coalesce_streams', 'IPython.nbconvert.preprocessors.SVG2PDFPreprocessor', 'IPython.nbconvert.preprocessors.ExtractOutputPreprocessor', 'IPython.nbconvert.preprocessors.CSSHTMLHeaderPreprocessor', 'IPython.nbconvert.preprocessors.RevealHelpPreprocessor', 'IPython.nbconvert.preprocessors.LatexPreprocessor', 'IPython.nbconvert.preprocessors.HighlightMagicsPreprocessor']
 
-#
+# 
+# c.RSTExporter.template_path = ['.']
+
+# Extension of the file that should be written to disk
+# c.RSTExporter.file_extension = 'txt'
+
+# 
 # c.RSTExporter.jinja_comment_block_end = ''
 
 # Dictionary of filters, by name and namespace, to add to the Jinja environment.
 # c.RSTExporter.filters = {}
 
-#
+# 
 # c.RSTExporter.jinja_comment_block_start = ''
 
-#
+# 
 # c.RSTExporter.jinja_logic_block_end = ''
 
-#
-# c.RSTExporter.jinja_variable_block_end = ''
+# 
+# c.RSTExporter.jinja_logic_block_start = ''
 
-#
+# 
 # c.RSTExporter.template_extension = '.tpl'
 
-# List of transformers available by default, by name, namespace,  instance, or
-# type.
-# c.RSTExporter.default_transformers = [<function wrappedfunc at 0x2d29578>, <class 'IPython.nbconvert.transformers.svg2pdf.SVG2PDFTransformer'>, <class 'IPython.nbconvert.transformers.extractoutput.ExtractOutputTransformer'>, <class 'IPython.nbconvert.transformers.csshtmlheader.CSSHTMLHeaderTransformer'>, <class 'IPython.nbconvert.transformers.revealhelp.RevealHelpTransformer'>, <class 'IPython.nbconvert.transformers.latex.LatexTransformer'>, <class 'IPython.nbconvert.transformers.sphinx.SphinxTransformer'>]
+# List of preprocessors, by name or namespace, to enable.
+# c.RSTExporter.preprocessors = []
 
 #------------------------------------------------------------------------------
 # SlidesExporter configuration
 #------------------------------------------------------------------------------
 
-# Exports slides
+# Exports HTML slides with reveal.js
 
-# SlidesExporter will inherit config from: Exporter
+# SlidesExporter will inherit config from: HTMLExporter, TemplateExporter,
+# Exporter
 
-#
+# 
 # c.SlidesExporter.jinja_variable_block_start = ''
 
-#
-# c.SlidesExporter.jinja_logic_block_start = ''
+# 
+# c.SlidesExporter.jinja_variable_block_end = ''
 
-# List of transformers, by name or namespace, to enable.
-# c.SlidesExporter.transformers = []
-
-#
-# c.SlidesExporter.template_path = ['.']
+# formats of raw cells to be included in this Exporter's output.
+# c.SlidesExporter.raw_mimetypes = []
 
 # Name of the template file to use
 # c.SlidesExporter.template_file = u'default'
 
+# List of preprocessors available by default, by name, namespace,  instance, or
+# type.
+# c.SlidesExporter.default_preprocessors = ['IPython.nbconvert.preprocessors.coalesce_streams', 'IPython.nbconvert.preprocessors.SVG2PDFPreprocessor', 'IPython.nbconvert.preprocessors.ExtractOutputPreprocessor', 'IPython.nbconvert.preprocessors.CSSHTMLHeaderPreprocessor', 'IPython.nbconvert.preprocessors.RevealHelpPreprocessor', 'IPython.nbconvert.preprocessors.LatexPreprocessor', 'IPython.nbconvert.preprocessors.HighlightMagicsPreprocessor']
+
+# 
+# c.SlidesExporter.template_path = ['.']
+
 # Extension of the file that should be written to disk
-# c.SlidesExporter.file_extension = 'slides.html'
+# c.SlidesExporter.file_extension = 'txt'
 
-# Template of the  data format to use.  I.E. 'reveal'
-# c.SlidesExporter.default_template = 'reveal'
-
-#
+# 
 # c.SlidesExporter.jinja_comment_block_end = ''
 
 # Dictionary of filters, by name and namespace, to add to the Jinja environment.
 # c.SlidesExporter.filters = {}
 
-#
+# 
 # c.SlidesExporter.jinja_comment_block_start = ''
 
-#
+# 
 # c.SlidesExporter.jinja_logic_block_end = ''
 
-#
-# c.SlidesExporter.jinja_variable_block_end = ''
+# 
+# c.SlidesExporter.jinja_logic_block_start = ''
 
-#
+# 
 # c.SlidesExporter.template_extension = '.tpl'
 
-# List of transformers available by default, by name, namespace,  instance, or
+# List of preprocessors, by name or namespace, to enable.
+# c.SlidesExporter.preprocessors = []
+
+#------------------------------------------------------------------------------
+# TemplateExporter configuration
+#------------------------------------------------------------------------------
+
+# Exports notebooks into other file formats.  Uses Jinja 2 templating engine to
+# output new formats.  Inherit from this class if you are creating a new
+# template type along with new filters/preprocessors.  If the filters/
+# preprocessors provided by default suffice, there is no need to inherit from
+# this class.  Instead, override the template_file and file_extension traits via
+# a config file.
+# 
+# - citation2latex - highlight2html - filter_data_type - markdown2html -
+# markdown2rst - get_lines - ansi2latex - strip_ansi - add_prompts -
+# comment_lines - ascii_only - markdown2latex - escape_latex - add_anchor -
+# ipython2python - posix_path - highlight2latex - path2url - ansi2html -
+# wrap_text - indent - strip_dollars - html2text - strip_files_prefix
+
+# TemplateExporter will inherit config from: Exporter
+
+# 
+# c.TemplateExporter.jinja_variable_block_start = ''
+
+# 
+# c.TemplateExporter.jinja_variable_block_end = ''
+
+# formats of raw cells to be included in this Exporter's output.
+# c.TemplateExporter.raw_mimetypes = []
+
+# Name of the template file to use
+# c.TemplateExporter.template_file = u'default'
+
+# List of preprocessors available by default, by name, namespace,  instance, or
 # type.
-# c.SlidesExporter.default_transformers = [<function wrappedfunc at 0x2d29578>, <class 'IPython.nbconvert.transformers.svg2pdf.SVG2PDFTransformer'>, <class 'IPython.nbconvert.transformers.extractoutput.ExtractOutputTransformer'>, <class 'IPython.nbconvert.transformers.csshtmlheader.CSSHTMLHeaderTransformer'>, <class 'IPython.nbconvert.transformers.revealhelp.RevealHelpTransformer'>, <class 'IPython.nbconvert.transformers.latex.LatexTransformer'>, <class 'IPython.nbconvert.transformers.sphinx.SphinxTransformer'>]
+# c.TemplateExporter.default_preprocessors = ['IPython.nbconvert.preprocessors.coalesce_streams', 'IPython.nbconvert.preprocessors.SVG2PDFPreprocessor', 'IPython.nbconvert.preprocessors.ExtractOutputPreprocessor', 'IPython.nbconvert.preprocessors.CSSHTMLHeaderPreprocessor', 'IPython.nbconvert.preprocessors.RevealHelpPreprocessor', 'IPython.nbconvert.preprocessors.LatexPreprocessor', 'IPython.nbconvert.preprocessors.HighlightMagicsPreprocessor']
+
+# 
+# c.TemplateExporter.template_path = ['.']
+
+# Extension of the file that should be written to disk
+# c.TemplateExporter.file_extension = 'txt'
+
+# 
+# c.TemplateExporter.jinja_comment_block_end = ''
+
+# Dictionary of filters, by name and namespace, to add to the Jinja environment.
+# c.TemplateExporter.filters = {}
+
+# 
+# c.TemplateExporter.jinja_comment_block_start = ''
+
+# 
+# c.TemplateExporter.jinja_logic_block_end = ''
+
+# 
+# c.TemplateExporter.jinja_logic_block_start = ''
+
+# 
+# c.TemplateExporter.template_extension = '.tpl'
+
+# List of preprocessors, by name or namespace, to enable.
+# c.TemplateExporter.preprocessors = []
 
 #------------------------------------------------------------------------------
-# CSSHTMLHeaderTransformer configuration
+# CSSHTMLHeaderPreprocessor configuration
 #------------------------------------------------------------------------------
 
-# Transformer used to pre-process notebook for HTML output.  Adds IPython
+# Preprocessor used to pre-process notebook for HTML output.  Adds IPython
 # notebook front-end CSS and Pygments CSS to HTML output.
 
-# CSSHTMLHeaderTransformer will inherit config from: Transformer, NbConvertBase
+# CSSHTMLHeaderPreprocessor will inherit config from: Preprocessor,
+# NbConvertBase
 
-# An ordered list of prefered output type, the first encounterd will usually be
-# used when converting discarding the others.
-# c.CSSHTMLHeaderTransformer.display_data_priority = ['html', 'pdf', 'svg', 'latex', 'png', 'jpg', 'jpeg', 'text']
+# default highlight language
+# c.CSSHTMLHeaderPreprocessor.default_language = 'ipython'
 
 # CSS highlight class identifier
-# c.CSSHTMLHeaderTransformer.highlight_class = '.highlight'
+# c.CSSHTMLHeaderPreprocessor.highlight_class = '.highlight'
 
-#
-# c.CSSHTMLHeaderTransformer.enabled = False
+# 
+# c.CSSHTMLHeaderPreprocessor.enabled = False
+
+# An ordered list of preferred output type, the first encountered will usually
+# be used when converting discarding the others.
+# c.CSSHTMLHeaderPreprocessor.display_data_priority = ['html', 'application/pdf', 'svg', 'latex', 'png', 'jpg', 'jpeg', 'text']
 
 #------------------------------------------------------------------------------
-# ConvertFiguresTransformer configuration
+# ConvertFiguresPreprocessor configuration
 #------------------------------------------------------------------------------
 
 # Converts all of the outputs in a notebook from one format to another.
 
-# ConvertFiguresTransformer will inherit config from: Transformer, NbConvertBase
+# ConvertFiguresPreprocessor will inherit config from: Preprocessor,
+# NbConvertBase
 
-# An ordered list of prefered output type, the first encounterd will usually be
-# used when converting discarding the others.
-# c.ConvertFiguresTransformer.display_data_priority = ['html', 'pdf', 'svg', 'latex', 'png', 'jpg', 'jpeg', 'text']
+# default highlight language
+# c.ConvertFiguresPreprocessor.default_language = 'ipython'
 
 # Format the converter writes
-# c.ConvertFiguresTransformer.to_format = u''
+# c.ConvertFiguresPreprocessor.to_format = u''
 
-#
-# c.ConvertFiguresTransformer.enabled = False
+# 
+# c.ConvertFiguresPreprocessor.enabled = False
 
 # Format the converter accepts
-# c.ConvertFiguresTransformer.from_format = u''
+# c.ConvertFiguresPreprocessor.from_format = u''
+
+# An ordered list of preferred output type, the first encountered will usually
+# be used when converting discarding the others.
+# c.ConvertFiguresPreprocessor.display_data_priority = ['html', 'application/pdf', 'svg', 'latex', 'png', 'jpg', 'jpeg', 'text']
 
 #------------------------------------------------------------------------------
-# ExtractOutputTransformer configuration
+# ExtractOutputPreprocessor configuration
 #------------------------------------------------------------------------------
 
 # Extracts all of the outputs from the notebook file.  The extracted  outputs
 # are returned in the 'resources' dictionary.
 
-# ExtractOutputTransformer will inherit config from: Transformer, NbConvertBase
+# ExtractOutputPreprocessor will inherit config from: Preprocessor,
+# NbConvertBase
 
-# An ordered list of prefered output type, the first encounterd will usually be
-# used when converting discarding the others.
-# c.ExtractOutputTransformer.display_data_priority = ['html', 'pdf', 'svg', 'latex', 'png', 'jpg', 'jpeg', 'text']
+# default highlight language
+# c.ExtractOutputPreprocessor.default_language = 'ipython'
 
-#
-# c.ExtractOutputTransformer.output_filename_template = '{unique_key}_{cell_index}_{index}.{extension}'
+# 
+# c.ExtractOutputPreprocessor.output_filename_template = '{unique_key}_{cell_index}_{index}{extension}'
 
-#
-# c.ExtractOutputTransformer.enabled = False
+# 
+# c.ExtractOutputPreprocessor.extract_output_types = set(['svg', 'application/pdf', 'jpeg', 'png'])
 
-#------------------------------------------------------------------------------
-# LatexTransformer configuration
-#------------------------------------------------------------------------------
+# 
+# c.ExtractOutputPreprocessor.enabled = False
 
-# Converter for latex destined documents.
-
-# LatexTransformer will inherit config from: Transformer, NbConvertBase
-
-# An ordered list of prefered output type, the first encounterd will usually be
-# used when converting discarding the others.
-# c.LatexTransformer.display_data_priority = ['html', 'pdf', 'svg', 'latex', 'png', 'jpg', 'jpeg', 'text']
-
-#
-# c.LatexTransformer.enabled = False
+# An ordered list of preferred output type, the first encountered will usually
+# be used when converting discarding the others.
+# c.ExtractOutputPreprocessor.display_data_priority = ['html', 'application/pdf', 'svg', 'latex', 'png', 'jpg', 'jpeg', 'text']
 
 #------------------------------------------------------------------------------
-# RevealHelpTransformer configuration
+# HighlightMagicsPreprocessor configuration
 #------------------------------------------------------------------------------
 
-# RevealHelpTransformer will inherit config from: Transformer, NbConvertBase
+# Detects and tags code cells that use a different languages than Python.
 
-# If you want to use a local reveal.js library, use 'url_prefix':'reveal.js' in
-# your config object.
-# c.RevealHelpTransformer.url_prefix = '//cdn.jsdelivr.net/reveal.js/2.4.0'
+# HighlightMagicsPreprocessor will inherit config from: Preprocessor,
+# NbConvertBase
 
-# An ordered list of prefered output type, the first encounterd will usually be
-# used when converting discarding the others.
-# c.RevealHelpTransformer.display_data_priority = ['html', 'pdf', 'svg', 'latex', 'png', 'jpg', 'jpeg', 'text']
+# Syntax highlighting for magic's extension languages. Each item associates a
+# language magic extension such as %%R, with a pygments lexer such as r.
+# c.HighlightMagicsPreprocessor.languages = {}
 
-#
-# c.RevealHelpTransformer.enabled = False
+# 
+# c.HighlightMagicsPreprocessor.enabled = False
+
+# default highlight language
+# c.HighlightMagicsPreprocessor.default_language = 'ipython'
+
+# An ordered list of preferred output type, the first encountered will usually
+# be used when converting discarding the others.
+# c.HighlightMagicsPreprocessor.display_data_priority = ['html', 'application/pdf', 'svg', 'latex', 'png', 'jpg', 'jpeg', 'text']
 
 #------------------------------------------------------------------------------
-# SVG2PDFTransformer configuration
+# LatexPreprocessor configuration
+#------------------------------------------------------------------------------
+
+# Preprocessor for latex destined documents.
+# 
+# Mainly populates the `latex` key in the resources dict, adding definitions for
+# pygments highlight styles.
+
+# LatexPreprocessor will inherit config from: Preprocessor, NbConvertBase
+
+# default highlight language
+# c.LatexPreprocessor.default_language = 'ipython'
+
+# 
+# c.LatexPreprocessor.enabled = False
+
+# An ordered list of preferred output type, the first encountered will usually
+# be used when converting discarding the others.
+# c.LatexPreprocessor.display_data_priority = ['html', 'application/pdf', 'svg', 'latex', 'png', 'jpg', 'jpeg', 'text']
+
+#------------------------------------------------------------------------------
+# Preprocessor configuration
+#------------------------------------------------------------------------------
+
+# A configurable preprocessor
+# 
+# Inherit from this class if you wish to have configurability for your
+# preprocessor.
+# 
+# Any configurable traitlets this class exposed will be configurable in profiles
+# using c.SubClassName.atribute=value
+# 
+# you can overwrite :meth:`preprocess_cell` to apply a transformation
+# independently on each cell or :meth:`preprocess` if you prefer your own logic.
+# See corresponding docstring for informations.
+# 
+# Disabled by default and can be enabled via the config by
+#     'c.YourPreprocessorName.enabled = True'
+
+# Preprocessor will inherit config from: NbConvertBase
+
+# default highlight language
+# c.Preprocessor.default_language = 'ipython'
+
+# 
+# c.Preprocessor.enabled = False
+
+# An ordered list of preferred output type, the first encountered will usually
+# be used when converting discarding the others.
+# c.Preprocessor.display_data_priority = ['html', 'application/pdf', 'svg', 'latex', 'png', 'jpg', 'jpeg', 'text']
+
+#------------------------------------------------------------------------------
+# RevealHelpPreprocessor configuration
+#------------------------------------------------------------------------------
+
+# RevealHelpPreprocessor will inherit config from: Preprocessor, NbConvertBase
+
+# The URL prefix for reveal.js. This can be a a relative URL for a local copy of
+# reveal.js, or point to a CDN.
+# 
+# For speaker notes to work, a local reveal.js prefix must be used.
+# c.RevealHelpPreprocessor.url_prefix = 'reveal.js'
+
+# default highlight language
+# c.RevealHelpPreprocessor.default_language = 'ipython'
+
+# 
+# c.RevealHelpPreprocessor.enabled = False
+
+# An ordered list of preferred output type, the first encountered will usually
+# be used when converting discarding the others.
+# c.RevealHelpPreprocessor.display_data_priority = ['html', 'application/pdf', 'svg', 'latex', 'png', 'jpg', 'jpeg', 'text']
+
+#------------------------------------------------------------------------------
+# SVG2PDFPreprocessor configuration
 #------------------------------------------------------------------------------
 
 # Converts all of the outputs in a notebook from SVG to PDF.
 
-# SVG2PDFTransformer will inherit config from: ConvertFiguresTransformer,
-# Transformer, NbConvertBase
-
-# The command to use for converting SVG to PDF
-#
-# This string is a template, which will be formatted with the keys to_filename
-# and from_filename.
-#
-# The conversion call must read the SVG from {from_flename}, and write a PDF to
-# {to_filename}.
-# c.SVG2PDFTransformer.command = u''
-
-#
-# c.SVG2PDFTransformer.enabled = False
+# SVG2PDFPreprocessor will inherit config from: ConvertFiguresPreprocessor,
+# Preprocessor, NbConvertBase
 
 # Format the converter accepts
-# c.SVG2PDFTransformer.from_format = 'svg'
+# c.SVG2PDFPreprocessor.from_format = u''
+
+# default highlight language
+# c.SVG2PDFPreprocessor.default_language = 'ipython'
+
+# 
+# c.SVG2PDFPreprocessor.enabled = False
+
+# Format the converter writes
+# c.SVG2PDFPreprocessor.to_format = u''
+
+# The command to use for converting SVG to PDF
+# 
+# This string is a template, which will be formatted with the keys to_filename
+# and from_filename.
+# 
+# The conversion call must read the SVG from {from_flename}, and write a PDF to
+# {to_filename}.
+# c.SVG2PDFPreprocessor.command = u''
+
+# An ordered list of preferred output type, the first encountered will usually
+# be used when converting discarding the others.
+# c.SVG2PDFPreprocessor.display_data_priority = ['html', 'application/pdf', 'svg', 'latex', 'png', 'jpg', 'jpeg', 'text']
 
 # The path to Inkscape, if necessary
-# c.SVG2PDFTransformer.inkscape = u''
-
-# An ordered list of prefered output type, the first encounterd will usually be
-# used when converting discarding the others.
-# c.SVG2PDFTransformer.display_data_priority = ['html', 'pdf', 'svg', 'latex', 'png', 'jpg', 'jpeg', 'text']
-
-#------------------------------------------------------------------------------
-# SphinxTransformer configuration
-#------------------------------------------------------------------------------
-
-# Sphinx utility transformer.
-#
-# This transformer is used to set variables needed by the latex to build Sphinx
-# stylized templates.
-
-# SphinxTransformer will inherit config from: Transformer, NbConvertBase
-
-# Nbconvert Ipython
-# notebook input/output formatting style.
-# You may choose one of the following:
-#     "simple     (recommended for long code segments)"
-#     "notebook"  (default)
-# c.SphinxTransformer.output_style = 'notebook'
-
-# Author name
-# c.SphinxTransformer.author = 'Unknown Author'
-
-#
-# c.SphinxTransformer.enabled = False
-
-# Sphinx chapter style
-# This is the style to use for the chapter headers in the document.
-# You may choose one of the following:
-#     "Bjarne"    (default)
-#     "Lenny"
-#     "Glenn"
-#     "Conny"
-#     "Rejne"
-#     "Sonny"    (used for international documents)
-# c.SphinxTransformer.chapter_style = 'Bjarne'
-
-# Version number You can leave this blank if you do not want to render a version
-# number. Example: "1.0.0"
-# c.SphinxTransformer.version = ''
-
-# Publish date This is the date to render on the document as the publish date.
-# Leave this blank to default to todays date.   Example: "June 12, 1990"
-# c.SphinxTransformer.publish_date = ''
-
-# An ordered list of prefered output type, the first encounterd will usually be
-# used when converting discarding the others.
-# c.SphinxTransformer.display_data_priority = ['html', 'pdf', 'svg', 'latex', 'png', 'jpg', 'jpeg', 'text']
-
-# Release name You can leave this blank if you do not want to render a release
-# name. Example: "Rough Draft"
-# c.SphinxTransformer.release = ''
-
-# Whether not a header should be added to the document.
-# c.SphinxTransformer.use_headers = True
-
-# Allows you to define whether or not the Sphinx exporter will prompt you for
-# input during the conversion process.  If this is set to false, the author,
-# version, release, date, and chapter_style traits should be set.
-# c.SphinxTransformer.interactive = False
-
-# Optional attempt to center all output.  If this is false, no additional
-# formatting is applied.
-# c.SphinxTransformer.center_output = False
-
-#
-# c.SphinxTransformer.overridetitle = ''
-
-#------------------------------------------------------------------------------
-# Transformer configuration
-#------------------------------------------------------------------------------
-
-# A configurable transformer
-#
-# Inherit from this class if you wish to have configurability for your
-# transformer.
-#
-# Any configurable traitlets this class exposed will be configurable in profiles
-# using c.SubClassName.atribute=value
-#
-# you can overwrite :meth:`transform_cell` to apply a transformation
-# independently on each cell or :meth:`call` if you prefer your own logic. See
-# corresponding docstring for informations.
-#
-# Disabled by default and can be enabled via the config by
-#     'c.YourTransformerName.enabled = True'
-
-# Transformer will inherit config from: NbConvertBase
-
-# An ordered list of prefered output type, the first encounterd will usually be
-# used when converting discarding the others.
-# c.Transformer.display_data_priority = ['html', 'pdf', 'svg', 'latex', 'png', 'jpg', 'jpeg', 'text']
-
-#
-# c.Transformer.enabled = False
+# c.SVG2PDFPreprocessor.inkscape = u''
 
 #------------------------------------------------------------------------------
 # FilesWriter configuration
@@ -693,9 +715,12 @@ c = get_config()
 # written output.
 # c.FilesWriter.files = []
 
-# An ordered list of prefered output type, the first encounterd will usually be
-# used when converting discarding the others.
-# c.FilesWriter.display_data_priority = ['html', 'pdf', 'svg', 'latex', 'png', 'jpg', 'jpeg', 'text']
+# An ordered list of preferred output type, the first encountered will usually
+# be used when converting discarding the others.
+# c.FilesWriter.display_data_priority = ['html', 'application/pdf', 'svg', 'latex', 'png', 'jpg', 'jpeg', 'text']
+
+# default highlight language
+# c.FilesWriter.default_language = 'ipython'
 
 # Directory to write output to.  Leave blank to output to the current directory
 # c.FilesWriter.build_directory = ''
@@ -713,9 +738,12 @@ c = get_config()
 # written output.
 # c.StdoutWriter.files = []
 
-# An ordered list of prefered output type, the first encounterd will usually be
-# used when converting discarding the others.
-# c.StdoutWriter.display_data_priority = ['html', 'pdf', 'svg', 'latex', 'png', 'jpg', 'jpeg', 'text']
+# An ordered list of preferred output type, the first encountered will usually
+# be used when converting discarding the others.
+# c.StdoutWriter.display_data_priority = ['html', 'application/pdf', 'svg', 'latex', 'png', 'jpg', 'jpeg', 'text']
+
+# default highlight language
+# c.StdoutWriter.default_language = 'ipython'
 
 #------------------------------------------------------------------------------
 # WriterBase configuration
@@ -730,6 +758,87 @@ c = get_config()
 # written output.
 # c.WriterBase.files = []
 
-# An ordered list of prefered output type, the first encounterd will usually be
-# used when converting discarding the others.
-# c.WriterBase.display_data_priority = ['html', 'pdf', 'svg', 'latex', 'png', 'jpg', 'jpeg', 'text']
+# An ordered list of preferred output type, the first encountered will usually
+# be used when converting discarding the others.
+# c.WriterBase.display_data_priority = ['html', 'application/pdf', 'svg', 'latex', 'png', 'jpg', 'jpeg', 'text']
+
+# default highlight language
+# c.WriterBase.default_language = 'ipython'
+
+#------------------------------------------------------------------------------
+# PDFPostProcessor configuration
+#------------------------------------------------------------------------------
+
+# Writer designed to write to PDF files
+
+# PDFPostProcessor will inherit config from: PostProcessorBase, NbConvertBase
+
+# Filename extensions of temp files to remove after running.
+# c.PDFPostProcessor.temp_file_exts = ['.aux', '.bbl', '.blg', '.idx', '.log', '.out']
+
+# Whether or not to display the output of the compile call.
+# c.PDFPostProcessor.verbose = False
+
+# Shell command used to run bibtex.
+# c.PDFPostProcessor.bib_command = [u'bibtex', u'{filename}']
+
+# default highlight language
+# c.PDFPostProcessor.default_language = 'ipython'
+
+# An ordered list of preferred output type, the first encountered will usually
+# be used when converting discarding the others.
+# c.PDFPostProcessor.display_data_priority = ['html', 'application/pdf', 'svg', 'latex', 'png', 'jpg', 'jpeg', 'text']
+
+# How many times pdflatex will be called.
+# c.PDFPostProcessor.latex_count = 3
+
+# Whether or not to open the pdf after the compile call.
+# c.PDFPostProcessor.pdf_open = False
+
+# Shell command used to compile PDF.
+# c.PDFPostProcessor.latex_command = [u'pdflatex', u'{filename}']
+
+#------------------------------------------------------------------------------
+# PostProcessorBase configuration
+#------------------------------------------------------------------------------
+
+# PostProcessorBase will inherit config from: NbConvertBase
+
+# An ordered list of preferred output type, the first encountered will usually
+# be used when converting discarding the others.
+# c.PostProcessorBase.display_data_priority = ['html', 'application/pdf', 'svg', 'latex', 'png', 'jpg', 'jpeg', 'text']
+
+# default highlight language
+# c.PostProcessorBase.default_language = 'ipython'
+
+#------------------------------------------------------------------------------
+# ServePostProcessor configuration
+#------------------------------------------------------------------------------
+
+# Post processor designed to serve files
+# 
+# Proxies reveal.js requests to a CDN if no local reveal.js is present
+
+# ServePostProcessor will inherit config from: PostProcessorBase, NbConvertBase
+
+# The IP address to listen on.
+# c.ServePostProcessor.ip = '127.0.0.1'
+
+# URL prefix for reveal.js
+# c.ServePostProcessor.reveal_prefix = 'reveal.js'
+
+# default highlight language
+# c.ServePostProcessor.default_language = 'ipython'
+
+# port for the server to listen on.
+# c.ServePostProcessor.port = 8000
+
+# An ordered list of preferred output type, the first encountered will usually
+# be used when converting discarding the others.
+# c.ServePostProcessor.display_data_priority = ['html', 'application/pdf', 'svg', 'latex', 'png', 'jpg', 'jpeg', 'text']
+
+# Should the browser be opened automatically?
+# c.ServePostProcessor.open_in_browser = True
+
+# URL for reveal.js CDN.
+# c.ServePostProcessor.reveal_cdn = 'https://cdn.jsdelivr.net/reveal.js/2.5.0'

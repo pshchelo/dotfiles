@@ -23,6 +23,10 @@ c = get_config()
 # Execute the given command string.
 # c.InteractiveShellApp.code_to_run = ''
 
+# Run the file referenced by the PYTHONSTARTUP environment variable at IPython
+# startup.
+# c.InteractiveShellApp.exec_PYTHONSTARTUP = True
+
 # lines of code to run at IPython startup.
 # c.InteractiveShellApp.exec_lines = []
 
@@ -38,8 +42,8 @@ c = get_config()
 # c.InteractiveShellApp.matplotlib = None
 
 # If true, IPython will populate the user namespace with numpy, pylab, etc. and
-# an 'import *' is done from numpy and pylab, when using pylab mode.
-#
+# an ``import *`` is done from numpy and pylab, when using pylab mode.
+# 
 # When False, pylab mode should not import any names into the user namespace.
 # c.InteractiveShellApp.pylab_import_all = True
 
@@ -49,6 +53,10 @@ c.InteractiveShellApp.extensions = ['powerline.bindings.ipython.post_0_11']
 
 # Run the module as a script.
 # c.InteractiveShellApp.module_to_run = ''
+
+# Should variables loaded at startup (by startup files, exec_lines, etc.) be
+# hidden from tools like %who?
+# c.InteractiveShellApp.hide_initial_ns = True
 
 # dotted module name of an IPython extension to load.
 # c.InteractiveShellApp.extra_extension = ''
@@ -65,6 +73,10 @@ c.InteractiveShellApp.extensions = ['powerline.bindings.ipython.post_0_11']
 
 # TerminalIPythonApp will inherit config from: BaseIPythonApplication,
 # Application, InteractiveShellApp
+
+# Run the file referenced by the PYTHONSTARTUP environment variable at IPython
+# startup.
+# c.TerminalIPythonApp.exec_PYTHONSTARTUP = True
 
 # Pre-load matplotlib and numpy for interactive use, selecting a particular
 # matplotlib backend and loop integration.
@@ -100,6 +112,10 @@ c.InteractiveShellApp.extensions = ['powerline.bindings.ipython.post_0_11']
 # If specified, load this config file in addition to any other IPython config.
 # c.TerminalIPythonApp.extra_config_file = u''
 
+# Should variables loaded at startup (by startup files, exec_lines, etc.) be
+# hidden from tools like %who?
+# c.TerminalIPythonApp.hide_initial_ns = True
+
 # dotted module name of an IPython extension to load.
 # c.TerminalIPythonApp.extra_extension = ''
 
@@ -112,12 +128,13 @@ c.InteractiveShellApp.extensions = ['powerline.bindings.ipython.post_0_11']
 # Configure matplotlib for interactive use with the default matplotlib backend.
 # c.TerminalIPythonApp.matplotlib = None
 
-# If a command or file is given via the command-line, e.g. 'ipython foo.py
+# If a command or file is given via the command-line, e.g. 'ipython foo.py',
+# start an interactive shell after executing the file or command.
 # c.TerminalIPythonApp.force_interact = False
 
 # If true, IPython will populate the user namespace with numpy, pylab, etc. and
-# an 'import *' is done from numpy and pylab, when using pylab mode.
-#
+# an ``import *`` is done from numpy and pylab, when using pylab mode.
+# 
 # When False, pylab mode should not import any names into the user namespace.
 # c.TerminalIPythonApp.pylab_import_all = True
 
@@ -125,7 +142,7 @@ c.InteractiveShellApp.extensions = ['powerline.bindings.ipython.post_0_11']
 # configuration (through profiles), history storage, etc. The default is usually
 # $HOME/.ipython. This options can also be specified through the environment
 # variable IPYTHONDIR.
-# c.TerminalIPythonApp.ipython_dir = u'/home/pshchelo/.config/ipython'
+# c.TerminalIPythonApp.ipython_dir = u''
 
 # Whether to display a banner upon starting IPython.
 # c.TerminalIPythonApp.display_banner = True
@@ -222,7 +239,7 @@ c.TerminalInteractiveShell.editor = u'vim +{line} {filename}'
 # c.TerminalInteractiveShell.prompts_pad_left = True
 
 # The part of the banner to be printed before the profile
-# c.TerminalInteractiveShell.banner1 = 'Python 2.7.5+ (default, Feb 27 2014, 19:37:08) \nType "copyright", "credits" or "license" for more information.\n\nIPython 1.2.1 -- An enhanced Interactive Python.\n?         -> Introduction and overview of IPython\'s features.\n%quickref -> Quick reference.\nhelp      -> Python\'s own help system.\nobject?   -> Details about \'object\', use \'object??\' for extra details.\n'
+# c.TerminalInteractiveShell.banner1 = 'Python 2.7.5+ (default, Feb 27 2014, 19:37:08) \nType "copyright", "credits" or "license" for more information.\n\nIPython 2.0.0 -- An enhanced Interactive Python.\n?         -> Introduction and overview of IPython\'s features.\n%quickref -> Quick reference.\nhelp      -> Python\'s own help system.\nobject?   -> Details about \'object\', use \'object??\' for extra details.\n'
 
 #
 # c.TerminalInteractiveShell.readline_parse_and_bind = ['tab: complete', '"\\C-l": clear-screen', 'set show-all-if-ambiguous on', '"\\C-o": tab-insert', '"\\C-r": reverse-search-history', '"\\C-s": forward-search-history', '"\\C-p": history-search-backward', '"\\C-n": history-search-forward', '"\\e[A": history-search-backward', '"\\e[B": history-search-forward', '"\\C-k": kill-line', '"\\C-u": unix-line-discard']
@@ -338,10 +355,11 @@ c.TerminalInteractiveShell.editor = u'vim +{line} {filename}'
 
 # HistoryManager will inherit config from: HistoryAccessor
 
-#
+# Should the history database include output? (default: no)
 # c.HistoryManager.db_log_output = False
 
-#
+# Write to database every x commands (higher values save disk access & power).
+# Values of 1 or less effectively disable caching.
 # c.HistoryManager.db_cache_size = 0
 
 # Path to file to use for SQLite history database.

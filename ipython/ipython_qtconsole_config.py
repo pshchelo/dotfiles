@@ -12,7 +12,7 @@ c = get_config()
 # Set the kernel's IP address [default localhost]. If the IP address is
 # something other than localhost, then Consoles on other machines will be able
 # to connect to the Kernel, so be careful!
-# c.IPythonQtConsoleApp.ip = '127.0.0.1'
+# c.IPythonQtConsoleApp.ip = u''
 
 # Create a massive crash report when IPython encounters what may be an internal
 # error.  The default is to append a short message to the usual traceback
@@ -77,7 +77,7 @@ c = get_config()
 # configuration (through profiles), history storage, etc. The default is usually
 # $HOME/.ipython. This options can also be specified through the environment
 # variable IPYTHONDIR.
-# c.IPythonQtConsoleApp.ipython_dir = u'/home/pshchelo/.config/ipython'
+# c.IPythonQtConsoleApp.ipython_dir = u''
 
 # Whether to install the default config files into the profile dir. If a new
 # profile is being created, and IPython contains config files for that profile,
@@ -163,6 +163,9 @@ c.IPythonWidget.syntax_style = c.IPythonWidget.syntax_style = u'solarizeddark'
 # platforms the default is Monospace.
 c.IPythonWidget.font_family = u'Anonymous Pro'
 
+# The pygments lexer class to use.
+# c.IPythonWidget.lexer_class = <IPython.utils.traitlets.Undefined object at 0xde95d0>
+
 #
 # c.IPythonWidget.output_sep2 = ''
 
@@ -204,15 +207,18 @@ c.IPythonWidget.editor_line = u'gvim +{line} {filename}'
 
 # The type of paging to use. Valid values are:
 #
-#     'inside' : The widget pages like a traditional terminal.
-#     'hsplit' : When paging is requested, the widget is split
-#                horizontally. The top pane contains the console, and the
-#                bottom pane contains the paged text.
-#     'vsplit' : Similar to 'hsplit', except that a vertical splitter
-#                used.
-#     'custom' : No action is taken by the widget beyond emitting a
+# 'inside'
+#    The widget pages like a traditional terminal.
+# 'hsplit'
+#    When paging is requested, the widget is split horizontally. The top
+#    pane contains the console, and the bottom pane contains the paged text.
+# 'vsplit'
+#    Similar to 'hsplit', except that a vertical splitter is used.
+# 'custom'
+#    No action is taken by the widget beyond emitting a
 #                'custom_page_requested(str)' signal.
-#     'none'   : The text is written directly to the console.
+# 'none'
+#    The text is written directly to the console.
 c.IPythonWidget.paging = 'hsplit'
 
 #
@@ -226,6 +232,10 @@ c.IPythonWidget.paging = 'hsplit'
 
 # IPKernelApp will inherit config from: BaseIPythonApplication, Application,
 # InteractiveShellApp
+
+# Run the file referenced by the PYTHONSTARTUP environment variable at IPython
+# startup.
+# c.IPKernelApp.exec_PYTHONSTARTUP = True
 
 # The importstring for the DisplayHook factory
 # c.IPKernelApp.displayhook_class = 'IPython.kernel.zmq.displayhook.ZMQDisplayHook'
@@ -294,6 +304,10 @@ c.IPythonWidget.paging = 'hsplit'
 # redirect stdout to the null device
 # c.IPKernelApp.no_stdout = False
 
+# Should variables loaded at startup (by startup files, exec_lines, etc.) be
+# hidden from tools like %who?
+# c.IPKernelApp.hide_initial_ns = True
+
 # dotted module name of an IPython extension to load.
 # c.IPKernelApp.extra_extension = ''
 
@@ -318,7 +332,7 @@ c.IPythonWidget.paging = 'hsplit'
 # c.IPKernelApp.connection_file = ''
 
 # If true, IPython will populate the user namespace with numpy, pylab, etc. and
-# an 'import *' is done from numpy and pylab, when using pylab mode.
+# an ``import *`` is done from numpy and pylab, when using pylab mode.
 #
 # When False, pylab mode should not import any names into the user namespace.
 # c.IPKernelApp.pylab_import_all = True
@@ -327,7 +341,7 @@ c.IPythonWidget.paging = 'hsplit'
 # configuration (through profiles), history storage, etc. The default is usually
 # $HOME/.ipython. This options can also be specified through the environment
 # variable IPYTHONDIR.
-# c.IPKernelApp.ipython_dir = u'/home/pshchelo/.config/ipython'
+# c.IPKernelApp.ipython_dir = u''
 
 # Configure matplotlib for interactive use with the default matplotlib backend.
 # c.IPKernelApp.matplotlib = None
@@ -491,12 +505,17 @@ c.IPythonWidget.paging = 'hsplit'
 # KernelManager will inherit config from: ConnectionFileMixin
 
 # The Popen Command to launch the kernel. Override this if you have a custom
+# kernel. If kernel_cmd is specified in a configuration file, IPython does not
+# pass any arguments to the kernel, because it cannot make any assumptions about
+# the  arguments that the kernel understands. In particular, this means that the
+# kernel does not receive the option --debug if it given on the IPython command
+# line.
 # c.KernelManager.kernel_cmd = []
 
 # Set the kernel's IP address [default localhost]. If the IP address is
 # something other than localhost, then Consoles on other machines will be able
 # to connect to the Kernel, so be careful!
-# c.KernelManager.ip = '127.0.0.1'
+# c.KernelManager.ip = u''
 
 #
 # c.KernelManager.transport = 'tcp'
@@ -614,8 +633,16 @@ c.IPythonWidget.paging = 'hsplit'
 
 # An object to store configuration of the inline backend.
 
-# The image format for figures with the inline backend.
-c.InlineBackend.figure_format = 'svg'
+# The figure format to enable (deprecated use `figure_formats` instead)
+# c.InlineBackend.figure_format = u''
+
+# A set of figure formats to enable: 'png',  'retina', 'jpeg', 'svg', 'pdf'.
+c.InlineBackend.figure_formats = set(['svg', 'png'])
+
+# Extra kwargs to be passed to fig.canvas.print_figure.
+# 
+# Logical examples include: bbox_inches, quality (for jpeg figures), etc.
+# c.InlineBackend.print_figure_kwargs = {'bbox_inches': 'tight'}
 
 # Close all figures at the end of each cell.
 #
@@ -633,4 +660,4 @@ c.InlineBackend.figure_format = 'svg'
 # c.InlineBackend.close_figures = True
 
 # Subset of matplotlib rcParams that should be different for the inline backend.
-# c.InlineBackend.rc = {'font.size': 10, 'figure.figsize': (6.0, 4.0), 'figure.facecolor': 'white', 'savefig.dpi': 72, 'figure.subplot.bottom': 0.125, 'figure.edgecolor': 'white'}
+# c.InlineBackend.rc = {'font.size': 10, 'figure.figsize': (6.0, 4.0), 'figure.facecolor': (1, 1, 1, 0), 'savefig.dpi': 72, 'figure.subplot.bottom': 0.125, 'figure.edgecolor': (1, 1, 1, 0)}
