@@ -1,6 +1,3 @@
 Host *
     ControlMaster auto
     ControlPath ~/.ssh/master-%r@%h:%p
-
-Host devstack
-    HostName 192.168.122.216
