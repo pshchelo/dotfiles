@@ -4,5 +4,6 @@ pygments-style-solarized
 git+https://github.com/Lokaltog/powerline.git
 jedi
 howdoi
+git-review
 git+https://github.com/dolph/next-review.git
 #pyside

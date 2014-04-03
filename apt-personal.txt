@@ -17,6 +17,7 @@ vim-tiny
 vim-addon-manager
 vim-common       
 vim-doc          
+ctags
 cmus
 
 ####
