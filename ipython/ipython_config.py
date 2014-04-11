@@ -43,13 +43,12 @@ c = get_config()
 
 # If true, IPython will populate the user namespace with numpy, pylab, etc. and
 # an ``import *`` is done from numpy and pylab, when using pylab mode.
-# 
+#
 # When False, pylab mode should not import any names into the user namespace.
 # c.InteractiveShellApp.pylab_import_all = True
 
 # A list of dotted module names of IPython extensions to load.
-# Powerline output is broken for Out[] lines when not in tmux
-c.InteractiveShellApp.extensions = ['powerline.bindings.ipython.post_0_11']
+# c.InteractiveShellApp.extensions = []
 
 # Run the module as a script.
 # c.InteractiveShellApp.module_to_run = ''
@@ -134,7 +133,7 @@ c.InteractiveShellApp.extensions = ['powerline.bindings.ipython.post_0_11']
 
 # If true, IPython will populate the user namespace with numpy, pylab, etc. and
 # an ``import *`` is done from numpy and pylab, when using pylab mode.
-# 
+#
 # When False, pylab mode should not import any names into the user namespace.
 # c.TerminalIPythonApp.pylab_import_all = True
 
