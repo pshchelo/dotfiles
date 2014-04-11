@@ -86,7 +86,7 @@ Bundle 'davidhalter/jedi-vim'
 Bundle 'Rykka/riv.vim'
 Bundle 'Lokaltog/vim-powerline', {'rtp': 'powerline/bindings/vim/'}
 Bundle 'kien/ctrlp.vim'
-Bundle 'nvie/vim-togglemouse'
+"Bundle 'nvie/vim-togglemouse'
 Bundle 'mileszs/ack.vim'
 
 syntax on
