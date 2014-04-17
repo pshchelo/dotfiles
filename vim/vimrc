@@ -250,6 +250,9 @@ let g:riv_highlight_code = 'python'
 " Useful for inserting RST headers.
 nmap <leader>h yypVr
 
+" Enable spell-check for RST files
+autocmd BufNewFile,BufRead *.{txt,rst} setlocal spell spelllang=en_us
+
 "=========================
 " Working with buffers and windows
 
