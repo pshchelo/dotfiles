@@ -255,6 +255,11 @@ nmap <leader>h yypVr
 autocmd BufNewFile,BufRead *.{txt,rst} setlocal spell spelllang=en_us
 
 "=========================
+" Set YAML preferences
+
+autocmd Filetype yaml setlocal ts=2 sw=2 expandtab
+
+"=========================
 " Working with buffers and windows
 
 " Switch to alternate file
