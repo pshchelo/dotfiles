@@ -219,7 +219,7 @@ c.IPythonWidget.editor_line = u'gvim +{line} {filename}'
 #                'custom_page_requested(str)' signal.
 # 'none'
 #    The text is written directly to the console.
-c.IPythonWidget.paging = 'hsplit'
+c.IPythonWidget.paging = 'vsplit'
 
 #
 # c.IPythonWidget.output_sep = ''
