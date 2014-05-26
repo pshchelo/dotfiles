@@ -156,7 +156,7 @@ c.IPythonWidget.editor = 'gvim {filename}'
 
 # If not empty, use this Pygments style for syntax highlighting. Otherwise, the
 # style sheet is queried for Pygments style information.
-c.IPythonWidget.syntax_style = c.IPythonWidget.syntax_style = u'solarizeddark'
+c.IPythonWidget.syntax_style = c.IPythonWidget.syntax_style = u'solarizedlight'
 
 # The font family to use for the console. On OSX this defaults to Monaco, on
 # Windows the default is Consolas with fallback of Courier, and on other
@@ -640,7 +640,7 @@ c.IPythonWidget.paging = 'hsplit'
 c.InlineBackend.figure_formats = set(['svg', 'png'])
 
 # Extra kwargs to be passed to fig.canvas.print_figure.
-# 
+#
 # Logical examples include: bbox_inches, quality (for jpeg figures), etc.
 # c.InlineBackend.print_figure_kwargs = {'bbox_inches': 'tight'}
 
