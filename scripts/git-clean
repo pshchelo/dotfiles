@@ -1,5 +1,7 @@
 #!/usr/bin/env sh
 
+# Clean Python project versioned by git
+
 # delete leftovers of git merges
 find -name *.orig -delete
 
