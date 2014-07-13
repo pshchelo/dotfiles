@@ -32,7 +32,7 @@
 			}
 		},
 		"tmux": {
-			"colorscheme": "tmux",
+			"colorscheme": "default",
 			"theme": "tmux"
 		},
 		"vim": {
