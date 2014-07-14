@@ -251,8 +251,14 @@ let g:riv_highlight_code = 'python'
 " Useful for inserting RST headers.
 nmap <leader>h yypVr
 
-" Enable spell-check for RST files
+" Enable spell-check for RST and plain text files
 autocmd BufNewFile,BufRead *.{txt,rst} setlocal spell spelllang=en_us
+
+" Make trailing whitespace be flagged as bad for RST files
+au BufRead,BufNewFile *.rst match BadWhitespace /\s\+$/
+
+" Trim trailing whitespace on save for RST files
+autocmd BufWritePre *.rst :%s/\s\+$//e
 
 "=========================
 " Set YAML preferences
