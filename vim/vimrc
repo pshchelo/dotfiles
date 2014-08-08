@@ -32,7 +32,7 @@ set shiftwidth=4
 set smarttab
 
 " Show colored border column
-set colorcolumn=80
+set colorcolumn=79
 " Show line numbers
 set number
 " Diff shows vertical split by default
