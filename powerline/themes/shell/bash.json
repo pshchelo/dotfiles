@@ -1,51 +1,42 @@
 {
 	"default_module": "powerline.segments.common",
-	"segment_data": {
-		"hostname": {
-			"before": " ",
-			"args": {
-				"only_if_ssh": true
-			}
-		},
-		"virtualenv": {
-			"before": "ⓔ  "
-		},
-		"branch": {
-			"before": " ",
-			"args": { "status_colors": true }
-		}
-	},
 	"segments": {
 		"left": [
 			{
-				"module": "powerline.segments.shell",
-				"name": "mode"
+				"name": "hostname",
+				"priority": 10
 			},
 			{
-				"name": "hostname"
+				"name": "user",
+				"priority": 30
 			},
 			{
-				"name": "user"
+				"name": "virtualenv",
+				"priority": 50
 			},
 			{
-				"name": "virtualenv"
-			},
-			{
-				"name": "branch"
+				"name": "branch",
+				"args": {
+				        "status_colors": true
+                                },
+				"priority": 40
 			},
 			{
 				"name": "cwd",
+				"priority": 10,
 				"args": {
 					"dir_limit_depth": 2
 				}
 			},
 			{
 				"module": "powerline.segments.shell",
-				"name": "jobnum"
+				"name": "jobnum",
+				"priority": 20
 			},
 			{
+				"module": "powerline.segments.shell",
 				"name": "last_status",
-				"module": "powerline.segments.shell"
+				"priority": 10
 			}
 		]
 	}

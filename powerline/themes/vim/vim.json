@@ -1,20 +1,4 @@
 {
-	"segment_data": {
-		"branch": {
-			"before": " ",
-			"args": { "status_colors": true }
-		},
-		"modified_indicator": {
-			"args": { "text": "+" }
-		},
-		"line_percent": {
-			"args": { "gradient": true },
-			"after": "%"
-		},
-		"line_current_symbol": {
-			"contents": " "
-		}
-	},
 	"segments": {
 		"left": [
 			{
@@ -34,6 +18,9 @@
 			{
 				"name": "branch",
 				"exclude_modes": ["nc"],
+				"args": {
+				       "status_colors": true
+                                },
 				"priority": 30
 			},
 			{
@@ -71,13 +58,13 @@
 			},
 			{
 				"exclude_modes": ["nc"],
-				"module": "powerline.segments.plugin.syntastic",
+				"module": "powerline.segments.vim.plugin.syntastic",
 				"name": "syntastic",
 				"priority": 50
 			},
 			{
 				"exclude_modes": ["nc"],
-				"module": "powerline.segments.plugin.tagbar",
+				"module": "powerline.segments.vim.plugin.tagbar",
 				"name": "current_tag",
 				"draw_soft_divider": false,
 				"priority": 50
@@ -111,7 +98,10 @@
 				"name": "line_percent",
 				"priority": 50,
 				"width": 4,
-				"align": "r"
+				"align": "r",
+				"args": {
+				        "gradient": true
+                                }
 			},
 			{
 				"type": "string",
