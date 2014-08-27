@@ -275,6 +275,9 @@ nmap <F8> :bprevious<cr>
 " Mapping for gracefully closing buffers with vim-bbye
 :nnoremap <Leader>q :Bdelete<CR>
 
+" Disable shortcut for entering Ex mode
+nnoremap Q <nop>
+
 " disable arrow keys to force working with standard HJKL movement keys
 "map <up> <nop>
 "map <down> <nop>
