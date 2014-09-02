@@ -3,21 +3,21 @@
     "segments": {
         "right": [
             {
-                "name": "system_load",
+                "function": "system_load",
                 "priority": 50
             },
             {
-                "name": "date",
+                "function": "date",
                 "args": {
                     "format": "%H:%M",
                     "istime": true
                 }
             },
             {
-                "name": "hostname"
+                "function": "hostname"
             },
             {
-                "name": "battery"
+                "function": "battery"
             }
         ]
     }
