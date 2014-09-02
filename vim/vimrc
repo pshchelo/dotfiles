@@ -68,10 +68,10 @@ set mousemodel=popup_setpos
 " required for Vundle
 filetype off
 " Vundle initialization
-set rtp+=~/.vim/bundle/vundle/
+set rtp+=~/.vim/bundle/Vundle.vim/
 call vundle#rc()
 " Use Vundle
-Bundle 'gmarik/vundle'
+Bundle 'gmarik/Vundle.vim'
 
 " My other Bundles
 Bundle 'moll/vim-bbye'
