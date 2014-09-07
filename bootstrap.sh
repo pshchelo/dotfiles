@@ -11,11 +11,6 @@ dir="$(dirname "$(readlink -f "$0")")"
 # INSTALL TOOLS
 ###############
 
-# install latest git
-#sudo apt-repository add ppa:git-core/ppa
-#sudo apt-get update
-#sudo apt-get install git
-
 # install Anonymous Pro font
 #sudo apt-get install ttf-anonymous-pro
 
@@ -82,7 +77,6 @@ ln -s $dir/ack/ackrc ~/.ackrc
 #ipython profile create
 #ln -s $dir/ipython/ipython_config.py ~/.config/ipython/profile_default/ipython_config.py
 #ln -s $dir/ipython/ipython_notebook_config.py ~/.config/ipython/profile_default/ipython_notebook_config.py
-#ln -s $dir/ipython/ipython_qtconsole_config.py ~/.config/ipython/profile_default/ipython_qtconsole_config.py
 #ln -s $dir/ipython/ipython_nbconvert_config.py ~/.config/ipython/profile_default/ipython_nbconvert_config.py
 
 # matplotlib
