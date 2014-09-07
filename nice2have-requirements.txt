@@ -1,0 +1,3 @@
+ipython[notebook]
+git+https://github.com/dolph/next-review.git
+howdoi
