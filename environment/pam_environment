@@ -1,4 +1,4 @@
-# setting langiage to English (US)
+# setting language to English (US)
 LANGUAGE=en_US:en
 LANG=en_US.UTF-8
 LC_MESSAGES=en_US.UTF-8
