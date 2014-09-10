@@ -138,10 +138,10 @@ if ! shopt -oq posix; then
 fi
 
 # virtualenvwrapper setup if installed in private local space
-if [ -f $HOME/.local/bin/virtualenvwrapper.sh ]; then
+if [ -f /usr/local/bin/virtualenvwrapper.sh ]; then
     export WORKON_HOME=$HOME/.virtualenvs
     export PROJECT_HOME=$HOME/devel
-    source $HOME/.local/bin/virtualenvwrapper.sh
+    source /usr/local/bin/virtualenvwrapper.sh
 fi
 
 # solarized scheme for Midnight Commander
