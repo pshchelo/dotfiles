@@ -61,7 +61,7 @@ au BufRead,BufNewFile *.py,*.pyw,*.pyx match BadWhitespace /^\t\+/
 au BufRead,BufNewFile *.py,*.pyw*,.pyx,*.c,*.h match BadWhitespace /\s\+$/
 
 " Set interaction with system clipboard and mouse
-set clipboard=autoselect
+set clipboard=unnamedplus
 set mouse=a
 set mousemodel=popup_setpos
 
