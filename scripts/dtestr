@@ -1,0 +1,10 @@
+#! /usr/bin/env sh
+
+# Allow testtools to run a group of tests based on testr discovery
+# Useful for debugging as testr does not support using pdb breakpoits
+# Arguments: regex for test name
+
+testlist=$(mktemp)
+testr list-tests "$1"  > $testlist
+cat $testlist
+python -m testtools.run discover --load-list $testlist
