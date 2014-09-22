@@ -1,4 +1,3 @@
 --color
---pager=less -R
 --ignore-dir=.tox
 --type=python
