@@ -149,3 +149,6 @@ export MC_SKIN=$HOME/dotfiles/colors/mc-solarized.ini
 
 # Enable Powerline
 . $HOME/.local/lib/python2.7/site-packages/powerline/bindings/bash/powerline.sh
+
+# Disable legacy TTY Software Flow Control
+stty -ixon
