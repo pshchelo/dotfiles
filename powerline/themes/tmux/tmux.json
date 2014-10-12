@@ -1,23 +1,23 @@
 {
-    "default_module": "powerline.segments.common",
     "segments": {
         "right": [
             {
-                "function": "system_load",
+                "function": "powerline.segments.common.sys.system_load",
                 "priority": 50
             },
             {
-                "function": "date",
+                "function": "powerline.segments.common.time.date",
+                "name": "time",
                 "args": {
                     "format": "%H:%M",
                     "istime": true
                 }
             },
             {
-                "function": "hostname"
+                "function": "powerline.segments.common.net.hostname"
             },
             {
-                "function": "battery"
+                "function": "powerline.segments.common.bat.battery"
             }
         ]
     }
