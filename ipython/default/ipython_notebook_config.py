@@ -2,6 +2,9 @@
 
 c = get_config()
 
+c.NotebookApp.notebook_dir = u'/home/pshchelo/devel/ipynb'
+c.FileNotebookManager.notebook_dir = u'/home/pshchelo/devel/ipynb'
+
 #------------------------------------------------------------------------------
 # NotebookApp configuration
 #------------------------------------------------------------------------------
@@ -15,7 +18,7 @@ c = get_config()
 # c.NotebookApp.jinja_environment_options = {}
 
 # The IP address the notebook server will listen on.
-# c.NotebookApp.ip = u''
+# c.NotebookApp.ip = 'localhost'
 
 # DEPRECATED use base_url
 # c.NotebookApp.base_project_url = '/'
@@ -53,6 +56,13 @@ c = get_config()
 # Whether to overwrite existing config files when copying
 # c.NotebookApp.overwrite = False
 
+# Set the Access-Control-Allow-Origin header
+#
+# Use '*' to allow any origin to access your server.
+#
+# Takes precedence over allow_origin_pat.
+# c.NotebookApp.allow_origin = ''
+
 # Whether to enable MathJax for typesetting math/TeX
 #
 # MathJax is the javascript library IPython uses to render math/LaTeX. It is
@@ -61,6 +71,17 @@ c = get_config()
 #
 # When disabled, equations etc. will appear as their untransformed TeX source.
 # c.NotebookApp.enable_mathjax = True
+
+# Use a regular expression for the Access-Control-Allow-Origin header
+#
+# Requests from an origin matching the expression will get replies with:
+#
+#     Access-Control-Allow-Origin: origin
+#
+# where `origin` is the origin of the request.
+#
+# Ignored if allow_origin is set.
+# c.NotebookApp.allow_origin_pat = ''
 
 # The full path to an SSL/TLS certificate file.
 # c.NotebookApp.certfile = u''
@@ -71,9 +92,9 @@ c = get_config()
 # c.NotebookApp.base_url = '/'
 
 # The directory to use for notebooks and kernels.
-c.NotebookApp.notebook_dir = u'/home/pshchelo/devel/ipynb'
+# c.NotebookApp.notebook_dir = u'/home/pshchelo'
 
-# 
+#
 # c.NotebookApp.file_to_run = ''
 
 # The IPython profile to use.
@@ -82,6 +103,9 @@ c.NotebookApp.notebook_dir = u'/home/pshchelo/devel/ipynb'
 # paths for Javascript extensions. By default, this is just
 # IPYTHONDIR/nbextensions
 # c.NotebookApp.nbextensions_path = []
+
+# The Logging format template
+# c.NotebookApp.log_format = '[%(name)s]%(highlevel)s %(message)s'
 
 # The name of the IPython directory. This directory is used for logging
 # configuration (through profiles), history storage, etc. The default is usually
@@ -101,8 +125,8 @@ c.NotebookApp.notebook_dir = u'/home/pshchelo/devel/ipynb'
 # The string should be of the form type:salt:hashed-password.
 # c.NotebookApp.password = u''
 
-# The Logging format template
-# c.NotebookApp.log_format = '[%(name)s]%(highlevel)s %(message)s'
+# Set the Access-Control-Allow-Credentials: true header
+# c.NotebookApp.allow_credentials = False
 
 # Path to an extra config file to load.
 #
@@ -466,7 +490,7 @@ c.NotebookApp.notebook_dir = u'/home/pshchelo/devel/ipynb'
 # message spec. The Session will handle serialization/deserialization, security,
 # and metadata.
 #
-# Sessions support configurable serialiization via packer/unpacker traits, and
+# Sessions support configurable serialization via packer/unpacker traits, and
 # signing with HMAC digests via the key/keyfile traits.
 #
 # Parameters ----------
@@ -555,17 +579,17 @@ c.NotebookApp.notebook_dir = u'/home/pshchelo/devel/ipynb'
 # c.InlineBackend.figure_formats = set(['png'])
 
 # Extra kwargs to be passed to fig.canvas.print_figure.
-# 
+#
 # Logical examples include: bbox_inches, quality (for jpeg figures), etc.
 # c.InlineBackend.print_figure_kwargs = {'bbox_inches': 'tight'}
 
 # Close all figures at the end of each cell.
-# 
+#
 # When True, ensures that each cell starts with no active figures, but it also
 # means that one must keep track of references in order to edit or redraw
 # figures in subsequent cells. This mode is ideal for the notebook, where
 # residual plots from other cells might be surprising.
-# 
+#
 # When False, one must call figure() to create new figures. This means that
 # gcf() and getfigs() can reference figures created in other cells, and the
 # active figure can continue to be edited with pylab/pyplot methods that
@@ -585,7 +609,7 @@ c.NotebookApp.notebook_dir = u'/home/pshchelo/devel/ipynb'
 
 # MappingKernelManager will inherit config from: MultiKernelManager
 
-# 
+#
 # c.MappingKernelManager.root_dir = u'/home/pshchelo'
 
 # The kernel manager class.  This is configurable to allow subclassing of the
@@ -605,10 +629,12 @@ c.NotebookApp.notebook_dir = u'/home/pshchelo/devel/ipynb'
 
 # FileNotebookManager will inherit config from: NotebookManager
 
-# The location in which to keep notebook checkpoints
+# The directory name in which to keep notebook checkpoints
 #
-# By default, it is notebook-dir/.ipynb_checkpoints
-# c.FileNotebookManager.checkpoint_dir = u''
+# This is a path relative to the notebook's own directory.
+#
+# By default, it is .ipynb_checkpoints
+# c.FileNotebookManager.checkpoint_dir = '.ipynb_checkpoints'
 
 # Glob patterns to hide in file and directory listings.
 # c.FileNotebookManager.hide_globs = [u'__pycache__']
@@ -620,8 +646,8 @@ c.NotebookApp.notebook_dir = u'/home/pshchelo/devel/ipynb'
 # save.  This can also be set with the short `--script` flag.
 # c.FileNotebookManager.save_script = False
 
-# 
-c.FileNotebookManager.notebook_dir = u'/home/pshchelo/devel/ipynb'
+#
+# c.FileNotebookManager.notebook_dir = u'/home/pshchelo'
 
 #------------------------------------------------------------------------------
 # NotebookNotary configuration

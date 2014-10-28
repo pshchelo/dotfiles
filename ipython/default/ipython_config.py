@@ -2,6 +2,8 @@
 
 c = get_config()
 
+c.TerminalInteractiveShell.editor = u'vim +{line} {filename}'
+
 #------------------------------------------------------------------------------
 # InteractiveShellApp configuration
 #------------------------------------------------------------------------------
@@ -232,13 +234,13 @@ c = get_config()
 # c.TerminalInteractiveShell.screen_length = 0
 
 # Set the editor used by IPython (default to $EDITOR/vi/notepad).
-c.TerminalInteractiveShell.editor = u'vim +{line} {filename}'
+# c.TerminalInteractiveShell.editor = u'vim'
 
 # Deprecated, use PromptManager.justify
 # c.TerminalInteractiveShell.prompts_pad_left = True
 
 # The part of the banner to be printed before the profile
-# c.TerminalInteractiveShell.banner1 = 'Python 2.7.5+ (default, Feb 27 2014, 19:37:08) \nType "copyright", "credits" or "license" for more information.\n\nIPython 2.0.0 -- An enhanced Interactive Python.\n?         -> Introduction and overview of IPython\'s features.\n%quickref -> Quick reference.\nhelp      -> Python\'s own help system.\nobject?   -> Details about \'object\', use \'object??\' for extra details.\n'
+# c.TerminalInteractiveShell.banner1 = 'Python 2.7.6 (default, Mar 22 2014, 22:59:56) \nType "copyright", "credits" or "license" for more information.\n\nIPython 2.3.0 -- An enhanced Interactive Python.\n?         -> Introduction and overview of IPython\'s features.\n%quickref -> Quick reference.\nhelp      -> Python\'s own help system.\nobject?   -> Details about \'object\', use \'object??\' for extra details.\n'
 
 #
 # c.TerminalInteractiveShell.readline_parse_and_bind = ['tab: complete', '"\\C-l": clear-screen', 'set show-all-if-ambiguous on', '"\\C-o": tab-insert', '"\\C-r": reverse-search-history', '"\\C-s": forward-search-history', '"\\C-p": history-search-backward', '"\\C-n": history-search-forward', '"\\e[A": history-search-backward', '"\\e[B": history-search-forward', '"\\C-k": kill-line', '"\\C-u": unix-line-discard']
