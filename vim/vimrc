@@ -85,6 +85,7 @@ Bundle 'majutsushi/tagbar'
 Bundle 'klen/python-mode'
 Bundle 'davidhalter/jedi-vim'
 Bundle 'Rykka/riv.vim'
+Bundle 'Rykka/clickable.vim'
 Bundle 'Lokaltog/vim-powerline', {'rtp': 'powerline/bindings/vim/'}
 Bundle 'kien/ctrlp.vim'
 "Bundle 'nvie/vim-togglemouse'
