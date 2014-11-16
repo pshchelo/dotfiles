@@ -1,0 +1,6 @@
+# do not install these before DevStack to avoid
+# possible clashes of pip and requests libs
+git+https://github.com/Lokaltog/powerline.git
+ipdb
+jedi
+git-review

@@ -12,16 +12,13 @@ dir="$(dirname "$(readlink -f "$0")")"
 ###############
 
 # install Anonymous Pro font
-#sudo apt-get install ttf-anonymous-pro
-
-# install ack
-#curl http://beyondgrep.com/ack-2.12-single-file > ~/bin/ack && chmod 0755 !#:3
+sudo apt-get install ttf-anonymous-pro
 
 # install pip
-#curl https://raw.github.com/pypa/pip/master/contrib/get-pip.py | sudo python
+curl https://raw.github.com/pypa/pip/master/contrib/get-pip.py | sudo python
 
 # install python packages privately
-#pip install --user -r $dir/pip-personal.txt
+sudo pip install -r $dir/dev-requirements.txt
 
 # solarized colors for Gnome terminal
 #git clone git://github.com/sigurdga/gnome-terminal-colors-solarized.git ~/bin/gnome-terminal-colors-solarized
@@ -35,49 +32,28 @@ dir="$(dirname "$(readlink -f "$0")")"
 #git clone ~/bin/guake-colors-solarized
 #sh ~/bin/guake-colors-solarized/set_dark.sh
 
-############
-# MAKE LINKS
-############
+#####################
+# SET COMMON SETTINGS
+#####################
+
+./$dir/bootstrap-main.sh
+
+#################
+# MAKE MORE LINKS
+#################
 
 # environment
 ln -s $dir/environment/pam_environment ~/.pam_environment
-ln -s $dir/environment/profile ~/.profile
 ln -s $dir/environment/pshchelo.pth ~/pshchelo.pth
-# bash
-ln -s $dir/bash/bashrc ~/.bashrc
-ln -s $dir/bash/bash_aliases ~/.bash_aliases
-
-# colors for ls command (github.com/sigurdga/ls-colors-solarized)
-ln -s $dir/colors/dircolorss-solarized ~/.dircolors
-
-# colors for mc (github.com/peel/mc)
-ls -s $dir/colors/mc-solarized.ini ~/.config/mc/mc-solarized.ini
-
-# SSH
-ln -s $dir/ssh/config ~/.ssh/config
 
 # git config files
 ln -s $dir/git/gitconfig ~/.gitconfig
-ln -s $dir/git/gitignore_global ~/.gitignore_global
-ln -s $dir/git/tigrc ~/.tigrc
-ln -s $dir/git/next_review ~/.next_review
 
-# Vim
-ln -s $dir/vim/vimrc ~/.vimrc
-# install vundle to manage other plugins
-#mkdir -p ~/.vim/bundle
-#git clone git://github.com/gmarik/vundle.git ~/.vim/bundle/vundle
-#sudo apt-get install ctags
-
-# Ack
-ln -s $dir/ack/ackrc ~/.ackrc
-
-#
 # ipython
-#ipython profile create
-#ln -s $dir/ipython/ipython_config.py ~/.config/ipython/profile_default/ipython_config.py
-#ln -s $dir/ipython/ipython_notebook_config.py ~/.config/ipython/profile_default/ipython_notebook_config.py
-#ln -s $dir/ipython/ipython_nbconvert_config.py ~/.config/ipython/profile_default/ipython_nbconvert_config.py
+ipython profile create
+ln -s $dir/ipython/default/ipython_config.py ~/.config/ipython/profile_default/ipython_config.py
+ln -s $dir/ipython/default/ipython_notebook_config.py ~/.config/ipython/profile_default/ipython_notebook_config.py
+ln -s $dir/ipython/default/ipython_nbconvert_config.py ~/.config/ipython/profile_default/ipython_nbconvert_config.py
 
 # matplotlib
-#ln -s $dir/matplotlib/matplotlibrc ~/.config/matplotlib/matplotlibrc
+ln -s $dir/matplotlib/matplotlibrc ~/.config/matplotlib/matplotlibrc

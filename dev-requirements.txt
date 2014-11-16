@@ -1,5 +1,2 @@
-ipdb
-jedi
-git+https://github.com/Lokaltog/powerline.git
-git-review
+ipython[notebook]
 virtualenvwrapper
