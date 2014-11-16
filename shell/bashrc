@@ -137,7 +137,7 @@ if ! shopt -oq posix; then
   fi
 fi
 
-# virtualenvwrapper setup if installed in private local space
+# virtualenvwrapper setup if installed globally
 if [ -f /usr/local/bin/virtualenvwrapper.sh ]; then
     export WORKON_HOME=$HOME/.virtualenvs
     export PROJECT_HOME=$HOME/devel
