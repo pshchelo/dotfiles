@@ -34,7 +34,7 @@ ln -s "$DOTFILES/powerline" "$HOME/.config/powerline"
 # install Python packages in local user location
 pip install --user -r user-dev-requirements.txt
 
-Make links to scripts/binaries
+#Make links to scripts/binaries
 ln -s "$DOTFILES/bin/tig-2.0.3_x64" "$HOME/.local/bin/tig"
 ln -s "$DOTFILES/scripts/ack" "$HOME/.local/bin/ack"
 ln -s "$DOTFILES/scripts/ppclean" "$HOME/.local/bin/ppclean"
