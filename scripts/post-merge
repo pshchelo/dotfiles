@@ -1,0 +1,19 @@
+#/usr/bin/env bash
+# MIT © Sindre Sorhus - sindresorhus.com
+# Forked by Pavlo Shchelokovskyy (pshchelo) - pshchelo.bitbucket.org
+
+# git hook to run a command after `git pull` if a specified file was changed
+# Run `chmod +x post-merge` to make it executable then put it into `.git/hooks/`.
+
+changed_files="$(git diff-tree -r --name-only --no-commit-id ORIG_HEAD HEAD)"
+
+check_run() {
+echo "$changed_files" | grep --quiet "$1" && eval "$2"
+}
+
+# Refresh virtualenv if python project requirements have changed.
+check_run requirements.txt "pip install -U -r requirements.txt"
+check_run test-requirements.txt "pip install -U -r test-requirements.txt"
+
+# Reinstall dev version of current package if setup.cfg changed
+check_run setup.cfg "pip install -e ."
