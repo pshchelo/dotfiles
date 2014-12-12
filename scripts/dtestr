@@ -7,4 +7,4 @@
 testlist=$(mktemp)
 testr list-tests "$1"  > $testlist
 cat $testlist
-python -m testtools.run discover --load-list $testlist
+python -m testtools.run --load-list $testlist
