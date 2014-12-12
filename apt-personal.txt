@@ -23,12 +23,10 @@ cmus
 ####
 #GUI
 ####
-guake
 dropbox
 skype
-chromium-browser
 hexchat
-#gnu-cash
+#gnucash
 gitg
 diffuse
 keepassx
@@ -37,3 +35,5 @@ vim-gtk
 vim-gui-common   
 mplayer
 vlc
+git-gui
+gitk
