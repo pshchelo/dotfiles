@@ -18,7 +18,7 @@ ln -s "$DOTFILES/environment/profile" "$HOME/.profile"
 # shells
 ln -s "$DOTFILES/shell/tmux.conf" "$HOME/.tmux.conf"
 ln -s "$DOTFILES/shell/bash_aliases" "$HOME/.bash_aliases"
-ln -s "$DOTFILES/colors/dircolors-solarized" "$HOME/.dircolors"
+ln -s "$DOTFILES/colors/dircolors.ansi-dark" "$HOME/.dircolors"
 ln -s "$DOTFILES/shell/bashrc" "$HOME/.bashrc"
 ln -s "$DOTFILES/ssh/config" "$HOME/.ssh/config"
 
