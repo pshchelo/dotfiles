@@ -1,3 +1,4 @@
 --color
 --ignore-dir=.tox
 --type=python
+--type-add=al:match:.*
