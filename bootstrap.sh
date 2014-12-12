@@ -12,10 +12,10 @@ dir="$(dirname "$(readlink -f "$0")")"
 ###############
 
 # install Anonymous Pro font
-sudo apt-get install ttf-anonymous-pro
+sudo apt-get install ttf-anonymous-pro wajig python-dev build-essential
 
 # install pip
-curl https://raw.github.com/pypa/pip/master/contrib/get-pip.py | sudo python
+curl https://bootstrap.pypa.io/get-pip.py | sudo python
 
 # install python packages privately
 sudo pip install -r $dir/dev-requirements.txt
