@@ -1,32 +1,7 @@
-# setting language to English (US)
-LANGUAGE=en_US:en
+# setting language and others to English (US) by default
 LANG=en_US.UTF-8
-LC_MESSAGES=en_US.UTF-8
-LC_ALL=en_IE.UTF-8
-
 # Ireland locale settings for sane European defaults
-LC_NUMERIC=en_IE.UTF-8
-LC_TIME=en_IE.UTF-8
-LC_MONETARY=en_IE.UTF-8
-LC_PAPER=en_IE.UTF-8
-LC_NAME=en_IE.UTF-8
-LC_ADDRESS=en_IE.UTF-8
-LC_TELEPHONE=en_IE.UTF-8
-LC_MEASUREMENT=en_IE.UTF-8
-LC_IDENTIFICATION=en_IE.UTF-8
+LC_MEASUREMENT=en_GB.UTF-8
+LC_TIME=en_GB.UTF-8
+LC_PAPER=en_GB.UTF-8
 PAPERSIZE=a4
-
-# Netherlands locale settings for sane European defaults
-#LANG=en_US.UTF-8
-#LANGUAGE="en_US:en"
-#LC_MESSAGES="en_US.UTF-8"
-#LC_CTYPE="nl_NL@euro"
-#LC_COLLATE="nl_NL@euro"
-#LC_TIME="nl_NL"
-#LC_NUMERIC="nl_NL"
-#LC_MONETARY="nl_NL@euro"
-#LC_PAPER="nl_NL"
-#LC_TELEPHONE="nl_NL"
-#LC_ADDRESS="nl_NL"
-#LC_MEASUREMENT="nl_NL"
-#LC_NAME="nl_NL"
