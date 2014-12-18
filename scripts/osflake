@@ -1,0 +1,24 @@
+#!/usr/bin/env sh
+
+case $1 in
+    'heat')
+        project=${HOME}/devel/openstack/heat
+        flake_check='heat bin/heat-api bin/heat-api-cfn bin/heat-api-cloudwatch bin/heat-engine bin/heat-manage contrib heat_integrationtests'
+        pot_check='heat'
+        ;;
+    'heatclient')
+        project=${HOME}/devel/openstack/python-heatclient
+        flake_check=''
+        pot_check='heatclient'
+        ;;
+    *)
+        echo "Unknow OS project!"
+        exit 1
+esac
+
+cd $project
+echo "Running flake8..."
+flake8 $flake_check 
+echo "Check that .po and .pot files are valid..."
+find $pot_check -type f -regex '.*\.pot?' -print0|xargs -0 -n 1 msgfmt --check-format -o /dev/null
+
