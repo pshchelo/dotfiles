@@ -80,7 +80,6 @@ Bundle 'scrooloose/nerdcommenter'
 Bundle 'scrooloose/nerdtree'
 Bundle 'scrooloose/syntastic'
 Bundle 'altercation/vim-colors-solarized'
-Bundle 'ervandew/supertab'
 Bundle 'majutsushi/tagbar'
 Bundle 'klen/python-mode'
 Bundle 'davidhalter/jedi-vim'
@@ -88,6 +87,7 @@ Bundle 'Rykka/riv.vim'
 Bundle 'Rykka/clickable.vim'
 Bundle 'kien/ctrlp.vim'
 Bundle 'mileszs/ack.vim'
+Bundle 'Valloric/YouCompleteMe'
 
 syntax on
 filetype plugin indent on
