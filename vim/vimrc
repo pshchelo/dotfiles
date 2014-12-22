@@ -87,7 +87,6 @@ Bundle 'davidhalter/jedi-vim'
 Bundle 'Rykka/riv.vim'
 Bundle 'Rykka/clickable.vim'
 Bundle 'kien/ctrlp.vim'
-"Bundle 'nvie/vim-togglemouse'
 Bundle 'mileszs/ack.vim'
 
 syntax on
