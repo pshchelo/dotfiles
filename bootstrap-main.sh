@@ -7,7 +7,7 @@ DOTFILES="$(dirname "$(readlink -f "$0")")"
 # install some tools and dependencies
 mkdir -p "$HOME/.config"
 mkdir -p "$HOME/.local/bin"
-sudo apt-get install mc htop ctags
+sudo apt-get -y install mc htop ctags
 
 # create links to config files
 # make backups
@@ -45,3 +45,7 @@ mkdir -p "$HOME/.vim/bundle"
 git clone https://github.com/gmarik/Vundle.vim.git "$HOME/.vim/bundle/Vundle.vim"
 # setup all ViM plugins (requires input)
 vim -c BundleInstall
+# Compile YouCompleteMe vim plugin dependencies
+cd $HOME/.vim/bundle/YouCompleteMe
+sudo apt-get -y install cmake
+install.sh --clang-completer
