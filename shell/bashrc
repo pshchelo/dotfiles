@@ -145,7 +145,7 @@ if [ -f /usr/local/bin/virtualenvwrapper.sh ]; then
 fi
 
 # solarized scheme for Midnight Commander
-export MC_SKIN=$HOME/dotfiles/colors/mc-solarized.ini
+export MC_SKIN=$HOME/dotfiles/colors/solarized.ini
 
 # Enable Powerline
 . $HOME/.local/lib/python2.7/site-packages/powerline/bindings/bash/powerline.sh
