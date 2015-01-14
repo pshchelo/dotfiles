@@ -278,7 +278,7 @@ nmap <F8> :bprevious<cr>
 nnoremap Q <nop>
 
 " Set shorcut to toggle PASTE mode
-nmap <leader>p :set invpaste paste?<CR>
+nmap <leader>p :set paste!<CR>
 
 " Set spellcheck toggle
 imap <Leader>s <C-o>:setlocal spell! spelllang=en_us<CR>
