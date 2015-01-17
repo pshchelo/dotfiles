@@ -1,6 +1,7 @@
 #!/usr/bin/env sh
 myip=$(hostname -i)
 # DevStack
+iptables -t nat -I PREROUTING -p tcp -d $myip --dport 2222 -j DNAT --to-destination 192.168.100.127:22
 iptables -t nat -I PREROUTING -p tcp -d $myip --dport 8127 -j DNAT --to-destination 192.168.100.127:80
 iptables -I FORWARD -m state -d 192.168.100.0/24 --state NEW,RELATED,ESTABLISHED -j ACCEPT
 # Fuel master
