@@ -146,7 +146,8 @@ let g:ctrlp_cmd = 'CtrlPMixed'
 
 " Change default binding of jedi's rename command
 let g:jedi#rename_command = "<leader>rn"
-let g:jedi#popup_select_first = 1
+" Do not use Jedi for autocompletion (using YCM for that)
+let g:jedi#completions_enabled = 0
 
 "======================
 " Python-mode configuration
@@ -206,12 +207,10 @@ let g:syntastic_warning_symbol='⚠'
 
 " Allways stick found errors to loclist
 let g:syntastic_always_populate_loc_list=1
-
-" Aggregate errors from all checkers
-let g:syntastic_aggregate_errors=1
-
 " Automatically close and open loclist
 let g:syntastic_auto_loc_list=1
+" Aggregate errors from all checkers
+let g:syntastic_aggregate_errors=1
 
 " Use flake8 as a sole checker for Python files
 " Available are pep8,pep257,pyflakes,pylint,py3kwarn,python,flake8,pylama
@@ -245,10 +244,6 @@ let g:riv_python_rst_hl = 1
 " highlight code in RST as Python
 let g:riv_highlight_code = 'python'
 
-" Inserting a line belllow the current line, with the same length,
-" but consisting only from the char that's given after this command.
-" Useful for inserting RST headers.
-nmap <leader>h yypVr
 
 " Enable spell-check for RST and plain text files
 autocmd BufNewFile,BufRead *.{txt,rst} setlocal spell spelllang=en_us
