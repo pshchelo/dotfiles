@@ -6,11 +6,16 @@ Host *
 # Range of default subnet in DevStack
 Host 10.0.0.*
     StrictHostKeyChecking no
-    UserKnownHostsFile /dev/null 
+    UserKnownHostsFile /dev/null
     LogLevel QUIET
 
 # Range for default Floating IP space in DevStack
 Host 172.24.4.*
     StrictHostKeyChecking no
-    UserKnownHostsFile /dev/null 
+    UserKnownHostsFile /dev/null
     LogLevel QUIET
+
+# My DevStack at work via tunnel
+Host devstack-mira
+    HostName pshchelokovskyy-pc
+    Port 2222
