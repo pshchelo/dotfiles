@@ -84,7 +84,6 @@ Bundle 'majutsushi/tagbar'
 Bundle 'klen/python-mode'
 Bundle 'davidhalter/jedi-vim'
 Bundle 'Rykka/riv.vim'
-Bundle 'Rykka/clickable.vim'
 Bundle 'kien/ctrlp.vim'
 Bundle 'mileszs/ack.vim'
 Bundle 'Valloric/YouCompleteMe'
@@ -240,10 +239,6 @@ let g:riv_temp_path = 0  " the same dir as source
 
 " highlight Python docstrings as RST
 let g:riv_python_rst_hl = 1
-
-" highlight code in RST as Python
-let g:riv_highlight_code = 'python'
-
 
 " Enable spell-check for RST and plain text files
 autocmd BufNewFile,BufRead *.{txt,rst} setlocal spell spelllang=en_us
