@@ -18,6 +18,9 @@ nmap <leader>p :set paste!<CR>
 imap <Leader>s <C-o>:setlocal spell! spelllang=en_us<CR>
 nmap <Leader>s :setlocal spell! spelllang=en_us<CR>
 
+" Toggle vertical centring of the cursor
+nnoremap <Leader>zz :let &scrolloff=999-&scrolloff<CR>:echo "scrolloff toggled"<CR>
+
 " disable arrow keys to force working with standard HJKL movement keys
 "map <up> <nop>
 "map <down> <nop>
