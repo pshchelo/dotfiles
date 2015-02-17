@@ -1,0 +1,9 @@
+#!/usr/bin/env bash
+for i in {1..3}; do 
+    tox -epy27
+    if [ $? -ne 0 ]; then 
+        echo 'tox run ' $i ' failed!'
+        testr failing
+        break; 
+    fi 
+done
