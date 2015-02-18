@@ -1,0 +1,8 @@
+build-essential
+python-dev
+htop
+mc
+ctags
+cmake
+wajig
+ttf-anonymous-pro

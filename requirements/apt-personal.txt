@@ -3,13 +3,7 @@
 ####
 #CLI
 ####
-build-essential
-python-dev
 git
-tig
-htop
-mc
-ttf-anonymous-pro
 vim-latexsuite   
 vim-runtime      
 vim-scripts      
@@ -17,7 +11,6 @@ vim-tiny
 vim-addon-manager
 vim-common       
 vim-doc          
-ctags
 cmus
 
 ####

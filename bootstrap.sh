@@ -7,18 +7,18 @@ dir="$(dirname "$(readlink -f "$0")")"
     #mkdir "$HOME/bin"
 #fi
 
+#####################
+# SET COMMON SETTINGS
+#####################
+
+./$dir/bootstrap-main.sh
+
 ###############
 # INSTALL TOOLS
 ###############
 
-# install Anonymous Pro font
-sudo apt-get install ttf-anonymous-pro wajig python-dev build-essential
-
-# install pip
-curl https://bootstrap.pypa.io/get-pip.py | sudo python
-
-# install python packages privately
-sudo pip install -r $dir/dev-requirements.txt
+# install some extra system python packages
+sudo -H pip install -r $dir/requirements/extra-dev-requirements.txt
 
 # solarized colors for Gnome terminal
 #git clone git://github.com/sigurdga/gnome-terminal-colors-solarized.git ~/bin/gnome-terminal-colors-solarized
@@ -31,12 +31,6 @@ sudo pip install -r $dir/dev-requirements.txt
 # solarized colors for guake
 #git clone ~/bin/guake-colors-solarized
 #sh ~/bin/guake-colors-solarized/set_dark.sh
-
-#####################
-# SET COMMON SETTINGS
-#####################
-
-./$dir/bootstrap-main.sh
 
 #################
 # MAKE MORE LINKS
