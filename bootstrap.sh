@@ -45,9 +45,16 @@ ln -s $dir/git/gitconfig ~/.gitconfig
 
 # ipython
 ipython profile create
-ln -s $dir/ipython/default/ipython_config.py ~/.config/ipython/profile_default/ipython_config.py
-ln -s $dir/ipython/default/ipython_notebook_config.py ~/.config/ipython/profile_default/ipython_notebook_config.py
-ln -s $dir/ipython/default/ipython_nbconvert_config.py ~/.config/ipython/profile_default/ipython_nbconvert_config.py
+FILES="ipython_config.py
+ipython_notebook_config.py
+ipython_qtconsole_config.py"
+
+for file in $FILES
+do
+    rm ~/.ipython/profile_default/$file
+    ln -s $dir/ipython/default/$file ~/.ipython/profile_default/$file
+done
 
 # matplotlib
+mkdir -p ~/.config/matplotlib
 ln -s $dir/matplotlib/matplotlibrc ~/.config/matplotlib/matplotlibrc

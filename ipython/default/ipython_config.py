@@ -2,4 +2,4 @@
 
 c = get_config()
 
-c.TerminalInteractiveShell.editor = u'vim +{line} {filename}'
+c.InteractiveShellApp.pylab_import_all = False
