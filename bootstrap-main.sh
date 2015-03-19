@@ -40,7 +40,7 @@ ln -s "$DOTFILES/powerline" "$HOME/.config/powerline"
 
 #Make links to scripts/binaries
 ln -s "$DOTFILES/bin/tig-2.0.3_x64" "$HOME/.local/bin/tig"
-ln -s "$DOTFILES/scripts/ack" "$HOME/.local/bin/ack"
+ln -s "$DOTFILES/scripts/ack-2.14-single-file" "$HOME/.local/bin/ack"
 ln -s "$DOTFILES/scripts/ppclean" "$HOME/.local/bin/ppclean"
 ln -s "$DOTFILES/scripts/dtestr" "$HOME/.local/bin/dtestr"
 
