@@ -1,3 +1,6 @@
+IdentityFile ~/.ssh/git_rsa
+IdentityFile ~/.ssh/id_rsa
+
 Host *
     # Use shared mode for all connections
     ControlMaster auto
@@ -18,4 +21,4 @@ Host 172.24.4.*
 # My DevStack at work via tunnel
 Host devstack-mira
     HostName pshchelokovskyy-pc
-    Port 2222
+    Port 2127
