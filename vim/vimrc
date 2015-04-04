@@ -117,6 +117,10 @@ autocmd BufWritePre *.rst :%s/\s\+$//e
 " YAML
 " set indent settings for yaml files
 autocmd Filetype yaml setlocal ts=2 sw=2 expandtab
+" Make trailing whitespace be flagged as bad for YAML files
+au BufRead,BufNewFile *.yaml,*.yml match BadWhitespace /\s\+$/
+" Trim trailing whitespace on save for YAML files
+autocmd BufWritePre *.yaml,*.yml :%s/\s\+$//e
 
 "=========
 " INCLUDES
