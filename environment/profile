@@ -20,12 +20,3 @@ fi
 export EDITOR="vim"
 export VISUAL="gvim"
 export VIEWER="vim"
-
-# ssh-agent loading 
-# this manually starts ssh-agent on console logins
-# (X login starts its own automatically in another place)
-SSHAGENT=/usr/bin/ssh-agent
-if [ -z "$DISPLAY" -a -z "$SSH_AUTH_SOCK" -a -x "$SSHAGENT" ]; then
-  eval `$SSHAGENT`
-  trap "kill $SSH_AGENT_PID" 0
-fi
