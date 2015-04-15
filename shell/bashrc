@@ -7,11 +7,6 @@ if [ -d "$HOME/.local/bin" ] ; then
     PATH="$HOME/.local/bin:$PATH"
 fi
 
-# set PATH so it includes user's private bin if it exists
-if [ -d "$HOME/bin" ] ; then
-    PATH="$HOME/bin:$PATH"
-fi
-
 # fix for gvim integration with Ubuntu global menu
 # and open new files in the current instance
 function gvim () { (/usr/bin/gvim -f "$@" &) }
