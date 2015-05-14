@@ -145,6 +145,9 @@ export MC_SKIN=$HOME/dotfiles/colors/mc-solarized-peel.ini
 # Enable Powerline
 . $HOME/.local/lib/python2.7/site-packages/powerline/bindings/bash/powerline.sh
 
+# Enable tig bash completion
+. $HOME/dotfiles/git/tig-completion.bash
+
 # Disable legacy TTY Software Flow Control
 stty -ixon
 
