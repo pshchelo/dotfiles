@@ -1,3 +1,0 @@
-git-review
-git+https://github.com/dolph/next-review.git
-howdoi

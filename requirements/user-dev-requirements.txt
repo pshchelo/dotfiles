@@ -1,1 +1,2 @@
-git+https://github.com/powerline/powerline.git
+powerline-status
+git-review
