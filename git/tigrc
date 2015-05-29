@@ -1,1 +1,2 @@
 bind status + !git commit --amend
+bind stash a !git stash apply
