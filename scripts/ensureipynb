@@ -1,6 +1,0 @@
-#! /usr/bin/env bash
-# start user IPython job
-if [ -z "$(status ipynb | grep running)" ]; then
-    start ipynb;
-fi
-
