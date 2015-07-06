@@ -44,9 +44,11 @@ let g:jedi#rename_command = "<leader>rn"
 " Do not use Jedi for autocompletion (using YCM for that)
 let g:jedi#completions_enabled = 0
 " Set function call signatures display
+" 0 - turned off
 " 1 - pop-up (easier to refer to)
 " 2 - vim's command line (nicer undo history)
-let g:jedi#show_call_signatures = "2"
+let g:jedi#show_call_signatures = "1"
+
 "============
 " Python-mode
 "============
