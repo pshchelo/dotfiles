@@ -19,6 +19,6 @@ Host 172.24.4.*
     LogLevel QUIET
 
 # My DevStack at work via tunnel
-Host devstack-mira
+Host devstack
     HostName pshchelokovskyy-pc
     Port 2127
