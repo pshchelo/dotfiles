@@ -142,9 +142,6 @@ fi
 # solarized scheme for Midnight Commander
 export MC_SKIN=$HOME/dotfiles/colors/mc-solarized-peel.ini
 
-# Enable Powerline
-. $HOME/.local/lib/python2.7/site-packages/powerline/bindings/bash/powerline.sh
-
 # Enable tig bash completion
 . $HOME/dotfiles/git/tig-completion.bash
 
@@ -152,3 +149,10 @@ export MC_SKIN=$HOME/dotfiles/colors/mc-solarized-peel.ini
 stty -ixon
 
 set -o vi
+
+# Enable Powerline
+powerline-daemon -q
+POWERLINE_BASH_CONTINUATION=1
+POWERLINE_BASH_SELECT=1
+. $HOME/.local/lib/python2.7/site-packages/powerline/bindings/bash/powerline.sh
+
