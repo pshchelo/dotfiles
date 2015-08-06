@@ -18,3 +18,7 @@ alias ttools='python -m testtools.run'
 
 # attach to running tmux or start a new one if absent
 alias tmx='tmux a || tmux'
+
+# terminal pastebin
+# use as "cat somefile | tb"
+alias tb='nc termbin.com 9999'
