@@ -22,3 +22,6 @@ alias tmx='tmux a || tmux'
 # terminal pastebin
 # use as "cat somefile | tb"
 alias tb='nc termbin.com 9999'
+
+# openstack CLI
+alias os=openstack
