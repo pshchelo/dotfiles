@@ -22,3 +22,8 @@ Host 172.24.4.*
 Host devstack
     HostName pshchelokovskyy-pc
     Port 2127
+
+# My DevStacack+Ironic at work via tunnel
+Host ironic
+    HostName pshchelokovskyy-pc
+    Port 2126

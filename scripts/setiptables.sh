@@ -1,7 +1,7 @@
 #!/usr/bin/env sh
 myip=$(hostname -i)
 # DEVSTACK
-# ssh do the devstack host
+# ssh to the devstack host
 iptables -t nat -I PREROUTING -p tcp -d $myip --dport 2127 -j DNAT --to-destination 192.168.100.127:22
 # Horizon access to the devstack host
 iptables -t nat -I PREROUTING -p tcp -d $myip --dport 8127 -j DNAT --to-destination 192.168.100.127:80
@@ -10,6 +10,8 @@ iptables -t nat -I PREROUTING -p tcp -d $myip --dport 6127 -j DNAT --to-destinat
 # xvpVNC tunnel
 iptables -t nat -I PREROUTING -p tcp -d $myip --dport 7127 -j DNAT --to-destination 192.168.100.127:6081
 
+# ssh to the ironic host
+iptables -t nat -I PREROUTING -p tcp -d $myip --dport 2126 -j DNAT --to-destination 192.168.100.126:22
 
 iptables -I FORWARD -m state -d 192.168.100.0/24 --state NEW,RELATED,ESTABLISHED -j ACCEPT
 
