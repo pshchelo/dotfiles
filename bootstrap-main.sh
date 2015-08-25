@@ -44,11 +44,8 @@ ln -s "$DOTFILES/scripts/ack-2.14-single-file" "$HOME/.local/bin/ack"
 ln -s "$DOTFILES/scripts/ppclean" "$HOME/.local/bin/ppclean"
 ln -s "$DOTFILES/scripts/dtestr" "$HOME/.local/bin/dtestr"
 
-# prepare Vundle to later install ViM plugins
-mkdir -p "$HOME/.vim/bundle"
-git clone https://github.com/gmarik/Vundle.vim.git "$HOME/.vim/bundle/Vundle.vim"
-# setup all ViM plugins (requires input)
-vim -c PluginInstall
-# Compile YouCompleteMe vim plugin dependencies
-cd $HOME/.vim/bundle/YouCompleteMe
-install.sh --clang-completer
+# install vim-plug
+VIMPLUG="https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim"
+curl -fLo "~/.vim/autoload/plug.vim" --create-dirs "$VIMPLUG"
+# setup all ViM plugins
+vim +PlugInstall +qall

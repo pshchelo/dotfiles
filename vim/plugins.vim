@@ -1,35 +1,33 @@
-"=======
-" Vundle
-"=======
-filetype off  " required
-" set the runtime path to include Vundle and initialize
-set rtp+=~/.vim/bundle/Vundle.vim/
-call vundle#begin()
-Plugin 'gmarik/Vundle.vim'  " let Vundle manage Vundle, required
-" Other plugins
-Plugin 'moll/vim-bbye'
-Plugin 'tpope/vim-fugitive'
-Plugin 'scrooloose/nerdcommenter'
-Plugin 'scrooloose/nerdtree'
-Plugin 'scrooloose/syntastic'
-Plugin 'altercation/vim-colors-solarized'
-Plugin 'majutsushi/tagbar'
-Plugin 'klen/python-mode'
-Plugin 'davidhalter/jedi-vim'
-Plugin 'Rykka/riv.vim'
-Plugin 'kien/ctrlp.vim'
-Plugin 'mileszs/ack.vim'
-Plugin 'Valloric/YouCompleteMe'
-call vundle#end()            " required
-filetype plugin indent on    " required for Vundle
-"filetype plugin on           " use this instead of ^ to ignore 
-                              " plugin indent changes
+"=====
+" Plug
+"=====
+call plug#begin()
+"Plug 'tpope/vim-sensible'                                                      " opinionated 'sensible' defaults for Vim
+Plug 'moll/vim-bbye'                                                            " close files instead of closing views
+Plug 'tpope/vim-fugitive'                                                       " Git integration
+Plug 'scrooloose/nerdcommenter'                                                 " nicer (un)comment commands
+Plug 'scrooloose/nerdtree', { 'on': 'NERDTreeToggle' }                          " sidebar file browser
+Plug 'scrooloose/syntastic'                                                     " code and style checks
+Plug 'altercation/vim-colors-solarized'                                         " best colorscheme of them all
+Plug 'majutsushi/tagbar', { 'on': 'TagbarToggle' }                              " sidebar code structure browser
+Plug 'klen/python-mode'                                                         " Python goodies
+Plug 'davidhalter/jedi-vim'                                                     " Python code completion and refactoring
+Plug 'Rykka/riv.vim'                                                            " reStructured text goodies
+Plug 'kien/ctrlp.vim'                                                           " command line fuzzy file search and open
+Plug 'mileszs/ack.vim'                                                          " ack integration (www.beyondgrep.com)
+Plug 'Valloric/YouCompleteMe', { 'do': 'python install.py --clang-completer' }  " autocompletion
+"Plug 'lervag/vimtex'                                                           " (La)TeX goodies
+call plug#end()
+
+" FIXME - Vundle leftovers, need to test if I need them back or not
+"filetype off                 " required for Vundle
+"filetype plugin indent on    " required for Vundle
+"filetype plugin on           " use this instead of ^ to ignore plugin indent changes
 
 "==========
 " Solarized
 "==========
 set background=dark
-colorscheme solarized
 :silent! colorscheme solarized
 
 "=====
