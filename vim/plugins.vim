@@ -30,6 +30,7 @@ filetype plugin indent on    " required for Vundle
 "==========
 set background=dark
 colorscheme solarized
+:silent! colorscheme solarized
 
 "=====
 "CtrlP
