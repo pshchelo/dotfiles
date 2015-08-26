@@ -9,7 +9,7 @@ Plug 'scrooloose/nerdcommenter'                                                 
 Plug 'scrooloose/nerdtree', { 'on': 'NERDTreeToggle' }                          " sidebar file browser
 Plug 'scrooloose/syntastic'                                                     " code and style checks
 Plug 'altercation/vim-colors-solarized'                                         " best colorscheme of them all
-Plug 'majutsushi/tagbar', { 'on': 'TagbarToggle' }                              " sidebar code structure browser
+Plug 'majutsushi/tagbar'                                                        " sidebar code structure browser
 Plug 'klen/python-mode'                                                         " Python goodies
 Plug 'davidhalter/jedi-vim'                                                     " Python code completion and refactoring
 Plug 'Rykka/riv.vim'                                                            " reStructured text goodies
