@@ -45,7 +45,6 @@ ln -s "$DOTFILES/scripts/ppclean" "$HOME/.local/bin/ppclean"
 ln -s "$DOTFILES/scripts/dtestr" "$HOME/.local/bin/dtestr"
 
 # install vim-plug
-VIMPLUG="https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim"
-curl -fLo "~/.vim/autoload/plug.vim" --create-dirs "$VIMPLUG"
+curl -fLo ~/.vim/autoload/plug.vim --create-dirs https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
 # setup all ViM plugins
 vim +PlugInstall +qall
