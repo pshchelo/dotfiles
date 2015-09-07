@@ -6,7 +6,7 @@ call plug#begin()
 Plug 'moll/vim-bbye'                                                            " close files instead of closing views
 Plug 'tpope/vim-fugitive'                                                       " Git integration
 Plug 'scrooloose/nerdcommenter'                                                 " nicer (un)comment commands
-Plug 'scrooloose/nerdtree', { 'on': 'NERDTreeToggle' }                          " sidebar file browser
+Plug 'scrooloose/nerdtree'                                                      " sidebar file browser
 Plug 'scrooloose/syntastic'                                                     " code and style checks
 Plug 'altercation/vim-colors-solarized'                                         " best colorscheme of them all
 Plug 'majutsushi/tagbar'                                                        " sidebar code structure browser
