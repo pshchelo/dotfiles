@@ -27,6 +27,7 @@ endif
 "==========================
 " TABS, INDENTS AND FOLDING
 "==========================
+filetype plugin indent on
 set tabstop=8
 set expandtab
 set softtabstop=4
