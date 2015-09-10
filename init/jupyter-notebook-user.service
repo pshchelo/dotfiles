@@ -1,0 +1,22 @@
+# README:
+# Link this file to ~/.config/systemd/user/jpynb
+# sudo systemctl --user daemon-reload
+# systemctl --user enable jpynb 
+# systemctl start jpynb
+# The WorkingDirectory and ipython-dir must exist
+# If you don't want anything fancy, go to http://127.0.0.1:8888 to see your notebook
+# wheneber you want it
+
+[Unit]
+Description=Jupyter notebook
+
+[Service]
+Type=simple
+PIDFile=/var/run/jupyter-notebook.pid
+ExecStartPre=. /home/pshchelo/.virtualenvs/ipynb/bin/activate
+ExecStart=/home/pshchelo/.virtualenvs/ipynb/bin/jupyter notebook --no-browser
+WorkingDirectory=/home/pshchelo/devel/ipynb
+
+[Install]
+WantedBy=multi-user.target
+Alias=jpynb
