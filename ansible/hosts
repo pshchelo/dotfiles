@@ -1,0 +1,12 @@
+pshchelokovskyy-pc
+heat
+ironic
+devstack
+
+[dsvms]
+heat
+ironic
+devstack
+
+[kvms]
+pshchelokovskyy-pc

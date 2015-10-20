@@ -1,0 +1,35 @@
+- name: copy git config
+  shell: cp {{ dotfiles_dir }}/git/gitconfig {{ userhome }}/.gitconfig
+  args:
+    creates: "{{ userhome }}/.gitconfig"
+
+- name: set global git email
+  command: git config --global user.email {{ useremail }}
+
+- name: create a stack folder
+  become: yes
+  file:
+    path: "{{ devstack_dir }}"
+    state: directory
+    owner: "{{ ansible_user_id }}"
+
+- name: get latest DevStack
+  git:
+    repo: https://git.openstack.org/openstack-dev/devstack.git
+    dest: "{{ devstack_dir }}/devstack"
+
+- name: get my stackdev repo
+  git:
+    repo: git@github.com:{{ username }}/stackdev.git
+    dest: "{{ stackdev_dir }}"
+
+- name: create stub for DevStack's local.conf
+  shell: cp {{ stackdev_dir }}/local.conf.sample {{ devstack_dir }}/devstack/local.conf
+  args:
+    creates: "{{ devstack_dir }}/devstack/local.conf"
+
+- name: make a link to local.sh file for DevStack
+  file:
+    path: "{{ devstack_dir }}/devstack/local.sh"
+    src: "{{ stackdev_dir }}/local.sh"
+    state: link

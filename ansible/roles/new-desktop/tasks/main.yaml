@@ -1,0 +1,31 @@
+#- name: install system packages
+  #become: yes
+  #apt:
+  #with_items: desktop-packages
+
+#- name: install extra Python packages
+  #become: yes
+  #pip:
+  #with_items: python-desktop-packages
+
+#- name: clone Solarized for Gnome terminal
+
+#- name: install Solarized for GNome terminal
+
+#- name: clone Solarized for Guake
+
+#- name: install Solarized for Guake
+
+#- name: clone Solarized for Xfce terminal
+
+#- name: install Solarized for Xfce terminal
+
+#- name: create IPython profile
+
+#- name: create Jupyter profile
+
+#- name: create folders
+
+#- name: make backups
+
+#- name: create links
