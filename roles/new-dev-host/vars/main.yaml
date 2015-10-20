@@ -1,0 +1,60 @@
+ubuntu_packages:
+  - build-essential
+  - python-dev
+  - python3-dev
+  - htop
+  - mc
+  - exuberant-ctags
+  - cmake
+  - wajig
+  - ttf-anonymous-pro
+  - git
+
+global_python:
+  - ipython
+  - ipdb
+  - virtualenvwrapper
+  #- jedi
+
+user_python:
+  - powerline-status
+  - git-review
+
+files_to_backup:
+  - "{{ userhome }}/.bashrc"
+  - "{{ userhome }}/.profile"
+
+dirs_to_create:
+  - "{{ userhome }}/.config"
+
+links_to_create:
+  - path: "{{ userhome }}/.bashrc"
+    src: "{{ dotfiles_dir }}/shell/bashrc"
+  - path: "{{ userhome }}/.profile"
+    src: "{{ dotfiles_dir }}/environment/profile"
+  - path: "{{ userhome }}/.tmux.conf"
+    src: "{{ dotfiles_dir }}/shell/tmux.conf"
+  - path: "{{ userhome }}/.bash_aliases"
+    src: "{{ dotfiles_dir }}/shell/bash_aliases"
+  - path: "{{ userhome }}/.dircolors"
+    src: "{{ dotfiles_dir }}/colors/dircolors.ansi-dark"
+  - path: "{{ userhome }}/.ssh/config"
+    src: "{{ dotfiles_dir }}/ssh/config"
+  - path: "{{ userhome }}/.gitignore_global"
+    src: "{{ dotfiles_dir }}/git/gitignore_global"
+  - path: "{{ userhome }}/.tigrs"
+    src: "{{ dotfiles_dir }}/git/tigrc"
+  - path: "{{ userhome }}/.ackrc"
+    src: "{{ dotfiles_dir }}/ack/ackrc"
+  - path: "{{ userhome }}/.vimrc"
+    src: "{{ dotfiles_dir }}/vim/vimrc"
+  - path: "{{ userhome }}/.local/bin/tig"
+    src: "{{ dotfiles_dir }}/bin/tig-2.1.1_x64"
+  - path: "{{ userhome }}/.local/bin/ack"
+    src: "{{ dotfiles_dir }}/scripts/ack-2.14-single-file"
+  - path: "{{ userhome }}/.local/bin/ppclean"
+    src: "{{ dotfiles_dir }}/scripts/ppclean"
+  - path: "{{ userhome }}/.local/bin/dtestr"
+    src: "{{ dotfiles_dir }}/scripts/dtestr"
+  - path: "{{ userhome }}/.config/powerline"
+    src: "{{ dotfiles_dir }}/powerline"

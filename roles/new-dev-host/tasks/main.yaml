@@ -1,0 +1,58 @@
+- name: install packages for development
+  become: true
+  apt:
+    pkg: "{{ item }}"
+  with_items: ubuntu_packages
+
+- name: install latest pip
+  become: true
+  shell: curl https://bootstrap.pypa.io/get-pip.py | python
+  args:
+    creates: /usr/local/bin/pip
+
+- name: install global python packages
+  become: true
+  pip:
+    name: "{{ item }}"
+  with_items: global_python
+
+- name: install python packages in userspace
+  pip:
+    name: "{{ item }}"
+    extra_args: --user
+  with_items: user_python
+
+- name: clone dotfiles
+  git:
+    repo: git@github.com:{{ username }}/dotfiles.git
+    dest: "{{ dotfiles_dir }}"
+    accept_hostkey: yes
+    key_file: "{{ userhome }}/.ssh/git_rsa"
+
+- name: backup some files
+  shell: mv {{ item }} {{ item }}.orig
+  args:
+    creates: "{{ item }}.orig"
+    removes: "{{ item }}"
+  with_items: files_to_backup
+
+- name: create some folders
+  file:
+    path: "{{ item }}"
+    state: directory
+  with_items: dirs_to_create
+
+- name: make links
+  file:
+    path: "{{ item.path }}"
+    src: "{{ item.src }}"
+    state: link
+  with_items: links_to_create
+
+- name: install vim-plug
+  shell: curl -fLo {{ userhome }}/.vim/autoload/plug.vim --create-dirs https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
+  args:
+    creates: "{{ userhome }}/.vim/autoload/plug.vim"
+
+- name: install/update all vim plugins
+  command: vim +PlugUpdate +qall
