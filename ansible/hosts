@@ -1,3 +1,4 @@
+localhost ansible_connection=local
 pshchelokovskyy-pc
 heat
 ironic
