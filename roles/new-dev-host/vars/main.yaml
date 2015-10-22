@@ -49,7 +49,7 @@ links_to_create:
   - path: "{{ userhome }}/.vimrc"
     src: "{{ dotfiles_dir }}/vim/vimrc"
   - path: "{{ userhome }}/.local/bin/tig"
-    src: "{{ dotfiles_dir }}/bin/tig-2.1.1_x64"
+    src: "{{ dotfiles_dir }}/bin/tig"
   - path: "{{ userhome }}/.local/bin/ack"
     src: "{{ dotfiles_dir }}/scripts/ack-2.14-single-file"
   - path: "{{ userhome }}/.local/bin/ppclean"
