@@ -17,7 +17,7 @@ alias longcp='rsync --progress -ah'
 alias ttools='python -m testtools.run'
 
 # attach to running tmux or start a new one if absent
-alias tmx='tmux a || tmux'
+alias tmx='tmux -2 a || tmux -2'
 
 # terminal pastebin
 # use as "cat somefile | tb"
