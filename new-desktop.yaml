@@ -1,0 +1,6 @@
+---
+- hosts: localhost
+  roles:
+    - common
+    - new-dev-host
+    - new-desktop
