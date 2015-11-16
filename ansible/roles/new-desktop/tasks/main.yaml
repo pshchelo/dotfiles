@@ -8,17 +8,12 @@
   #pip:
   #with_items: python-desktop-packages
 
-#- name: clone Solarized for Gnome terminal
+#- name: setup Solarized for Gnome terminal
 
-#- name: install Solarized for GNome terminal
+#- name: setup powerline fonts
 
-#- name: clone Solarized for Guake
-
-#- name: install Solarized for Guake
-
-#- name: clone Solarized for Xfce terminal
-
-#- name: install Solarized for Xfce terminal
+#- name: setup Solarized for Guake
+#- name: setup Solarized for Xfce terminal
 
 #- name: create IPython profile
 
