@@ -20,5 +20,8 @@ alias tmx='tmux -2 a || tmux -2'
 # use as "cat somefile | tb"
 alias tb='nc termbin.com 9999'
 
-# openstack CLI
-alias os=openstack
+# openstack CLI as devstack user
+alias os-demo='openstack --os-cloud devstack'
+
+# openstack CLI as devstack admin
+alias os-admin='openstack --os-cloud devstack-admin'
