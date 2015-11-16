@@ -7,9 +7,6 @@ alias xopen=xdg-open
 # change directory two levels up
 alias ...="cd ../.."
 
-# go to the previous directory
-alias back="cd -"
-
 # copy command for big files, with progress indication
 alias longcp='rsync --progress -ah'
 
