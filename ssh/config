@@ -18,7 +18,7 @@ Host 172.24.4.*
     UserKnownHostsFile /dev/null
     LogLevel QUIET
 
-# My DevStack at work via tunnel
+# My DevStack+Heat at work via tunnel
 Host heat
     HostName pshchelokovskyy-pc
     Port 2127
