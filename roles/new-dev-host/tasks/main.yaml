@@ -22,12 +22,13 @@
     extra_args: --user
   with_items: user_python
 
-- name: clone dotfiles
+- name: create dotfiles by cloning
   git:
     repo: git@github.com:{{ username }}/dotfiles.git
     dest: "{{ dotfiles_dir }}"
     accept_hostkey: yes
     key_file: "{{ userhome }}/.ssh/git_rsa"
+    update: no
 
 - name: backup some files
   shell: mv {{ item }} {{ item }}.orig
@@ -49,10 +50,10 @@
     state: link
   with_items: links_to_create
 
-- name: install vim-plug
+- name: install/update vim-plug
   shell: curl -fLo {{ userhome }}/.vim/autoload/plug.vim --create-dirs https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
-  args:
-    creates: "{{ userhome }}/.vim/autoload/plug.vim"
 
-- name: install/update all vim plugins
+- name: install all vim plugins
   command: vim +PlugUpdate +qall
+  args:
+    creates: "{{ userhome }}/.vim/plugged"
