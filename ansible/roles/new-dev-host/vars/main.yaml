@@ -42,7 +42,7 @@ links_to_create:
     src: "{{ dotfiles_dir }}/ssh/config"
   - path: "{{ userhome }}/.gitignore_global"
     src: "{{ dotfiles_dir }}/git/gitignore_global"
-  - path: "{{ userhome }}/.tigrs"
+  - path: "{{ userhome }}/.tigrc"
     src: "{{ dotfiles_dir }}/git/tigrc"
   - path: "{{ userhome }}/.ackrc"
     src: "{{ dotfiles_dir }}/ack/ackrc"
