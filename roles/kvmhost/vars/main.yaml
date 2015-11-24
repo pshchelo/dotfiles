@@ -1,0 +1,49 @@
+devstack_vms:
+- heat
+- ironic
+
+port_forward:
+- lport: 2127
+  dhost: 192.168.100.127
+  dport: 22
+  comment: DevStack-Heat SSH
+- lport: 8127
+  dhost: 192.168.100.127
+  dport: 80
+  comment: DevStack-Heat Horizon
+- lport: 6127
+  dhost: 192.168.100.127
+  dport: 6080
+  comment: DevStack-Heat noVNC
+- lport: 7127
+  dhost: 192.168.100.127
+  dport: 6081
+  comment: DevStack-Heat xvpVNC
+- lport: 8827
+  dhost: 192.168.100.127
+  dport: 8888
+  comment: DevStack-Heat Jupyter Notebook
+- lport: 9927
+  dhost: 192.168.100.127
+  dport: 9999
+  comment: DevStack-Heat Jupyter Slides
+- lport: 2126
+  dhost: 192.168.100.126
+  dport: 22
+  comment: DevStack-Ironic SSH
+#- lport: 8888
+  #dhost: 10.108.0.2
+  #dport: 80
+  #comment: Fuel Master WebUI
+#- lport: 8182
+  #dhost: 10.108.1.2
+  #dport: 80
+  #comment: Fuel env1 Horizon
+
+outbound_access:
+- cidr: "192.168.100.0/24"
+  comment: "virsh default network"
+#- cidr: "10.108.0.0/24"
+  #comment: "Fuel admin network"
+#- cidr: "10.108.1.0/24"
+  #comment: "Fuel env1 public network"
