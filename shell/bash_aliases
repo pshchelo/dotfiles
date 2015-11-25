@@ -21,7 +21,7 @@ alias tmx='tmux -2 a || tmux -2'
 alias tb='nc termbin.com 9999'
 
 # openstack CLI as devstack user
-alias os-demo='openstack --os-cloud devstack'
+alias osdemo='openstack --os-cloud devstack'
 
 # openstack CLI as devstack admin
-alias os-admin='openstack --os-cloud devstack-admin'
+alias osadmin='openstack --os-cloud devstack-admin'
