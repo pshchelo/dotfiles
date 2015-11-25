@@ -3,22 +3,24 @@
   shell: iptables -t nat -L
   register: iptables_nat_rules
   always_run: true
+  changed_when: false
 
 - name: List IPtables rules
   become: yes
   shell: iptables -L
   register: iptables_rules
   always_run: true
+  changed_when: false
 
 - name: Set IPtables port forwarding
   become: yes
-  shell:  "iptables -t nat -I PREROUTING -p tcp -d {{ ansible_default_ipv4 }} --dport {{ item.lport }} -j DNAT --to-destination {{ item.dhost }}:{{ item.dport }} --comment {{ item.comment }}"
+  shell:  "iptables -t nat -I PREROUTING -p tcp -d {{ ansible_default_ipv4.address }} --dport {{ item.lport }} -j DNAT --to-destination {{ item.dhost }}:{{ item.dport }} -m comment --comment '{{ item.comment }}'"
   when: iptables_nat_rules.stdout.find(item.comment) == -1
   with_items: port_forwarding
 
 - name: Set IPtables outbound access from internal networks
   become: yes
-  shell:  "iptables -I FORWARD -m state -d {{ item.cidr }} --state NEW,RELATED,ESTABLISHED -j ACCEPT --comment {{ item.comment }}"
+  shell:  "iptables -I FORWARD -m state -d {{ item.cidr }} --state NEW,RELATED,ESTABLISHED -j ACCEPT -m comment --comment '{{ item.comment }}'"
   when: iptables_rules.stdout.find(item.comment) == -1
   with_items: outbound_access
 

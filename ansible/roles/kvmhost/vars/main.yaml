@@ -2,7 +2,7 @@ devstack_vms:
 - heat
 - ironic
 
-port_forward:
+port_forwarding:
 - lport: 2127
   dhost: 192.168.100.127
   dport: 22
