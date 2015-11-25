@@ -1,0 +1,4 @@
+---
+- hosts: pshchelokovskyy-pc
+  roles:
+    - kvmhost
