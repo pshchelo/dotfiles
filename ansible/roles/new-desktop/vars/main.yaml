@@ -3,7 +3,15 @@ desktop-packages:
   - vim-addon-manager
   - vim-common
   - vim-doc
-python-desktop-packages:
+system-packages-qt-ubuntu:
+  - build-essential
+  - cmake
+  - libqt4-dev
+  - libxml2-dev
+  - libxslt1-dev
+  - python-dev
+  - qtmobility-dev
+python-desktop-packages-ipynb:
   - jupyter
   - pyside
   - pygments-style-solarized

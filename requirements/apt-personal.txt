@@ -30,3 +30,4 @@ mplayer
 vlc
 git-gui
 gitk
+solaar
