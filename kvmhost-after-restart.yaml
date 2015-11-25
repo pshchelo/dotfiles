@@ -1,4 +1,4 @@
 ---
-- hosts: pshchelokovskyy-pc
+- hosts: "{{ target | default('pshchelokovskyy-pc') }}"
   roles:
     - kvmhost
