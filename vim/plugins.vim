@@ -14,7 +14,7 @@ Plug 'klen/python-mode'                                                         
 Plug 'davidhalter/jedi-vim'                                                     " Python code completion and refactoring
 Plug 'Rykka/riv.vim'                                                            " reStructured text goodies
 Plug 'kien/ctrlp.vim'                                                           " command line fuzzy file search and open
-Plug 'mileszs/ack.vim'                                                          " ack integration (www.beyondgrep.com)
+Plug 'rking/ag.vim'                                                             " ag integration (the silver searcher
 Plug 'Valloric/YouCompleteMe', { 'do': 'python install.py --clang-completer' }  " autocompletion
 "Plug 'lervag/vimtex'                                                           " (La)TeX goodies
 call plug#end()
@@ -29,6 +29,11 @@ call plug#end()
 "==========
 set background=dark
 :silent! colorscheme solarized
+
+"=====
+"Ag
+"=====
+let g:ag_working_path_mode="r"  " always start searching from project root 
 
 "=====
 "CtrlP

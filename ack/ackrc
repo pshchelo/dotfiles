@@ -1,5 +1,0 @@
---color
---ignore-dir=.tox
---type=python
---type=yaml
---type-add=al:match:.*
