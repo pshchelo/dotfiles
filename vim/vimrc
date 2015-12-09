@@ -123,6 +123,10 @@ au BufRead,BufNewFile *.yaml,*.yml match BadWhitespace /\s\+$/
 " Trim trailing whitespace on save for YAML files
 autocmd BufWritePre *.yaml,*.yml :%s/\s\+$//e
 
+" Config files
+" treat *.conf files as in dosini format
+autocmd BufRead,BufNewFile *.conf set filetype=dosini
+
 "=========
 " INCLUDES
 "=========
