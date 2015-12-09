@@ -25,3 +25,6 @@ alias osdemo='openstack --os-cloud devstack'
 
 # openstack CLI as devstack admin
 alias osadmin='openstack --os-cloud devstack-admin'
+
+# less that opens all and with terminal color control sequences
+alias lss='less -fR'
