@@ -119,6 +119,14 @@ let NERDTreeIgnore = ['\.pyc$']
 " Key to toggle NERDTree sidebar
 map <F3> :NERDTreeToggle<CR>
 
+"=============
+"NERDCommenter
+"=============
+" Use hash for comments in ini/conf files, keep ; as alternative
+let g:NERDCustomDelimiters = {
+    \ 'dosini': {'left': '#', 'leftAlt': ';'}
+    \ }
+
 "=======
 " Tagbar
 "=======
