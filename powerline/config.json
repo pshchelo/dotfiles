@@ -1,45 +1,11 @@
 {
-	"common": {
-		"term_truecolor": false
-	},
 	"ext": {
-		"ipython": {
-			"colorscheme": "default",
-			"theme": "in",
-			"local_themes": {
-				"rewrite": "rewrite",
-				"out": "out",
-				"in2": "in2"
-			}
-		},
 		"shell": {
 			"colorscheme": "solarized",
-			"theme": "bash",
-			"local_themes": {
-				"continuation": "continuation",
-				"select": "select"
-			}
+			"theme": "default_leftonly"
 		},
 		"tmux": {
-			"colorscheme": "default",
 			"theme": "tmux"
-		},
-		"vim": {
-			"colorscheme": "default",
-			"theme": "vim",
-			"local_themes": {
-				"__tabline__": "tabline",
-
-				"cmdwin": "cmdwin",
-				"help": "help",
-				"quickfix": "quickfix",
-
-				"powerline.matchers.vim.plugin.nerdtree.nerdtree": "plugin_nerdtree"
-			}
-		},
-		"wm": {
-			"colorscheme": "default",
-			"theme": "default"
 		}
 	}
 }

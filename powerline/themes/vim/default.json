@@ -1,0 +1,9 @@
+{
+        "segment_data": {
+                "branch": {
+                        "args": {
+                                "status_colors": true
+                        }
+                }
+        }
+}

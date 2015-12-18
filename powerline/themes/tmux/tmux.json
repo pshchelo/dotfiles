@@ -20,7 +20,7 @@
 				"function": "powerline.segments.common.net.hostname"
 			},
                         {
-                            "function": "powerline.segments.common.bat.battery"
+                                "function": "powerline.segments.common.bat.battery"
                         }
 		]
 	}
