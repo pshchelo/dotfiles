@@ -1,5 +1,6 @@
 ubuntu_packages:
   - build-essential
+  - python-doc
   - python-dev
   - python3-dev
   - htop
