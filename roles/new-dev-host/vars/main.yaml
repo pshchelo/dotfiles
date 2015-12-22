@@ -9,6 +9,13 @@ ubuntu_packages:
   - wajig
   - ttf-anonymous-pro
   - git
+  - git-doc
+  - curl
+  - wget
+  - vim
+  - vim-runtime
+  - patch
+  - tmux
 
 global_python:
   - ipython
