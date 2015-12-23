@@ -4,10 +4,14 @@ heat
 ironic
 devstack
 
-[dsvms]
+[dsvms-all]
 heat
 ironic
 devstack
+
+[dsvms]
+heat
+ironic
 
 [kvms]
 pshchelokovskyy-pc
