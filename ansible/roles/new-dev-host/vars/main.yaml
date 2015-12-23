@@ -1,5 +1,8 @@
 ubuntu_packages:
+  - acpid
+  - bash-completion
   - build-essential
+  - man-db
   - python-doc
   - python-dev
   - python3-dev
@@ -17,6 +20,8 @@ ubuntu_packages:
   - vim-runtime
   - patch
   - tmux
+  - apt-file
+  - uuid-runtime
 
 global_python:
   - ipython
