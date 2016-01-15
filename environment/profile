@@ -19,4 +19,4 @@ fi
 # set vim/gvim as default editor
 export EDITOR="vim"
 export VISUAL="gvim"
-export VIEWER="vim"
+export VIEWER="vim -R"
