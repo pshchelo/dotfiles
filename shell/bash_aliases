@@ -25,3 +25,5 @@ alias osadmin='openstack --os-cloud devstack-admin'
 
 # less that opens all and with terminal color control sequences
 alias lss='less -fR'
+
+alias tmx='TERM=xterm-256color tmux -2'
