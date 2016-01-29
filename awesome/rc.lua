@@ -377,18 +377,23 @@ awful.rules.rules = {
       properties = { floating = true } },
     { rule = { class = "gimp" },
       properties = { floating = true } },
-    { rule = { class = "Hexchat" },
-      properties = { tag = tags[1][4] } }, -- chat
     { rule = { class = "Steam" },
       properties = { tag = tags[1][7] } }, -- game
     { rule = { class = "google-chrome", role = "browser" },
       properties = { tag = tags[1][2] } }, -- www
+    { rule = { class = "Firefox" },
+      properties = { tag = tags[1][2] } }, -- www
     { rule = { class = "google-chrome",
-               role = "pop-up" },
-      properties = { tag = tags[1][3] } }, -- mail, too broad for now
--- window instance is crx_pkclgpgponpjmpfokoepglboejdobkpl at home
-
-}
+               role = "pop-up",
+               instance = "crx_pkclgpgponpjmpfokoepglboejdobkpl" }, -- Inbox chrome app
+      properties = { tag = tags[1][3] } }, -- mail
+    { rule = { class = "google-chrome",
+               role = "pop-up",
+               instance = "crx_jeogkiiogjbmhklcnbgkdcjoioegiknm" }, -- Slack chrome app
+      properties = { tag = tags[1][4] } }, -- chat
+    { rule = { class = "Hexchat" },
+      properties = { tag = tags[1][4] } }, -- chat
+  }
 -- }}}
 
 -- {{{ Signals
