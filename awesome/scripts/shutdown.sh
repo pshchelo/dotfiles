@@ -1,4 +1,4 @@
-#!/bin/sh
+#!/usr/bin/env bash
 
 ACTION=`zenity --width=90 --height=200 --list --radiolist --text="Select logout action" --title="Logout" --column "Choice" --column "Action" TRUE LockScreen FALSE Suspend FALSE Reboot FALSE Shutdown`
 
@@ -27,8 +27,8 @@ if [ -n "${ACTION}" ];then
     # for lightdm lock screen `dm-tool lock` does not work
     # (due to bug #NNNNNN in dm-tool that not actually locks the screen)
     # thus use switch to greeter (looks like it locks with xdg-screensaver automatically)
-    # dm-tool switch-to-greeter
-    dbus-send --type=method_call --dest=org.gnome.ScreenSaver /org/gnome/ScreenSaver org.gnome.ScreenSaver.Lock
+    dm-tool switch-to-greeter
+    #dbus-send --type=method_call --dest=org.gnome.ScreenSaver /org/gnome/ScreenSaver org.gnome.ScreenSaver.Lock
     ;;
   esac
 fi
