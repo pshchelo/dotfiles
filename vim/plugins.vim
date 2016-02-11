@@ -53,7 +53,8 @@ let g:jedi#completions_enabled = 0
 " 1 - pop-up (easier to refer to)
 " 2 - vim's command line (nicer undo history)
 let g:jedi#show_call_signatures = "1"
-
+" Use tabs for go-to commands
+let g:jedi#use_tabs_not_buffers = 1
 "============
 " Python-mode
 "============
