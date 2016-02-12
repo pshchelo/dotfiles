@@ -151,7 +151,7 @@ stty -ixon
 set -o vi
 
 # Enable Powerline
-if [ $(type powerline-daemon >/dev/null 2>&1) ]; then
+if [ `builtin type -p powerline-daemon` ]; then
     powerline-daemon -q
     POWERLINE_BASH_CONTINUATION=1
     POWERLINE_BASH_SELECT=1
