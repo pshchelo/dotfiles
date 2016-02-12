@@ -151,14 +151,16 @@ stty -ixon
 set -o vi
 
 # Enable Powerline
-powerline-daemon -q
-POWERLINE_BASH_CONTINUATION=1
-POWERLINE_BASH_SELECT=1
-# Disable powerline shell prompt for localhost ssh logins
-self_tty=$(tty)
-host_from=`w | grep ${self_tty:5} | awk '{print $3}'`
-case $host_from in
-    "localhost"|"::1"|"127.0.0.1")
-        export POWERLINE_NO_SHELL_PROMPT="true" ;;
-esac 
-. $HOME/.local/lib/python2.7/site-packages/powerline/bindings/bash/powerline.sh
+if [ $(type powerline-daemon >/dev/null 2>&1) ]; then
+    powerline-daemon -q
+    POWERLINE_BASH_CONTINUATION=1
+    POWERLINE_BASH_SELECT=1
+    # Disable powerline shell prompt for localhost ssh logins
+    self_tty=$(tty)
+    host_from=`w | grep ${self_tty:5} | awk '{print $3}'`
+    case $host_from in
+        "localhost"|"::1"|"127.0.0.1")
+            export POWERLINE_NO_SHELL_PROMPT="true" ;;
+    esac 
+    source $HOME/.local/lib/python2.7/site-packages/powerline/bindings/bash/powerline.sh
+fi
