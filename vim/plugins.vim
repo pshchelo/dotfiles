@@ -16,7 +16,7 @@ Plug 'Rykka/riv.vim'                                                            
 Plug 'kien/ctrlp.vim'                                                           " command line fuzzy file search and open
 Plug 'rking/ag.vim'                                                             " ag integration (the silver searcher
 Plug 'Valloric/YouCompleteMe', { 'do': 'python install.py --clang-completer' }  " autocompletion
-Plug 'fholgado/minibufexpl.vim'                                                 " simple buffer explorer
+"Plug 'fholgado/minibufexpl.vim'                                                 " simple buffer explorer
 "Plug 'lervag/vimtex'                                                           " (La)TeX goodies
 call plug#end()
 
