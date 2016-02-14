@@ -18,12 +18,7 @@ Host 172.24.4.*
     UserKnownHostsFile /dev/null
     LogLevel QUIET
 
-# My DevStack+Heat at work via tunnel
-Host heat
+# My DevStack/Controller at work via tunnel
+Host workstack
     HostName pshchelokovskyy-pc
-    Port 2127
-
-# My DevStacack+Ironic at work via tunnel
-Host ironic
-    HostName pshchelokovskyy-pc
-    Port 2126
+    Port 2221
