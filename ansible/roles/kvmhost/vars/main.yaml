@@ -3,11 +3,11 @@ devstack_vms:
 - ironic
 
 port_forwarding:
-- lport: 2127
+- lport: 2211
   dhost: 192.168.100.11
   dport: 22
   comment: DevStack-Heat SSH
-- lport: 8127
+- lport: 8011
   dhost: 192.168.100.11
   dport: 80
   comment: DevStack-Heat Horizon
@@ -19,15 +19,15 @@ port_forwarding:
   dhost: 192.168.100.11
   dport: 6081
   comment: DevStack-Heat xvpVNC
-- lport: 8827
+- lport: 8811
   dhost: 192.168.100.11
   dport: 8888
   comment: DevStack-Heat Jupyter Notebook
-- lport: 9927
+- lport: 9911
   dhost: 192.168.100.11
   dport: 9999
   comment: DevStack-Heat Jupyter Slides
-- lport: 2126
+- lport: 2212
   dhost: 192.168.100.12
   dport: 22
   comment: DevStack-Ironic SSH
