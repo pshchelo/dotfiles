@@ -1,36 +1,40 @@
 devstack_vms:
-- devstack
-- devstack-compute
+- heat
+- ironic
 
 port_forwarding:
-- lport: 2221
+- lport: 2127
   dhost: 192.168.100.11
   dport: 22
-  comment: DevStack SSH
-- lport: 8081
+  comment: DevStack-Heat SSH
+- lport: 8127
   dhost: 192.168.100.11
   dport: 80
-  comment: DevStack Horizon
+  comment: DevStack-Heat Horizon
 - lport: 611
   dhost: 192.168.100.11
   dport: 6080
-  comment: DevStack noVNC
+  comment: DevStack-Heat noVNC
 - lport: 711
   dhost: 192.168.100.11
   dport: 6081
-  comment: DevStack xvpVNC
-- lport: 8881
+  comment: DevStack-Heat xvpVNC
+- lport: 8827
   dhost: 192.168.100.11
   dport: 8888
-  comment: DevStack Jupyter Notebook
-- lport: 9991
+  comment: DevStack-Heat Jupyter Notebook
+- lport: 9927
   dhost: 192.168.100.11
   dport: 9999
-  comment: DevStack Jupyter Slides
-- lport: 8888
-  dhost: 10.108.0.2
-  dport: 80
-  comment: Fuel Master WebUI
+  comment: DevStack-Heat Jupyter Slides
+- lport: 2126
+  dhost: 192.168.100.12
+  dport: 22
+  comment: DevStack-Ironic SSH
+#- lport: 8888
+  #dhost: 10.108.0.2
+  #dport: 80
+  #comment: Fuel Master WebUI
 #- lport: 8182
   #dhost: 10.108.1.2
   #dport: 80
