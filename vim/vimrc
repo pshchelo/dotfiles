@@ -83,6 +83,8 @@ set t_Co=16
 set clipboard=unnamedplus
 set mouse=a
 set mousemodel=popup_setpos
+" Always show status line
+set laststatus=2 
 
 " Use the below highlight group when displaying bad whitespace is desired.
 highlight BadWhitespace ctermbg=red guibg=red

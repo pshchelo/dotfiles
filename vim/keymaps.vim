@@ -49,3 +49,8 @@ nnoremap <Leader>zz :let &scrolloff=999-&scrolloff<CR>:echo "scrolloff toggled"<
 " make vim understand commands without leaving russian keyboard layout
 "set langmap=!\\"№\\;%?*ёйцукенгшщзхъфывапролджэячсмитьбюЁЙЦУКЕHГШЩЗХЪФЫВАПРОЛДЖЭЯЧСМИТЬБЮ;!@#$%&*`qwertyuiop[]asdfghjkl\\;'zxcvbnm\\,.~QWERTYUIOP{}ASDFGHJKL:\\"ZXCVBNM<>
 
+" USEFUL UNICODE SYMBOLS
+" check marks/crosses ✅ ✓ ✔ ✗ ✘ 🗴 🗶 🗸
+" more ⚠ ♨ ⚡ ⌥ ⌦ ⎇ 🗲
+" Powerline symbols (from private Unicode space) 
+"       

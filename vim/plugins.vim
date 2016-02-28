@@ -2,7 +2,6 @@
 " Plug
 "=====
 call plug#begin()
-"Plug 'tpope/vim-sensible'                                                      " opinionated 'sensible' defaults for Vim
 Plug 'moll/vim-bbye'                                                            " close files instead of closing views
 Plug 'tpope/vim-fugitive'                                                       " Git integration
 Plug 'scrooloose/nerdcommenter'                                                 " nicer (un)comment commands
@@ -16,8 +15,11 @@ Plug 'Rykka/riv.vim'                                                            
 Plug 'kien/ctrlp.vim'                                                           " command line fuzzy file search and open
 Plug 'rking/ag.vim'                                                             " ag integration (the silver searcher
 Plug 'Valloric/YouCompleteMe', { 'do': 'python install.py --clang-completer' }  " autocompletion
+Plug 'vim-airline/vim-airline'
+Plug 'vim-airline/vim-airline-themes'
 "Plug 'fholgado/minibufexpl.vim'                                                 " simple buffer explorer
-"Plug 'lervag/vimtex'                                                           " (La)TeX goodies
+"Plug 'lervag/vimtex'                                                            " (La)TeX goodies
+"Plug 'tpope/vim-sensible'                                                       " opinionated 'sensible' defaults for Vim
 call plug#end()
 
 " FIXME - Vundle leftovers, need to test if I need them back or not
@@ -151,7 +153,14 @@ let g:riv_highlight_code = 'python'
 "==========
 " Powerline
 "==========
-set laststatus=2
-python from powerline.vim import setup as powerline_setup
-python powerline_setup()
-python del powerline_setup
+"python from powerline.vim import setup as powerline_setup
+"python powerline_setup()
+"python del powerline_setup
+
+"========
+" Airline
+"========
+let g:airline_powerline_fonts = 1
+let g:airline_theme='powerlineish'
+let g:airline#extensions#whitespace#enabled = 0
+let g:airline#extensions#tabline#enabled = 0
