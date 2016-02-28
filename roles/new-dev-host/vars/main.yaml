@@ -27,10 +27,6 @@ global_python:
   - ipython
   - ipdb
   - virtualenvwrapper
-  #- jedi
-
-user_python:
-  - powerline-status
   - git-review
 
 files_to_backup:
@@ -67,5 +63,3 @@ links_to_create:
     src: "{{ dotfiles_dir }}/scripts/ppclean"
   - path: "{{ userhome }}/.local/bin/dtestr"
     src: "{{ dotfiles_dir }}/scripts/dtestr"
-  - path: "{{ userhome }}/.config/powerline"
-    src: "{{ dotfiles_dir }}/powerline"

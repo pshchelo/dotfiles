@@ -16,12 +16,6 @@
     name: "{{ item }}"
   with_items: global_python
 
-- name: install python packages in userspace
-  pip:
-    name: "{{ item }}"
-    extra_args: --user
-  with_items: user_python
-
 - name: create dotfiles by cloning
   git:
     repo: git@github.com:{{ username }}/dotfiles.git
