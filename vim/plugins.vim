@@ -18,6 +18,7 @@ Plug 'Valloric/YouCompleteMe', { 'do': 'python install.py --clang-completer' }  
 Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
 Plug 'edkolev/tmuxline.vim'
+Plug 'edkolev/promptline.vim'
 "Plug 'fholgado/minibufexpl.vim'                                                 " simple buffer explorer
 "Plug 'lervag/vimtex'                                                            " (La)TeX goodies
 "Plug 'tpope/vim-sensible'                                                       " opinionated 'sensible' defaults for Vim
@@ -113,7 +114,7 @@ let g:syntastic_aggregate_errors=1
 " Use flake8 as a sole checker for Python files
 " Available are pep8,pep257,pyflakes,pylint,py3kwarn,python,flake8,pylama
 let g:syntastic_python_checkers = ['flake8']
-
+ 
 "=========
 " NERDTree
 "=========
@@ -164,5 +165,20 @@ let g:riv_highlight_code = 'python'
 let g:airline_powerline_fonts = 1
 let g:airline_theme='powerlineish'
 let g:airline#extensions#tmuxline#enabled = 0
+let g:airline#extensions#promptline#enabled = 0
 let g:airline#extensions#whitespace#enabled = 0
 let g:airline#extensions#tabline#enabled = 0
+"
+"===========
+" Promptline
+"===========
+"
+let g:promptline_theme = 'powerlineclone'
+let g:promptline_preset = {
+        \'a' : [ promptline#slices#host() ],
+        \'b' : [ promptline#slices#user() ],
+        \'c' : [ promptline#slices#python_virtualenv() ],
+        \'x' : [ promptline#slices#vcs_branch(), promptline#slices#git_status(), ],
+        \'y' : [ promptline#slices#cwd({ 'dir_limit':2 }) ],
+        \'z' : [ promptline#slices#jobs() ],
+        \'warn' : [ promptline#slices#last_exit_code() ]}
