@@ -10,7 +10,6 @@ ubuntu_packages:
   - mc
   - exuberant-ctags
   - cmake
-  - wajig
   - ttf-anonymous-pro
   - git
   - git-doc
