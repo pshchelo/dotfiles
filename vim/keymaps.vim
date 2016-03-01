@@ -21,6 +21,15 @@ nmap <Leader>s :setlocal spell! spelllang=en_us<CR>
 " Toggle vertical centring of the cursor
 nnoremap <Leader>zz :let &scrolloff=999-&scrolloff<CR>:echo "scrolloff toggled"<CR>
 
+" Neocomplete
+" <CR>: close popup
+inoremap <silent> <CR> <C-r>=<SID>my_cr_function()<CR>
+function! s:my_cr_function()
+  return pumvisible() ? "\<C-y>" : "\<CR>"
+endfunction
+" <TAB>: completion.
+inoremap <expr><TAB>  pumvisible() ? "\<C-n>" : "\<TAB>"
+
 " disable arrow keys to force working with standard HJKL movement keys
 "map <up> <nop>
 "map <down> <nop>

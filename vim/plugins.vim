@@ -14,8 +14,7 @@ Plug 'davidhalter/jedi-vim'                                                     
 Plug 'Rykka/riv.vim'                                                            " reStructured text goodies
 Plug 'ctrlpvim/ctrlp.vim'                                                       " command line fuzzy file search and open
 Plug 'rking/ag.vim'                                                             " ag integration (the silver searcher
-Plug 'Valloric/YouCompleteMe', { 'do': 'python install.py' }                    " autocompletion (Python and other commons)
-"Plug 'Valloric/YouCompleteMe', { 'do': 'python install.py --clang-completer' }  " autocompletion with C-like languages enabled
+Plug 'Shougo/neocomplete'
 Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
 Plug 'edkolev/tmuxline.vim'
@@ -49,17 +48,43 @@ let g:ctrlp_cmd = 'CtrlPMixed'
 "=====
 " Jedi
 "=====
+" Do not use Jedi for autocompletion (using neocomplete for that)
+let g:jedi#completions_enabled = 0
+let g:jedi#auto_vim_configuration = 0
+let g:jedi#smart_auto_mappings = 0
 " Change default binding of jedi's rename command
 let g:jedi#rename_command = "<leader>rn"
-" Do not use Jedi for autocompletion (using YCM for that)
-let g:jedi#completions_enabled = 0
 " Set function call signatures display
 " 0 - turned off
 " 1 - pop-up (easier to refer to)
 " 2 - vim's command line (nicer undo history)
-let g:jedi#show_call_signatures = "1"
+let g:jedi#show_call_signatures = 1
 " Use tabs for go-to commands
 let g:jedi#use_tabs_not_buffers = 1
+
+"============
+" Neocomplete
+"============
+" Use neocomplete.
+let g:neocomplete#enable_at_startup = 1
+" Use smartcase.
+let g:neocomplete#enable_smart_case = 1
+" Set minimum syntax keyword length.
+let g:neocomplete#sources#syntax#min_keyword_length = 3
+let g:neocomplete#lock_buffer_name_pattern = '\*ku\*'
+" Python / jedi-vim completion
+autocmd FileType python setlocal omnifunc=jedi#completions
+if !exists('g:neocomplete#force_omni_input_patterns')
+    let g:neocomplete#force_omni_input_patterns = {}
+endif
+let g:neocomplete#force_omni_input_patterns.python = '\%([^. \t]\.\|^\s*@\|^\s*from\s.\+import \|^\s*from \|^\s*import \)\w*'
+" Other completions (builtin)
+autocmd FileType css setlocal omnifunc=csscomplete#CompleteCSS
+autocmd FileType html,markdown setlocal omnifunc=htmlcomplete#CompleteTags
+autocmd FileType javascript setlocal omnifunc=javascriptcomplete#CompleteJS
+autocmd FileType xml setlocal omnifunc=xmlcomplete#CompleteTags
+" Key-mappings are in keymaps.vim
+
 "============
 " Python-mode
 "============
@@ -129,7 +154,7 @@ map <F3> :NERDTreeToggle<CR>
 "=============
 "NERDCommenter
 "=============
-" Use hash for comments in ini/conf files, keep ; as alternative
+" Use octothorpe for comments in ini/conf files, keep ; as alternative
 let g:NERDCustomDelimiters = {
     \ 'dosini': {'left': '#', 'leftAlt': ';'}
     \ }
@@ -152,13 +177,6 @@ let g:riv_temp_path = 0  " the same dir as source
 let g:riv_python_rst_hl = 1
 " use this highlighting (otherwise interferes? with python highlighting)
 let g:riv_highlight_code = 'python'
-
-"==========
-" Powerline
-"==========
-"python from powerline.vim import setup as powerline_setup
-"python powerline_setup()
-"python del powerline_setup
 
 "========
 " Airline
