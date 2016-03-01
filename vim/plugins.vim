@@ -12,7 +12,7 @@ Plug 'majutsushi/tagbar'                                                        
 Plug 'klen/python-mode'                                                         " Python goodies
 Plug 'davidhalter/jedi-vim'                                                     " Python code completion and refactoring
 Plug 'Rykka/riv.vim'                                                            " reStructured text goodies
-Plug 'kien/ctrlp.vim'                                                           " command line fuzzy file search and open
+Plug 'ctrlpvim/ctrlp.vim'                                                       " command line fuzzy file search and open
 Plug 'rking/ag.vim'                                                             " ag integration (the silver searcher
 Plug 'Valloric/YouCompleteMe', { 'do': 'python install.py' }                    " autocompletion (Python and other commons)
 "Plug 'Valloric/YouCompleteMe', { 'do': 'python install.py --clang-completer' }  " autocompletion with C-like languages enabled
