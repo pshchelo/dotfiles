@@ -15,8 +15,7 @@ ubuntu_packages:
   - git-doc
   - curl
   - wget
-  - vim
-  - vim-runtime
+  - vim-nox
   - patch
   - tmux
   - apt-file
