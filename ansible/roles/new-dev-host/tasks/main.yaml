@@ -2,7 +2,7 @@
   become: true
   apt:
     pkg: "{{ item }}"
-  with_items: ubuntu_packages
+  with_items: "{{ ubuntu_packages }}"
 
 - name: install latest pip
   become: true
@@ -14,7 +14,7 @@
   become: true
   pip:
     name: "{{ item }}"
-  with_items: global_python
+  with_items: "{{ global_python }}"
 
 - name: create dotfiles by cloning
   git:
@@ -29,20 +29,20 @@
   args:
     creates: "{{ item }}.orig"
     removes: "{{ item }}"
-  with_items: files_to_backup
+  with_items: "{{ files_to_backup }}"
 
 - name: create some folders
   file:
     path: "{{ item }}"
     state: directory
-  with_items: dirs_to_create
+  with_items: "{{ dirs_to_create }}"
 
 - name: make links
   file:
     path: "{{ item.path }}"
     src: "{{ item.src }}"
     state: link
-  with_items: links_to_create
+  with_items: "{{ links_to_create }}"
 
 - name: make dir for vim-plug
   file:

@@ -1,17 +1,17 @@
 #- name: install system packages
   #become: yes
   #apt:
-  #with_items: desktop-packages
+  #with_items: "{{ desktop-packages }}"
 
 #- name: install Qt/PySide/PyQt dependencies
   #become: yes
   #apt:
-  #with_items: qt-packages
+  #with_items: "{{ qt-packages }}"
 
 #- name: install extra Python packages
   #become: yes
   #pip:
-  #with_items: python-desktop-packages
+  #with_items: "{{ python-desktop-packages }}"
 
 #- name: setup Solarized for Gnome terminal
 
