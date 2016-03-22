@@ -10,7 +10,7 @@
     src: "{{item.path}}"
     dest: "{{item.path}}"
     mode: "{{item.mode}}"
-  with_items: ssh_keys
+  with_items: "{{ ssh_keys }}"
 
 - name: safe upgrade packages
   become: yes
