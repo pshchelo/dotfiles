@@ -27,3 +27,7 @@ Host heat
 Host ironic
     HostName pshchelokovskyy-pc
     Port 2212
+
+Host mos-ironic
+    HostName mos-ironic.vm.mirantis.net
+    User pshchelokovskyy
