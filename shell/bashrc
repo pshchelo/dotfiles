@@ -142,7 +142,7 @@ fi
 DOTFILES=${HOME}/dotfiles
 
 # solarized scheme for Midnight Commander
-export MC_SKIN=${DOTFILES}/colors/mc-solarized-peel.ini
+export MC_SKIN=${DOTFILES}/colors/mc-solarized.ini
 
 # Enable tig bash completion
 . ${DOTFILES}/git/tig-completion.bash
