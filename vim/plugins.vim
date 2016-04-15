@@ -193,7 +193,7 @@ let g:airline#extensions#tabline#enabled = 0
 "===========
 "
 let g:promptline_theme = 'powerlineclone'
-let g:promptline_preset = {
+:silent! let g:promptline_preset = {
         \'a' : [ promptline#slices#host() ],
         \'b' : [ promptline#slices#user() ],
         \'c' : [ promptline#slices#python_virtualenv() ],
