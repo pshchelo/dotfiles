@@ -1,0 +1,3 @@
+- name: install Python on Ubuntu
+  become: true
+  raw: apt-get -y install python

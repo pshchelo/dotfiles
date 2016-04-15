@@ -10,13 +10,13 @@ Roles defined so far (WIP):
 common
   some common variables
 
-new-remote
+remote
   bootstraps a new remote machine, similar to ``ssh-copy-id``
 
-new-vm
+vm
   bootstraps a new vm, makes password-less sudoer and puts ssh keys
 
-new-dev-host
+devhost
   setups development environment to my liking, using this very repo
 
 desktop
@@ -32,6 +32,8 @@ Examples
 (after setting up the networking on the VM and the Ansible inventory
 accordingly)::
 
-    ansible-playbook new-devstack.yaml -k --ask-become-pass
+    ansible-playbook bootstrap.yaml -k --ask-become-pass \
+        --skip-tags=desktop \
+        -e target=devstack
     ansible devstack -m hostname --args name=devstack
     ansible devstack -a "/sbin/reboot" -b
