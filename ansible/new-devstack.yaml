@@ -1,8 +1,0 @@
----
-- hosts: "{{ target | default('devstack') }}"
-  roles:
-    - common
-    - new-remote
-    - new-vm
-    - new-dev-host
-    - new-devstack

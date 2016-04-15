@@ -33,6 +33,7 @@ files_to_backup:
 
 dirs_to_create:
   - "{{ userhome }}/.config"
+  - "{{ userhome }}/.local/bin"
 
 links_to_create:
   - path: "{{ userhome }}/.bashrc"
