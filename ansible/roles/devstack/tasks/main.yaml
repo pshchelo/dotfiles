@@ -24,12 +24,12 @@
     dest: "{{ stackdev_dir }}"
 
 - name: create stub for DevStack's local.conf
-  shell: cp {{ stackdev_dir }}/local.conf.sample {{ devstack_dir }}/devstack/local.conf
+  command: cp {{ stackdev_dir }}/conf/local.conf.sample {{ devstack_dir }}/devstack/local.conf
   args:
     creates: "{{ devstack_dir }}/devstack/local.conf"
 
 - name: make a link to local.sh file for DevStack
   file:
     path: "{{ devstack_dir }}/devstack/local.sh"
-    src: "{{ stackdev_dir }}/local.sh"
+    src: "{{ stackdev_dir }}/conf/local.sh"
     state: link
