@@ -19,7 +19,7 @@ Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
 Plug 'edkolev/tmuxline.vim'
 Plug 'edkolev/promptline.vim'
-"Plug 'fholgado/minibufexpl.vim'                                                 " simple buffer explorer
+Plug 'Konfekt/FastFold'
 "Plug 'lervag/vimtex'                                                            " (La)TeX goodies
 "Plug 'tpope/vim-sensible'                                                       " opinionated 'sensible' defaults for Vim
 call plug#end()
