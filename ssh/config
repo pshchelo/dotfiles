@@ -13,14 +13,25 @@ Host 192.168.100.* 192.168.122.* 10.0.*.* 172.24.4.*
     UserKnownHostsFile /dev/null
     LogLevel QUIET
 
+Host swthm
+    HostName 192.168.1.11
+
+Host devstack
+    HostName 192.168.122.127
+
+Host pshchelokovskyy-pc
+    HostName pshchelokovskyy-pc.kha.mirantis.net
+
 # My DevStack+Heat at work via tunnel
 Host heat
     HostName pshchelokovskyy-pc
+    HostKeyAlias heat
     Port 2211
 
 # My DevStacack+Ironic at work via tunnel
 Host ironic
     HostName pshchelokovskyy-pc
+    HostKeyAlias ironic
     Port 2212
 
 Host mos-ironic
