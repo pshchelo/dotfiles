@@ -3,6 +3,7 @@ pshchelokovskyy-pc
 heat
 ironic
 devstack
+xenial ansible_host=192.168.122.126
 
 [dsvms-all]
 heat
@@ -15,3 +16,6 @@ ironic
 
 [kvms]
 pshchelokovskyy-pc
+
+[vms]
+xenial
