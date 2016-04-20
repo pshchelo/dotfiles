@@ -4,18 +4,17 @@ heat
 ironic
 devstack
 xenial ansible_host=192.168.122.126
-
-[dsvms-all]
-heat
-ironic
-devstack
+trusty ansible_host=192.168.100.10
 
 [dsvms]
 heat
 ironic
+devstack
 
-[kvms]
+[hypervisors]
 pshchelokovskyy-pc
 
-[vms]
+[local-vms]
+devstack
+trusty 
 xenial
