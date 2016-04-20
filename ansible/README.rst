@@ -14,7 +14,8 @@ remote
   bootstraps a new remote machine, similar to ``ssh-copy-id``
 
 vm
-  bootstraps a new vm, makes password-less sudoer and puts ssh keys
+  bootstraps a new vm, makes password-less sudoer puts private ssh keys,
+  updates packages
 
 devhost
   setups development environment to my liking, using this very repo
@@ -28,12 +29,10 @@ devstack
 Examples
 ========
 
-(As of now) setup a new DevStack VM
-(after setting up the networking on the VM and the Ansible inventory
-accordingly)::
+- setup a new VM ready to deploy DevStack
+  (after setting up the user and networking on the VM and the Ansible inventory
+  accordingly)::
 
-    ansible-playbook bootstrap.yaml -k --ask-become-pass \
-        --skip-tags=desktop \
-        -e target=devstack
-    ansible devstack -m hostname --args name=devstack
+    ansible-playbook devstack.yaml -k --ask-become-pass
+    ansible devstack -m hostname --args name=devstack -b
     ansible devstack -a "/sbin/reboot" -b
