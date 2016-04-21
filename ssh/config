@@ -17,7 +17,7 @@ Host swthm
     HostName 192.168.1.11
 
 Host devstack
-    HostName 192.168.122.127
+    HostName 192.168.100.127
 
 Host pshchelokovskyy-pc
     HostName pshchelokovskyy-pc.kha.mirantis.net
