@@ -15,7 +15,7 @@
 
 - name: get latest DevStack
   git:
-    repo: https://git.openstack.org/openstack-dev/devstack.git
+    repo: git://git.openstack.org/openstack-dev/devstack.git
     dest: "{{ devstack_dir }}/devstack"
 
 - name: get my stackdev repo
