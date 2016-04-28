@@ -33,8 +33,3 @@ Host 192.168.100.* 192.168.122.* 10.0.*.* 172.24.4.*
     StrictHostKeyChecking no
     UserKnownHostsFile /dev/null
     LogLevel QUIET
-
-Host *
-    # Use shared mode for all connections
-    ControlMaster auto
-    ControlPath ~/.ssh/master-%r@%h:%p
