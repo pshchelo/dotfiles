@@ -5,23 +5,22 @@ Host swthm
     HostName 192.168.1.11
 
 Host devstack
-    HostName 192.168.100.127
+    HostName 192.168.100.10
 
 Host kvm-work
-    Port 22
-
-# My DevStack+Heat at work via tunnel
-Host heat-work
-    HostKeyAlias heat
-    Port 2211
-
-# My DevStacack+Ironic at work via tunnel
-Host ironic-work
-    HostKeyAlias ironic
-    Port 2212
-
-Host *-work
     HostName pshchelokovskyy-pc.kha.mirantis.net
+
+Host heat-vm-work
+    HostName 192.168.100.11
+
+Host ironic-vm-work
+    HostName 192.168.100.12
+
+Host xenial-vm-work
+    HostName 192.168.100.126
+
+Host *-vm-work
+    ProxyCommand ssh -W %h:%p kvm-work
 
 Host mos-ironic
     HostName mos-ironic.vm.mirantis.net
