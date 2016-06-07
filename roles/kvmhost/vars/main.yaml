@@ -3,10 +3,6 @@ devstack_vms:
 - ironic
 
 port_forwarding:
-- lport: 2211
-  dhost: 192.168.100.11
-  dport: 22
-  comment: DevStack-Heat SSH
 - lport: 8011
   dhost: 192.168.100.11
   dport: 80
@@ -27,10 +23,6 @@ port_forwarding:
   dhost: 192.168.100.11
   dport: 9999
   comment: DevStack-Heat Jupyter Slides
-- lport: 2212
-  dhost: 192.168.100.12
-  dport: 22
-  comment: DevStack-Ironic SSH
 - lport: 8812
   dhost: 192.168.100.12
   dport: 8888
