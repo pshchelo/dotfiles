@@ -1,4 +1,4 @@
-localhost ansible_connection=local
+self ansible_connection=local
 kvm-work
 heat-vm-work
 ironic-vm-work
@@ -6,6 +6,7 @@ xenial-vm-work
 devstack
 xenial ansible_host=192.168.100.126
 trusty ansible_host=192.168.100.125
+irsible ansible_host=192.168.100.13 ansible_user=tc ansible_ssh_private_key_file=/media/shared/vms/kernels/irsible/irsible_key
 
 [dsvms]
 heat-vm-work
@@ -19,3 +20,4 @@ kvm-work
 devstack
 trusty 
 xenial
+irsible
