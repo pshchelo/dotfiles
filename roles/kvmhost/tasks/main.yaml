@@ -1,24 +1,9 @@
-- name: List IPtables NAT rules
-  become: yes
-  shell: iptables -t nat -L
-  register: iptables_nat_rules
-  always_run: true
-  changed_when: false
-  tags: iptables
-
 - name: List IPtables rules
   become: yes
   shell: iptables -L
   register: iptables_rules
   always_run: true
   changed_when: false
-  tags: iptables
-
-- name: Set IPtables port forwarding
-  become: yes
-  shell:  "iptables -t nat -I PREROUTING -p tcp -d {{ ansible_default_ipv4.address }} --dport {{ item.lport }} -j DNAT --to-destination {{ item.dhost }}:{{ item.dport }} -m comment --comment '{{ item.comment }}'"
-  when: iptables_nat_rules.stdout.find(item.comment) == -1
-  with_items: "{{ port_forwarding }}"
   tags: iptables
 
 - name: Set IPtables outbound access from internal networks
