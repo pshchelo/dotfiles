@@ -12,9 +12,11 @@ Host kvm-work
 
 Host heat-vm-work
     HostName 192.168.100.11
+    DynamicForward 10011
 
 Host ironic-vm-work
     HostName 192.168.100.12
+    DynamicForward 10012
 
 Host xenial-vm-work
     HostName 192.168.100.126
