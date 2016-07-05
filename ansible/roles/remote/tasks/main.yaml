@@ -1,4 +1,0 @@
-- name: set authorized SSH key
-  authorized_key:
-    user: "{{ username }}"
-    key: https://github.com/{{ username }}.keys

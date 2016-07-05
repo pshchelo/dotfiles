@@ -1,7 +1,0 @@
----
-- hosts: "{{ target }}"
-  gaher_facts: false
-  roles:
-    - bootstrap
-
-

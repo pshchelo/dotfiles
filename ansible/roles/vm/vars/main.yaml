@@ -1,6 +1,0 @@
-ssh_keys:
-  - path: "{{ userhome }}/.ssh/git_rsa"
-    mode: "0400"
-  - path: "{{ userhome }}/.ssh/git_rsa.pub"
-    mode: "0644"
-

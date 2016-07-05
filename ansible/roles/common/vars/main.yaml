@@ -1,4 +1,0 @@
-username: pshchelo
-userhome: /home/{{ username }}
-useremail: pshchelokovskyy@mirantis.com
-dotfiles_dir: "{{ userhome }}/dotfiles"
