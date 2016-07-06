@@ -7,7 +7,7 @@
   replace:
     dest: "{{ userhome }}/.gitconfig"
     regexp: "email = .*$"
-    replace: "email = {{ usermail }}"
+    replace: "email = {{ useremail }}"
 
 - name: create a stack folder
   become: yes
