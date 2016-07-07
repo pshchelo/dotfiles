@@ -1,0 +1,18 @@
+# README:
+# #sudo systemctl --user daemon-reload
+# systemctl --user enable jupyter
+# systemctl start jupyter
+# jupyter container must already exist
+# If you don't want anything fancy, go to http://127.0.0.1:8888 to see your notebook
+# whenever you want it
+
+[Unit]
+Description=Jupyter Notebook server as Docker container
+
+[Service]
+Restart=always
+ExecStart=/usr/bin/docker start -a jupyter
+ExecStop=/usr/bin/docker stop -t 2 jupyter
+
+[Install]
+WantedBy=multi-user.target
