@@ -1,0 +1,29 @@
+ppa_repos:
+  - "git-core/ppa"
+
+apt_packages:
+  - acpid
+  - bash-completion
+  - build-essential
+  - man-db
+  - python-doc
+  - python-dev
+  - python3-doc
+  - python3-dev
+  - htop
+  - mc
+  - exuberant-ctags
+  - cmake
+  - ttf-anonymous-pro
+  - git
+  - git-doc
+  - curl
+  - wget
+  - vim-nox
+  - patch
+  - tmux
+  - apt-file
+  - uuid-runtime
+  - ncdu
+
+
