@@ -5,6 +5,7 @@ ubuntu_packages:
   - man-db
   - python-doc
   - python-dev
+  - python3-doc
   - python3-dev
   - htop
   - mc
@@ -20,6 +21,7 @@ ubuntu_packages:
   - tmux
   - apt-file
   - uuid-runtime
+  - ncdu
 
 global_python:
   - ipython
