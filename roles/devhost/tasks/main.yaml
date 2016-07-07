@@ -3,6 +3,7 @@
   apt:
     pkg: "{{ item }}"
   with_items: "{{ ubuntu_packages }}"
+  when: ansible_distribution == 'Ubuntu' or ansible_distribution == 'Debian'
 
 - name: fetch pip bootstrapper script
   get_url:
