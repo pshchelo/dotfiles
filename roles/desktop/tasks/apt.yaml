@@ -1,0 +1,13 @@
+- name: setup extra repos
+  become: yes
+  apt_repository:
+    repo: "{{ item }}"
+    state: present
+    update_cache: yes
+  with_items: "{{ apt_desktop_repos }}"
+
+- name: install system packages
+  become: yes
+  apt:
+    name: "{{ item }}"
+  with_items: "{{ apt_desktop_pkgs }}"
