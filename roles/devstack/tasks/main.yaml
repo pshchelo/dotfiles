@@ -4,10 +4,10 @@
     creates: "{{ userhome }}/.gitconfig"
 
 - name: set global git email
-  replace:
-    dest: "{{ userhome }}/.gitconfig"
-    regexp: "email = .*$"
-    replace: "email = {{ useremail }}"
+  git_config:
+    name: user.email
+    value: "{{ useremail }}"
+    scope: global
 
 - name: create a stack folder
   become: yes
