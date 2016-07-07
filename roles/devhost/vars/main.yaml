@@ -1,3 +1,6 @@
+ppa_repos:
+  - "git-core/ppa"
+
 ubuntu_packages:
   - acpid
   - bash-completion
