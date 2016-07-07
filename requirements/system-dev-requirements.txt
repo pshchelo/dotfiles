@@ -1,2 +1,0 @@
-ipdb  # installs latest IPython too
-jedi

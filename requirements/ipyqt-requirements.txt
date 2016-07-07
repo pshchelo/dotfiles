@@ -1,5 +1,0 @@
-# For IPython QtConsole
-ipython[all]
-pygments-style-solarized
-#pyside
-
