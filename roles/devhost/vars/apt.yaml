@@ -1,5 +1,5 @@
 ppa_repos:
-  - "git-core/ppa"
+  - "ppa:git-core/ppa"
 
 apt_packages:
   - acpid
@@ -25,5 +25,3 @@ apt_packages:
   - apt-file
   - uuid-runtime
   - ncdu
-
-
