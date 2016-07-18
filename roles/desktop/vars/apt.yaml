@@ -19,7 +19,7 @@ apt_pkgs_desktop:
   - steam
   - keepassx
   - solaar
-  - mplayer
+  - mplayer-gui
   - vlc
   - mkvtoolnix-gui
   - kodi
