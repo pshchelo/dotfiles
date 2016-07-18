@@ -1,5 +1,5 @@
 # ``apt-mark showmanual`` shows only explicitly installed packages
-apt_desktop_repos:
+apt_repos_desktop:
   - "deb http://archive.canonical.com/ubuntu xenial partner"
   - "deb http://dl.google.com/linux/talkplugin/deb/ stable main"
   - "deb http://linux.dropbox.com/ubuntu xenial main"
@@ -7,7 +7,13 @@ apt_desktop_repos:
   - "ppa:team-xbmc/ppa"
   - "ppa:dwrj87/mmex-test"
 
-apt_desktop_pkgs:
+apt_keys_desktop:
+  - name: Moritz Bunkus
+    url: https://mkvtoolnix.download/gpg-pub-moritzbunkus.txt
+  #- name: Dropbox
+    #url: ???
+
+apt_pkgs_desktop:
   - dropbox
   - skype
   - steam

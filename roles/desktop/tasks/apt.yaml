@@ -1,13 +1,21 @@
+- name: add extra apt keys
+  become: yes
+  apt_key:
+    id: "{{ item.name }}"
+    url: "{{ item.url }}"
+    state: present
+  with_items: "{{ apt_keys_desktop }}"
+
 - name: setup extra repos
   become: yes
   apt_repository:
     repo: "{{ item }}"
     state: present
     update_cache: yes
-  with_items: "{{ apt_desktop_repos }}"
+  with_items: "{{ apt_repos_desktop }}"
 
 - name: install system packages
   become: yes
   apt:
     name: "{{ item }}"
-  with_items: "{{ apt_desktop_pkgs }}"
+  with_items: "{{ apt_pkgs_desktop }}"
