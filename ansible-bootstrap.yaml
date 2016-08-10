@@ -1,7 +1,5 @@
 ---
 - hosts: "{{ target }}"
-  gaher_facts: false
+  gather_facts: false
   roles:
     - bootstrap
-
-
