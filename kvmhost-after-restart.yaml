@@ -1,4 +1,4 @@
 ---
-- hosts: "{{ target | default('kvm-work') }}"
+- hosts: all
   roles:
     - kvmhost

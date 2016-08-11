@@ -1,5 +1,5 @@
 ---
-- hosts: "{{ target | default('devstack') }}"
+- hosts: all
   roles:
     - common
     - remote
