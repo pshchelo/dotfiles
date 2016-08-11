@@ -21,9 +21,6 @@ Host ironic-vm-work
     HostName 192.168.100.12
     DynamicForward 10012
 
-Host xenial-vm-work
-    HostName 192.168.100.126
-
 Host *-vm-work
     ProxyCommand ssh -W %h:%p kvm-work
     StrictHostKeyChecking no
