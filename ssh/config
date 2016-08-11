@@ -6,6 +6,9 @@ Host swthm
 
 Host devstack
     HostName 192.168.100.10
+    StrictHostKeyChecking no
+    UserKnownHostsFile /dev/null
+    LogLevel QUIET
 
 Host kvm-work
     HostName pshchelokovskyy-pc.kha.mirantis.net
@@ -23,6 +26,9 @@ Host xenial-vm-work
 
 Host *-vm-work
     ProxyCommand ssh -W %h:%p kvm-work
+    StrictHostKeyChecking no
+    UserKnownHostsFile /dev/null
+    LogLevel QUIET
 
 Host mos-ironic
     HostName mos-ironic.vm.mirantis.net
