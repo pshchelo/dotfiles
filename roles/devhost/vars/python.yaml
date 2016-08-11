@@ -1,5 +1,0 @@
-global_python:
-  - ipython
-  - ipdb
-  - virtualenvwrapper
-  - git-review
