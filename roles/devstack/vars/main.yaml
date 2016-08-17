@@ -1,2 +1,0 @@
-devstack_dir: /opt/stack
-stackdev_dir: "{{ userhome }}/stackdev"

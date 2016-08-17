@@ -1,0 +1,6 @@
+username: "{{ ansible_user_id }}"
+userhome: "{{ ansible_user_dir }}"
+useremail: pshchelokovskyy@mirantis.com
+dotfiles_dir: "{{ userhome }}"
+devstack_dir: "{{ userhome }}/stack"
+stackdev_dir: "{{ userhome }}/stackdev"

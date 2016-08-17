@@ -1,0 +1,3 @@
+username: "{{ ansible_user_id }}"
+userhome: "{{ ansible_user_dir }}"
+dotfiles_dir: "{{ userhome }}"/dotfiles
