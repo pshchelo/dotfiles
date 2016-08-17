@@ -11,9 +11,3 @@
     dest: "{{item.path}}"
     mode: "{{item.mode}}"
   with_items: "{{ ssh_keys }}"
-
-- name: safe upgrade packages
-  become: yes
-  apt:
-    upgrade: safe
-    update_cache: yes

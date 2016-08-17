@@ -1,0 +1,5 @@
+- name: upgrade packages
+  become: yes
+  apt:
+    upgrade: safe
+    update_cache: yes

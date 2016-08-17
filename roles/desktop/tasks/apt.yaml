@@ -12,7 +12,10 @@
     repo: "{{ item }}"
     state: present
     update_cache: yes
+    mode: 644
   with_items: "{{ apt_repos_desktop }}"
+  notify:
+    - upgrade packages
 
 - name: install system packages
   become: yes

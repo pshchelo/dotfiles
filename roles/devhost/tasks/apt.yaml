@@ -1,16 +1,17 @@
 - name: add ppa repos
-  become: true
+  become: yes
   apt_repository:
     repo: "{{ item }}"
     update_cache: yes
     state: present
+    mode: 644
   with_items: "{{ ppa_repos }}"
   when: ansible_distribution == 'Ubuntu'
+  notify:
+    - upgrade packages
 
 - name: install packages for development
-  become: true
+  become: yes
   apt:
     pkg: "{{ item }}"
   with_items: "{{ apt_packages }}"
-
-
