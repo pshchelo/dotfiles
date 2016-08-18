@@ -22,6 +22,7 @@ Plug 'edkolev/promptline.vim'
 Plug 'Konfekt/FastFold'
 "Plug 'lervag/vimtex'                                                            " (La)TeX goodies
 "Plug 'tpope/vim-sensible'                                                       " opinionated 'sensible' defaults for Vim
+Plug 'metakirby5/codi.vim'                                                      " Online REPL sidepanel
 call plug#end()
 
 " FIXME - Vundle leftovers, need to test if I need them back or not
