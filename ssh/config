@@ -27,8 +27,12 @@ Host *-vm-work
     UserKnownHostsFile /dev/null
     LogLevel QUIET
 
-Host mos-ironic
+Host mos-ironic-storage
     HostName mos-ironic.vm.mirantis.net
+    User pshchelokovskyy
+
+Host mos-ironic-lab
+    HostName cz7918.bud.mirantis.net
     User pshchelokovskyy
 
 # Some ranges if private IP addresses I use for ephemeral instances
