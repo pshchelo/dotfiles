@@ -15,3 +15,4 @@
 	guitool = vimdiff
 [gitreview]
 	username = pshchelo
+	rebase = false
