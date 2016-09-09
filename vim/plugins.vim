@@ -13,7 +13,7 @@ Plug 'klen/python-mode'                  " Python goodies
 Plug 'davidhalter/jedi-vim'              " Python code completion and refactoring
 Plug 'Rykka/riv.vim'                     " reStructured text goodies
 Plug 'ctrlpvim/ctrlp.vim'                " command line fuzzy file search and open
-Plug 'rking/ag.vim'                      " ag integration (the silver searcher) - DEPRECATED. move back to ack.vim!
+Plug 'mileszs/ack.vim'                   " ack/ag integration
 Plug 'Shougo/neocomplete'                " auto-complete, supports Jedi for Python code 
 Plug 'vim-airline/vim-airline'           " lightweight alternative to Powerline
 Plug 'vim-airline/vim-airline-themes'    " additional themes for vim-airline
@@ -39,9 +39,16 @@ set background=dark
 :silent! colorscheme solarized
 
 "=====
-"Ag
+"Ack
 "=====
-let g:ag_working_path_mode="r"  " always start searching from project root 
+if executable('ag')
+    let g:ackprg = 'ag --vimgrep --smart-case'
+    cnoreabbrev ag Ack
+    cnoreabbrev aG Ack
+    cnoreabbrev Ag Ack
+    cnoreabbrev AG Ack
+endif
+let g:ackhighlight = 1
 
 "=====
 "CtrlP
