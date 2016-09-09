@@ -2,27 +2,29 @@
 " Plug
 "=====
 call plug#begin()
-Plug 'moll/vim-bbye'                                                            " close files instead of closing views
-Plug 'tpope/vim-fugitive'                                                       " Git integration
-Plug 'scrooloose/nerdcommenter'                                                 " nicer (un)comment commands
-Plug 'scrooloose/nerdtree'                                                      " sidebar file browser
-Plug 'scrooloose/syntastic'                                                     " code and style checks
-Plug 'altercation/vim-colors-solarized'                                         " best colorscheme of them all
-Plug 'majutsushi/tagbar'                                                        " sidebar code structure browser
-Plug 'klen/python-mode'                                                         " Python goodies
-Plug 'davidhalter/jedi-vim'                                                     " Python code completion and refactoring
-Plug 'Rykka/riv.vim'                                                            " reStructured text goodies
-Plug 'ctrlpvim/ctrlp.vim'                                                       " command line fuzzy file search and open
-Plug 'rking/ag.vim'                                                             " ag integration (the silver searcher
-Plug 'Shougo/neocomplete'
-Plug 'vim-airline/vim-airline'
-Plug 'vim-airline/vim-airline-themes'
-Plug 'edkolev/tmuxline.vim'
-Plug 'edkolev/promptline.vim'
-Plug 'Konfekt/FastFold'
-"Plug 'lervag/vimtex'                                                            " (La)TeX goodies
-"Plug 'tpope/vim-sensible'                                                       " opinionated 'sensible' defaults for Vim
-Plug 'metakirby5/codi.vim'                                                      " Online REPL sidepanel
+Plug 'moll/vim-bbye'                     " close files instead of closing views
+Plug 'tpope/vim-fugitive'                " Git integration
+Plug 'scrooloose/nerdcommenter'          " nicer (un)comment commands
+Plug 'scrooloose/nerdtree'               " sidebar file browser
+Plug 'scrooloose/syntastic'              " code and style checks
+Plug 'altercation/vim-colors-solarized'  " best colorscheme of them all
+Plug 'majutsushi/tagbar'                 " sidebar code structure browser
+Plug 'klen/python-mode'                  " Python goodies
+Plug 'davidhalter/jedi-vim'              " Python code completion and refactoring
+Plug 'Rykka/riv.vim'                     " reStructured text goodies
+Plug 'ctrlpvim/ctrlp.vim'                " command line fuzzy file search and open
+Plug 'rking/ag.vim'                      " ag integration (the silver searcher) - DEPRECATED. move back to ack.vim!
+Plug 'Shougo/neocomplete'                " auto-complete, supports Jedi for Python code 
+Plug 'vim-airline/vim-airline'           " lightweight alternative to Powerline
+Plug 'vim-airline/vim-airline-themes'    " additional themes for vim-airline
+Plug 'edkolev/tmuxline.vim'              " generate Powerline-like config for Tmux interface, based on vim-airline
+Plug 'edkolev/promptline.vim'            " generate Powerline-like config for shell command line, based on vim-airline
+Plug 'Konfekt/FastFold'                  " improves folding, speeds up neocomplete
+Plug 'metakirby5/codi.vim'               " Online REPL sidepanel
+Plug 'airblade/vim-gitgutter'            " display git status per line in buffer, stage/instage hunks, integrates with vim-airline
+Plug 'diepm/vim-rest-console'            " interact with JSON-based REST APIs
+"Plug 'lervag/vimtex'                     " (La)TeX goodies
+"Plug 'tpope/vim-sensible'                " opinionated 'sensible' defaults for Vim
 call plug#end()
 
 " FIXME - Vundle leftovers, need to test if I need them back or not
