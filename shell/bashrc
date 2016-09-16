@@ -7,20 +7,6 @@ if [ -d "$HOME/.local/bin" ] ; then
     PATH="$HOME/.local/bin:$PATH"
 fi
 
-# fix for gvim integration with Ubuntu global menu
-# and open new files in the current instance
-function gvim () { (/usr/bin/gvim -f "$@" &) }
-#gvim() { command gvim -f --remote-silent "$@" & || command gvim -f "$@" &; }
-
-#function gvim () { 
-#if [ "$#" -gt 0 ]
-#then
-	#gvim --nofork --remote-tab-silent "$@" &
-#else
-	#gvim --nofork "$@" &
-#fi
-#}
-
 # If not running interactively, don't do anything
 case $- in
     *i*) ;;
