@@ -25,6 +25,9 @@ apt_packages:
   - apt-file
   - uuid-runtime
   - ncdu
+  - ack-grep
+  - tig
+  - silversearcher-ag
 
 global_python:
   - ipython
@@ -49,6 +52,8 @@ links_to_create:
     src: "{{ dotfiles_dir }}/shell/tmux.conf"
   - path: "{{ userhome }}/.bash_aliases"
     src: "{{ dotfiles_dir }}/shell/bash_aliases"
+  - path: "{{ userhome }}/.agignore"
+    src: "{{ dotfiles_dir }}/shell/agignore"
   - path: "{{ userhome }}/.dircolors"
     src: "{{ dotfiles_dir }}/colors/dircolors.ansi-dark"
   - path: "{{ userhome }}/.ssh/config"
@@ -59,10 +64,6 @@ links_to_create:
     src: "{{ dotfiles_dir }}/git/tigrc"
   - path: "{{ userhome }}/.vimrc"
     src: "{{ dotfiles_dir }}/vim/vimrc"
-  - path: "{{ userhome }}/.local/bin/tig"
-    src: "{{ dotfiles_dir }}/bin/tig"
-  - path: "{{ userhome }}/.local/bin/ag"
-    src: "{{ dotfiles_dir }}/bin/ag"
   - path: "{{ userhome }}/.local/bin/ppclean"
     src: "{{ dotfiles_dir }}/scripts/ppclean"
   - path: "{{ userhome }}/.local/bin/dtestr"
