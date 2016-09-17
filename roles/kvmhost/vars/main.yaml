@@ -1,6 +1,6 @@
 devstack_vms:
-- heat
-- ironic
+- devstack
+#- devstack-alt
 
 outbound_access:
 - cidr: "192.168.100.0/24"
