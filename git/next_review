@@ -1,4 +1,0 @@
-[DEFAULT]
-username = pshchelo
-email = pshchelokovskyy@mirantis.com
-projects = heat,python-heatclient,heat-specs
