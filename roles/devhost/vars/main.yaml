@@ -28,6 +28,7 @@ apt_packages:
   - ack-grep
   - tig
   - silversearcher-ag
+  - devscripts
 
 global_python:
   - ipython
