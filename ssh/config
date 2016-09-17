@@ -13,11 +13,11 @@ Host devstack
 Host kvm-work
     HostName pshchelokovskyy-pc.kha.mirantis.net
 
-Host heat-vm-work
+Host devstack-vm-work
     HostName 192.168.100.11
     DynamicForward 10011
 
-Host ironic-vm-work
+Host devstack-alt-vm-work
     HostName 192.168.100.12
     DynamicForward 10012
 
