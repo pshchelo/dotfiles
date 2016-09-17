@@ -1,14 +1,3 @@
-- name: copy git config
-  shell: cp {{ dotfiles_dir }}/git/gitconfig {{ userhome }}/.gitconfig
-  args:
-    creates: "{{ userhome }}/.gitconfig"
-
-- name: set global git email
-  git_config:
-    name: user.email
-    value: "{{ useremail }}"
-    scope: global
-
 - name: create a stack folder
   become: yes
   file:

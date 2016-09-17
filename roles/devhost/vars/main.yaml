@@ -59,6 +59,8 @@ links_to_create:
     src: "{{ dotfiles_dir }}/colors/dircolors.ansi-dark"
   - path: "{{ userhome }}/.ssh/config"
     src: "{{ dotfiles_dir }}/ssh/config"
+  - path: "{{ userhome }}/.gitconfig"
+    src: "{{ dotfiles_dir }}/git/.gitconfig"
   - path: "{{ userhome }}/.gitignore_global"
     src: "{{ dotfiles_dir }}/git/.gitignore_global"
   - path: "{{ userhome }}/.tigrc"
