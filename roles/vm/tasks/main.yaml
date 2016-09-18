@@ -7,7 +7,7 @@
 
 - name: copy ssh keys
   copy:
-    src: "{{item.path}}"
-    dest: "{{item.path}}"
+    src: "{{item.src}}"
+    dest: "{{item.dest}}"
     mode: "{{item.mode}}"
   with_items: "{{ ssh_keys }}"
