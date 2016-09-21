@@ -11,7 +11,7 @@ Plug 'altercation/vim-colors-solarized'  " best colorscheme of them all
 Plug 'majutsushi/tagbar'                 " sidebar code structure browser
 Plug 'klen/python-mode'                  " Python goodies
 Plug 'davidhalter/jedi-vim'              " Python code completion and refactoring
-Plug 'Rykka/riv.vim'                     " reStructured text goodies
+Plug 'proteansec/riv.vim', { 'branch': 'fixdel' }                     " reStructured text goodies - using a fork until this commit is merged to Rykka/riv.vim:master
 Plug 'ctrlpvim/ctrlp.vim'                " command line fuzzy file search and open
 Plug 'mileszs/ack.vim'                   " ack/ag integration
 Plug 'Shougo/neocomplete'                " auto-complete, supports Jedi for Python code 
@@ -187,6 +187,8 @@ let g:riv_temp_path = 0  " the same dir as source
 let g:riv_python_rst_hl = 1
 " use this highlighting (otherwise interferes? with python highlighting)
 let g:riv_highlight_code = 'python'
+"do not use fixdel
+let g:riv_disable_del = 1
 
 "========
 " Airline
