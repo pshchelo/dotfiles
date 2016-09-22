@@ -1,0 +1,8 @@
+- include: apt.yaml
+  when: ansible_distribution == 'Ubuntu' or ansible_distribution == 'Debian'
+
+- include: python.yaml
+
+- include: dotfiles.yaml
+
+- include: vim.yaml

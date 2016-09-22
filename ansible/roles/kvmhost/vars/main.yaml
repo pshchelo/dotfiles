@@ -1,0 +1,7 @@
+devstack_vms:
+- devstack
+#- devstack-alt
+
+outbound_access:
+- cidr: "192.168.100.0/24"
+  comment: "virsh default network"

@@ -1,0 +1,36 @@
+# ``apt-mark showmanual`` shows only explicitly installed packages
+apt_repos_desktop:
+  - "deb http://archive.canonical.com/ubuntu xenial partner"
+  - "deb http://dl.google.com/linux/talkplugin/deb/ stable main"
+  - "deb http://linux.dropbox.com/ubuntu xenial main"
+  - "deb http://mkvtoolnix.download/ubuntu/xenial/ ./"
+  - "ppa:team-xbmc/ppa"
+  - "ppa:dwrj87/mmex-test"
+
+apt_keys_desktop:
+  - name: Moritz Bunkus
+    url: https://mkvtoolnix.download/gpg-pub-moritzbunkus.txt
+  #- name: Dropbox
+    #url: ???
+  #- name: Google
+    #url: ???
+
+
+apt_pkgs_desktop:
+  - dropbox
+  - skype
+  - steam
+  - keepassx
+  - solaar
+  - mplayer-gui
+  - vlc
+  - mkvtoolnix-gui
+  - kodi
+  - ffmpeg
+  - diffuse
+  - gitg
+  - gitk
+  - git-gui
+  - mmex
+  - chromium-browser
+  - google-talkplugin

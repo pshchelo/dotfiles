@@ -1,0 +1,4 @@
+- include: apt.yaml
+  when: ansible_distribution == "Ubuntu"
+#- name: setup powerline fonts
+#- name: setup Solarized for Gnome terminal

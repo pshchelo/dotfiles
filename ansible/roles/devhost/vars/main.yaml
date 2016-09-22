@@ -1,0 +1,75 @@
+ppa_repos:
+  - "ppa:git-core/ppa"
+
+apt_packages:
+  - acpid
+  - bash-completion
+  - build-essential
+  - man-db
+  - python-doc
+  - python-dev
+  - python3-doc
+  - python3-dev
+  - htop
+  - mc
+  - exuberant-ctags
+  - cmake
+  - ttf-anonymous-pro
+  - git
+  - git-doc
+  - curl
+  - wget
+  - vim-nox
+  - patch
+  - tmux
+  - apt-file
+  - uuid-runtime
+  - ncdu
+  - ack-grep
+  - tig
+  - silversearcher-ag
+  - devscripts
+
+global_python:
+  - ipython
+  - ipdb
+  - virtualenvwrapper
+  - git-review
+
+files_to_backup:
+  - "{{ userhome }}/.bashrc"
+  - "{{ userhome }}/.profile"
+
+dirs_to_create:
+  - "{{ userhome }}/.config"
+  - "{{ userhome }}/.local/bin"
+
+links_to_create:
+  - path: "{{ userhome }}/.bashrc"
+    src: "{{ dotfiles_dir }}/shell/.bashrc"
+  - path: "{{ userhome }}/.profile"
+    src: "{{ dotfiles_dir }}/environment/.profile"
+  - path: "{{ userhome }}/.tmux.conf"
+    src: "{{ dotfiles_dir }}/shell/.tmux.conf"
+  - path: "{{ userhome }}/.bash_aliases"
+    src: "{{ dotfiles_dir }}/shell/.bash_aliases"
+  - path: "{{ userhome }}/.ackrc"
+    src: "{{ dotfiles_dir }}/shell/.ackrc"
+  - path: "{{ userhome }}/.agignore"
+    src: "{{ dotfiles_dir }}/shell/.agignore"
+  - path: "{{ userhome }}/.dircolors"
+    src: "{{ dotfiles_dir }}/colors/dircolors.ansi-dark"
+  - path: "{{ userhome }}/.ssh/config"
+    src: "{{ dotfiles_dir }}/ssh/config"
+  - path: "{{ userhome }}/.gitconfig"
+    src: "{{ dotfiles_dir }}/git/.gitconfig"
+  - path: "{{ userhome }}/.gitignore_global"
+    src: "{{ dotfiles_dir }}/git/.gitignore_global"
+  - path: "{{ userhome }}/.tigrc"
+    src: "{{ dotfiles_dir }}/git/.tigrc"
+  - path: "{{ userhome }}/.vimrc"
+    src: "{{ dotfiles_dir }}/vim/.vimrc"
+  - path: "{{ userhome }}/.local/bin/ppclean"
+    src: "{{ dotfiles_dir }}/scripts/ppclean"
+  - path: "{{ userhome }}/.local/bin/dtestr"
+    src: "{{ dotfiles_dir }}/scripts/dtestr"

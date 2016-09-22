@@ -1,0 +1,27 @@
+- name: create dotfiles by cloning
+  git:
+    repo: git@github.com:{{ username }}/dotfiles.git
+    dest: "{{ dotfiles_dir }}"
+    accept_hostkey: yes
+    key_file: "{{ userhome }}/.ssh/git_rsa"
+    update: no
+
+- name: backup some files
+  shell: mv {{ item }} {{ item }}.orig
+  args:
+    creates: "{{ item }}.orig"
+    removes: "{{ item }}"
+  with_items: "{{ files_to_backup }}"
+
+- name: create some folders
+  file:
+    path: "{{ item }}"
+    state: directory
+  with_items: "{{ dirs_to_create }}"
+
+- name: make links
+  file:
+    path: "{{ item.path }}"
+    src: "{{ item.src }}"
+    state: link
+  with_items: "{{ links_to_create }}"
