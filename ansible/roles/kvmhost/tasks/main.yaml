@@ -13,9 +13,14 @@
   with_items: "{{ outbound_access }}"
   tags: iptables
 
-- name: Start DevStack VMs
+- name: list vms on host
+  virt:
+    command: list_vms
+  register: vmlist
+
+- name: start all devstack vms
   virt:
     name: "{{ item }}"
     state: running
-  with_items: "{{ devstack_vms }}"
-  tags: virt
+  when: "{{ 'devstack' in item }}"
+  with_items: "{{ vmlist.list_vms }}"
