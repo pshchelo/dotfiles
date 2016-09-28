@@ -19,7 +19,7 @@ fi
 # set PATH so it includes user's private bin directories
 PATH="$HOME/bin:$HOME/.local/bin:$PATH"
 
-# set vim/gvim as default editor
+# set vi/vim as default editor
 export EDITOR="vi"
 export VISUAL="vim"
 export VIEWER="vim -R"

@@ -28,6 +28,3 @@ alias lss='less -fR'
 
 # weather forecast from command line
 alias wttr='curl wttr.in'
-
-# hard alias for Vim (I have it everywhere where I use my dotfiles
-alias vi='vim'
