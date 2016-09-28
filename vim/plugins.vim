@@ -2,29 +2,50 @@
 " Plug
 "=====
 call plug#begin()
-Plug 'moll/vim-bbye'                     " close files instead of closing views
-Plug 'tpope/vim-fugitive'                " Git integration
-Plug 'scrooloose/nerdcommenter'          " nicer (un)comment commands
-Plug 'scrooloose/nerdtree'               " sidebar file browser
-Plug 'scrooloose/syntastic'              " code and style checks
-Plug 'altercation/vim-colors-solarized'  " best colorscheme of them all
-Plug 'majutsushi/tagbar'                 " sidebar code structure browser
-Plug 'klen/python-mode'                  " Python goodies
-Plug 'davidhalter/jedi-vim'              " Python code completion and refactoring
-Plug 'proteansec/riv.vim', { 'branch': 'fixdel' }                     " reStructured text goodies - using a fork until this commit is merged to Rykka/riv.vim:master
-Plug 'ctrlpvim/ctrlp.vim'                " command line fuzzy file search and open
-Plug 'mileszs/ack.vim'                   " ack/ag integration
-Plug 'Shougo/neocomplete'                " auto-complete, supports Jedi for Python code 
-Plug 'vim-airline/vim-airline'           " lightweight alternative to Powerline
-Plug 'vim-airline/vim-airline-themes'    " additional themes for vim-airline
-Plug 'edkolev/tmuxline.vim'              " generate Powerline-like config for Tmux interface, based on vim-airline
-Plug 'edkolev/promptline.vim'            " generate Powerline-like config for shell command line, based on vim-airline
-Plug 'Konfekt/FastFold'                  " improves folding, speeds up neocomplete
-Plug 'metakirby5/codi.vim'               " Online REPL sidepanel
-Plug 'airblade/vim-gitgutter'            " display git status per line in buffer, stage/instage hunks, integrates with vim-airline
-Plug 'diepm/vim-rest-console'            " interact with JSON-based REST APIs
-"Plug 'lervag/vimtex'                     " (La)TeX goodies
-"Plug 'tpope/vim-sensible'                " opinionated 'sensible' defaults for Vim
+" close files instead of closing views
+Plug 'moll/vim-bbye'
+" command line fuzzy file search and open
+Plug 'ctrlpvim/ctrlp.vim'
+" ack/ag integration
+Plug 'mileszs/ack.vim'
+" Git integration
+Plug 'tpope/vim-fugitive'
+" display git status per line in buffer, stage/instage hunks, integrates with vim-airline
+Plug 'airblade/vim-gitgutter'
+" nicer (un)comment commands
+Plug 'scrooloose/nerdcommenter'
+" code and style checks
+Plug 'scrooloose/syntastic'
+" auto-complete, supports Jedi for Python code
+Plug 'Shougo/neocomplete' | Plug 'Konfekt/FastFold'
+" Python goodies
+Plug 'klen/python-mode', { 'for': 'python' }
+" Python code completion and refactoring
+Plug 'davidhalter/jedi-vim', { 'for': 'python' }
+" reStructured text goodies - using a fork until this commit is merged to Rykka/riv.vim:master
+Plug 'proteansec/riv.vim', { 'branch': 'fixdel', 'for': 'rst' }
+" sidebar file browser
+Plug 'scrooloose/nerdtree', { 'on':  'NERDTreeToggle' }
+" sidebar code structure browser, requires exuberant-tags to be installed
+Plug 'majutsushi/tagbar' " not enable it on toggle as airline can not lazy-load its plugins
+" best colorscheme of them all
+Plug 'altercation/vim-colors-solarized'
+" lightweight alternative to Powerline
+Plug 'vim-airline/vim-airline'
+" additional themes for vim-airline
+Plug 'vim-airline/vim-airline-themes'
+" generate Powerline-like config for Tmux interface, based on vim-airline
+Plug 'edkolev/tmuxline.vim', { 'on': 'Tmuxline' }
+" generate Powerline-like config for shell command line, based on vim-airline
+Plug 'edkolev/promptline.vim', { 'on': 'PromptlineSnapshot' }
+" Online REPL sidepanel
+Plug 'metakirby5/codi.vim', { 'on': 'Codi' }
+" interact with JSON-based REST APIs
+Plug 'diepm/vim-rest-console', { 'for': 'rest' }
+"" (La)TeX goodies
+"Plug 'lervag/vimtex'
+"" opinionated 'sensible' defaults for Vim
+"Plug 'tpope/vim-sensible'
 call plug#end()
 
 " FIXME - Vundle leftovers, need to test if I need them back or not
@@ -150,7 +171,7 @@ let g:syntastic_aggregate_errors=1
 " Use flake8 as a sole checker for Python files
 " Available are pep8,pep257,pyflakes,pylint,py3kwarn,python,flake8,pylama
 let g:syntastic_python_checkers = ['flake8']
- 
+
 "=========
 " NERDTree
 "=========
@@ -195,11 +216,13 @@ let g:riv_disable_del = 1
 "========
 let g:airline_powerline_fonts = 1
 let g:airline_theme='powerlineish'
+" do not live-override tmux settings with airline ones
 let g:airline#extensions#tmuxline#enabled = 0
+" do not live-override prompt settings with airline ones
 let g:airline#extensions#promptline#enabled = 0
-let g:airline#extensions#whitespace#enabled = 0
-let g:airline#extensions#tabline#enabled = 0
-"
+let g:airline#extensions#whitespace#enabled = 1
+let g:airline#extensions#tabline#enabled = 1
+
 "===========
 " Promptline
 "===========
