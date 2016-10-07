@@ -1,4 +1,4 @@
-self ansible_connection=local
+localhost ansible_connection=local
 kvm-work
 devstack-vm-work
 devstack-alt-vm-work
