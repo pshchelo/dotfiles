@@ -1,5 +1,2 @@
-username: "{{ ansible_user_id }}"
-userhome: "{{ ansible_user_dir }}"
-dotfiles_dir: "{{ userhome }}"
-stackdev_dir: "{{ userhome }}/stackdev"
-devstack_dir: "/opt/stack"
+stackdev_dir: "{{ ansible_user_dir }}/stackdev"
+devstack_dir: "{{ ansible_user_dir }}/devstack"
