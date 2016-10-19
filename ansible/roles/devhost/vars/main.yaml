@@ -1,3 +1,11 @@
+ssh_keys:
+  - src: "~/.ssh/git_rsa"
+    dest: "{{ userhome }}/.ssh/id_rsa"
+    mode: "0400"
+  - src: "~/.ssh/git_rsa.pub"
+    dest: "{{ userhome }}/.ssh/id_rsa.pub"
+    mode: "0644"
+
 ppa_repos:
   - "ppa:git-core/ppa"
 

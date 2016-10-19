@@ -1,3 +1,10 @@
+- name: copy ssh keys
+  copy:
+    src: "{{item.src}}"
+    dest: "{{item.dest}}"
+    mode: "{{item.mode}}"
+  with_items: "{{ ssh_keys }}"
+
 - include: apt.yaml
   when: ansible_distribution == 'Ubuntu' or ansible_distribution == 'Debian'
 
