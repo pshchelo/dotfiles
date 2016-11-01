@@ -23,7 +23,7 @@ Plug 'klen/python-mode', { 'for': 'python' }
 " Python code completion and refactoring
 Plug 'davidhalter/jedi-vim', { 'for': 'python' }
 " reStructured text goodies - using a fork until this commit is merged to Rykka/riv.vim:master
-Plug 'proteansec/riv.vim', { 'branch': 'fixdel', 'for': 'rst' }
+Plug 'proteansec/riv.vim', { 'branch': 'fixdel', 'for': 'rst,python' }
 " sidebar file browser
 Plug 'scrooloose/nerdtree', { 'on':  'NERDTreeToggle' }
 " sidebar code structure browser, requires exuberant-tags to be installed
