@@ -1,5 +1,5 @@
-IdentityFile ~/.ssh/git_rsa
 IdentityFile ~/.ssh/id_rsa
+IdentityFile ~/.ssh/git_rsa
 
 Host swthm
     HostName 192.168.1.11
