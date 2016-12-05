@@ -17,7 +17,7 @@ Host devstack-vm-work
     HostName 192.168.100.11
     DynamicForward 10011
 
-Host devstack-alt-vm-work
+Host bifrost-vm-work
     HostName 192.168.100.12
     DynamicForward 10012
 
