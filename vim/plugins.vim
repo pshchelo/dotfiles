@@ -2,6 +2,8 @@
 " Plug
 "=====
 call plug#begin()
+" auto-set paste mode when inserting thru terminal shortcut keys
+Plug 'ConradIrwin/vim-bracketed-paste'
 " close files instead of closing views
 Plug 'moll/vim-bbye'
 " command line fuzzy file search and open

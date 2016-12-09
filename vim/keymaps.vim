@@ -11,9 +11,6 @@ nmap <F8> :bprevious<cr>
 " Disable shortcut for entering Ex mode
 nnoremap Q <nop>
 
-" Set shorcut to toggle PASTE mode
-nmap <leader>p :set paste!<CR>
-
 " Set spellcheck toggle
 imap <Leader>s <C-o>:setlocal spell! spelllang=en_us<CR>
 nmap <Leader>s :setlocal spell! spelllang=en_us<CR>
