@@ -30,4 +30,4 @@ alias lss='less -fR'
 alias wttr='curl wttr.in'
 
 # do not fail tox on missing interpreters
-alisa stox='tox --skip-missing-interpreters'
+alias stox='tox --skip-missing-interpreters'
