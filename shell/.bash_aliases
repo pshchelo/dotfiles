@@ -28,3 +28,6 @@ alias lss='less -fR'
 
 # weather forecast from command line
 alias wttr='curl wttr.in'
+
+# do not fail tox on missing interpreters
+alisa stox='tox --skip-missing-interpreters'
