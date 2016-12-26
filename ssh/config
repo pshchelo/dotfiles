@@ -17,9 +17,13 @@ Host devstack-vm-work
     HostName 192.168.100.11
     DynamicForward 10011
 
-Host bifrost-vm-work
+Host devstack-alt-vm-work
     HostName 192.168.100.12
     DynamicForward 10012
+
+Host bifrost-vm-work
+    HostName 192.168.100.13
+    DynamicForward 10013
 
 Host *-vm-work
     ProxyCommand ssh -W %h:%p kvm-work

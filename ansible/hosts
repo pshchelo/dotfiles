@@ -1,6 +1,7 @@
 localhost ansible_connection=local
 kvm-work
 devstack-vm-work
+devstack-alt-vm-work
 bifrost-vm-work
 devstack
 trusty ansible_host=192.168.100.125
@@ -8,6 +9,7 @@ irsible ansible_host=192.168.100.13 ansible_user=tc ansible_ssh_private_key_file
 
 [work-vms]
 devstack-vm-work
+devstack-alt-vm-work
 bifrost-vm-work
 
 [hypervisors]
