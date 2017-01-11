@@ -3,20 +3,18 @@
   vars:
     outbound_access:
     - cidr: "192.168.100.0/24"
-      comment: "virsh default network"
+      comment: "outbound access for virsh default network"
   tasks:
-  - name: List IPtables rules
+  - name: set iptables for VMs outbound access
     become: yes
-    shell: iptables -L
-    register: iptables_rules
-    always_run: true
-    changed_when: false
-    tags: iptables
-
-  - name: Set IPtables outbound access from internal networks
-    become: yes
-    shell:  "iptables -I FORWARD -m state -d {{ item.cidr }} --state NEW,RELATED,ESTABLISHED -j ACCEPT -m comment --comment '{{ item.comment }}'"
-    when: iptables_rules.stdout.find(item.comment) == -1
+    iptables:
+      state: present
+      chain: FORWARD
+      destination: "{{ item.cidr }}"
+      jump: ACCEPT
+      ctstate:
+        - NEW
+        - RELATED
+        - ESTABLISHED
+      comment: "{{ item.comment }}"
     with_items: "{{ outbound_access }}"
-    tags: iptables
-
