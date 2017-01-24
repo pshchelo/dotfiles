@@ -30,6 +30,8 @@ Plug 'proteansec/riv.vim', { 'branch': 'fixdel', 'for': 'rst,python' }
 Plug 'scrooloose/nerdtree', { 'on':  'NERDTreeToggle' }
 " sidebar code structure browser, requires exuberant-tags to be installed
 Plug 'majutsushi/tagbar' " not enable it on toggle as airline can not lazy-load its plugins
+" use vimdiff on folders!
+Plug 'will133/vim-dirdiff'
 " best colorscheme of them all
 Plug 'altercation/vim-colors-solarized'
 " lightweight alternative to Powerline
