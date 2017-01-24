@@ -134,3 +134,4 @@ autocmd BufRead,BufNewFile *.conf set filetype=dosini
 "=========
 source ~/dotfiles/vim/plugins.vim
 source ~/dotfiles/vim/keymaps.vim
+source ~/dotfiles/vim/autocorrect.vim
