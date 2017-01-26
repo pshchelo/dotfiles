@@ -6,9 +6,6 @@ ssh_keys:
     dest: "{{ userhome }}/.ssh/id_rsa.pub"
     mode: "0644"
 
-ppa_repos:
-  - "ppa:git-core/ppa"
-
 apt_packages:
   - acpid
   - bash-completion
