@@ -24,7 +24,9 @@ Plug 'Shougo/neocomplete' | Plug 'Konfekt/FastFold'
 Plug 'klen/python-mode', { 'for': 'python' }
 " Python code completion and refactoring
 Plug 'davidhalter/jedi-vim', { 'for': 'python' }
-" reStructured text goodies - using a fork until this commit is merged to Rykka/riv.vim:master
+" reStructured text goodies
+" FIXME: using a fork until this PR is merged
+"Plug 'Rykka/riv.vim', { 'for': 'rst,python' }
 Plug 'proteansec/riv.vim', { 'branch': 'fixdel', 'for': 'rst,python' }
 " sidebar file browser
 Plug 'scrooloose/nerdtree', { 'on':  'NERDTreeToggle' }
@@ -35,7 +37,9 @@ Plug 'will133/vim-dirdiff'
 " best colorscheme of them all
 Plug 'altercation/vim-colors-solarized'
 " lightweight alternative to Powerline
-Plug 'vim-airline/vim-airline'
+" FIXME: Use my fork until my PR is merged
+"Plug 'vim-airline/vim-airline'
+Plug 'pshchelo/vim-airline', { 'branch': 'fix-dict-coma' }
 " additional themes for vim-airline
 Plug 'vim-airline/vim-airline-themes'
 " generate Powerline-like config for Tmux interface, based on vim-airline
