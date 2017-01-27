@@ -37,9 +37,7 @@ Plug 'will133/vim-dirdiff'
 " best colorscheme of them all
 Plug 'altercation/vim-colors-solarized'
 " lightweight alternative to Powerline
-" FIXME: Use my fork until my PR is merged
-"Plug 'vim-airline/vim-airline'
-Plug 'pshchelo/vim-airline', { 'branch': 'fix-dict-coma' }
+Plug 'vim-airline/vim-airline'
 " additional themes for vim-airline
 Plug 'vim-airline/vim-airline-themes'
 " generate Powerline-like config for Tmux interface, based on vim-airline
