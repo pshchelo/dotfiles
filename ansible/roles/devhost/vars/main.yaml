@@ -21,7 +21,7 @@ apt_packages:
   - cmake
   - ttf-anonymous-pro
   - git
-  - git-doc
+  - git-man
   - curl
   - wget
   - vim-nox
