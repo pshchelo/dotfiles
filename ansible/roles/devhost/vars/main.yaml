@@ -13,6 +13,7 @@ apt_packages:
   - man-db
   - python-doc
   - python-dev
+  - python-gdbm
   - python3-doc
   - python3-dev
   - htop
