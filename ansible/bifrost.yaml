@@ -1,0 +1,9 @@
+---
+- include: ansible-bootstrap.yaml
+
+- hosts: all
+  roles:
+    - vm
+    - devhost
+    - bifrost
+    - reboot
