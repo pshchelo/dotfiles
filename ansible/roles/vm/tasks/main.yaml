@@ -1,13 +1,10 @@
-- name: make user a passwordless sudoer
-  become: true
-  shell: echo "{{ username }} ALL=(ALL) NOPASSWD:ALL" > 10_{{ username }}
-  args:
-    chdir: /etc/sudoers.d/
-    creates: 10_{{ username }}
+- name: set hostname
+  become: yes
+  hostname:
+    name: "{{ inventory_hostname }}"
 
-- name: copy ssh keys
-  copy:
-    src: "{{item.src}}"
-    dest: "{{item.dest}}"
-    mode: "{{item.mode}}"
-  with_items: "{{ ssh_keys }}"
+- name: edit /etc/hosts to ensure sudo does not throw "could not resolve host"
+  become: yes
+  lineinfile:
+    dest: "/etc/hosts"
+    line: "127.0.1.1 {{ inventory_hostname }}"
