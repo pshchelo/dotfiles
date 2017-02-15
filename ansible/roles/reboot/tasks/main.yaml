@@ -1,0 +1,11 @@
+---
+- name: force fs flush
+  become: yes
+  command: sync
+
+- name: reboot
+  become: yes
+  shell: sleep 2 && shutdown -r now "Ansible reboot triggered"
+  async: 1
+  poll: 0
+  ignore_errors: true
