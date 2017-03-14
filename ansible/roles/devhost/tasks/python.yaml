@@ -13,5 +13,4 @@
   pip:
     name: "{{ item }}"
   with_items: "{{ global_python }}"
-
-
+  when: not (dev_minimal|bool)

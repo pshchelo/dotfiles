@@ -6,7 +6,7 @@
   with_items: "{{ ssh_keys }}"
 
 - include: apt.yaml
-  when: ansible_distribution == 'Ubuntu' or ansible_distribution == 'Debian'
+  when: ansible_os_family == 'Debian'
 
 - include: python.yaml
 

@@ -6,35 +6,44 @@ ssh_keys:
     dest: "{{ userhome }}/.ssh/id_rsa.pub"
     mode: "0644"
 
-apt_packages:
-  - acpid
+apt_packages_dev:
   - bash-completion
+  - exuberant-ctags
+  - vim-nox
+  - patch
+  - tmux
+  - ack-grep
+  - silversearcher-ag
+  - tig
+  - git
+  - curl
+  - devscripts
+
+apt_packages_build:
   - build-essential
-  - man-db
   - python-doc
   - python-dev
   - python-gdbm
   - python3-doc
   - python3-dev
+  - cmake
+
+apt_packages_tools:
+  - wget
+  - ncdu
   - htop
   - mc
-  - exuberant-ctags
-  - cmake
-  - ttf-anonymous-pro
-  - git
-  - git-man
-  - curl
-  - wget
-  - vim-nox
-  - patch
-  - tmux
+  - acpid
   - apt-file
   - uuid-runtime
-  - ncdu
-  - ack-grep
-  - tig
-  - silversearcher-ag
-  - devscripts
+  - ttf-anonymous-pro
+  - man-db
+  - git-man
+
+apt_packages:
+  dev: "{{ apt_packages_dev }}"
+  build: "{{ apt_packages_build }}"
+  tools: "{{ apt_packages_tools }}"
 
 global_python:
   - ipython
