@@ -1,6 +1,33 @@
-- name: Refresh packages on Ubuntu
-  become: true
-  raw: apt-get update
+# find what is current package manager
+# only supporting RedHat, Debian and Suse for now
+- name: check if we have apt-get
+  raw: which zypper
+  ignore_errors: true
+  register: zypper_present
+- name: check if we have apt-get
+  raw: which apt-get
+  ignore_errors: true
+  register: aptget_present
+- name: check if we have yum
+  raw: which yum
+  ignore_errors: true
+  register: yum_present
+- name: check if we have dnf
+  raw: which dnf
+  ignore_errors: true
+  register: dnf_present
+
 - name: install Python on Ubuntu
   become: true
   raw: apt-get -y install python aptitude
+  when:
+    - aptget_present|success
+    - zypper_present|failed
+
+- name: install packages for Suse
+  debug: msg="Not implemented"
+  when: zypper_present|success
+
+- name: install packages for RedHat
+  debug: msg="Not implemented"
+  when: dnf_present|success or yum_present|success
