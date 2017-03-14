@@ -1,4 +1,0 @@
-bifrost_git_repo: "git://git.openstack.org/openstack/bifrost.git"
-libvirt_pkgs:
-  - libvirt-bin
-libvirt_group: libvirtd
