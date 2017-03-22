@@ -17,3 +17,6 @@ clouds:
       auth_url: https://horizon-eu.ssl.mirantis.net:5000/v3
     identity_api_version: 3
     region_name: RegionOne
+ansible:
+  use_hostnames: True
+  fail_on_errors: False
