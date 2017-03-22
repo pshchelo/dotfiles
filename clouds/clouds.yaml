@@ -1,0 +1,19 @@
+clouds:
+  mirantis-us:
+    auth:
+      username: pshchelokovskyy
+      project_name: mos-ironic
+      user_domain_name: ldap
+      project_domain_name: ldap
+      auth_url: https://horizon-us.ssl.mirantis.net:5000/v3
+    identity_api_version: 3
+    region_name: RegionOne
+  mirantis-eu:
+    auth:
+      username: pshchelokovskyy
+      project_name: mos-ironic
+      user_domain_name: ldap
+      project_domain_name: ldap
+      auth_url: https://horizon-eu.ssl.mirantis.net:5000/v3
+    identity_api_version: 3
+    region_name: RegionOne
