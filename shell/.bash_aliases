@@ -31,3 +31,7 @@ alias wttr='curl wttr.in'
 
 # do not fail tox on missing interpreters
 alias stox='tox --skip-missing-interpreters'
+
+# re-create virtualenv via virtualenvwrapper
+# workaround for bug https://bitbucket.org/virtualenvwrapper/virtualenvwrapper/issues/291
+alias wipeenv='v=$(basename ${VIRTUAL_ENV});deactivate;rmvirtualenv $v;mkvirtualenv $v'
