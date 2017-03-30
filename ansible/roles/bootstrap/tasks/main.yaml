@@ -1,6 +1,6 @@
 # find what is current package manager
 # only supporting RedHat, Debian and Suse for now
-- name: check if we have apt-get
+- name: check if we have zypper
   raw: which zypper
   ignore_errors: true
   register: zypper_present
@@ -17,17 +17,35 @@
   ignore_errors: true
   register: dnf_present
 
-- name: install Python on Ubuntu
+
+- name: Warn on unsupported systems
+  debug:
+    msg: |
+      This OS is not supported for bootstraping as Ansible target.
+      Ensure that Python2 is present in the system yourself before proceeding.
+  when:
+    - aptget_present|failed
+    - zypper_present|failed
+    - dnf_present|failed
+    - yum_present|failed
+
+- name: install Python on Debian-like systems
   become: true
   raw: apt-get -y install python aptitude
   when:
     - aptget_present|success
     - zypper_present|failed
 
-- name: install packages for Suse
-  debug: msg="Not implemented"
-  when: zypper_present|success
-
-- name: install packages for RedHat
-  debug: msg="Not implemented"
+- name: install packages for RedHat-like systems
+  debug:
+    msg: |
+      RedHat bootsrtapping is not implemented yet.
+      Ensure that Python2 is present in the system yourself before proceeding.
   when: dnf_present|success or yum_present|success
+
+- name: install packages for Suse-like systems
+  debug:
+    msg: |
+      Suse bootsrtapping is not implemented yet.
+      Ensure that Python2 is present in the system yourself before proceeding.
+  when: zypper_present|success
