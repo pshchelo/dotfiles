@@ -12,6 +12,10 @@ devstack-vm-work
 devstack-alt-vm-work
 bifrost-vm-work
 
+[salt]
+salt-master-vm-work
+salt-minion-vm-work
+
 [hypervisors]
 kvm-work
 

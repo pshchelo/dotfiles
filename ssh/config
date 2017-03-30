@@ -25,6 +25,14 @@ Host bifrost-vm-work
     HostName 192.168.100.13
     DynamicForward 10013
 
+Host salt-master-vm-work
+    HostName 192.168.100.20
+    DynamicForward 10020
+
+Host salt-minion-vm-work
+    HostName 192.168.100.21
+    DynamicForward 10021
+
 Host *-vm-work
     ProxyCommand ssh -W %h:%p kvm-work
     StrictHostKeyChecking no
