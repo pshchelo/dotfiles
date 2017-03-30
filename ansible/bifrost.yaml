@@ -7,7 +7,7 @@
     bifrost_git_repo: "git://git.openstack.org/openstack/bifrost.git"
     bifrost_git_ref: master
   roles:
-    - vm
+    - hostname
     - devhost
   post_tasks:
   - name: clone bifrost

@@ -3,6 +3,6 @@
 
 - hosts: all
   roles:
-    - vm
+    - hostname
     - devhost
     - devstack
