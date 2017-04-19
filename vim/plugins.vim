@@ -159,6 +159,8 @@ let g:pymode_lint = 0
 " Pymode custom syntax highlight
 let g:pymode_syntax = 1
 let g:pymode_syntax_all = 1
+let g:pymode_options_max_line_length = 79
+let g:pymode_options_colorcolumn = 1
 
 "==========
 " Syntastic

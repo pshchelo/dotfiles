@@ -60,7 +60,7 @@ au BufRead,BufNewFile Makefile* set noexpandtab
 "========
 syntax on
 " Show colored border column
-set colorcolumn=79
+set colorcolumn=80
 " Show line numbers
 set number
 " Diff shows vertical split by default
@@ -84,7 +84,7 @@ set clipboard=unnamedplus
 set mouse=a
 set mousemodel=popup_setpos
 " Always show status line
-set laststatus=2 
+set laststatus=2
 
 " Use the below highlight group when displaying bad whitespace is desired.
 highlight BadWhitespace ctermbg=red guibg=red
