@@ -21,7 +21,7 @@ alias tb='nc termbin.com 9999'
 alias osdemo='openstack --os-cloud devstack'
 
 # openstack CLI as devstack admin
-alias osadmin='openstack --os-cloud devstack-admin'
+alias osadmin='openstack --os-cloud devstack-admin --os-baremetal-api-version latest'
 
 # less that opens all and with terminal color control sequences
 alias lss='less -fR'
