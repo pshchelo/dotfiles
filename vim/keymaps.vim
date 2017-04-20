@@ -27,6 +27,10 @@ endfunction
 " <TAB>: completion.
 inoremap <expr><TAB>  pumvisible() ? "\<C-n>" : "\<TAB>"
 
+" Paste mode toggle
+set pastetoggle=<Leader>p
+
+
 " disable arrow keys to force working with standard HJKL movement keys
 "map <up> <nop>
 "map <down> <nop>
