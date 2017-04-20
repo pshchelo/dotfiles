@@ -2,20 +2,33 @@
 " Plug
 "=====
 call plug#begin()
-" auto-set paste mode when inserting thru terminal shortcut keys
-Plug 'ConradIrwin/vim-bracketed-paste'
+"
+" Genaral vim goodies
+"
 " close files instead of closing views
 Plug 'moll/vim-bbye'
 " command line fuzzy file search and open
 Plug 'ctrlpvim/ctrlp.vim'
 " ack/ag integration
 Plug 'mileszs/ack.vim'
+" nicer (un)comment commands
+Plug 'scrooloose/nerdcommenter'
+" sidebar file browser
+Plug 'scrooloose/nerdtree', { 'on':  'NERDTreeToggle' }
+" use vimdiff on folders!
+Plug 'will133/vim-dirdiff'
+" FIXME: does not work in tmux
+" auto-set paste mode when inserting thru terminal shortcut keys
+"Plug 'ConradIrwin/vim-bracketed-paste'
+"
+" GIT integration
+"
 " Git integration
 Plug 'tpope/vim-fugitive'
 " display git status per line in buffer, stage/instage hunks, integrates with vim-airline
 Plug 'airblade/vim-gitgutter'
-" nicer (un)comment commands
-Plug 'scrooloose/nerdcommenter'
+"
+" Python (mostly) coding things
 " code and style checks
 Plug 'scrooloose/syntastic'
 " auto-complete, supports Jedi for Python code
@@ -24,30 +37,31 @@ Plug 'Shougo/neocomplete' | Plug 'Konfekt/FastFold'
 Plug 'klen/python-mode', { 'for': 'python' }
 " Python code completion and refactoring
 Plug 'davidhalter/jedi-vim', { 'for': 'python' }
+" sidebar code structure browser, requires exuberant-tags to be installed
+Plug 'majutsushi/tagbar' " not enable it on toggle as airline can not lazy-load its plugins
 " reStructured text goodies
 " FIXME: using a fork until this PR is merged
 "Plug 'Rykka/riv.vim', { 'for': 'rst,python' }
 Plug 'proteansec/riv.vim', { 'branch': 'fixdel', 'for': 'rst,python' }
-" sidebar file browser
-Plug 'scrooloose/nerdtree', { 'on':  'NERDTreeToggle' }
-" sidebar code structure browser, requires exuberant-tags to be installed
-Plug 'majutsushi/tagbar' " not enable it on toggle as airline can not lazy-load its plugins
-" use vimdiff on folders!
-Plug 'will133/vim-dirdiff'
+"
+" Visuals
+"
 " best colorscheme of them all
 Plug 'altercation/vim-colors-solarized'
 " lightweight alternative to Powerline
 Plug 'vim-airline/vim-airline'
 " additional themes for vim-airline
 Plug 'vim-airline/vim-airline-themes'
+"
+" Rarely used or just for fun
 " generate Powerline-like config for Tmux interface, based on vim-airline
-Plug 'edkolev/tmuxline.vim', { 'on': 'Tmuxline' }
+"Plug 'edkolev/tmuxline.vim', { 'on': 'Tmuxline' }
 " generate Powerline-like config for shell command line, based on vim-airline
-Plug 'edkolev/promptline.vim', { 'on': 'PromptlineSnapshot' }
+"Plug 'edkolev/promptline.vim', { 'on': 'PromptlineSnapshot' }
 " Online REPL sidepanel
-Plug 'metakirby5/codi.vim', { 'on': 'Codi' }
+"Plug 'metakirby5/codi.vim', { 'on': 'Codi' }
 " interact with JSON-based REST APIs
-Plug 'diepm/vim-rest-console', { 'for': 'rest' }
+"Plug 'diepm/vim-rest-console', { 'for': 'rest' }
 "" (La)TeX goodies
 "Plug 'lervag/vimtex'
 "" opinionated 'sensible' defaults for Vim
