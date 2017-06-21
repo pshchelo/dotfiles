@@ -1,2 +1,9 @@
 stackdev_dir: "{{ ansible_user_dir }}/stackdev"
 devstack_dir: "{{ ansible_user_dir }}/devstack"
+stackdev_scripts_target_dir: "{{ ansible_user_dir }}/.local/bin"
+stackdev_scripts:
+  - src: "{{ stackdev_dir }}/scripts/devlog"
+    link: "{{ stackdev_scripts_target_di }}/devlog"
+  - src: "{{ stackdev_dir }}/scripts/devlog"
+    link: "{{ stackdev_scripts_target_di }}/rdevlog"
+

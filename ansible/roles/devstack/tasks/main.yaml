@@ -18,3 +18,15 @@
     path: "{{ devstack_dir }}/local.sh"
     src: "{{ stackdev_dir }}/conf/local.sh"
     state: link
+
+- name: ensure stackdev_scripts_target_dir exists
+  file:
+    path: "{{ stackdev_scripts_target_dir }}"
+    state: directory
+
+- name: make links to scripts
+  file:
+    path: "{{ item.link }}"
+    src: "{{ item.src }}"
+    state: link
+  with_items: stackdev_scripts
