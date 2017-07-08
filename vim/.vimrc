@@ -74,7 +74,7 @@ set hlsearch
 set noshowmode
 
 " set gui options
-set guifont=Anonymous\ Pro\ for\ Powerline\ 12
+" set guifont=Anonymous\ Pro\ for\ Powerline\ 12
 set guioptions-=T  "remove toolbar
 " set terminal colors
 set t_Co=16
