@@ -36,7 +36,6 @@ apt_packages_tools:
   - acpid
   - apt-file
   - uuid-runtime
-  - ttf-anonymous-pro
   - man-db
   - git-man
 
