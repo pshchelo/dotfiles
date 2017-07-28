@@ -26,7 +26,7 @@
 
 - name: make links to scripts
   file:
-    path: "{{ item.link }}"
+    path: "{{ item.path }}"
     src: "{{ item.src }}"
     state: link
-  with_items: stackdev_scripts
+  with_items: "{{ stackdev_scripts }}"
