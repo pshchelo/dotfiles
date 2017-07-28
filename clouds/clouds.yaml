@@ -7,8 +7,6 @@ clouds:
       user_domain_id: default
       auth_url: https://cloud-cz.bud.mirantis.net:5000/v3
     identity_api_version: '3'
-    insecure: True
-
   mirantis-us-mos-ironic:
     auth:
       username: pshchelokovskyy
