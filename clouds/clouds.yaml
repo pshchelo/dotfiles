@@ -1,5 +1,5 @@
 clouds:
-  mcp-oscore:
+  devcloud:
     auth:
       username: mcp-oscore
       project_name: mcp-oscore
