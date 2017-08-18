@@ -3,7 +3,7 @@
 "=====
 call plug#begin()
 "
-" Genaral vim goodies
+" GENARAL VIM GOODIES
 "
 " close files instead of closing views
 Plug 'moll/vim-bbye'
@@ -21,30 +21,43 @@ Plug 'will133/vim-dirdiff'
 " auto-set paste mode when inserting thru terminal shortcut keys
 "Plug 'ConradIrwin/vim-bracketed-paste'
 "
-" GIT integration
+" GIT INTEGRATION
 "
 " Git integration
 Plug 'tpope/vim-fugitive'
 " display git status per line in buffer, stage/instage hunks, integrates with vim-airline
 Plug 'airblade/vim-gitgutter'
 "
-" Python (mostly) coding things
-" code and style checks
-Plug 'scrooloose/syntastic'
+" GENRAL PROGRAMMING
+"
 " auto-complete, supports Jedi for Python code
 Plug 'Shougo/neocomplete' | Plug 'Konfekt/FastFold'
+" sidebar code structure browser, requires exuberant-tags to be installed
+Plug 'majutsushi/tagbar' " not enable it on toggle as airline can not lazy-load its plugins
+" code and style checks
+Plug 'scrooloose/syntastic'
+"
+" PYTHON SUPPORT
+"
 " Python goodies
 Plug 'klen/python-mode', { 'for': 'python' }
 " Python code completion and refactoring
 Plug 'davidhalter/jedi-vim', { 'for': 'python' }
-" sidebar code structure browser, requires exuberant-tags to be installed
-Plug 'majutsushi/tagbar' " not enable it on toggle as airline can not lazy-load its plugins
-" reStructured text goodies
-" FIXME: using a fork until this PR is merged
+"
+" HASKELL SUPPORT
+" introspection
+"Plug 'eagletmt/ghcmod-vim', {'for': 'haskell'}
+" completion
+"Plug 'eagletmt/neco-ghc', {'for': 'haskell'}
+"
+" MARKUP LANGUAGES SUPPORT
+"
+" reStructured text
+" FIXME: using a fork until PR109 is merged
 "Plug 'Rykka/riv.vim', { 'for': 'rst,python' }
 Plug 'proteansec/riv.vim', { 'branch': 'fixdel', 'for': 'rst,python' }
 "
-" Visuals
+" VISUALS
 "
 " best colorscheme of them all
 Plug 'altercation/vim-colors-solarized'
@@ -53,7 +66,9 @@ Plug 'vim-airline/vim-airline'
 " additional themes for vim-airline
 Plug 'vim-airline/vim-airline-themes'
 "
-" Rarely used or just for fun
+" RARELY USED OR JUST FOR FUN
+" enable when needed
+"
 " generate Powerline-like config for Tmux interface, based on vim-airline
 "Plug 'edkolev/tmuxline.vim', { 'on': 'Tmuxline' }
 " generate Powerline-like config for shell command line, based on vim-airline
