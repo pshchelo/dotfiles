@@ -45,4 +45,5 @@ clouds:
     region_name: RegionOne
 ansible:
   use_hostnames: True
-  fail_on_errors: False
+  expand_hostvars: False
+  fail_on_errors: True
