@@ -32,9 +32,5 @@ alias wttr='curl wttr.in'
 # do not fail tox on missing interpreters
 alias stox='tox --skip-missing-interpreters'
 
-# re-create virtualenv via virtualenvwrapper
-# workaround for bug https://bitbucket.org/virtualenvwrapper/virtualenvwrapper/issues/291
-alias wipeenv='v=$(basename ${VIRTUAL_ENV});deactivate;rmvirtualenv $v;mkvirtualenv $v'
-
 # get value for given Heat stack output from named cloud (3 args - cloud, stack name, output name)
 alias stackoutput='openstack stack output show -f value -c output_value --os-cloud'
