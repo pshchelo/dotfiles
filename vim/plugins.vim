@@ -56,6 +56,10 @@ Plug 'davidhalter/jedi-vim', { 'for': 'python' }
 " FIXME: using a fork until PR109 is merged
 "Plug 'Rykka/riv.vim', { 'for': 'rst,python' }
 Plug 'proteansec/riv.vim', { 'branch': 'fixdel', 'for': 'rst,python' }
+" YAML indentation
+Plug 'avakhov/vim-yaml', { 'for': 'yaml' }
+" YAML folds
+Plug 'digitalrounin/vim-yaml-folds', { 'for': 'yaml' }
 "
 " VISUALS
 "
