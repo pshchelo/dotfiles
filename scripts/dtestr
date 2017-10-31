@@ -4,7 +4,13 @@
 # Useful for debugging as testr does not support using pdb breakpoits
 # Arguments: regex for test name
 
+if [ -f "${PWD}/.stestr.conf" ]; then
+    cmd="stestr list"
+else
+    cmd="testr list-tests"
+fi
+
 testlist=$(mktemp)
-testr list-tests "$1"  > $testlist
+${cmd} "$1" > $testlist
 cat $testlist
 python -m testtools.run --load-list $testlist
