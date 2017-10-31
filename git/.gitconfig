@@ -16,3 +16,6 @@
 [gitreview]
 	username = pshchelo
 	rebase = false
+[alias]
+        tox-rebase = rebase -x 'tox --skip-missing-interpreters' -i
+        last = log -1
