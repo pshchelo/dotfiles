@@ -13,27 +13,15 @@ Host devstack
 Host kvm-work
     HostName pshchelokovskyy-pc.kha.mirantis.net
 
-Host devstack-vm-work
+Host dsvm1-kvm-work
     HostName 192.168.100.11
     DynamicForward 10011
 
-Host devstack-alt-vm-work
+Host dsvm2-kvm-work
     HostName 192.168.100.12
     DynamicForward 10012
 
-Host bifrost-vm-work
-    HostName 192.168.100.13
-    DynamicForward 10013
-
-Host salt-master-vm-work
-    HostName 192.168.100.20
-    DynamicForward 10020
-
-Host salt-minion-vm-work
-    HostName 192.168.100.21
-    DynamicForward 10021
-
-Host *-vm-work
+Host *-kvm-work
     ProxyCommand ssh -W %h:%p kvm-work
     StrictHostKeyChecking no
     UserKnownHostsFile /dev/null

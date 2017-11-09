@@ -1,25 +1,17 @@
 localhost ansible_connection=local
 kvm-work
-devstack-vm-work
-devstack-alt-vm-work
-bifrost-vm-work
+dsvm1-kvm-work
+dsvm2-kvm-work
 devstack
 trusty ansible_host=192.168.100.125
 ramdisk ansible_host=192.168.100.13 ansible_user=tc ansible_ssh_private_key_file=/media/shared/vms/kernels/irsible/irsible_key
 
 [work-vms]
-devstack-vm-work
-devstack-alt-vm-work
-bifrost-vm-work
-
-[salt]
-salt-master-vm-work
-salt-minion-vm-work
+*-kvm-work
 
 [hypervisors]
 kvm-work
 
 [local-vms]
 devstack
-trusty 
 ramdisk
