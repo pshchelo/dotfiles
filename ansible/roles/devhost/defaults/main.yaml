@@ -2,3 +2,4 @@ username: "{{ ansible_user_id }}"
 userhome: "{{ ansible_user_dir }}"
 dotfiles_dir: "{{ userhome }}/dotfiles"
 dev_minimal: false
+clean_apt_sources: false

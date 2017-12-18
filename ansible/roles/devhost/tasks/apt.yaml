@@ -1,3 +1,10 @@
+- name: clean up custom sources
+  become: yes
+  shell: rm /etc/apt/sources.list.d/*.list*
+  when: clean_apt_sources | bool
+  notify:
+    - upgrade packages
+
 - name: install packages for development
   become: yes
   apt:
