@@ -1,7 +1,15 @@
+- name: create directory for DevStack install
+  become: yes
+  file:
+    state: directory
+    path: "{{ stack_dir }}"
+    owner: "{{ ansible_user_id }}"
+    recurse: yes
+
 - name: get latest DevStack
   git:
     repo: git://git.openstack.org/openstack-dev/devstack.git
-    dest: "{{ devstack_dir }}"
+    dest: "{{ stack_dir }}/devstack"
 
 - name: get my stackdev repo
   git:
@@ -9,13 +17,13 @@
     dest: "{{ stackdev_dir }}"
 
 - name: create stub for DevStack's local.conf
-  command: cp {{ stackdev_dir }}/conf/local.conf.sample {{ devstack_dir }}/local.conf
+  command: cp {{ stackdev_dir }}/conf/local.conf.sample {{ stack_dir }}/devstack/local.conf
   args:
-    creates: "{{ devstack_dir }}/local.conf"
+    creates: "{{ stack_dir }}/devstack/local.conf"
 
 - name: make a link to local.sh file for DevStack
   file:
-    path: "{{ devstack_dir }}/local.sh"
+    path: "{{ stack_dir }}/devstack/local.sh"
     src: "{{ stackdev_dir }}/conf/local.sh"
     state: link
 
