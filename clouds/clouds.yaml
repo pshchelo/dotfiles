@@ -7,42 +7,6 @@ clouds:
       user_domain_id: default
       auth_url: https://cloud-cz.bud.mirantis.net:5000/v3
     identity_api_version: '3'
-  mirantis-us-mos-ironic:
-    auth:
-      username: pshchelokovskyy
-      project_name: mos-ironic
-      user_domain_name: ldap
-      project_domain_name: ldap
-      auth_url: https://horizon-us.ssl.mirantis.net:5000/v3
-    identity_api_version: 3
-    region_name: RegionOne
-  mirantis-eu-mos-ironic:
-    auth:
-      username: pshchelokovskyy
-      project_name: mos-ironic
-      user_domain_name: ldap
-      project_domain_name: ldap
-      auth_url: https://horizon-eu.ssl.mirantis.net:5000/v3
-    identity_api_version: 3
-    region_name: RegionOne
-  mirantis-us-ironic-team:
-    auth:
-      username: pshchelokovskyy
-      project_name: ironic-team
-      user_domain_name: ldap
-      project_domain_name: ldap
-      auth_url: https://horizon-us.ssl.mirantis.net:5000/v3
-    identity_api_version: 3
-    region_name: RegionOne
-  mirantis-eu-ironic-team:
-    auth:
-      username: pshchelokovskyy
-      project_name: ironic-team
-      user_domain_name: ldap
-      project_domain_name: ldap
-      auth_url: https://horizon-eu.ssl.mirantis.net:5000/v3
-    identity_api_version: 3
-    region_name: RegionOne
 ansible:
   use_hostnames: True
   expand_hostvars: False
