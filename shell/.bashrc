@@ -119,7 +119,6 @@ fi
 # virtualenvwrapper setup if installed globally
 if [ -f /usr/local/bin/virtualenvwrapper.sh ]; then
     export WORKON_HOME=$HOME/.virtualenvs
-    export PROJECT_HOME=$HOME/devel
     source /usr/local/bin/virtualenvwrapper.sh
 fi
 
