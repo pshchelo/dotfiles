@@ -44,11 +44,18 @@ Plug 'klen/python-mode', { 'for': 'python' }
 " Python code completion and refactoring
 Plug 'davidhalter/jedi-vim', { 'for': 'python' }
 "
-" HASKELL SUPPORT
-" introspection
-"Plug 'eagletmt/ghcmod-vim', {'for': 'haskell'}
-" completion
-"Plug 'eagletmt/neco-ghc', {'for': 'haskell'}
+if executable('ghc')
+    " HASKELL SUPPORT
+    " introspection
+    Plug 'eagletmt/ghcmod-vim', {'for': 'haskell'}
+    " completion
+    Plug 'eagletmt/neco-ghc', {'for': 'haskell'}
+endif
+
+if executable('go')
+    " GO SUPPORT
+    Plug 'fatih/vim-go', {'for': 'go'}
+endif
 "
 " MARKUP LANGUAGES SUPPORT
 "
