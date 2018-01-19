@@ -60,9 +60,7 @@ endif
 " MARKUP LANGUAGES SUPPORT
 "
 " reStructured text
-" FIXME: using a fork until PR109 is merged
-"Plug 'Rykka/riv.vim', { 'for': 'rst,python' }
-Plug 'proteansec/riv.vim', { 'branch': 'fixdel', 'for': 'rst,python' }
+Plug 'gu-fan/riv.vim', { 'for': 'rst,python' }
 " YAML indentation
 Plug 'avakhov/vim-yaml', { 'for': 'yaml' }
 " YAML folds
