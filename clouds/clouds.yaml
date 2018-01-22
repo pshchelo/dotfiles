@@ -5,7 +5,7 @@ clouds:
       project_name: mcp-oscore
       project_domain_id: default
       user_domain_id: default
-      auth_url: https://cloud-cz.bud.mirantis.net:5000/v3
+      auth_url: https://cloud-cz.bud.mirantis.net:5000
     identity_api_version: '3'
 ansible:
   use_hostnames: True
