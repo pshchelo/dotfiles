@@ -1,6 +1,15 @@
+- name: find custom apt sources files
+  find:
+    paths: "/etc/apt/sources.list.d"
+    patterns: "*.list*"
+  register: custom_apt_sources
+
 - name: clean up custom sources
   become: yes
-  shell: rm /etc/apt/sources.list.d/*.list*
+  file:
+    path: "{{ item.path }}"
+    state: absent
+  with_items: "{{ custom_apt_sources.files }}"
   when: clean_apt_sources | bool
   notify:
     - upgrade packages
