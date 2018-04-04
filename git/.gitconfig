@@ -1,21 +1,21 @@
 [user]
-	name = Pavlo Shchelokovskyy
-	email = shchelokovskyy@gmail.com
+    name = Pavlo Shchelokovskyy
+    email = shchelokovskyy@gmail.com
 [core]
-	autocrlf = input
-	editor = vim
-	excludesfile = ~/.gitignore_global
+    autocrlf = input
+    editor = vim
+    excludesfile = ~/.gitignore_global
 [push]
-	default = simple
+    default = simple
 [i18n]
-	filesEncoding = utf-8
+    filesEncoding = utf-8
 [merge]
-	tool = vimdiff
+    tool = vimdiff
 [diff]
-	guitool = vimdiff
+    guitool = vimdiff
 [gitreview]
-	username = pshchelo
-	rebase = false
+    username = pshchelo
+    rebase = false
 [alias]
-        tox-rebase = rebase -x 'tox --skip-missing-interpreters' -i
-        last = log -1
+    tox-rebase = rebase -x 'tox --skip-missing-interpreters' -i
+    last = log -1
