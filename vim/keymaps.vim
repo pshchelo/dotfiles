@@ -1,9 +1,5 @@
 " turn off active search highlighting
 nnoremap <silent> <Space> :nohlsearch<Bar>:echo<CR>
-"
-" Switch to alternate file
-nmap <F9> :bnext<cr>
-nmap <F8> :bprevious<cr>
 
 " Mapping for gracefully closing buffers with vim-bbye
 :nnoremap <Leader>q :Bdelete<CR>

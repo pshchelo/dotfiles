@@ -11,6 +11,12 @@ Plug 'moll/vim-bbye'
 Plug 'ctrlpvim/ctrlp.vim'
 " ack/ag integration
 Plug 'mileszs/ack.vim'
+" pairs of commands
+Plug 'tpope/vim-unimpaired'
+" repeat full actions from plugins via .
+Plug 'tpope/vim-repeat'
+" work with surrounding quotes/braces/tags
+Plug 'tpope/vim-surround'
 " lightweight (un)commenter
 Plug 'tpope/vim-commentary'
 " nicer (un)comment commands
