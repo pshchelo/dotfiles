@@ -11,15 +11,14 @@ Plug 'moll/vim-bbye'
 Plug 'ctrlpvim/ctrlp.vim'
 " ack/ag integration
 Plug 'mileszs/ack.vim'
+" lightweight (un)commenter
+Plug 'tpope/vim-commentary'
 " nicer (un)comment commands
-Plug 'scrooloose/nerdcommenter'
+"Plug 'scrooloose/nerdcommenter'
 " sidebar file browser
 Plug 'scrooloose/nerdtree', { 'on':  'NERDTreeToggle' }
 " use vimdiff on folders!
 Plug 'will133/vim-dirdiff'
-" FIXME: does not work in tmux
-" auto-set paste mode when inserting thru terminal shortcut keys
-"Plug 'ConradIrwin/vim-bracketed-paste'
 "
 " GIT INTEGRATION
 "

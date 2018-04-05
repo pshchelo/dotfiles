@@ -54,7 +54,7 @@ set pastetoggle=<Leader>p
 "map <C-l> <C-w>l
 
 " key map to insert pdb breakpoint if no Python-mode is present
-"nnoremap <leader>b yyP^Cimport pdb; pdb.set_trace()  # XXX:breakpoint
+"nnoremap <leader>b yyP^Cimport pdb; pdb.set_trace()  # XXX:breakpoint
 
 " make vim understand commands without leaving russian keyboard layout
 "set langmap=!\\"№\\;%?*ёйцукенгшщзхъфывапролджэячсмитьбюЁЙЦУКЕHГШЩЗХЪФЫВАПРОЛДЖЭЯЧСМИТЬБЮ;!@#$%&*`qwertyuiop[]asdfghjkl\\;'zxcvbnm\\,.~QWERTYUIOP{}ASDFGHJKL:\\"ZXCVBNM<>
@@ -62,5 +62,5 @@ set pastetoggle=<Leader>p
 " USEFUL UNICODE SYMBOLS
 " check marks/crosses ✅ ✓ ✔ ✗ ✘ 🗴 🗶 🗸
 " more ⚠ ♨ ⚡ ⌥ ⌦ ⎇ 🗲
-" Powerline symbols (from private Unicode space) 
+" Powerline symbols (from private Unicode space)
 "       
