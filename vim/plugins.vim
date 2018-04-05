@@ -262,6 +262,8 @@ map <F3> :NERDTreeToggle<CR>
 let g:NERDCustomDelimiters = {
     \ 'dosini': {'left': '#', 'leftAlt': ';'}
     \ }
+" Same for vim-commentary
+autocmd FileType dosini setlocal commentstring=#\ %s
 
 "=======
 " Tagbar
