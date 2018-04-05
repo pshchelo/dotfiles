@@ -35,13 +35,20 @@ Plug 'airblade/vim-gitgutter'
 "
 " GENRAL PROGRAMMING
 "
-" auto-complete, supports Jedi for Python code
-Plug 'Shougo/neocomplete' | Plug 'Konfekt/FastFold'
 " sidebar code structure browser, requires exuberant-tags to be installed
 Plug 'majutsushi/tagbar' " not enable it on toggle as airline can not lazy-load its plugins
-" code and style checks
-Plug 'scrooloose/syntastic'
-"
+if v:version < 800
+    " auto-complete, supports Jedi for Python code
+    Plug 'Shougo/neocomplete' | Plug 'Konfekt/FastFold'
+    " code and style checks
+    Plug 'scrooloose/syntastic'
+else
+    " async auto-complete
+    Plug 'maralla/completor.vim'
+    " async linter
+    Plug 'w0rp/ale'
+endif
+
 " PYTHON SUPPORT
 "
 " Python goodies
@@ -128,10 +135,11 @@ let g:ctrlp_cmd = 'CtrlPMixed'
 "=====
 " Jedi
 "=====
-" Do not use Jedi for autocompletion (using neocomplete for that)
+" Do not use Jedi for autocompletion (using completor/neocomplete for that)
 let g:jedi#completions_enabled = 0
 let g:jedi#auto_vim_configuration = 0
 let g:jedi#smart_auto_mappings = 0
+
 " Change default binding of jedi's rename command
 let g:jedi#rename_command = "<leader>rn"
 " Set function call signatures display
@@ -142,28 +150,35 @@ let g:jedi#show_call_signatures = 1
 " Use tabs for go-to commands
 let g:jedi#use_tabs_not_buffers = 1
 
+if v:version < 800
 "============
 " Neocomplete
 "============
-" Use neocomplete.
-let g:neocomplete#enable_at_startup = 1
-" Use smartcase.
-let g:neocomplete#enable_smart_case = 1
-" Set minimum syntax keyword length.
-let g:neocomplete#sources#syntax#min_keyword_length = 3
-let g:neocomplete#lock_buffer_name_pattern = '\*ku\*'
-" Python / jedi-vim completion
-autocmd FileType python setlocal omnifunc=jedi#completions
-if !exists('g:neocomplete#force_omni_input_patterns')
-    let g:neocomplete#force_omni_input_patterns = {}
+    " Use neocomplete.
+    let g:neocomplete#enable_at_startup = 1
+    " Use smartcase.
+    let g:neocomplete#enable_smart_case = 1
+    " Set minimum syntax keyword length.
+    let g:neocomplete#sources#syntax#min_keyword_length = 3
+    let g:neocomplete#lock_buffer_name_pattern = '\*ku\*'
+    " Python / jedi-vim completion
+    autocmd FileType python setlocal omnifunc=jedi#completions
+    if !exists('g:neocomplete#force_omni_input_patterns')
+        let g:neocomplete#force_omni_input_patterns = {}
+    endif
+    let g:neocomplete#force_omni_input_patterns.python = '\%([^. \t]\.\|^\s*@\|^\s*from\s.\+import \|^\s*from \|^\s*import \)\w*'
+    " Other completions (builtin)
+    autocmd FileType css setlocal omnifunc=csscomplete#CompleteCSS
+    autocmd FileType html,markdown setlocal omnifunc=htmlcomplete#CompleteTags
+    autocmd FileType javascript setlocal omnifunc=javascriptcomplete#CompleteJS
+    autocmd FileType xml setlocal omnifunc=xmlcomplete#CompleteTags
+    " Key-mappings are in keymaps.vim
+else
+"============
+" Completor
+"============
+    let g:completor_python_binary = '/usr/bin/python3'
 endif
-let g:neocomplete#force_omni_input_patterns.python = '\%([^. \t]\.\|^\s*@\|^\s*from\s.\+import \|^\s*from \|^\s*import \)\w*'
-" Other completions (builtin)
-autocmd FileType css setlocal omnifunc=csscomplete#CompleteCSS
-autocmd FileType html,markdown setlocal omnifunc=htmlcomplete#CompleteTags
-autocmd FileType javascript setlocal omnifunc=javascriptcomplete#CompleteJS
-autocmd FileType xml setlocal omnifunc=xmlcomplete#CompleteTags
-" Key-mappings are in keymaps.vim
 
 "============
 " Python-mode
@@ -205,23 +220,30 @@ let g:pymode_syntax_all = 1
 let g:pymode_options_max_line_length = 79
 let g:pymode_options_colorcolumn = 1
 
-"==========
-" Syntastic
-"==========
-" Define nice error symbols
-let g:syntastic_error_symbol='✗'
-let g:syntastic_warning_symbol='⚠'
+if v:version < 800
+    "==========
+    " Syntastic
+    "==========
+    " Define nice error symbols
+    let g:syntastic_error_symbol='✗'
+    let g:syntastic_warning_symbol='⚠'
 
-" Allways stick found errors to loclist
-let g:syntastic_always_populate_loc_list=1
-" Automatically close and open loclist
-let g:syntastic_auto_loc_list=1
-" Aggregate errors from all checkers
-let g:syntastic_aggregate_errors=1
+    " Allways stick found errors to loclist
+    let g:syntastic_always_populate_loc_list=1
+    " Automatically close and open loclist
+    let g:syntastic_auto_loc_list=1
+    " Aggregate errors from all checkers
+    let g:syntastic_aggregate_errors=1
 
-" Use flake8 as a sole checker for Python files
-" Available are pep8,pep257,pyflakes,pylint,py3kwarn,python,flake8,pylama
-let g:syntastic_python_checkers = ['flake8']
+    " Use flake8 as a sole checker for Python files
+    " Available are pep8,pep257,pyflakes,pylint,py3kwarn,python,flake8,pylama
+    let g:syntastic_python_checkers = ['flake8']
+else
+    "=========
+    " ALE
+    "=========
+    " TODO
+endif
 
 "=========
 " NERDTree
