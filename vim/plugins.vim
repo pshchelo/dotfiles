@@ -40,15 +40,18 @@ Plug 'majutsushi/tagbar' " not enable it on toggle as airline can not lazy-load 
 if v:version < 800
     " auto-complete, supports Jedi for Python code
     Plug 'Shougo/neocomplete' | Plug 'Konfekt/FastFold'
-    " code and style checks
-    Plug 'scrooloose/syntastic'
 else
     " async auto-complete
     Plug 'maralla/completor.vim'
-    " async linter
-    Plug 'w0rp/ale'
 endif
 
+" if v:version < 800
+    " code and style checks
+    Plug 'scrooloose/syntastic'
+" else
+    " async linter - flake8 does not work, disabling for now
+    " Plug 'w0rp/ale'
+" endif
 " PYTHON SUPPORT
 "
 " Python goodies
@@ -220,7 +223,7 @@ let g:pymode_syntax_all = 1
 let g:pymode_options_max_line_length = 79
 let g:pymode_options_colorcolumn = 1
 
-if v:version < 800
+" if v:version < 800
     "==========
     " Syntastic
     "==========
@@ -238,12 +241,16 @@ if v:version < 800
     " Use flake8 as a sole checker for Python files
     " Available are pep8,pep257,pyflakes,pylint,py3kwarn,python,flake8,pylama
     let g:syntastic_python_checkers = ['flake8']
-else
+" else
     "=========
     " ALE
     "=========
     " TODO
-endif
+    " let g:airline#extensions#ale#enabled = 1
+    " let g:ale_sign_error = '✗'
+    " let g:ale_sign_warning = '⚠'
+    " let g:ale_linters = {'python': ['flake8'],}
+" endif
 
 "=========
 " NERDTree
