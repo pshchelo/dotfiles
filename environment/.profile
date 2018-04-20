@@ -8,19 +8,19 @@
 # for ssh logins, install and configure the libpam-umask package.
 #umask 022
 
-LANG=en_US.UTF-8
-LANGUAGE=en_US.UTF-8
-LC_NUMERIC=en_US.UTF-8
-LC_MONETARY=en_US.UTF-8
-LC_NAME=en_US.UTF-8
-LC_ADDRESS=en_US.UTF-8
-LC_TELEPHONE=en_US.UTF-8
-LC_IDENTIFICATION=en_US.UTF-8
+# LANG=en_US.UTF-8
+# LANGUAGE=en_US.UTF-8
+# LC_NUMERIC=en_US.UTF-8
+# LC_MONETARY=en_US.UTF-8
+# LC_NAME=en_US.UTF-8
+# LC_ADDRESS=en_US.UTF-8
+# LC_TELEPHONE=en_US.UTF-8
+# LC_IDENTIFICATION=en_US.UTF-8
 # Britain locale settings for sane European defaults
-LC_MEASUREMENT=en_GB.UTF-8
-LC_TIME=en_GB.UTF-8
-LC_PAPER=en_GB.UTF-8
-PAPERSIZE=a4
+# LC_MEASUREMENT=en_GB.UTF-8
+# LC_TIME=en_GB.UTF-8
+# LC_PAPER=en_GB.UTF-8
+# PAPERSIZE=a4
 
 # if running bash
 if [ -n "$BASH_VERSION" ]; then
