@@ -18,16 +18,16 @@ Plug 'tpope/vim-repeat'
 " work with surrounding quotes/braces/tags
 Plug 'tpope/vim-surround'
 " lightweight (un)commenter
-Plug 'tpope/vim-commentary'
+"Plug 'tpope/vim-commentary'
 " nicer (un)comment commands
-"Plug 'scrooloose/nerdcommenter'
+Plug 'scrooloose/nerdcommenter'
 " sidebar file browser
 Plug 'scrooloose/nerdtree', { 'on':  'NERDTreeToggle' }
 " use vimdiff on folders!
 Plug 'will133/vim-dirdiff'
 "
 " GIT INTEGRATION
-"
+
 " Git integration
 Plug 'tpope/vim-fugitive'
 " display git status per line in buffer, stage/instage hunks, integrates with vim-airline
@@ -223,6 +223,7 @@ let g:pymode_syntax_all = 1
 let g:pymode_options_max_line_length = 79
 let g:pymode_options_colorcolumn = 1
 
+" TODO: make ALE work
 " if v:version < 800
     "==========
     " Syntastic
@@ -270,7 +271,7 @@ let g:NERDCustomDelimiters = {
     \ 'dosini': {'left': '#', 'leftAlt': ';'}
     \ }
 " Same for vim-commentary
-autocmd FileType dosini setlocal commentstring=#\ %s
+"autocmd FileType dosini setlocal commentstring=#\ %s
 
 "=======
 " Tagbar
