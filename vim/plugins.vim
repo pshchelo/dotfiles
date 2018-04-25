@@ -55,7 +55,7 @@ endif
 " PYTHON SUPPORT
 "
 " Python goodies
-Plug 'klen/python-mode', { 'for': 'python' }
+Plug 'python-mode/python-mode', { 'branch': 'develop', 'for': 'python' }
 " Python code completion and refactoring
 Plug 'davidhalter/jedi-vim', { 'for': 'python' }
 "
