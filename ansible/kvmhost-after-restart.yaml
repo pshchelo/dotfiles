@@ -1,6 +1,7 @@
 ---
 - hosts: hypervisors
   vars:
+    start_all: yes
     outbound_access:
     - cidr: "192.168.100.0/24"
       comment: "outbound access for virsh default network"
@@ -18,3 +19,14 @@
         - ESTABLISHED
       comment: "{{ item.comment }}"
     with_items: "{{ outbound_access }}"
+  - block:
+    - name: list all vms
+      virt:
+        command: list_vms
+      register: all_vms
+    - name: start all vms
+      virt:
+        name: "{{ item }}"
+        state: running
+      with_items: "{{ all_vms.list_vms }}"
+    when: start_all | bool
