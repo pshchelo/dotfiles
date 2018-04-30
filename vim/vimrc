@@ -132,6 +132,15 @@ autocmd BufRead,BufNewFile *.conf set filetype=dosini
 "=========
 " INCLUDES
 "=========
-source ~/dotfiles/vim/plugins.vim
-source ~/dotfiles/vim/keymaps.vim
-source ~/dotfiles/vim/autocorrect.vim
+
+let source_files = [
+            \ '~/dotfiles/vim/plugins.vim',
+            \ '~/dotfiles/vim/keymaps.vim',
+            \ '~/dotfiles/vim/autocorrect.vim',
+            \]
+
+for path in source_files
+    if !empty(glob(path))
+        exe 'source' path
+    endif
+endfor

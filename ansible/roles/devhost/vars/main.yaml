@@ -80,8 +80,6 @@ links_to_create:
     src: "{{ dotfiles_dir }}/git/.gitignore_global"
   - path: "{{ userhome }}/.tigrc"
     src: "{{ dotfiles_dir }}/git/.tigrc"
-  - path: "{{ userhome }}/.vimrc"
-    src: "{{ dotfiles_dir }}/vim/.vimrc"
   - path: "{{ userhome }}/.local/bin/ppclean"
     src: "{{ dotfiles_dir }}/scripts/ppclean"
   - path: "{{ userhome }}/.local/bin/dtestr"

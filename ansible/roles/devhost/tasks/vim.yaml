@@ -3,6 +3,12 @@
     path: "{{ userhome }}/.vim/autoload"
     state: directory
 
+- name: make a link to vim config
+  file:
+    path: "{{ userhome }}/.vim/vimrc"
+    src: "{{ dotfiles_dir }}/vim/vimrc"
+    state: link
+
 - name: install/update vim-plug
   get_url:
     dest: "{{ userhome }}/.vim/autoload/plug.vim"
