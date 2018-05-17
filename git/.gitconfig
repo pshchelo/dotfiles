@@ -19,4 +19,4 @@
 [alias]
     tox-rebase = rebase -x 'tox --skip-missing-interpreters' -i
     last = log -1
-    graph = log --graph --oneline
+    graph = log --graph --oneline --decorate
