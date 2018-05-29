@@ -1,6 +1,4 @@
 ---
-- include: ansible-bootstrap.yaml
-
 - hosts: all
   vars:
     clean_apt_sources: true

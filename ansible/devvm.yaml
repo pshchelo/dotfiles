@@ -1,6 +1,4 @@
 ---
-- include: ansible-bootstrap.yaml
-
 - hosts: all
   roles:
     - devhost
