@@ -1,8 +1,0 @@
---ignore-dir=.tox
---ignore-dir=.testrepository
---ignore-dir=tests
---ignore-dir=doc
---ignore-dir=api-ref
---type=python
---type=yaml
---type-add=al:match:.*

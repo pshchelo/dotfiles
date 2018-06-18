@@ -66,8 +66,6 @@ links_to_create:
     src: "{{ dotfiles_dir }}/shell/.tmux.conf"
   - path: "{{ userhome }}/.bash_aliases"
     src: "{{ dotfiles_dir }}/shell/.bash_aliases"
-  - path: "{{ userhome }}/.ackrc"
-    src: "{{ dotfiles_dir }}/shell/.ackrc"
   - path: "{{ userhome }}/.agignore"
     src: "{{ dotfiles_dir }}/shell/.agignore"
   - path: "{{ userhome }}/.dircolors"
