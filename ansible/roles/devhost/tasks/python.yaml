@@ -6,7 +6,7 @@
 
 - name: install pip
   become: true
-  command: python /tmp/get-pip.py
+  command: "{{ hostvars[inventory_hostname].ansible_python_interpreter }} /tmp/get-pip.py"
 
 - name: install global python packages
   become: true
