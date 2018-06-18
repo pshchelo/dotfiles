@@ -43,7 +43,7 @@ apt_packages:
   build: "{{ apt_packages_build }}"
   tools: "{{ apt_packages_tools }}"
 
-global_python:
+pip_pkgs:
   - ipython
   - ipdb
   - virtualenvwrapper

@@ -8,9 +8,9 @@
   become: true
   command: "{{ hostvars[inventory_hostname].ansible_python_interpreter }} /tmp/get-pip.py"
 
-- name: install global python packages
-  become: true
+- name: install python packages from PyPI to userspace
   pip:
     name: "{{ item }}"
-  with_items: "{{ global_python }}"
+    extra_args: --user
+  with_items: "{{ pip_pkgs }}"
   when: not (dev_minimal|bool)
