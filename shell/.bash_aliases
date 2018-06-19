@@ -21,10 +21,10 @@ alias tb='nc termbin.com 9999'
 alias osdemo='openstack --os-cloud devstack'
 
 # openstack CLI as devstack admin
-alias osadmin='openstack --os-cloud devstack-admin --os-baremetal-api-version latest'
+alias osadmin='openstack --os-cloud devstack-admin'
 
 # openstack CLI for internal devcloud
-alias osdev='openstack --os-cloud devcloud'
+alias osdev=' ~/.virtualenvs/oscli/bin/openstack --os-cloud devcloud'
 
 # less that opens all and with terminal color control sequences
 alias lss='less -fR'
