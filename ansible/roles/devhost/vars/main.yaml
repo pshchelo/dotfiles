@@ -69,7 +69,7 @@ links_to_create:
   - path: "{{ userhome }}/.agignore"
     src: "{{ dotfiles_dir }}/shell/.agignore"
   - path: "{{ userhome }}/.dircolors"
-    src: "{{ dotfiles_dir }}/colors/dircolors.ansi-dark"
+    src: "{{ dotfiles_dir }}/colors/dircolors-solarized"
   - path: "{{ userhome }}/.ssh/config"
     src: "{{ dotfiles_dir }}/ssh/config"
   - path: "{{ userhome }}/.gitconfig"
