@@ -118,7 +118,9 @@ fi
 
 # virtualenvwrapper setup if installed globally
 if [ -f /usr/local/bin/virtualenvwrapper.sh ]; then
-    export VIRTUALENVWRAPPER_PYTHON=/usr/bin/python3
+    if $(command -v pip3) && $(pip3 freeze 2>&1 | grep virtualenvwrapper); then
+        export VIRTUALENVWRAPPER_PYTHON=/usr/bin/python3
+    fi
     export WORKON_HOME=$HOME/.virtualenvs
     source /usr/local/bin/virtualenvwrapper.sh
 fi
