@@ -10,7 +10,11 @@ Plug 'moll/vim-bbye'
 " command line fuzzy file search and open
 Plug 'ctrlpvim/ctrlp.vim'
 " ack/ag integration
-Plug 'mileszs/ack.vim'
+"Plug 'mileszs/ack.vim'
+" async ag-based search
+Plug 'dyng/ctrlsf.vim'
+" multiple cursors
+Plug 'terryma/vim-multiple-cursors'
 " pairs of commands
 Plug 'tpope/vim-unimpaired'
 " repeat full actions from plugins via .
@@ -25,13 +29,13 @@ Plug 'scrooloose/nerdcommenter'
 Plug 'scrooloose/nerdtree', { 'on':  'NERDTreeToggle' }
 " use vimdiff on folders!
 Plug 'will133/vim-dirdiff'
-"
 " GIT INTEGRATION
 
 " Git integration
 Plug 'tpope/vim-fugitive'
 " display git status per line in buffer, stage/instage hunks, integrates with vim-airline
-Plug 'airblade/vim-gitgutter'
+"Plug 'airblade/vim-gitgutter'
+Plug 'mhinz/vim-signify'
 "
 " GENRAL PROGRAMMING
 "
@@ -105,10 +109,8 @@ Plug 'vim-airline/vim-airline-themes'
 "Plug 'tpope/vim-sensible'
 call plug#end()
 
-" FIXME - Vundle leftovers, need to test if I need them back or not
-"filetype off                 " required for Vundle
-"filetype plugin indent on    " required for Vundle
-"filetype plugin on           " use this instead of ^ to ignore plugin indent changes
+" Signify
+let g:signify_vcs_list = [ 'git',]
 
 "==========
 " Solarized
@@ -221,11 +223,10 @@ let g:pymode_syntax_all = 1
 let g:pymode_options_max_line_length = 79
 let g:pymode_options_colorcolumn = 1
 
-" TODO: make ALE work
- if v:version < 800
-    "==========
-    " Syntastic
-    "==========
+if v:version < 800
+"==========
+" Syntastic
+"==========
     " Define nice error symbols
     let g:syntastic_error_symbol='✗'
     let g:syntastic_warning_symbol='⚠'
@@ -240,17 +241,16 @@ let g:pymode_options_colorcolumn = 1
     " Use flake8 as a sole checker for Python files
     " Available are pep8,pep257,pyflakes,pylint,py3kwarn,python,flake8,pylama
     let g:syntastic_python_checkers = ['flake8']
- else
-    "=========
-    " ALE
-    "=========
-    " TODO
+else
+"=========
+" ALE
+"=========
      let g:airline#extensions#ale#enabled = 1
      let g:ale_sign_error = '✗'
      let g:ale_sign_warning = '⚠'
      let g:ale_open_list = 1
      "let g:ale_linters = {'python': ['flake8'],}
- endif
+endif
 
 "=========
 " NERDTree
