@@ -29,6 +29,7 @@ Plug 'scrooloose/nerdcommenter'
 Plug 'scrooloose/nerdtree', { 'on':  'NERDTreeToggle' }
 " use vimdiff on folders!
 Plug 'will133/vim-dirdiff'
+"
 " GIT INTEGRATION
 
 " Git integration
