@@ -52,8 +52,8 @@ fu Select_c_style()
         set expandtab
     en
 endf
-au BufRead,BufNewFile *.c,*.h call Select_c_style()
-au BufRead,BufNewFile Makefile* set noexpandtab
+autocmd BufRead,BufNewFile *.c,*.h call Select_c_style()
+autocmd BufRead,BufNewFile Makefile* set noexpandtab
 
 "========
 " VISUALS
@@ -105,25 +105,27 @@ set fileencodings=utf-8,cp1251
 
 " PYTHON
 " Display tabs at the beginning of a line in Python mode as bad.
-au BufRead,BufNewFile *.py,*.pyw,*.pyx match BadWhitespace /^\t\+/
+autocmd BufRead,BufNewFile *.py,*.pyw,*.pyx match BadWhitespace /^\t\+/
 " Make trailing whitespace be flagged as bad.
-au BufRead,BufNewFile *.py,*.pyw*,.pyx,*.c,*.h match BadWhitespace /\s\+$/
+autocmd BufRead,BufNewFile *.py,*.pyw*,.pyx,*.c,*.h match BadWhitespace /\s\+$/
 
 " RST and TXT
 " Enable spell-check for RST and plain text files
 autocmd BufNewFile,BufRead *.{txt,rst} setlocal spell spelllang=en_us
 " Make trailing whitespace be flagged as bad for RST files
-au BufRead,BufNewFile *.rst match BadWhitespace /\s\+$/
+autocmd BufRead,BufNewFile *.rst match BadWhitespace /\s\+$/
 " Trim trailing whitespace on save for RST files
 autocmd BufWritePre *.rst :%s/\s\+$//e
 
 " YAML
+" treat *.hot OpenStack Orchestration (Heat) templates as YAML
+autocmd BufRead,BufNewFile *.hot set filetype=yaml
 " set indent settings for yaml files
 autocmd Filetype yaml setlocal ts=2 sw=2 expandtab
 " Make trailing whitespace be flagged as bad for YAML files
-au BufRead,BufNewFile *.yaml,*.yml match BadWhitespace /\s\+$/
+autocmd BufRead,BufNewFile *.yaml,*.yml,*.hot match BadWhitespace /\s\+$/
 " Trim trailing whitespace on save for YAML files
-autocmd BufWritePre *.yaml,*.yml :%s/\s\+$//e
+autocmd BufWritePre *.yaml,*.yml,*.hot :%s/\s\+$//e
 
 " Config files
 " treat *.conf files as in dosini format
