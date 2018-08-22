@@ -83,6 +83,10 @@ Plug 'gu-fan/riv.vim', { 'for': 'rst,python' }
 Plug 'avakhov/vim-yaml', { 'for': 'yaml' }
 " YAML folds
 Plug 'digitalrounin/vim-yaml-folds', { 'for': 'yaml' }
+" Jinja2 template files
+Plug 'Glench/Vim-Jinja2-Syntax'
+" Salt-flavored YAML (YAML + Jinja)
+Plug 'saltstack/salt-vim', { 'for': 'sls' }
 "
 " VISUALS
 "
@@ -110,7 +114,9 @@ Plug 'vim-airline/vim-airline-themes'
 "Plug 'tpope/vim-sensible'
 call plug#end()
 
+"========
 " Signify
+"========
 let g:signify_vcs_list = [ 'git',]
 
 "==========
@@ -305,6 +311,12 @@ let g:riv_python_rst_hl = 1
 let g:riv_highlight_code = 'python'
 "do not use fixdel
 let g:riv_disable_del = 1
+
+"========
+"Salt-Vim
+"========
+" Force using the Jinja2 template syntax file
+let g:sls_use_jinja_syntax = 1
 
 "========
 " Airline
