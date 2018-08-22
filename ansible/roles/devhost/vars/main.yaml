@@ -1,9 +1,9 @@
 ssh_keys:
-  - src: "~/.ssh/git_rsa"
-    dest: "{{ userhome }}/.ssh/id_rsa"
+  - src: "~/.ssh/git_ed25519"
+    dest: "{{ userhome }}/.ssh/id_ed25519"
     mode: "0400"
-  - src: "~/.ssh/git_rsa.pub"
-    dest: "{{ userhome }}/.ssh/id_rsa.pub"
+  - src: "~/.ssh/git_ed25519.pub"
+    dest: "{{ userhome }}/.ssh/id_ed25519.pub"
     mode: "0644"
 
 apt_packages_dev:

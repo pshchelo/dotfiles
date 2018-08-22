@@ -3,7 +3,6 @@
     repo: git@github.com:{{ username }}/dotfiles.git
     dest: "{{ dotfiles_dir }}"
     accept_hostkey: yes
-    key_file: "{{ userhome }}/.ssh/git_rsa"
     update: no
 
 - name: backup some files
