@@ -1,6 +1,6 @@
 [work-vms]
 dsvm1-kvm-work ansible_python_interpreter=/usr/bin/python3
-dsvm2-kvm-work
+dsvm2-kvm-work ansible_python_interpreter=/usr/bin/python3
 
 [hypervisors]
 kvm-work ansible_python_interpreter=/usr/bin/python3
