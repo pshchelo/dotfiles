@@ -6,8 +6,8 @@
 
 # Python compiled files
 *.py[cod]
-dist
-build
+dist/
+build/
 
 # IDE project files
 *.spyderproject
