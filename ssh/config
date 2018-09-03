@@ -1,5 +1,5 @@
-IdentityFile ~/.ssh/git_ed25519
 IdentityFile ~/.ssh/id_ed25519
+IdentityFile ~/.ssh/git_ed25519
 # Older Gerrit does not accept ed25519 keys
 IdentityFile ~/.ssh/git_rsa
 #IdentityFile ~/.ssh/id_rsa
