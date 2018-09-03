@@ -29,6 +29,8 @@ Plug 'scrooloose/nerdcommenter'
 Plug 'scrooloose/nerdtree', { 'on':  'NERDTreeToggle' }
 " use vimdiff on folders!
 Plug 'will133/vim-dirdiff'
+" Paste/fetch text from LodgeIt pastebins, defaults to paste.openstack.org
+Plug 'pshchelo/lodgeit.vim'
 "
 " GIT INTEGRATION
 
