@@ -1,5 +1,5 @@
 ---
-- hosts: all
+- hosts: work-vms
   vars:
     clean_apt_sources: true
   roles:
