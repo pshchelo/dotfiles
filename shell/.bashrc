@@ -136,7 +136,7 @@ export MC_SKIN=${DOTFILES}/colors/mc-solarized.ini
 # Disable legacy TTY Software Flow Control
 stty -ixon
 # Use a vi-style line editing interface.
-set -o vi
+#set -o vi
 
 function is_nonlocal_ssh {
     self_tty=$(tty)
