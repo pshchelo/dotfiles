@@ -1,6 +1,6 @@
 - name: create dotfiles by cloning
   git:
-    repo: git@github.com:{{ username }}/dotfiles.git
+    repo: "{{ dotfiles_repo }}"
     dest: "{{ dotfiles_dir }}"
     accept_hostkey: yes
     update: no

@@ -49,6 +49,8 @@ pip_pkgs:
   - virtualenvwrapper
   - git-review
 
+dotfiles_repo: "https://github.com/pshchelo/dotfiles.git"
+
 files_to_backup:
   - "{{ userhome }}/.bashrc"
   - "{{ userhome }}/.profile"
