@@ -13,7 +13,9 @@ alias tb='nc termbin.com 9999'
 # open files from terminal with GUI default application
 alias xopen=xdg-open
 
-
+# reset forwarded SSH agent connection inside tmux after detach/relogin/attach
+alias fixsshagt='eval $(tmux showenv -s SSH_AUTH_SOCK)'
+ 
 # Below ones need some tools installed
 
 # alias for running single Python unit tests with testtools
