@@ -7,6 +7,39 @@ clouds:
       user_domain_id: default
       auth_url: https://cloud-cz.bud.mirantis.net:5000
     identity_api_version: '3'
+  oscore:
+    auth:
+      username: pshchelokovskyy
+      project_name: oscore-team
+      project_domain_name: Default
+      user_domain_name: ldap_mirantis
+      auth_url: https://ic-us.ssl.mirantis.net:5000/
+    identity_api_version: '3'
+    region_name: RegionOne
+    interface: public
+    insecure: True
+  oscore-ci:
+    auth:
+      username: pshchelokovskyy
+      project_name: oscore-ci-team
+      project_domain_name: Default
+      user_domain_name: ldap_mirantis
+      auth_url: https://ic-us.ssl.mirantis.net:5000/
+    identity_api_version: '3'
+    region_name: RegionOne
+    interface: public
+    insecure: True
+  security:
+    auth:
+      username: pshchelokovskyy
+      project_name: security-team
+      project_domain_name: Default
+      user_domain_name: ldap_mirantis
+      auth_url: https://ic-us.ssl.mirantis.net:5000/
+    identity_api_version: '3'
+    region_name: RegionOne
+    interface: public
+    insecure: True
 ansible:
   use_hostnames: True
   expand_hostvars: False
