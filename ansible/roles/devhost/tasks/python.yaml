@@ -1,12 +1,6 @@
-- name: fetch pip bootstrapper script
-  get_url:
-    url: https://bootstrap.pypa.io/get-pip.py
-    dest: /tmp/get-pip.py
-    force: yes
-
-- name: install pip
+- name: upgrade local pip
+  command: "{{ hostvars[inventory_hostname].ansible_python_interpreter }} -m pip install -U pip"
   become: true
-  command: "{{ hostvars[inventory_hostname].ansible_python_interpreter }} /tmp/get-pip.py"
 
 - name: install python packages from PyPI to userspace
   pip:

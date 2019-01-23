@@ -20,12 +20,14 @@ apt_packages_dev:
 
 apt_packages_build:
   - build-essential
+  - cmake
   - python-doc
   - python-dev
   - python-gdbm
+  - python-pip
   - python3-doc
   - python3-dev
-  - cmake
+  - python3-pip
 
 apt_packages_tools:
   - wget
