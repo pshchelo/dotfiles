@@ -1,1 +1,2 @@
 username: "{{ ansible_user_id }}"
+userkeys: https://github.com/{{ username }}.keys
