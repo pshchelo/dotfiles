@@ -4,11 +4,3 @@ dsvm2-kvm-work ansible_python_interpreter=/usr/bin/python3
 
 [hypervisors]
 kvm-work ansible_python_interpreter=/usr/bin/python3
-
-[local-vms]
-devstack ansible_python_interpreter=/usr/bin/python3
-ramdisk ansible_host=192.168.100.13 ansible_user=tc ansible_ssh_private_key_file=/media/shared/vms/kernels/irsible/irsible_key
-
-[devcloud]
-pshchelo-devstack ansible_host=172.17.52.33 ansible_python_interpreter=/usr/bin/python3
-kilo ansible_host=172.17.49.90
