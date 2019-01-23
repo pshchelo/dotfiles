@@ -10,7 +10,6 @@
 
 - name: install python packages from PyPI to userspace
   pip:
-    name: "{{ item }}"
+    name: "{{ pip_pkgs }}"
     extra_args: --user
-  with_items: "{{ pip_pkgs }}"
   when: not (dev_minimal|bool)

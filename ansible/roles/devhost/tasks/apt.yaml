@@ -17,17 +17,15 @@
 - name: install packages for development
   become: yes
   apt:
-    pkg: "{{ item }}"
+    pkg: "{{ apt_packages.dev }}"
     update_cache: yes
-  with_items: "{{ apt_packages.dev }}"
   notify:
     - upgrade packages
 
 - name: install packages for building
   become: yes
   apt:
-    pkg: "{{ item }}"
-  with_items: "{{ apt_packages.build }}"
+    pkg: "{{ apt_packages.build }}"
   notify:
     - upgrade packages
   when: not (dev_minimal|bool)
@@ -35,8 +33,7 @@
 - name: install packages with extra tools
   become: yes
   apt:
-    pkg: "{{ item }}"
-  with_items: "{{ apt_packages.tools }}"
+    pkg: "{{ apt_packages.tools }}"
   notify:
     - upgrade packages
   when: not (dev_minimal|bool)

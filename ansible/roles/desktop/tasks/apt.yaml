@@ -20,5 +20,4 @@
 - name: install system packages
   become: yes
   apt:
-    name: "{{ item }}"
-  with_items: "{{ apt_pkgs_desktop }}"
+    name: "{{ apt_pkgs_desktop }}"
