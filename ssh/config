@@ -40,7 +40,7 @@ Host mos-ironic-lab
 
 # Some ranges if private IP addresses I use for ephemeral instances
 # Virt-manager local networks, DevStack public and private networks
-Host 192.168.100.* 192.168.122.* 10.0.*.* 172.24.4.*
+Host 192.168.*.* 10.*.*.* 172.24.4.* 172.17.48.* 172.17.49.* 172.17.50.* 172.16.242.* 172.16.243.*
     StrictHostKeyChecking no
     UserKnownHostsFile /dev/null
     LogLevel QUIET
