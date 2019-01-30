@@ -15,8 +15,6 @@ alias xopen=xdg-open
 
 # reset forwarded SSH agent connection inside tmux after detach/relogin/attach
 alias fixsshagt='eval $(tmux showenv -s SSH_AUTH_SOCK)'
- 
-# Below ones need some tools installed
 
 # alias for running single Python unit tests with testtools
 alias ttools='python -m testtools.run'
@@ -26,9 +24,3 @@ alias stox='tox --skip-missing-interpreters'
 
 # httpie alias for https
 alias https='http --default-scheme=https'
-
-# openstack CLI as default devstack user
-alias osdemo='openstack --os-cloud devstack'
-
-# openstack CLI as default devstack admin
-alias osadmin='openstack --os-cloud devstack-admin'
