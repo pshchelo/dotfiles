@@ -11,6 +11,9 @@
     repo: git://git.openstack.org/openstack-dev/devstack.git
     dest: "{{ stack_dir }}/devstack"
 
+- name: ensure github.com is a known host
+  shell: ssh-keyscan github.com >> {{ ansible_user_dir }}/.ssh/known_hosts
+
 - name: get my stackdev repo
   git:
     repo: git@github.com:pshchelo/stackdev.git
