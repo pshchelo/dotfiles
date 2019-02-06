@@ -8,15 +8,6 @@ clouds:
       auth_url: https://horizon-us.ssl.mirantis.net:5000/v3
     identity_api_version: 3
     region_name: RegionOne
-  mirantis-eu-mos-ironic:
-    auth:
-      username: pshchelokovskyy
-      project_name: mos-ironic
-      user_domain_name: ldap
-      project_domain_name: ldap
-      auth_url: https://horizon-eu.ssl.mirantis.net:5000/v3
-    identity_api_version: 3
-    region_name: RegionOne
   mirantis-us-ironic-team:
     auth:
       username: pshchelokovskyy
@@ -26,15 +17,41 @@ clouds:
       auth_url: https://horizon-us.ssl.mirantis.net:5000/v3
     identity_api_version: 3
     region_name: RegionOne
-  mirantis-eu-ironic-team:
+  new-devcloud:
     auth:
       username: pshchelokovskyy
-      project_name: ironic-team
-      user_domain_name: ldap
-      project_domain_name: ldap
-      auth_url: https://horizon-eu.ssl.mirantis.net:5000/v3
-    identity_api_version: 3
-    region_name: RegionOne
+      project_name: mcp-oscore
+      project_domain_name: mirantis.net
+      user_domain_name: mirantis.net
+      auth_url: https://172.18.250.80:5000
+    identity_api_version: '3'
+    insecure: True
+  new-devcloud-bot:
+    auth:
+      username: mcp-oscore-robot
+      project_name: mcp-oscore
+      project_domain_name: mirantis.net
+      user_domain_name: mirantis.net
+      auth_url: https://172.18.250.80:5000
+    identity_api_version: '3'
+    insecure: True
+  new-devcloud-admin:
+    auth:
+      username: admin
+      project_name: admin
+      project_domain_name: Default
+      user_domain_name: Default
+      auth_url: https://172.18.250.80:5000
+    identity_api_version: '3'
+    insecure: True
+  devcloud:
+    auth:
+      username: mcp-oscore
+      project_name: mcp-oscore
+      project_domain_id: default
+      user_domain_id: default
+      auth_url: https://cloud-cz.bud.mirantis.net:5000
+    identity_api_version: '3'
 ansible:
   use_hostnames: True
   expand_hostvars: False

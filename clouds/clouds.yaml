@@ -1,12 +1,4 @@
 clouds:
-  devcloud:
-    auth:
-      username: mcp-oscore
-      project_name: mcp-oscore
-      project_domain_id: default
-      user_domain_id: default
-      auth_url: https://cloud-cz.bud.mirantis.net:5000
-    identity_api_version: '3'
   oscore:
     auth:
       username: pshchelokovskyy
