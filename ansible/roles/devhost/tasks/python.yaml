@@ -1,6 +1,20 @@
+- name: install packages for py2
+  become: yes
+  apt:
+    pkg: "{{ apt_packages_py2 }}"
+  when: ansible_python.version.major == 2
+
+- name: install packages for py3
+  become: yes
+  apt:
+    pkg: "{{ apt_packages_py3 }}"
+  when: ansible_python.version.major == 3
+
 - name: upgrade local pip
-  command: "{{ hostvars[inventory_hostname].ansible_python_interpreter }} -m pip install -U pip"
-  become: true
+  become: yes
+  pip:
+    name: pip
+    state: latest
 
 - name: install python packages from PyPI to userspace
   pip:
