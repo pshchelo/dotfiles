@@ -170,4 +170,6 @@ if hash thefuck 2>/dev/null; then
     eval $(thefuck --alias)
 fi
 
-[ -f ~/.fzf.bash ] && source ~/.fzf.bash
+if [ -f ~/.fzf.bash ]; then
+    source ~/.fzf.bash
+fi
