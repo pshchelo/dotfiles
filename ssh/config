@@ -1,11 +1,9 @@
 IdentityFile ~/.ssh/id_ed25519
-IdentityFile ~/.ssh/git_ed25519
-# Older Gerrit does not accept ed25519 keys
-IdentityFile ~/.ssh/git_rsa
 IdentityFile ~/.ssh/id_rsa
 
 Host swthm
     HostName 192.168.1.11
+    IdentityFile ~/.ssh/phys_ed25519
 
 Host devstack
     HostName 192.168.100.10
@@ -15,6 +13,7 @@ Host devstack
 
 Host kvm-work
     HostName pshchelokovskyy-pc.kha.mirantis.net
+    IdentityFile ~/.ssh/phys_ed25519
 
 Host dsvm1-kvm-work
     HostName 192.168.100.11
