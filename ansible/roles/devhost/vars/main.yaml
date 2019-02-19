@@ -1,8 +1,8 @@
 ssh_keys:
-  - src: "~/.ssh/git_ed25519"
+  - src: "~/.ssh/id_ed25519"
     dest: "{{ userhome }}/.ssh/id_ed25519"
     mode: "0400"
-  - src: "~/.ssh/git_rsa"
+  - src: "~/.ssh/id_rsa"
     dest: "{{ userhome }}/.ssh/id_rsa"
     mode: "0400"
 
