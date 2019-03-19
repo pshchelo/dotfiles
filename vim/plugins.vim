@@ -39,11 +39,11 @@ Plug 'tpope/vim-fugitive'
 " display git status per line in buffer, stage/instage hunks, integrates with vim-airline
 "Plug 'airblade/vim-gitgutter'
 Plug 'mhinz/vim-signify'
-"
+
 " GENRAL PROGRAMMING
 "
 " sidebar code structure browser, requires exuberant-tags to be installed
-Plug 'majutsushi/tagbar' " not enable it on toggle as airline can not lazy-load its plugins
+Plug 'majutsushi/tagbar', { 'on':  'TagbarToggle' }
 
 " autocompletion
 if v:version < 800
@@ -59,10 +59,8 @@ if v:version < 800
     " code and style checks
     Plug 'scrooloose/syntastic'
 else
-    " disable ale for now, works really slow despite async
-    Plug 'scrooloose/syntastic'
     " async linter
-    " Plug 'w0rp/ale'
+    Plug 'w0rp/ale'
 endif
 
 " PYTHON SUPPORT
@@ -212,6 +210,7 @@ else
 " Completor
 "============
     let g:completor_python_binary = '/usr/bin/python3'
+    let g:completor_filesize_limit = 2048 " default is 1024 == 1MB
 endif
 
 "============
@@ -219,7 +218,7 @@ endif
 "============
 let g:pymode = 1
 
-" disable some features in favor of Jedi and YCM
+" disable some features in favor of Jedi
 let g:pymode_rope = 0
 let g:pymode_doc = 0
 
@@ -230,8 +229,8 @@ let g:pymode_options = 1
 
 " use PEP8-compatible indent
 let g:pymode_indent = 1
-" use advanced pymode folding
-let g:pymode_folding = 1
+" disable advanced pymode folding, veeery slow to open on big files
+let g:pymode_folding = 0
 " use pymode motions
 let g:pymode_motion = 1
 " use virualenv support
