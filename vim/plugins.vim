@@ -45,16 +45,24 @@ Plug 'mhinz/vim-signify'
 " sidebar code structure browser, requires exuberant-tags to be installed
 Plug 'majutsushi/tagbar' " not enable it on toggle as airline can not lazy-load its plugins
 
+" autocompletion
 if v:version < 800
     " auto-complete, supports Jedi for Python code
     Plug 'Shougo/neocomplete' | Plug 'Konfekt/FastFold'
-    " code and style checks
-    Plug 'scrooloose/syntastic'
 else
     " async auto-complete
     Plug 'maralla/completor.vim'
+endif
+
+" code and style linters
+if v:version < 800
+    " code and style checks
+    Plug 'scrooloose/syntastic'
+else
+    " disable ale for now, works really slow despite async
+    Plug 'scrooloose/syntastic'
     " async linter
-    Plug 'w0rp/ale'
+    " Plug 'w0rp/ale'
 endif
 
 " PYTHON SUPPORT
