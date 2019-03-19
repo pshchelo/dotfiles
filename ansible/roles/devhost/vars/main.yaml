@@ -54,7 +54,6 @@ apt_packages:
   tools: "{{ apt_packages_tools }}"
 
 pip_pkgs:
-  - ipython
   - rpdb
   - virtualenvwrapper
   - git-review

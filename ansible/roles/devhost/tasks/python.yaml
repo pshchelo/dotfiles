@@ -10,6 +10,7 @@
     pkg: "{{ apt_packages_py3 }}"
   when: ansible_python.version.major == 3
 
+# devstack downgrades pip itself if needed
 - name: upgrade local pip
   become: yes
   pip:
@@ -17,7 +18,7 @@
     state: latest
 
 - name: install python packages from PyPI to userspace
+  become: yes
   pip:
     name: "{{ pip_pkgs }}"
-    extra_args: --user
   when: not (dev_minimal|bool)
