@@ -2,7 +2,7 @@
 - hosts: all
   vars:
     dev_minimal: true
-    bifrost_git_repo: "git://git.openstack.org/openstack/bifrost.git"
+    bifrost_git_repo: "https://opendev.org/openstack/bifrost.git"
     bifrost_git_ref: master
   roles:
     - hostname

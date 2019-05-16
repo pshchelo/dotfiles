@@ -8,7 +8,7 @@
 
 - name: get latest DevStack
   git:
-    repo: git://git.openstack.org/openstack-dev/devstack.git
+    repo: https://opendev.org/openstack/devstack.git
     dest: "{{ stack_dir }}/devstack"
 
 - name: ensure github.com is a known host
