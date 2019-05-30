@@ -16,11 +16,21 @@ clouds:
     auth:
       <<: *auth
       project_name: oscore-ci-team
+  oscore-rental:
+    <<: *access
+    auth:
+      <<: *auth
+      project_name: oscore-rental-team
   security:
     <<: *access
     auth:
       <<: *auth
       project_name: security-team
+  oscore-eu:
+    <<: *access
+    auth:
+      <<: *auth
+      auth_url: https://ic-eu.ssl.mirantis.net:5000/
 ansible:
   use_hostnames: True
   expand_hostvars: False
