@@ -95,6 +95,8 @@ Plug 'digitalrounin/vim-yaml-folds', { 'for': 'yaml' }
 Plug 'Glench/Vim-Jinja2-Syntax'
 " Salt-flavored YAML (YAML + Jinja)
 Plug 'saltstack/salt-vim', { 'for': 'sls' }
+" Helm charts (yaml + gotmpl + sprig + custom)
+Plug 'towolf/vim-helm'
 "
 " VISUALS
 "
