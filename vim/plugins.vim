@@ -21,8 +21,6 @@ Plug 'tpope/vim-unimpaired'
 Plug 'tpope/vim-repeat'
 " work with surrounding quotes/braces/tags
 Plug 'tpope/vim-surround'
-" lightweight (un)commenter
-"Plug 'tpope/vim-commentary'
 " nicer (un)comment commands
 Plug 'scrooloose/nerdcommenter'
 " sidebar file browser
@@ -300,12 +298,12 @@ map <F3> :NERDTreeToggle<CR>
 "=============
 "NERDCommenter
 "=============
+let g:NERDSpaceDelims = 0
+let g:NERDDefaultAlign = 'start'
 " Use octothorpe for comments in ini/conf files, keep ; as alternative
 let g:NERDCustomDelimiters = {
     \ 'dosini': {'left': '#', 'leftAlt': ';'}
     \ }
-" Same for vim-commentary
-"autocmd FileType dosini setlocal commentstring=#\ %s
 
 "=======
 " Tagbar
