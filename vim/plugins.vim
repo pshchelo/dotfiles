@@ -299,7 +299,7 @@ map <F3> :NERDTreeToggle<CR>
 "NERDCommenter
 "=============
 let g:NERDSpaceDelims = 0
-let g:NERDDefaultAlign = 'start'
+let g:NERDDefaultAlign = 'left'
 " Use octothorpe for comments in ini/conf files, keep ; as alternative
 let g:NERDCustomDelimiters = {
     \ 'dosini': {'left': '#', 'leftAlt': ';'}
