@@ -1,10 +1,13 @@
-[work-vms]
-dsvm1-kvm-work ansible_python_interpreter=/usr/bin/python3
-dsvm2-kvm-work ansible_python_interpreter=/usr/bin/python3
+[work_vms]
+dsvm1-kvm-work
+dsvm2-kvm-work
 
 [hypervisors]
-kvm-work ansible_python_interpreter=/usr/bin/python3
+kvm-work
 
 [devcloud]
-worp-dev ansible_host=172.16.243.12 ansible_user=ubuntu ansible_python_interpreter=/usr/bin/python3
-airskiff ansible_host=172.16.242.119 ansible_python_interpreter=/usr/bin/python3
+worp-dev ansible_host=172.16.243.12 ansible_user=ubuntu
+airskiff ansible_host=172.16.242.119
+
+[kaas]
+kaas-dev-cluster ansible_host=172.19.116.42 ansible_user=ubuntu

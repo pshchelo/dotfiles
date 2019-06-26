@@ -93,3 +93,5 @@ links_to_create:
     src: "{{ dotfiles_dir }}/scripts/ppclean"
   - path: "{{ userhome }}/.local/bin/dtestr"
     src: "{{ dotfiles_dir }}/scripts/dtestr"
+  - path: "{{ userhome }}/.ansible.cfg"
+    src: "{{ dotfiles_dir }}/ansible/ansible.cfg"
