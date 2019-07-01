@@ -35,6 +35,11 @@ export EDITOR="vi"
 export VISUAL="vim"
 export VIEWER="vim -R"
 
+# Golang env
+export GOROOT="/usr/local/go"
+export GOPATH="$HOME/src/go"
+PATH="$GOPATH/bin:$GOROOT/bin:$PATH"
+
 # set PATH so it includes user's local bin if exists
 if [ -d "$HOME/.local/bin" ]; then
     PATH="$HOME/.local/bin:$PATH"
