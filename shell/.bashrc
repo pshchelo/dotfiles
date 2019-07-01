@@ -138,36 +138,16 @@ stty -ixon
 # Use a vi-style line editing interface.
 #set -o vi
 
-function is_nonlocal_ssh {
+# Do not use custom prompt on local ssh connections
+if [ -f ${DOTFILES}/shell/bash_prompt.sh ]; then
     self_tty=$(tty)
     host_from=`w | grep ${self_tty:5} | awk '{print $3}'`
     case $host_from in
         "localhost"|"::1"|"127.0.0.1")
-            return 1 ;;
+            : ;;
         *)
-            return 0 ;;
+            source ${DOTFILES}/shell/bash_prompt.sh ;;
     esac
-}
-
-# Do not use custom prompt on local ssh connections
-if [ -f ${DOTFILES}/shell/bash_prompt.sh ] && is_nonlocal_ssh ; then
-    source ${DOTFILES}/shell/bash_prompt.sh
-fi
-
-# Declare function to use Codi - interactive scratchpad for hackers
-function codi {
-  vim $2 -c \
-    "let g:startify_disable_at_vimenter = 1 |\
-    set bt=nofile ls=0 noru nonu nornu |\
-    hi ColorColumn ctermbg=NONE |\
-    hi VertSplit ctermbg=NONE |\
-    hi NonText ctermfg=0 |\
-    Codi ${1:-python}"
-}
-
-# Enable 'fuck' :)
-if hash thefuck 2>/dev/null; then
-    eval $(thefuck --alias)
 fi
 
 if [ -f ~/.fzf.bash ]; then
