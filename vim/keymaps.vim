@@ -8,7 +8,6 @@ nnoremap <silent> <Space> :nohlsearch<Bar>:echo<CR>
 nnoremap Q <nop>
 
 " Set spellcheck toggle
-imap <Leader>s <C-o>:setlocal spell! spelllang=en_us<CR>
 nmap <Leader>s :setlocal spell! spelllang=en_us<CR>
 
 " Toggle vertical centring of the cursor
@@ -32,6 +31,8 @@ endif
 " Paste mode toggle
 set pastetoggle=<Leader>p
 
+" Toggle list mode (special characters)
+noremap <Leader>l :set list!<CR>
 
 " disable arrow keys to force working with standard HJKL movement keys
 "map <up> <nop>
