@@ -1,3 +1,4 @@
+copy_keys: false
 ssh_keys:
   - src: "~/.ssh/id_ed25519"
     dest: "{{ userhome }}/.ssh/id_ed25519"

@@ -28,6 +28,7 @@ Host kaas-kvm-work
     DynamicForward 10013
 
 Host *-kvm-work
+    ForwardAgent yes
     ProxyCommand ssh -W %h:%p kvm-work
     StrictHostKeyChecking no
     UserKnownHostsFile /dev/null

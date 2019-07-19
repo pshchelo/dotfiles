@@ -4,6 +4,7 @@
     dest: "{{item.dest}}"
     mode: "{{item.mode}}"
   with_items: "{{ ssh_keys }}"
+  when: copy_keys | bool
 
 - include: apt.yaml
   when: ansible_os_family == 'Debian'
