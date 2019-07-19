@@ -23,6 +23,10 @@ Host dsvm2-kvm-work
     HostName 192.168.100.12
     DynamicForward 10012
 
+Host kaas-kvm-work
+    HostName 192.168.100.13
+    DynamicForward 10013
+
 Host *-kvm-work
     ProxyCommand ssh -W %h:%p kvm-work
     StrictHostKeyChecking no
