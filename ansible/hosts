@@ -1,14 +1,18 @@
-[work_vms]
-dsvm1-kvm-work
-dsvm2-kvm-work
-kaas-kvm-work
-
-[hypervisors]
-kvm-work
-
-[devcloud]
-worp-dev ansible_host=172.16.243.12 ansible_user=ubuntu
-airskiff ansible_host=172.16.242.119
-
-[kaas]
-kaas-dev-cluster ansible_host=172.19.114.255 ansible_user=ubuntu
+all:
+  children:
+    work_vms:
+      hosts:
+        dsvm1-kvm-work:
+        dsvm2-kvm-work:
+        kaas-kvm-work:
+    hypervisors:
+      hosts:
+        kvm-work:
+    kaas:
+      vars:
+        ansible_user: ubuntu
+        ansible_ssh_private_key_file: ~/.ssh/aio_rsa
+        ansible_python_interpreter: /usr/bin/python3
+      hosts:
+        kaas-dev-cluster:
+          ansible_host: 172.19.113.83
