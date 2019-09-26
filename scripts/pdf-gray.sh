@@ -7,4 +7,5 @@ gs  \
     -dCompatibilityLevel=1.4 \
     -dAutoRotatePages=/None \
     -sOutputFile=greyscale.pdf \
+    -dPDFSETTINGS=/ebook \
     "$@"
