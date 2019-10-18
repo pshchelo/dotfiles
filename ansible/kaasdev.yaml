@@ -1,0 +1,8 @@
+---
+- hosts: kaas
+  roles:
+    - role: devhost
+      vars:
+        copy_keys: true
+      when: false
+    - role: kaas
