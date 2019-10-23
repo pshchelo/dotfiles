@@ -18,7 +18,7 @@ function ssh_to_master_node {
 
 function list_cluster_nodes {
     ${kubecmd} get machine -l cluster.sigs.k8s.io/cluster-name=${cluster} -ojson | \
-        jq '.items[].metadata | {name: .name, "control-plane": .labels."cluster.sigs.k8s.io/control-plane", id: .annotations."openstack-resourceId", ip: .annotations."openstack-ip-address"}'
+        jq '.items[].metadata | {name: .name, "control-plane": .labels."cluster.sigs.k8s.io/control-plane", "instance-id": .annotations."openstack-resourceId", "kaas-node": ("kaas-node-" + .annotations."kaas.mirantis.com/uid"), ip: .annotations."openstack-ip-address"}'
 }
 
 
