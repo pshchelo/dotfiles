@@ -1,5 +1,6 @@
 IdentityFile ~/.ssh/id_ed25519
 IdentityFile ~/.ssh/id_rsa
+IdentitiesOnly yes
 
 Host swthm
     HostName 192.168.1.11
