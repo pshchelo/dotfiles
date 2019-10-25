@@ -8,7 +8,7 @@ function print_help {
 }
 
 function ssh_to_master_node {
-    node_ip=$(${kubecmd} get machine -l cluster.sigs.k8s.io/cluster-name=${cluster} -ojson | jq -r '.items[].metadata | select(.labels."cluster.sigs.k8s.io/control-plane"=true) | .annotations."openstack-ip-address"' | head -n1)
+    node_ip=$(${kubecmd} get machine -l cluster.sigs.k8s.io/cluster-name=${cluster} -ojson | jq -r '.items[].metadata | select(.labels."cluster.sigs.k8s.io/control-plane"=true) | .annotations."openstack-floating-ip-address"' | head -n1)
     if [ -z $node_ip ]; then
         echo "No control plane nodes found for cluster $cluster"
         exit 1
@@ -18,7 +18,7 @@ function ssh_to_master_node {
 
 function list_cluster_nodes {
     ${kubecmd} get machine -l cluster.sigs.k8s.io/cluster-name=${cluster} -ojson | \
-        jq '.items[].metadata | {name: .name, "control-plane": .labels."cluster.sigs.k8s.io/control-plane", "instance-id": .annotations."openstack-resourceId", "kaas-node": ("kaas-node-" + .annotations."kaas.mirantis.com/uid"), ip: .annotations."openstack-ip-address"}'
+        jq '.items[].metadata | {name: .name, "control-plane": .labels."cluster.sigs.k8s.io/control-plane", "instance-id": .annotations."openstack-resourceId", "kaas-node": ("kaas-node-" + .annotations."kaas.mirantis.com/uid"), ip: .annotations."openstack-floating-ip-address"}'
 }
 
 

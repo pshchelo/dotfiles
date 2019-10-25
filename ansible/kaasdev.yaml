@@ -4,5 +4,8 @@
     - role: devhost
       vars:
         copy_keys: true
-      when: false
+      tags:
+        - dev
     - role: kaas
+      tags:
+        - kaas
