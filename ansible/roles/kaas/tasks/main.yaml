@@ -2,7 +2,7 @@
   become: true
   copy:
     src: /root/.kube
-    dest: "{{ ansible_user_dir }}/.kube"
+    dest: "{{ ansible_user_dir }}"
     remote_src: true
     owner: "{{ ansible_user_id }}"
 
@@ -27,7 +27,7 @@
   apt:
     pkg:
       - tox
-      - python3.7
+      - python3.7-dev
 
 - name: get k9s releases
   uri:
@@ -48,7 +48,7 @@
   unarchive:
     remote_src: yes
     src: https://github.com/derailed/k9s/releases/download/{{ k9s_tag_latest }}/k9s_{{ k9s_tag_latest }}_Linux_x86_64.tar.gz
-    dest: "{{ ansible_user_dir }}/.local/bin }}"
+    dest: "{{ ansible_user_dir }}/.local/bin/"
     keep_newer: yes
     extra_opts:
       - "k9s"
