@@ -1,5 +1,5 @@
 - name: copy kubeconfig
-  become: true
+  become: yes
   copy:
     src: /root/.kube
     dest: "{{ ansible_user_dir }}"
@@ -16,18 +16,23 @@
   args:
     creates: "{{ ansible_user_dir }}/.local/share/bash-completion/completions/kubectl"
 
-- name: clone osh-operator
+- name: clone openstack-controller
   git:
-    repo: ssh://pshchelokovskyy@gerrit.mcp.mirantis.com:29418/mcp/osh-operator
-    dest: "{{ ansible_user_dir }}/osh-operator"
+    repo: ssh://pshchelokovskyy@gerrit.mcp.mirantis.com:29418/mcp/openstack-controller
+    dest: "{{ ansible_user_dir }}/openstack-controller"
     accept_hostkey: true
 
-- name: install osh-operator dev dependencies
+- name: install openstack-controller dependencies
   become: yes
   apt:
     pkg:
-      - tox
       - python3.7-dev
+
+- name: install latest tox
+  become: yes
+  pip:
+    name: tox
+    state: latest
 
 - name: get k9s releases
   uri:
