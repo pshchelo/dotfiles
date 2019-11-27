@@ -26,7 +26,7 @@ function run_cmd {
     local cmd=$@
     for node_ip in $(${kube_get_machines} | jq -r '.items[].metadata.annotations."openstack-floating-ip-address"'); do
         ${sshcmd} $node_ip hostname
-        ${sshcmd} $node_ip "${cmd}"
+        ${sshcmd} $node_ip "${cmd}" || true
         echo
     done
 }
