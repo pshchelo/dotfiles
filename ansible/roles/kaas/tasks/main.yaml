@@ -34,6 +34,8 @@
     name: tox
     state: latest
 
+# NOTE(pas-ha) k9s repo for now has 'pre-releases' only,
+# so <repo>/releases/latest API is useless
 - name: get k9s releases
   uri:
     url: https://api.github.com/repos/derailed/k9s/releases
@@ -57,3 +59,19 @@
     keep_newer: yes
     extra_opts:
       - "k9s"
+
+- name: get latest metrics-server tag
+  uri:
+    url: https://api.github.com/repos/kubernetes-sigs/metrics-server/releases/latest
+  register: metrics_server_latest
+
+- name: clone metrics-server
+  git:
+    repo: https://github.com/kubernetes-sigs/metrics-server
+    dest: "{{ ansible_user_dir }}/metrics-server"
+    depth: 1
+    version: "{{ metrics_server_latest.json.tag_name }}"
+# TODO: patch deploy/1.8+/metrics-server-deployment.yaml:spec.template.spec.containers[0]
+#         args:
+#         - --kubelet-insecure-tls
+#         - --kubelet-preferred-address-types=InternalIP,ExternalIP,Hostname
