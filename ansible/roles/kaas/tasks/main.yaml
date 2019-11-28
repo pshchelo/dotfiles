@@ -49,7 +49,7 @@
 # jq '. | max_by(.tag_name) | .assets | map(select(.name | contains("Linux_x86_64"))) | .[0].browser_download_url'
 #- name: get artefact url
 #  set_fact:
-#    k9s_url: "{{ k9s_releases.json | max(attribute='tag_name') | attr('assets') | selectattr('name', 'match', 'Linux_x86_64') | 0.browser_download_url }}"
+#    k9s_url: "{{ k9s_releases.json | max(attribute='tag_name') | attr('assets') | selectattr('name', 'match', 'Linux_x86_64') | map(attribute='browser_download_url') | first }}"
 
 - name: install latest k9s release
   unarchive:
@@ -59,6 +59,17 @@
     keep_newer: yes
     extra_opts:
       - "k9s"
+
+- name: get latest yq release
+  uri:
+    url: https://api.github.com/repos/mikefarah/yq/releases/latest
+  register: yq_latest
+
+- name: download latest yq
+  get_url:
+    url: "{{yq_latest.json.assets | selectattr('name', 'eq', 'yq_linux_amd64')| map(attribute='browser_download_url')|first}}"
+    dest: "{{ansible_user_dir}}/.local/bin/yq"
+    mode: "u+x"
 
 - name: get latest metrics-server tag
   uri:
