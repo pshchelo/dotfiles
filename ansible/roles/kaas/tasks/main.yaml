@@ -82,7 +82,4 @@
     dest: "{{ ansible_user_dir }}/metrics-server"
     depth: 1
     version: "{{ metrics_server_latest.json.tag_name }}"
-# TODO: patch deploy/1.8+/metrics-server-deployment.yaml:spec.template.spec.containers[0]
-#         args:
-#         - --kubelet-insecure-tls
-#         - --kubelet-preferred-address-types=InternalIP,ExternalIP,Hostname
+# TODO: patch metrics-server-deployment with files/metrics-server.patch
