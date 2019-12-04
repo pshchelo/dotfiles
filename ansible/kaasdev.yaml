@@ -4,6 +4,7 @@
     - role: devhost
       vars:
         copy_keys: true
+        clean_apt_sources: true
       tags:
         - dev
     - role: kaas
