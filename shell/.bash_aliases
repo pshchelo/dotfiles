@@ -24,3 +24,6 @@ alias stox='tox --skip-missing-interpreters'
 
 # httpie alias for https
 alias https='http --default-scheme=https'
+
+# remove stopped containers and dangling images
+alias docker-clean="docker ps -a -f status=exited -q | xargs -r docker rm -v && docker images --no-trunc -q -f dangling=true | xargs -r docker rmi"
