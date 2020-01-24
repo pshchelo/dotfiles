@@ -1,7 +1,8 @@
 ---
 - hosts: work-vms
   vars:
-    clean_apt_sources: true
+    clean_apt_sources: yes
+    copy_keys: yes
   roles:
     - hostname
     - devhost
