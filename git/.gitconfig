@@ -18,6 +18,7 @@
     rebase = false
 [alias]
     graph = log --graph --oneline --decorate
+    head = log --graph --oneline --decorate -5
     ss = status --short
     tox-rebase = rebase -x 'tox --skip-missing-interpreters' -i
     copenstack = "!f() { git clone https://opendev.org/openstack/$1 && cd $1 && git review -s; }; f"
