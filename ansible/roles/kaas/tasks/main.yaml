@@ -54,11 +54,23 @@
 - name: install latest k9s release
   unarchive:
     remote_src: yes
-    src: https://github.com/derailed/k9s/releases/download/{{ k9s_tag_latest }}/k9s_{{ k9s_tag_latest }}_Linux_x86_64.tar.gz
+    src: https://github.com/derailed/k9s/releases/download/{{ k9s_tag_latest }}/k9s_{{ k9s_tag_latest[1:] if k9s_tag_latest.startswith('v') else k9s_tag_latest }}_Linux_x86_64.tar.gz
     dest: "{{ ansible_user_dir }}/.local/bin/"
     keep_newer: yes
     extra_opts:
       - "k9s"
+
+- name: create config dir for k9s
+  file:
+    path: "{{ ansible_user_dir }}/.k9s"
+    state: directory
+
+# from the available ones works best with my solarized terminal
+- name: install dracula colorscheme for k9s
+  get_url:
+    url: https://raw.githubusercontent.com/derailed/k9s/{{ k9s_tag_latest }}/skins/dracula.yml
+    dest: "{{ ansible_user_dir }}/.k9s/skin.yml"
+    force: yes
 
 - name: get latest yq release
   uri:
