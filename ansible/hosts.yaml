@@ -1,6 +1,6 @@
 all:
   children:
-    work-vms:
+    work_vms:
       hosts:
         dsvm1-kvm-work:
         dsvm2-kvm-work:

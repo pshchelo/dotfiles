@@ -1,5 +1,5 @@
 ---
-- hosts: work-vms
+- hosts: work_vms
   vars:
     clean_apt_sources: yes
     copy_keys: yes
