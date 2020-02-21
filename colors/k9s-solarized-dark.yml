@@ -1,0 +1,87 @@
+# Solarized Dark theme
+#
+# https://ethanschoonover.com/solarized/
+#
+# HEX    SOLARIZED
+#002b36  base03     <-- background
+#073642  base02     <-- background hightlight
+#586e75  base01     <-- comments / secondary content
+#657b83  base00
+#839496  base0      <-- main text
+#93a1a1  base1      <-- optional emphasized content
+#eee8d5  base2
+#fdf6e3  base3
+
+#b58900  yellow
+#cb4b16  orange
+#dc322f  red
+#d33682  magenta
+#6c71c4  violet
+#268bd2  blue
+#2aa198  cyan
+#859900  green
+
+k9s:
+  body:
+    fgColor: "#839496" # base0
+    bgColor: "-"
+    logoColor: "#cb4b16" # orange
+  info:
+    fgColor: "#2aa198" # cyan
+    sectionColor: "#93a1a1" # base1
+  frame:
+    border:
+      fgColor: "#93a1a1" # base0
+      focusColor: "#2aa198" # cyan
+    menu:
+      fgColor: "#93a1a1" # base0
+      keyColor: "#268bd2" # blue
+      numKeyColor: "#6c71c4" # violet
+    crumbs:
+      fgColor: "#839496" # base0
+      bgColor: "-"
+      activeColor: "#fdf6e3"
+    status:
+      newColor: "#268bd2" # blue
+      modifyColor: "#b58900" # yellow
+      addColor: "#93a1a1" # base0
+      errorColor: "#dc322f" # red
+      highlightcolor: "#073642" # base02
+      killColor: "#cb4b16" # orange
+      completedColor: "#586e75" # base01
+    title:
+      fgColor: "#839496" # base0
+      highlightColor: "#6c71c4" # violet
+      counterColor: "#93a1a1" # base0
+      filterColor: "#859900" # green
+  views:
+    charts:
+      bgColor: "-"
+      defaultDialColors:
+        - "#859900" # green
+        - "#cb4b16" # orange
+      defaultChartColors:
+        - "#859900" # green
+        - "#cb4b16" # orange
+    table:
+      fgColor: "#839496" # base0
+      bgColor: "-"
+      cursorColor: "#073642" # base02
+      markColor: "#b58900" # yellow
+      header:
+        fgColor: "#93a1a1" # base0
+        bgColor: "-"
+        sorterColor: "#cb4b16" # orange
+    xray:
+      fgColor: "#268bd2" # blue
+      bgColor: "-"
+      cursorColor: "#2aa198" # cyan
+      graphicColor: "#d33682" # magenta
+      showIcons: false
+    yaml:
+      keyColor: "#268bd2" # blue
+      colonColor: "#93a1a1" # base0
+      valueColor: "#839496" # base0
+    logs:
+      fgColor: "#839496" # base0
+      bgColor: "-"
