@@ -53,10 +53,9 @@
     path: "{{ ansible_user_dir }}/.k9s"
     state: directory
 
-# from the available ones works best with my solarized terminal
-- name: install dracula colorscheme for k9s
+- name: install my solarized colorscheme for k9s
   get_url:
-    url: https://raw.githubusercontent.com/derailed/k9s/{{ k9s_latest.json.tag_name }}/skins/dracula.yml
+    url: https://raw.githubusercontent.com/pshchelo/dotfiles/master/colors/k9s-solarized-dark.yml
     dest: "{{ ansible_user_dir }}/.k9s/skin.yml"
     force: yes
 
