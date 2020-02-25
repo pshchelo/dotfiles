@@ -71,4 +71,11 @@
     depth: 1
     version: "{{ metrics_server_latest.json.tag_name }}"
 
-# TODO: patch metrics-server-deployment with files/metrics-server.patch
+- name: copy kustomizations for metrics-server
+  copy:
+    dest: "{{ ansible_user_dir}}/metrics-server/deploy/1.8+/{{ item }}"
+    src: "{{ item }}"
+  with_items:
+    - dev-insecure.yaml
+    - kustomization.yaml
+# NOTE(pas-ha) deploy via "kubectl apply -k ~/metrics-server/deploy/1.8+/"

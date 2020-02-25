@@ -10,8 +10,3 @@ resources:
 - resource-reader.yaml
 patchesStrategicMerge:
 - dev-insecure.yaml
-foo: bar
-baz:
-- bar
-
-
