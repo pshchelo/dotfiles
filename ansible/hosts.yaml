@@ -8,9 +8,10 @@ all:
     hypervisors:
       hosts:
         kvm-work:
-    kaas:
+    k8s:
       vars:
         ansible_ssh_common_args: "-o StrictHostKeyChecking=no -o UserKnownHostsFile=/dev/null"
         ansible_ssh_private_key_file: ~/.ssh/aio_rsa
         ansible_user: ubuntu
         clean_apt_sources: true
+      hosts:

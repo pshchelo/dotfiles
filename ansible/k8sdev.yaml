@@ -1,11 +1,11 @@
 ---
-- hosts: kaas
+- hosts: k8s
   roles:
     - role: devhost
       vars:
         copy_keys: true
       tags:
         - dev
-    - role: kaas
+    - role: k8s
       tags:
-        - kaas
+        - k8s
