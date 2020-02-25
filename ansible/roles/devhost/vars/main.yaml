@@ -47,7 +47,6 @@ apt_packages_tools:
   - git-man
   - mosh
   - bc
-  - jq
 
 apt_packages:
   dev: "{{ apt_packages_dev }}"

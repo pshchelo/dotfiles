@@ -1,0 +1,28 @@
+- name: ensure local bin folder exists
+  file:
+    path: "{{ansible_user_dir}}/.local/bin"
+    state: directory
+
+- name: get latest jq release
+  uri:
+    url: https://api.github.com/repos/stedolan/jq/releases/latest
+  register: jq_latest
+
+- name: download latest jq
+  get_url:
+    url: "{{jq_latest.json.assets | selectattr('name', 'eq', 'jq-linux64')| map(attribute='browser_download_url')|first}}"
+    dest: "{{ansible_user_dir}}/.local/bin/jq"
+    mode: "u+x"
+    force: yes
+
+- name: get latest yq release
+  uri:
+    url: https://api.github.com/repos/mikefarah/yq/releases/latest
+  register: yq_latest
+
+- name: download latest yq
+  get_url:
+    url: "{{yq_latest.json.assets | selectattr('name', 'eq', 'yq_linux_amd64')| map(attribute='browser_download_url')|first}}"
+    dest: "{{ansible_user_dir}}/.local/bin/yq"
+    mode: "u+x"
+    force: yes

@@ -13,4 +13,6 @@
 
 - include: dotfiles.yaml
 
+- include: binaries.yaml
+
 - include: vim.yaml
