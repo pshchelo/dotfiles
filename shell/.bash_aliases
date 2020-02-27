@@ -30,3 +30,5 @@ alias docker-clean="docker ps -a -f status=exited -q | xargs -r docker rm -v && 
 
 # login to default dev VMs in the cloud
 alias aiossh="ssh -i ~/.ssh/aio_rsa -l ubuntu"
+
+alias kopenstack="kubectl -n openstack exec `kubectl -n openstack get pod -l application=keystone,component=client -ojsonpath='{.items[*].metadata.name}'` -- openstack"
