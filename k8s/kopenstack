@@ -1,0 +1,16 @@
+#!/usr/bin/env bash
+pod_name_cache_dir=${HOME}/.kube
+pod_name_cache_file=$pod_name_cache_dir/kopenstack.pod
+completions_dir=${HOME}/.local/share/bash-completion/completions
+completions_file=$completions_dir/kopenstack
+if [ ! -f $pod_name_cache_file ]; then
+    mkdir -p $pod_name_cache_dir
+    kubectl -n openstack get pod -l application=keystone,component=client -ojsonpath='{.items[*].metadata.name}' > $pod_name_cache_file
+fi
+read client_pod < $pod_name_cache_file
+# TODO refresh pod name cache if the exec command fails
+if [ ! -f $completions_file ]; then
+    mkdir -p $completions_dir
+    kubectl -n openstack exec $client_pod -- openstack complete --shell bash --name kopenstack > $completions_file
+fi
+kubectl -n openstack exec $client_pod -- openstack $@
