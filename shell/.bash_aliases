@@ -29,4 +29,7 @@ alias https='http --default-scheme=https'
 alias docker-clean="docker ps -a -f status=exited -q | xargs -r docker rm -v && docker images --no-trunc -q -f dangling=true | xargs -r docker rmi"
 
 # login to default dev VMs in the cloud
-alias aiossh="ssh -i ~/.ssh/aio_rsa -l ubuntu"
+alias aiossh="ssh -o StrictHostKeyChecking=no -o UserKnownHostsFile=/dev/null -i ~/.ssh/aio_rsa -l ubuntu"
+
+# login to default VMs in the cloud via Mosh
+alias aiomosh="mosh --ssh 'ssh -o StrictHostKeyChecking=no -o UserKnownHostsFile=/dev/null -i ~/.ssh/aio_rsa -l ubuntu'"
