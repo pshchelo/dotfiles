@@ -16,6 +16,11 @@
   args:
     creates: "{{ ansible_user_dir }}/.local/share/bash-completion/completions/kubectl"
 
+- name: clone releases repo
+  git:
+    repo: https://github.com/Mirantis/release-openstack-k8s
+    dest: "{{ ansible_user_dir }}/release-openstack-k8s"
+
 - name: clone openstack-controller
   git:
     repo: ssh://pshchelokovskyy@gerrit.mcp.mirantis.com:29418/mcp/openstack-controller
