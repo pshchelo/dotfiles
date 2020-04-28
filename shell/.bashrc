@@ -130,9 +130,6 @@ DOTFILES=${HOME}/dotfiles
 # solarized scheme for Midnight Commander
 export MC_SKIN=${DOTFILES}/colors/mc-solarized.ini
 
-# Enable tig bash completion
-. ${DOTFILES}/git/tig-completion.bash
-
 # Disable legacy TTY Software Flow Control
 stty -ixon
 # Use a vi-style line editing interface.
