@@ -23,14 +23,7 @@ apt_packages_build:
   - build-essential
   - cmake
 
-apt_packages_py2:
-  - python-doc
-  - python-dev
-  - python-pip
-  - python-setuptools
-  - python-gdbm
-
-apt_packages_py3:
+apt_packages_py:
   - python3-doc
   - python3-dev
   - python3-pip

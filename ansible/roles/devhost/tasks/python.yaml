@@ -1,24 +1,19 @@
-- name: install packages for py2
-  become: yes
-  apt:
-    pkg: "{{ apt_packages_py2 }}"
-  when: ansible_python.version.major == 2
-
 - name: install packages for py3
   become: yes
   apt:
-    pkg: "{{ apt_packages_py3 }}"
-  when: ansible_python.version.major == 3
+    pkg: "{{ apt_packages_py }}"
 
 # devstack downgrades pip itself if needed
 - name: upgrade local pip
   become: yes
   pip:
+    executable: pip3
     name: pip
     state: latest
 
 - name: install python packages from PyPI to userspace
   become: yes
   pip:
+    executable: pip3
     name: "{{ pip_pkgs }}"
   when: not (dev_minimal|bool)
