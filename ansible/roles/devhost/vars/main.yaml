@@ -17,6 +17,7 @@ apt_packages_dev:
   - curl
   - devscripts
   - vim-nox
+#  - fzf
 
 apt_packages_build:
   - build-essential

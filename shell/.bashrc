@@ -149,7 +149,3 @@ if [ -f ${DOTFILES}/shell/bash_prompt.sh ]; then
             source ${DOTFILES}/shell/bash_prompt.sh ;;
     esac
 fi
-
-if [ -f ~/.fzf.bash ]; then
-    source ~/.fzf.bash
-fi

@@ -26,3 +26,17 @@
     dest: "{{ansible_user_dir}}/.local/bin/yq"
     mode: "u+x"
     force: yes
+
+#- name: get latest fzf
+#  uri:
+#    url: https://api.github.com/repos/junegunn/fzf-bin/releases/latest
+#  register: fzf_latest
+
+#- name: download latest fzf
+#  unarchive:
+#    remote_src: yes
+#    src: "{{ fzf_latest.json.assets | selectattr('name', 'search', 'linux_amd64')| map(attribute='browser_download_url')|first}}"
+#    dest: "{{ ansible_user_dir }}/.local/bin/"
+#    keep_newer: yes
+#    extra_opts:
+#      - "fzf"
