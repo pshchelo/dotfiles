@@ -10,7 +10,7 @@
 
 - name: download latest jq
   get_url:
-    url: "{{jq_latest.json.assets | selectattr('name', 'eq', 'jq-linux64')| map(attribute='browser_download_url')|first}}"
+    url: "{{jq_latest.json.assets | selectattr('name', 'search', 'linux64')| map(attribute='browser_download_url')|first}}"
     dest: "{{ansible_user_dir}}/.local/bin/jq"
     mode: "u+x"
     force: yes
@@ -22,7 +22,7 @@
 
 - name: download latest yq
   get_url:
-    url: "{{yq_latest.json.assets | selectattr('name', 'eq', 'yq_linux_amd64')| map(attribute='browser_download_url')|first}}"
+    url: "{{yq_latest.json.assets | selectattr('name', 'search', 'linux_amd64')| map(attribute='browser_download_url')|first}}"
     dest: "{{ansible_user_dir}}/.local/bin/yq"
     mode: "u+x"
     force: yes

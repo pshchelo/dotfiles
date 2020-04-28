@@ -47,7 +47,7 @@
 - name: install latest k9s release
   unarchive:
     remote_src: yes
-    src: "{{ k9s_latest.json.assets | selectattr('name', 'eq', 'k9s_Linux_x86_64.tar.gz')| map(attribute='browser_download_url')|first}}"
+    src: "{{ k9s_latest.json.assets | selectattr('name', 'search', 'Linux_x86_64')| map(attribute='browser_download_url')|first}}"
     dest: "{{ ansible_user_dir }}/.local/bin/"
     keep_newer: yes
     extra_opts:
