@@ -24,7 +24,7 @@ Host dsvm2-kvm-work
     HostName 192.168.100.12
     DynamicForward 10012
 
-Host kaas-kvm-work
+Host dsvm3-kvm-work
     HostName 192.168.100.13
     DynamicForward 10013
 

@@ -4,7 +4,7 @@ all:
       hosts:
         dsvm1-kvm-work:
         dsvm2-kvm-work:
-        kaas-kvm-work:
+        dsvm3-kvm-work:
     hypervisors:
       hosts:
         kvm-work:
