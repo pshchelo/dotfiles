@@ -91,4 +91,4 @@ links_to_create:
   - path: "{{ userhome }}/.ansible.cfg"
     src: "{{ dotfiles_dir }}/ansible/ansible.cfg"
   - path: "{{ userhome }}/.local/share/completion/completions/tig"
-    src: "{{ dotfiles }}/git/tig-completion.bash
+    src: "{{ dotfiles_dir }}/git/tig-completion.bash"
