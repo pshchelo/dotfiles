@@ -14,3 +14,15 @@ all:
         ansible_ssh_private_key_file: ~/.ssh/aio_rsa
         ansible_user: ubuntu
       children:
+        k8s:
+          children:
+            k8s-dev:
+              hosts:
+                k8s-dev-master:
+                  ansible_host:
+                k8s-dev-worker1:
+                  ansible_host:
+                k8s-dev-worker2:
+                  ansible_host:
+                k8s-dev-worker3:
+                  ansible_host:
