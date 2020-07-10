@@ -16,19 +16,19 @@ Host kvm-work
     HostName pshchelokovskyy-pc.kha.mirantis.net
     IdentityFile ~/.ssh/phys_ed25519
 
-Host dsvm1-kvm-work
+Host master-dsvm
     HostName 192.168.100.11
     DynamicForward 10011
 
-Host dsvm2-kvm-work
+Host queens-dsvm
     HostName 192.168.100.12
     DynamicForward 10012
 
-Host dsvm3-kvm-work
+Host pike-dsvm
     HostName 192.168.100.13
     DynamicForward 10013
 
-Host *-kvm-work
+Host *-dsvm
     ForwardAgent yes
     ProxyCommand ssh -W %h:%p kvm-work
     StrictHostKeyChecking no

@@ -2,9 +2,9 @@ all:
   children:
     work_vms:
       hosts:
-        dsvm1-kvm-work:
-        dsvm2-kvm-work:
-        dsvm3-kvm-work:
+        master-dsvm:
+        queens-dsvm:
+        pike-dsvm:
     hypervisors:
       hosts:
         kvm-work:
