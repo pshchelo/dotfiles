@@ -4,6 +4,17 @@ clouds:
       username: pshchelokovskyy
       project_domain_name: Default
       user_domain_name: ldap_mirantis
+      auth_url: https://ic-eu.ssl.mirantis.net:5000/
+      project_name: oscore-team
+    identity_api_version: '3'
+    region_name: RegionOne
+    interface: public
+    insecure: True
+  oscore-us:
+    auth:
+      username: pshchelokovskyy
+      project_domain_name: Default
+      user_domain_name: ldap_mirantis
       auth_url: https://ic-us.ssl.mirantis.net:5000/
       project_name: oscore-team
     identity_api_version: '3'
@@ -17,28 +28,6 @@ clouds:
       user_domain_name: ldap_mirantis
       auth_url: https://ic-us.ssl.mirantis.net:5000/
       project_name: oscore-ci-team
-    identity_api_version: '3'
-    region_name: RegionOne
-    interface: public
-    insecure: True
-  oscore-rental:
-    auth:
-      username: pshchelokovskyy
-      project_domain_name: Default
-      user_domain_name: ldap_mirantis
-      auth_url: https://ic-us.ssl.mirantis.net:5000/
-      project_name: oscore-rental-team
-    identity_api_version: '3'
-    region_name: RegionOne
-    interface: public
-    insecure: True
-  oscore-eu:
-    auth:
-      username: pshchelokovskyy
-      project_domain_name: Default
-      user_domain_name: ldap_mirantis
-      auth_url: https://ic-eu.ssl.mirantis.net:5000/
-      project_name: oscore-team
     identity_api_version: '3'
     region_name: RegionOne
     interface: public
