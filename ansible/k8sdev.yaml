@@ -1,5 +1,5 @@
 ---
-- hosts: k8s
+- hosts: k8s-dev
   roles:
     - role: devhost
       vars:
