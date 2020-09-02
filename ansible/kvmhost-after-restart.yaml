@@ -1,32 +1,13 @@
 ---
 - hosts: hypervisors
   vars:
-    start_all: yes
-    outbound_access:
-    - cidr: "192.168.100.0/24"
-      comment: "outbound access for virsh default network"
   tasks:
-  - name: set iptables for VMs outbound access
+    # NOTE this is a hack until I figure out how to add it permamently
+  - name: add local libvirt DNS to resolve.conf
     become: yes
-    iptables:
-      state: present
-      chain: FORWARD
-      destination: "{{ item.cidr }}"
-      jump: ACCEPT
-      ctstate:
-        - NEW
-        - RELATED
-        - ESTABLISHED
-      comment: "{{ item.comment }}"
-    with_items: "{{ outbound_access }}"
-  - block:
-    - name: list all vms
-      virt:
-        command: list_vms
-      register: all_vms
-    - name: start all vms
-      virt:
-        name: "{{ item }}"
-        state: running
-      with_items: "{{ all_vms.list_vms }}"
-    when: start_all | bool
+    blockinfile:
+      path: /etc/resolv.conf
+      block: |
+        nameserver 192.168.100.1
+        search kvm.work
+      insertbefore: BOF

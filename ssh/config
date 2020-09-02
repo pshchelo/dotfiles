@@ -21,16 +21,20 @@ Host kvm-work
     IdentityFile ~/.ssh/phys_ed25519
 
 Host master-dsvm
-    HostName 192.168.100.11
+    HostName master-dsvm.kvm.work
     DynamicForward 10011
 
+Host pike-dsvm
+    HostName pike-dsvm.kvm.work
+    DynamicForward 10013
+
 Host queens-dsvm
-    HostName 192.168.100.12
+    HostName queens-dsvm.kvm.work
     DynamicForward 10012
 
-Host pike-dsvm
-    HostName 192.168.100.13
-    DynamicForward 10013
+Host ussuri-dsvm
+    HostName ussuri-dsvm.kvm.work
+    DynamicForward 10014
 
 Host *-dsvm
     ForwardAgent yes
@@ -46,6 +50,9 @@ Host mos-ironic-storage
 Host mos-ironic-lab
     HostName cz7918.bud.mirantis.net
     User pshchelokovskyy
+
+Host review.fuel-infra.org
+    KexAlgorithms +diffie-hellman-group14-sha1
 
 # Some ranges if private IP addresses I use for ephemeral instances
 # Virt-manager local networks, DevStack public and private networks

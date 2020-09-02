@@ -3,8 +3,9 @@ all:
     work_vms:
       hosts:
         master-dsvm:
-        queens-dsvm:
         pike-dsvm:
+        queens-dsvm:
+        ussuri-dsvm:
     hypervisors:
       hosts:
         kvm-work:
