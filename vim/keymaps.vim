@@ -32,7 +32,10 @@ endif
 set pastetoggle=<Leader>p
 
 " Toggle list mode (special characters)
-noremap <Leader>l :set list!<CR>
+noremap <Leader>L :set list!<CR>
+
+" Toggle line numbers
+noremap <Leader>N :set number!<CR>
 
 " disable arrow keys to force working with standard HJKL movement keys
 "map <up> <nop>
