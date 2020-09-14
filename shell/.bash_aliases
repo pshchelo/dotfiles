@@ -35,3 +35,5 @@ alias aiomosh="mosh --ssh 'ssh -o StrictHostKeyChecking=no -o UserKnownHostsFile
 
 # test http(s) connection timings for a URL
 alias timecurl="curl -s -w '\nTesting Website Response Time for: %{url_effective}\n\nLookup Time:\t\t%{time_namelookup}\nConnect Time:\t\t%{time_connect}\nPre-transfer Time:\t%{time_pretransfer}\nStart-transfer Time:\t%{time_starttransfer}\n\nTotal Time:\t\t%{time_total}\n' -o /dev/null"
+
+alias tenantfreeram="(openstack limits show --absolute -f value | grep -i totalram | awk '{print \$2}' | sort; echo -p) | dc"
