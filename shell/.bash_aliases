@@ -39,3 +39,5 @@ alias timecurl="curl -s -w '\nTesting Website Response Time for: %{url_effective
 alias tenantfreeramGB="(openstack limits show --absolute -f value | grep -i totalram | awk '{print \$2}' | sort -rn; echo -1024/p ) | dc"
 
 alias k8sSecret="jq '.data|map_values(@base64d)'"
+
+alias fvim='vim $(fzf)'
