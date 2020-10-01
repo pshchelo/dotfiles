@@ -27,6 +27,12 @@
     dest: "{{ ansible_user_dir }}/openstack-controller"
     accept_hostkey: true
 
+- name: clone refapp
+  git:
+    repo: ssh://pshchelokovskyy@gerrit.mcp.mirantis.com:29418/openstack/openstack-refapp
+    dest: "{{ ansible_user_dir }}/openstack-refapp"
+    accept_hostkey: true
+
 - name: install openstack-controller dependencies
   become: yes
   apt:

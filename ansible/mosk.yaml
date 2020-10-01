@@ -6,6 +6,6 @@
         copy_keys: true
       tags:
         - dev
-    - role: k8s
+    - role: mosk
       tags:
-        - k8s
+        - mosk
