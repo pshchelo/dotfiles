@@ -1,5 +1,5 @@
 ---
-- hosts: k8s-dev
+- hosts: mosk-dev
   roles:
     - role: devhost
       vars:
