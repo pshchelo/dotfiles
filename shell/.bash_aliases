@@ -41,3 +41,5 @@ alias tenantfreeramGB="(openstack limits show --absolute -f value | grep -i tota
 alias k8sSecret="jq '.data|map_values(@base64d)'"
 
 alias fvim='vim $(fzf)'
+
+alias ansible-ip='_(){ ansible-inventory --host $1 | jq -r .ansible_host; }; _'
