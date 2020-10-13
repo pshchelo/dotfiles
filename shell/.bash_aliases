@@ -13,6 +13,7 @@ alias tb='nc termbin.com 9999'
 # open files from terminal with GUI default application
 alias xopen=xdg-open
 
+# cat with more eye candy (the bat command was already taken in Debian)
 alias bat=batcat
 
 # reset forwarded SSH agent connection inside tmux after detach/relogin/attach
@@ -30,16 +31,23 @@ alias docker-clean="docker ps -a -f status=exited -q | xargs -r docker rm -v && 
 # login to default dev VMs in the cloud
 alias aiossh="ssh -o StrictHostKeyChecking=no -o UserKnownHostsFile=/dev/null -i ~/.ssh/aio_rsa -l ubuntu"
 
-# login to default VMs in the cloud via Mosh
+# login to default dev VMs in the cloud via Mosh
 alias aiomosh="mosh --ssh 'ssh -o StrictHostKeyChecking=no -o UserKnownHostsFile=/dev/null -i ~/.ssh/aio_rsa -l ubuntu'"
 
 # test http(s) connection timings for a URL
 alias timecurl="curl -s -w '\nTesting Website Response Time for: %{url_effective}\n\nLookup Time:\t\t%{time_namelookup}\nConnect Time:\t\t%{time_connect}\nPre-transfer Time:\t%{time_pretransfer}\nStart-transfer Time:\t%{time_starttransfer}\n\nTotal Time:\t\t%{time_total}\n' -o /dev/null"
 
+# calculate free RAM quota in OpenStack project
 alias tenantfreeramGB="(openstack limits show --absolute -f value | grep -i totalram | awk '{print \$2}' | sort -rn; echo -1024/p ) | dc"
 
+# decode Kubernetes Secret values
 alias k8sSecret="jq '.data|map_values(@base64d)'"
 
+# search files by fzf and open in vim
 alias fvim='vim $(fzf)'
 
+# parse ansible inventory and show the IP of a given host
 alias ansible-ip='_(){ ansible-inventory --host $1 | jq -r .ansible_host; }; _'
+
+# refresh all system software
+alias ubuntu-update-all='sudo apt update && sudo apt upgrade && sudo apt autoremove && sudo snap refresh'
