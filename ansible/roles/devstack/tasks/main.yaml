@@ -41,3 +41,10 @@
     src: "{{ item.src }}"
     state: link
   with_items: "{{ stackdev_scripts }}"
+
+- name: remove conflicting packages
+  apt:
+    state: absent
+    name: ubuntu-server
+    autoremove: yes
+  when: ansible_distribution_release == "focal"
