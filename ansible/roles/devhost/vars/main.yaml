@@ -82,6 +82,8 @@ links_to_create:
     src: "{{ dotfiles_dir }}/git/.gitconfig"
   - path: "{{ userhome }}/.gitignore_global"
     src: "{{ dotfiles_dir }}/git/.gitignore_global"
+  - path: "{{ userhome }}/.gitattributes"
+    src: "{{ dotfiles_dir }}/git/.gitattributes"
   - path: "{{ userhome }}/.tigrc"
     src: "{{ dotfiles_dir }}/git/.tigrc"
   - path: "{{ userhome }}/.local/bin/ppclean"
