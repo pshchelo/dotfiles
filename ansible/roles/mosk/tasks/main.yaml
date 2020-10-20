@@ -33,6 +33,11 @@
     dest: "{{ ansible_user_dir }}/openstack-refapp"
     accept_hostkey: true
 
+- name: clone my stackdev repo
+  git:
+    repo: https://github.com/pshchelo/stackdev
+    dest: "{{ ansible_user_dir }}/stackdev"
+
 - name: install openstack-controller dependencies
   become: yes
   apt:
