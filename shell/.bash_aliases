@@ -40,9 +40,6 @@ alias timecurl="curl -s -w '\nTesting Website Response Time for: %{url_effective
 # calculate free RAM quota in OpenStack project
 alias tenantfreeramGB="(openstack limits show --absolute -f value | grep -i totalram | awk '{print \$2}' | sort -rn; echo -1024/p ) | dc"
 
-# decode Kubernetes Secret values
-alias k8sSecret="jq '.data|map_values(@base64d)'"
-
 # search files by fzf and open in vim
 alias fvim='vim $(fzf)'
 
