@@ -12,7 +12,13 @@ Plug 'ctrlpvim/ctrlp.vim'
 " ack/ag integration
 "Plug 'mileszs/ack.vim'
 " async ag-based search
-Plug 'dyng/ctrlsf.vim'
+if exists("*winlayout")
+    Plug 'dyng/ctrlsf.vim'
+else
+    " the last commit that is not using winlayout() function
+    " which is available only since 8.1.0307
+    Plug 'dyng/ctrlsf.vim', { 'commit': '3f33f5e7689a0e4c7dcd6c3c277b709c8468ceee'}
+endif
 " multiple cursors
 Plug 'terryma/vim-multiple-cursors'
 " pairs of commands
