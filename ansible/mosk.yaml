@@ -1,5 +1,5 @@
 ---
-- hosts: mosk-dev
+- hosts: mosk.dev.masters
   roles:
     - role: devhost
       vars:

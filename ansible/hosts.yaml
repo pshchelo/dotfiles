@@ -17,13 +17,23 @@ all:
       children:
         mosk:
           children:
-            mosk-dev:
-              hosts:
-                mosk-dev-master:
-                  ansible_host:
-                mosk-dev-worker1:
-                  ansible_host:
-                mosk-dev-worker2:
-                  ansible_host:
-                mosk-dev-worker3:
-                  ansible_host:
+            mosk.dev:
+              children:
+                mosk.dev.masters:
+                  hosts:
+                    mosk.dev.master1:
+                      ansible_host:
+                mosk.dev.workers:
+                  hosts:
+                    mosk.dev.worker1:
+                      ansible_host:
+                    mosk.dev.worker2:
+                      ansible_host:
+                    mosk.dev.worker3:
+                      ansible_host:
+                mosk.dev.computes:
+                  hosts:
+                    mosk.dev.cmp1:
+                      ansible_host:
+                    mosk.dev.cmp2:
+                      ansible_host:
