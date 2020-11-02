@@ -44,7 +44,7 @@ alias tenantfreeramGB="(openstack limits show --absolute -f value | grep -i tota
 alias fvim='vim $(fzf)'
 
 # parse ansible inventory and show the IP of a given host
-alias ansible-ip='_(){ ansible-inventory --host $1 | jq -r .ansible_host; }; _'
+alias ansible-ip='function _ansible_ip(){ ansible-inventory --host $1 | jq -r .ansible_host; }; _ansible_ip'
 
 # refresh all system software
 alias ubuntu-update-all='sudo apt update && sudo apt upgrade && sudo apt autoremove && sudo snap refresh'
