@@ -10,31 +10,21 @@ Host cube
     HostName 192.168.1.12
     IdentityFile ~/.ssh/phys_ed25519
 
-Host devstack
-    HostName 192.168.100.10
-    StrictHostKeyChecking no
-    UserKnownHostsFile /dev/null
-    LogLevel QUIET
-
 Host kvm-work
     HostName pshchelokovskyy-pc.kha.mirantis.net
     IdentityFile ~/.ssh/phys_ed25519
 
 Host master-dsvm
     HostName master-dsvm.kvm.work
-    DynamicForward 10011
 
 Host pike-dsvm
     HostName pike-dsvm.kvm.work
-    DynamicForward 10013
 
 Host queens-dsvm
     HostName queens-dsvm.kvm.work
-    DynamicForward 10012
 
 Host ussuri-dsvm
     HostName ussuri-dsvm.kvm.work
-    DynamicForward 10014
 
 Host *-dsvm
     ForwardAgent yes
