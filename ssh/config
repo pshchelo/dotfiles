@@ -33,14 +33,6 @@ Host *-dsvm
     UserKnownHostsFile /dev/null
     LogLevel QUIET
 
-Host mos-ironic-storage
-    HostName mos-ironic.vm.mirantis.net
-    User pshchelokovskyy
-
-Host mos-ironic-lab
-    HostName cz7918.bud.mirantis.net
-    User pshchelokovskyy
-
 Host review.fuel-infra.org
     KexAlgorithms +diffie-hellman-group14-sha1
 
