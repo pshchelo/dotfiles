@@ -1,0 +1,10 @@
+# DO NOT RUN AS IS!!!
+# this is a stub of a future script
+# change default docker bridge and network address
+sudo systemctl stop docker.service
+sudo ip link set dev docker0 down
+sudo ip addr del <current-ip-with-cidr> dev docker0
+sudo echo '{"bip": "<new-ip-with-cidr>"}' > /etc/docker/daemon.json
+sudo ip addr add <new-ip-with-cidr> dev docker0
+sudo ip link set dev docker0 up
+sudo systemctl start docker.service
