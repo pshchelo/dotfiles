@@ -565,6 +565,9 @@ noremap <Leader>L :set list!<CR>
 " Toggle line numbers
 noremap <Leader>N :set number!<CR>
 
+" Write to file anyway if having enough permissions
+cnoremap w!! execute 'silent! write !sudo tee % >/dev/null' <bar> edit!
+
 " disable arrow keys to force working with standard HJKL movement keys
 "map <up> <nop>
 "map <down> <nop>
