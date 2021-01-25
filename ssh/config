@@ -10,6 +10,10 @@ Host cube
     HostName 192.168.1.12
     IdentityFile ~/.ssh/phys_ed25519
 
+Host cube-ext
+    HostName 192.168.1.22
+    IdentityFile ~/.ssh/phys_ed25519
+
 Host kvm-work
     HostName pshchelokovskyy-pc.kha.mirantis.net
     IdentityFile ~/.ssh/phys_ed25519
