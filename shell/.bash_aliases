@@ -37,6 +37,9 @@ alias aiomosh="mosh --ssh 'ssh -o StrictHostKeyChecking=no -o UserKnownHostsFile
 # test http(s) connection timings for a URL
 alias timecurl="curl -s -w '\nTesting Website Response Time for: %{url_effective}\n\nLookup Time:\t\t%{time_namelookup}\nConnect Time:\t\t%{time_connect}\nPre-transfer Time:\t%{time_pretransfer}\nStart-transfer Time:\t%{time_starttransfer}\n\nTotal Time:\t\t%{time_total}\n' -o /dev/null"
 
+# make authorized calls to OpenStack's APIs (requires openstack client and loaded env vars for it)
+alias os-curl='curl -sS -k -H "X-Auth-Token: `openstack token issue -f value -c id`"'
+
 # calculate free RAM quota in OpenStack project
 alias tenantfreeramGB="(openstack limits show --absolute -f value | grep -i totalram | awk '{print \$2}' | sort -rn; echo -1024/p ) | dc"
 
