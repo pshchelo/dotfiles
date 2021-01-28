@@ -30,6 +30,9 @@ Host queens-dsvm
 Host ussuri-dsvm
     HostName ussuri-dsvm.kvm.work
 
+Host nfs-dsvm
+    HostName nfs-server.kvm.work
+
 Host *-dsvm
     ForwardAgent yes
     ProxyCommand ssh -W %h:%p kvm-work

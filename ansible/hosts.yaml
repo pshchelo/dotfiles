@@ -5,6 +5,7 @@ all:
     work_vms:
       hosts:
         master-dsvm:
+        nfs-dsvm:
         pike-dsvm:
         queens-dsvm:
         ussuri-dsvm:
