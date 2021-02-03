@@ -75,23 +75,26 @@
     dest: "{{ ansible_user_dir }}/.k9s/skin.yml"
     force: yes
 
-- name: get latest metrics-server tag
-  uri:
-    url: https://api.github.com/repos/kubernetes-sigs/metrics-server/releases/latest
-  register: metrics_server_latest
+- name: make directory for metrics-server
+  file:
+    path: "{{ ansible_user_dir }}/metrics-server"
+    state: directory
 
-- name: clone metrics-server
-  git:
-    repo: https://github.com/kubernetes-sigs/metrics-server
-    dest: "{{ ansible_user_dir }}/metrics-server"
-    depth: 1
-    version: "{{ metrics_server_latest.json.tag_name }}"
+- name: get latest metrics-server manifest
+  get_url:
+    url: https://github.com/kubernetes-sigs/metrics-server/releases/latest/download/components.yaml
+    dest: "{{ ansible_user_dir }}/metrics-server/components.yaml"
+    force: yes
 
 - name: copy kustomizations for metrics-server
   copy:
-    dest: "{{ ansible_user_dir}}/metrics-server/deploy/1.8+/{{ item }}"
+    dest: "{{ ansible_user_dir}}/metrics-server/{{ item }}"
     src: "{{ item }}"
   with_items:
-    - dev-insecure.yaml
+    - metrics-server-insecure.yaml
     - kustomization.yaml
-# NOTE(pas-ha) deploy via "kubectl apply -k ~/metrics-server/deploy/1.8+/"
+
+- name: deploy metrics server
+  command:
+    cmd: kubectl apply -k .
+    chdir: "{{ ansible_user_dir}}/metrics-server"
