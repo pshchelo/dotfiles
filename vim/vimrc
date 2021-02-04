@@ -292,8 +292,7 @@ let g:signify_vcs_list = [ 'git',]
 "==========
 set background=dark
 :silent! colorscheme solarized
-call togglebg#map("<F5>")
-
+:silent! call togglebg#map("<F5>")
 
 "=====
 "Ack
