@@ -50,4 +50,4 @@ alias fvim='vim $(fzf)'
 alias ansible-ip='function _ansible_ip(){ ansible-inventory --host $1 | jq -r .ansible_host; }; _ansible_ip'
 
 # refresh all system software
-alias ubuntu-update-all='sudo apt update && sudo apt upgrade && sudo apt autoremove && sudo snap refresh'
+alias ubuntu-update-all='sudo apt update && sudo apt upgrade && sudo apt autoremove && sudo snap refresh; if [ -f /var/run/reboot-required ]; then cat /var/run/reboot-required && cat /var/run/reboot-required.pkgs; fi'
