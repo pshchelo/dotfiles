@@ -226,8 +226,23 @@ endif
 " Python goodies
 Plug 'python-mode/python-mode', { 'branch': 'develop', 'for': 'python' }
 " Python code completion and refactoring
-Plug 'davidhalter/jedi-vim', { 'for': 'python' }
-"
+
+if has("python3")
+" define python3Version (MAJ.MIN) variable
+python3 << ENDPYTHON
+import sys, vim
+vim.command("let python3Version = %s%s" % (str(sys.version_info.major), str(sys.version_info.minor)))
+ENDPYTHON
+endif
+
+" rely on lazy eval
+if has("python3") && python3Version > 35
+    Plug 'davidhalter/jedi-vim', { 'for': 'python' }
+else
+    Plug 'davidhalter/jedi-vim', { 'for': 'python', 'tag': '0.10.0' }
+endif
+
+
 if executable('ghc')
     " HASKELL SUPPORT
     " introspection
