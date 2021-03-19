@@ -4,6 +4,9 @@
 # less that opens all and with terminal color control sequences
 alias lss='less -fR'
 
+# show clean ini file
+alias inishow='grep -Ev "^(#|$)"'
+
 # copy command for big files, with progress indication
 alias longcp='rsync --progress -ah --sparse'
 
