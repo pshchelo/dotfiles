@@ -183,8 +183,8 @@ Plug 'tpope/vim-repeat'
 Plug 'tpope/vim-surround'
 " nicer (un)comment commands
 Plug 'scrooloose/nerdcommenter'
-" sidebar file browser
-Plug 'scrooloose/nerdtree', { 'on':  'NERDTreeToggle' }
+" sidebar file browser + in single panel
+Plug 'jistr/vim-nerdtree-tabs' | Plug 'scrooloose/nerdtree'
 " use vimdiff on folders!
 Plug 'will133/vim-dirdiff'
 " Paste/fetch text from LodgeIt pastebins, defaults to paste.openstack.org
@@ -461,15 +461,15 @@ else
      let g:ale_lint_on_text_changed = 'normal'
 endif
 
-"=========
-" NERDTree
-"=========
+"========================
+" NERDTree / NERDTreeTabs
+"========================
 
 " filter on *.pyc files in NERDTree plugin
 let NERDTreeIgnore = ['\.pyc$']
 
 " Key to toggle NERDTree sidebar
-map <F3> :NERDTreeToggle<CR>
+map <F3> :NERDTreeTabsToggle<CR>
 
 "=============
 "NERDCommenter
