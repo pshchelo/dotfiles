@@ -43,6 +43,14 @@ Host *-dsvm
 Host review.fuel-infra.org
     KexAlgorithms +diffie-hellman-group14-sha1
 
+Host oscore-security.vm.mirantis.net
+    IdentityFile ~/.ssh/aio_rsa
+    User ubuntu
+
+Host codesearch.vm.mirantis.net
+    IdentityFile ~/.ssh/aio_rsa
+    User ubuntu
+
 # Some ranges if private IP addresses I use for ephemeral instances
 # Virt-manager local networks, DevStack public and private networks
 Host 192.168.*.* 10.*.*.* 172.24.4.* 172.17.48.* 172.17.49.* 172.17.50.* 172.16.242.* 172.16.243.*
