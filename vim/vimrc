@@ -295,6 +295,11 @@ Plug 'vim-airline/vim-airline-themes'
 "Plug 'lervag/vimtex'
 "" opinionated 'sensible' defaults for Vim
 "Plug 'tpope/vim-sensible'
+" indentation visual guides - must figure out proper colors for Solarized yet
+"Plug 'nathanaelkane/vim-indent-guides'
+"hi IndentGuidesOdd  ctermbg=darkgrey
+"hi IndentGuidesEven ctermbg=lightgrey
+"let g:indent_guides_guide_size = 1
 call plug#end()
 
 "========
