@@ -223,10 +223,15 @@ endif
 
 " PYTHON SUPPORT
 "
-" Python goodies
-Plug 'python-mode/python-mode', { 'branch': 'develop', 'for': 'python' }
-" Python code completion and refactoring
+" Python goodies - disabled for now, conflicts with Jedi, trying to compensate
+" with other plugins
+" Plug 'python-mode/python-mode', { 'branch': 'develop', 'for': 'python' }
+" better Python motion objects
+Plug 'jeetsukumaran/vim-pythonsense'
+" better python indentation
+Plug 'vim-scripts/indentpython.vim'
 
+" Python code completion and refactoring
 if has("python3")
 " define python3Version (MAJ.MIN) variable
 python3 << ENDPYTHON
@@ -395,44 +400,44 @@ else
 endif
 
 "============
-" Python-mode
+" Python-mode - DISABLED!
 "============
-let g:pymode = 1
+"let g:pymode = 1
 
 " disable some features in favor of Jedi
-let g:pymode_rope = 0
-let g:pymode_doc = 0
+"let g:pymode_rope = 0
+"let g:pymode_doc = 0
 
 " trim whitespace on save
-let g:pymode_trim_whitespaces = 1
+"let g:pymode_trim_whitespaces = 1
 " load some code formatting defaults
-let g:pymode_options = 1
+"let g:pymode_options = 1
 
 " use PEP8-compatible indent
-let g:pymode_indent = 1
+"let g:pymode_indent = 1
 " disable advanced pymode folding, veeery slow to open on big files
-let g:pymode_folding = 0
+"let g:pymode_folding = 0
 " use pymode motions
-let g:pymode_motion = 1
+"let g:pymode_motion = 1
 " use virualenv support
-let g:pymode_virtualenv = 1
+"let g:pymode_virtualenv = 1
 
 " use running the code facilities
-let g:pymode_run = 1
-let g:pymode_run_key = '<leader>r'
+"let g:pymode_run = 1
+"let g:pymode_run_key = '<leader>r'
 
 " use inserting breakpoints
-let g:pymode_breakpoint = 1
-let g:pymode_breakpoint_bind = '<leader>b'
+"let g:pymode_breakpoint = 1
+"let g:pymode_breakpoint_bind = '<leader>b'
 
 " Code checking - disable (use Syntastic for this)
-let g:pymode_lint = 0
+"let g:pymode_lint = 0
 
 " Pymode custom syntax highlight
-let g:pymode_syntax = 1
-let g:pymode_syntax_all = 1
-let g:pymode_options_max_line_length = 79
-let g:pymode_options_colorcolumn = 1
+"let g:pymode_syntax = 1
+"let g:pymode_syntax_all = 1
+"let g:pymode_options_max_line_length = 79
+"let g:pymode_options_colorcolumn = 1
 
 if v:version < 800
 "==========
