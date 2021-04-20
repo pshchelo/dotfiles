@@ -24,6 +24,6 @@
     tox-rebase = rebase -x 'tox --skip-missing-interpreters' -i
     copenstack = "!f() { git clone https://opendev.org/openstack/$1 && cd $1 && git review -s; }; f"
     cmcp = "!f() { git clone ssh://pshchelokovskyy@gerrit.mcp.mirantis.com:29418/$1; }; f"
-    cmos = "!f() { git clone ssh://pshchelo@review.fuel-infra.org:29418/$1; }; f"
+    cfuel = "!f() { git clone ssh://pshchelo@review.fuel-infra.org:29418/$1; }; f"
     rmcp = "!f() { prj=${1:-$(basename $PWD)}; git remote add mcp ssh://pshchelokovskyy@gerrit.mcp.mirantis.com:29418/packaging/sources/$prj && git fetch mcp; }; f"
-    rmos = "!f() { prj=${1:-$(basename $PWD)}; git remote add mos ssh://pshchelo@review.fuel-infra.org:29418/openstack/$prj && git fetch mos; }; f"
+    rfuel = "!f() { prj=${1:-$(basename $PWD)}; git remote add fuel ssh://pshchelo@review.fuel-infra.org:29418/openstack/$prj && git fetch fuel; }; f"
