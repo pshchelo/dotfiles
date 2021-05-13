@@ -1,5 +1,7 @@
 - name: copy kubeconfig
   become: yes
+  tags:
+    - kubectl
   copy:
     src: /root/.kube
     dest: "{{ ansible_user_dir }}"
@@ -7,55 +9,75 @@
     owner: "{{ ansible_user_id }}"
 
 - name: ensure bash completion folder exists
+  tags:
+    - kubectl
   file:
     path: "{{ ansible_user_dir }}/.local/share/bash-completion/completions"
     state: directory
 
 - name: create kubectl bash auto-completion if missing
+  tags:
+    - kubectl
   shell: "kubectl completion bash > {{ ansible_user_dir }}/.local/share/bash-completion/completions/kubectl"
   args:
     creates: "{{ ansible_user_dir }}/.local/share/bash-completion/completions/kubectl"
 
 - name: clone releases repo
+  tags:
+    - osctl
   git:
     repo: https://github.com/Mirantis/release-openstack-k8s
     dest: "{{ ansible_user_dir }}/release-openstack-k8s"
 
 - name: clone openstack-controller
+  tags:
+    - osctl
   git:
     repo: ssh://pshchelokovskyy@gerrit.mcp.mirantis.com:29418/mcp/openstack-controller
     dest: "{{ ansible_user_dir }}/openstack-controller"
     accept_hostkey: true
 
 - name: clone refapp
+  tags:
+    - osctl
   git:
     repo: ssh://pshchelokovskyy@gerrit.mcp.mirantis.com:29418/openstack/openstack-refapp
     dest: "{{ ansible_user_dir }}/openstack-refapp"
     accept_hostkey: true
 
 - name: clone my stackdev repo
+  tags:
+    - osctl
   git:
     repo: https://github.com/pshchelo/stackdev
     dest: "{{ ansible_user_dir }}/stackdev"
 
 - name: install openstack-controller dependencies
+  tags:
+    - osctl
   become: yes
   apt:
     pkg:
       - python3.7-dev
 
 - name: install latest tox
+  tags:
+    - osctl
   become: yes
   pip:
     name: tox
     state: latest
 
 - name: get latest k9s release
+  tags:
+    - k9s
   uri:
     url: https://api.github.com/repos/derailed/k9s/releases/latest
   register: k9s_latest
 
 - name: install latest k9s release
+  tags:
+    - k9s
   unarchive:
     remote_src: yes
     src: "{{ k9s_latest.json.assets | selectattr('name', 'search', 'Linux_x86_64')| map(attribute='browser_download_url')|first}}"
@@ -65,28 +87,38 @@
       - "k9s"
 
 - name: create config dir for k9s
+  tags:
+    - k9s
   file:
     path: "{{ ansible_user_dir }}/.k9s"
     state: directory
 
 - name: install my solarized colorscheme for k9s
+  tags:
+    - k9s
   get_url:
     url: https://raw.githubusercontent.com/pshchelo/dotfiles/master/colors/k9s-solarized-dark.yml
     dest: "{{ ansible_user_dir }}/.k9s/skin.yml"
     force: yes
 
 - name: make directory for metrics-server
+  tags:
+    - metrics-server
   file:
     path: "{{ ansible_user_dir }}/metrics-server"
     state: directory
 
 - name: get latest metrics-server manifest
+  tags:
+    - metrics-server
   get_url:
     url: https://github.com/kubernetes-sigs/metrics-server/releases/latest/download/components.yaml
     dest: "{{ ansible_user_dir }}/metrics-server/components.yaml"
     force: yes
 
 - name: copy kustomizations for metrics-server
+  tags:
+    - metrics-server
   copy:
     dest: "{{ ansible_user_dir}}/metrics-server/{{ item }}"
     src: "{{ item }}"
@@ -95,6 +127,8 @@
     - kustomization.yaml
 
 - name: deploy metrics server
+  tags:
+    - metrics-server
   command:
     cmd: kubectl apply -k .
     chdir: "{{ ansible_user_dir}}/metrics-server"
