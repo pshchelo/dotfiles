@@ -21,12 +21,23 @@ clouds:
     region_name: RegionOne
     interface: public
     insecure: True
-  oscore-ci:
+  oscore-ci-us:
     auth:
       username: pshchelokovskyy
       project_domain_name: Default
       user_domain_name: ldap_mirantis
       auth_url: https://ic-us.ssl.mirantis.net:5000/
+      project_name: oscore-ci-team
+    identity_api_version: '3'
+    region_name: RegionOne
+    interface: public
+    insecure: True
+  oscore-ci-eu:
+    auth:
+      username: pshchelokovskyy
+      project_domain_name: Default
+      user_domain_name: ldap_mirantis
+      auth_url: https://ic-eu.ssl.mirantis.net:5000/
       project_name: oscore-ci-team
     identity_api_version: '3'
     region_name: RegionOne
