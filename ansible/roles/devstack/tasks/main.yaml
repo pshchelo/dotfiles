@@ -42,10 +42,27 @@
     state: link
   with_items: "{{ stackdev_scripts }}"
 
-- name: remove conflicting packages
-  become: yes
-  apt:
-    state: absent
-    name: ubuntu-server
-    autoremove: yes
-  when: ansible_distribution_release == "focal"
+- name: find conflicting Python distutils packages
+  find:
+    patterns: {{ conflicting_py3_eggs }}
+    file_type: directory
+    paths:
+      - /usr/lib/python3/dist-packages
+    register: py3_eggs_to_remove
+  tags:
+    - testme
+
+- name: debug
+  debug:
+    var: py3_eggs_to_remove
+  tags:
+    - testme
+
+#- name: remove conflicting Python distutils packages
+#  become: yes
+#  file:
+#    state: absent
+#    path: {{ item }}
+#  with_items: py3_eggs_to_remove.files
+#  tags:
+#    - testme
