@@ -4,6 +4,9 @@
     clean_apt_sources: yes
     copy_keys: yes
   roles:
-    - hostname
-    - devhost
-    - devstack
+    - role: devhost
+      tags:
+        - devhost
+    - role: devstack
+      tags:
+        - devstack

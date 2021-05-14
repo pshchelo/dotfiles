@@ -43,6 +43,7 @@
   with_items: "{{ stackdev_scripts }}"
 
 - name: remove conflicting packages
+  become: yes
   apt:
     state: absent
     name: ubuntu-server
