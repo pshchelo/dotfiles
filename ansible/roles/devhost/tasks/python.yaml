@@ -3,14 +3,6 @@
   apt:
     pkg: "{{ apt_packages_py }}"
 
-# devstack downgrades pip itself if needed
-- name: upgrade local pip
-  become: yes
-  pip:
-    executable: pip3
-    name: pip
-    state: latest
-
 - name: install python packages from PyPI to userspace
   become: yes
   pip:
