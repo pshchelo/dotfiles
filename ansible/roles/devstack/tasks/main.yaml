@@ -44,25 +44,19 @@
 
 - name: find conflicting Python distutils packages
   find:
-    patterns: {{ conflicting_py3_eggs }}
-    file_type: directory
+    patterns: "{{ conflicting_py3_eggs }}"
+    file_type: any
     paths:
       - /usr/lib/python3/dist-packages
-    register: py3_eggs_to_remove
+  register: py3_eggs_to_remove
   tags:
-    - testme
+    - py3conflict
 
-- name: debug
-  debug:
-    var: py3_eggs_to_remove
+- name: remove conflicting Python distutils packages
+  become: yes
+  file:
+    state: absent
+    path: "{{ item.path }}"
+  with_items: "{{ py3_eggs_to_remove.files }}"
   tags:
-    - testme
-
-#- name: remove conflicting Python distutils packages
-#  become: yes
-#  file:
-#    state: absent
-#    path: {{ item }}
-#  with_items: py3_eggs_to_remove.files
-#  tags:
-#    - testme
+    - py3conflict
