@@ -2,16 +2,16 @@ all:
   hosts:
     cube:
   children:
-    work_vms:
+    dsvm:
       hosts:
-        master-dsvm:
-        nfs-dsvm:
-        pike-dsvm:
-        queens-dsvm:
-        ussuri-dsvm:
+        master-dsvm.kvm.work:
+        nfs-dsvm.kvm.work:
+        pike-dsvm.kvm.work:
+        queens-dsvm.kvm.work:
+        ussuri-dsvm.kvm.work:
     hypervisors:
       hosts:
-        kvm-work:
+        kvm.work:
     aio:
       vars:
         ansible_ssh_common_args: "-o StrictHostKeyChecking=no -o UserKnownHostsFile=/dev/null"

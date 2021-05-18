@@ -18,31 +18,24 @@ Host cube-ext
     HostName 192.168.1.22
     IdentityFile ~/.ssh/phys_ed25519
 
-Host kvm-work
+Host kvm.work
     HostName pshchelokovskyy-pc.kha.mirantis.net
     IdentityFile ~/.ssh/phys_ed25519
 
-Host master-dsvm
-    HostName master-dsvm.kvm.work
-
-Host pike-dsvm
-    HostName pike-dsvm.kvm.work
-
-Host queens-dsvm
-    HostName queens-dsvm.kvm.work
-
-Host ussuri-dsvm
-    HostName ussuri-dsvm.kvm.work
-
-Host nfs-dsvm
-    HostName nfs-server.kvm.work
-
-Host *-dsvm
+Host *-dsvm.kvm.work
     ForwardAgent yes
-    ProxyCommand ssh -W %h:%p kvm-work
+    ProxyCommand ssh -W %h:%p kvm.work
     StrictHostKeyChecking no
     UserKnownHostsFile /dev/null
     LogLevel QUIET
+
+# just for autocomplete to work
+Host master-dsvm.kvm.work
+Host pike-dsvm.kvm.work
+Host queens-dsvm.kvm.work
+Host ussuri-dsvm.kvm.work
+Host nfs-dsvm.kvm.work
+Host ubuntu.kvm.work
 
 Host review.fuel-infra.org
     KexAlgorithms +diffie-hellman-group14-sha1

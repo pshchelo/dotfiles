@@ -1,5 +1,5 @@
 ---
-- hosts: all
+- hosts: dsvm
   vars:
     dev_minimal: true
     bifrost_git_repo: "https://opendev.org/openstack/bifrost.git"
