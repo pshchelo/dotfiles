@@ -118,7 +118,7 @@ fi
 
 # virtualenvwrapper setup if installed globally
 if [ -f /usr/local/bin/virtualenvwrapper.sh ]; then
-    if command -v pip3 > /dev/null && pip3 show virtualenvwrapper > /dev/null 2>&1; then
+    if python3 -c 'import virtualenvwrapper' > /dev/null 2>&1; then
         export VIRTUALENVWRAPPER_PYTHON=/usr/bin/python3
     fi
     export WORKON_HOME=$HOME/.virtualenvs
