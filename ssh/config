@@ -54,3 +54,7 @@ Host 192.168.*.* 10.*.*.* 172.24.4.* 172.17.48.* 172.17.49.* 172.17.50.* 172.16.
     StrictHostKeyChecking no
     UserKnownHostsFile /dev/null
     LogLevel QUIET
+
+Host *
+    ServerAliveInterval 120
+    ServerAliveCountMax 2
