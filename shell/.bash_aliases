@@ -31,6 +31,9 @@ alias stox='tox --skip-missing-interpreters'
 # remove stopped containers and dangling images
 alias docker-clean="docker ps -a -f status=exited -q | xargs -r docker rm -v && docker images --no-trunc -q -f dangling=true | xargs -r docker rmi"
 
+# parse ansible inventory and show the IP of a given host
+alias ansible-ip='function _ansible_ip(){ ansible-inventory --host $1 | jq -r .ansible_host; }; _ansible_ip'
+
 # login to default dev VMs in the cloud via ssh
 alias aiossh="ssh -o StrictHostKeyChecking=no -o UserKnownHostsFile=/dev/null -i ~/.ssh/aio_rsa -l ubuntu"
 
@@ -39,6 +42,8 @@ alias aiomosh="mosh --ssh 'ssh -o StrictHostKeyChecking=no -o UserKnownHostsFile
 
 # login to default dev VMs in the cloud via sshuttle
 alias aiosshuttle="sshuttle -e 'ssh -o StrictHostKeyChecking=no -o UserKnownHostsFile=/dev/null -i ~/.ssh/aio_rsa -l ubuntu'"
+
+alias mosk-dev-sshuttle="sshuttle -e 'ssh -o StrictHostKeyChecking=no -o UserKnownHostsFile=/dev/null -i ~/.ssh/aio_rsa -l ubuntu' -r `ansible-ip mosk.dev.masters` 10.172.1.0/24"
 
 # test http(s) connection timings for a URL
 alias timecurl="curl -s -w '\nTesting Website Response Time for: %{url_effective}\n\nLookup Time:\t\t%{time_namelookup}\nConnect Time:\t\t%{time_connect}\nPre-transfer Time:\t%{time_pretransfer}\nStart-transfer Time:\t%{time_starttransfer}\n\nTotal Time:\t\t%{time_total}\n' -o /dev/null"
@@ -51,9 +56,6 @@ alias tenantfreeramGB="(openstack limits show --absolute -f value | grep -i tota
 
 # search files by fzf and open in vim
 alias fvim='vim $(fzf)'
-
-# parse ansible inventory and show the IP of a given host
-alias ansible-ip='function _ansible_ip(){ ansible-inventory --host $1 | jq -r .ansible_host; }; _ansible_ip'
 
 # refresh all system software
 alias ubuntu-update-all='sudo apt update && sudo apt upgrade && sudo apt autoremove && sudo snap refresh; if [ -f /var/run/reboot-required ]; then cat /var/run/reboot-required && cat /var/run/reboot-required.pkgs; fi'
