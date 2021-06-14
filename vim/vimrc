@@ -617,7 +617,9 @@ cnoremap w!! execute 'silent! write !sudo tee % >/dev/null' <bar> edit!
 "map <C-l> <C-w>l
 
 " key map to insert pdb breakpoint if no Python-mode is present
-"nnoremap <leader>b yyP^Cimport pdb; pdb.set_trace()  # XXX:breakpoint
+autocmd FileType python nnoremap <leader>b yyP^Cimport pdb; pdb.set_trace()  # XXX:breakpoint<Esc>
+" newer variant, supported by  Python 3.7+
+autocmd FileType python nnoremap <leader>B yyP^Cbreakpoint()  # XXX:breakpoint<Esc>
 
 " make vim understand commands without leaving russian keyboard layout
 "set langmap=!\\"№\\;%?*ёйцукенгшщзхъфывапролджэячсмитьбюЁЙЦУКЕHГШЩЗХЪФЫВАПРОЛДЖЭЯЧСМИТЬБЮ;!@#$%&*`qwertyuiop[]asdfghjkl\\;'zxcvbnm\\,.~QWERTYUIOP{}ASDFGHJKL:\\"ZXCVBNM<>
