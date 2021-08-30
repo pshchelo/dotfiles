@@ -90,7 +90,7 @@
   tags:
     - k9s
   file:
-    path: "{{ ansible_user_dir }}/.k9s"
+    path: "{{ ansible_user_dir }}/.config/k9s"
     state: directory
 
 - name: install my solarized colorscheme for k9s
@@ -98,7 +98,7 @@
     - k9s
   get_url:
     url: https://raw.githubusercontent.com/pshchelo/dotfiles/master/colors/k9s-solarized-dark.yml
-    dest: "{{ ansible_user_dir }}/.k9s/skin.yml"
+    dest: "{{ ansible_user_dir }}/.config/k9s/skin.yml"
     force: yes
 
 - name: make directory for metrics-server
