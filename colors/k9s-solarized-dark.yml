@@ -1,87 +1,88 @@
-# Solarized Dark theme
-#
-# https://ethanschoonover.com/solarized/
-#
-# HEX    SOLARIZED
-#002b36  base03     <-- background
-#073642  base02     <-- background hightlight
-#586e75  base01     <-- comments / secondary content
-#657b83  base00
-#839496  base0      <-- main text
-#93a1a1  base1      <-- optional emphasized content
-#eee8d5  base2
-#fdf6e3  base3
+# Solarized Dark theme for GNOME Solarized
 
-#b58900  yellow
-#cb4b16  orange
-#dc322f  red
-#d33682  magenta
-#6c71c4  violet
-#268bd2  blue
-#2aa198  cyan
-#859900  green
+# https://ethanschoonover.com/solarized/
+
+# This theme targets GNOME terminal with the solarized theme already applied,
+# https://github.com/aruhier/gnome-terminal-colors-solarized
+# thus background color is not used and is replaced by transparent 'default'
+
+# main solarized colors
+background: &background "#002b36" # base03
+background_hl: &background_hl "#073642" # base02
+comment: &comment "#586e75" # base01
+main: &main "#839496" # base0
+main_hl: &main_hl "#93a1a1" # base1
+# accented Solarized colors
+magenta: &magenta "#d33682"
+red: &red "#dc322f"
+orange: &orange "#cb4b16"
+yellow: &yellow "#b58900"
+green: &green "#859900"
+cyan: &cyan "#2aa198"
+blue: &blue "#268bd2"
+violet: &violet "#6c71c4"
 
 k9s:
   body:
-    fgColor: "#839496" # base0
-    bgColor: "-"
-    logoColor: "#cb4b16" # orange
+    fgColor: *main
+    bgColor: default
+    logoColor: *orange
   info:
-    fgColor: "#2aa198" # cyan
-    sectionColor: "#93a1a1" # base1
+    fgColor: *cyan
+    sectionColor: *main_hl
   frame:
     border:
-      fgColor: "#93a1a1" # base0
-      focusColor: "#2aa198" # cyan
+      fgColor: *main
+      focusColor: *cyan
     menu:
-      fgColor: "#93a1a1" # base0
-      keyColor: "#268bd2" # blue
-      numKeyColor: "#6c71c4" # violet
+      fgColor: *main
+      keyColor: *blue
+      numKeyColor: *violet
     crumbs:
-      fgColor: "#839496" # base0
-      bgColor: "-"
-      activeColor: "#fdf6e3"
+      bgColor: default
+      fgColor: *violet
+      activeColor: *main_hl
     status:
-      newColor: "#268bd2" # blue
-      modifyColor: "#b58900" # yellow
-      addColor: "#93a1a1" # base0
-      errorColor: "#dc322f" # red
-      highlightcolor: "#073642" # base02
-      killColor: "#cb4b16" # orange
-      completedColor: "#586e75" # base01
+      newColor: *main
+      modifyColor: *yellow
+      addColor: *blue
+      errorColor: *red
+      highlightcolor: *background_hl
+      killColor: *orange
+      completedColor: *comment
     title:
-      fgColor: "#839496" # base0
-      highlightColor: "#6c71c4" # violet
-      counterColor: "#93a1a1" # base0
-      filterColor: "#859900" # green
+      fgColor: *main
+      highlightColor: *violet
+      counterColor: *main
+      filterColor: *green
   views:
     charts:
-      bgColor: "-"
+      bgColor: default
       defaultDialColors:
-        - "#859900" # green
-        - "#cb4b16" # orange
+        - *green
+        - *orange
       defaultChartColors:
-        - "#859900" # green
-        - "#cb4b16" # orange
+        - *green
+        - *orange
     table:
-      fgColor: "#839496" # base0
-      bgColor: "-"
-      cursorColor: "#073642" # base02
-      markColor: "#b58900" # yellow
+      fgColor: *main
+      bgColor: default
+      cursorColor: *background_hl
+      markColor: *yellow
       header:
-        fgColor: "#93a1a1" # base0
-        bgColor: "-"
-        sorterColor: "#cb4b16" # orange
+        fgColor: *main
+        bgColor: default
+        sorterColor: *orange
     xray:
-      fgColor: "#268bd2" # blue
-      bgColor: "-"
-      cursorColor: "#2aa198" # cyan
-      graphicColor: "#d33682" # magenta
+      fgColor: *blue
+      bgColor: default
+      cursorColor: *cyan
+      graphicColor: *magenta
       showIcons: false
     yaml:
-      keyColor: "#268bd2" # blue
-      colonColor: "#93a1a1" # base0
-      valueColor: "#839496" # base0
+      keyColor: *blue
+      colonColor: *red
+      valueColor: *main
     logs:
-      fgColor: "#839496" # base0
-      bgColor: "-"
+      fgColor: *main
+      bgColor: default
