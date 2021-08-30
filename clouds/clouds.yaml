@@ -9,7 +9,6 @@ clouds:
     identity_api_version: '3'
     region_name: RegionOne
     interface: public
-    insecure: True
   oscore-us:
     auth:
       username: pshchelokovskyy
@@ -20,7 +19,6 @@ clouds:
     identity_api_version: '3'
     region_name: RegionOne
     interface: public
-    insecure: True
   oscore-ci-us:
     auth:
       username: pshchelokovskyy
@@ -31,7 +29,6 @@ clouds:
     identity_api_version: '3'
     region_name: RegionOne
     interface: public
-    insecure: True
   oscore-ci-eu:
     auth:
       username: pshchelokovskyy
@@ -42,7 +39,6 @@ clouds:
     identity_api_version: '3'
     region_name: RegionOne
     interface: public
-    insecure: True
   mosk-dev-admin:
     auth:
       username: admin
