@@ -108,14 +108,6 @@
     path: "{{ ansible_user_dir }}/metrics-server"
     state: directory
 
-- name: get latest metrics-server manifest
-  tags:
-    - metrics-server
-  get_url:
-    url: https://github.com/kubernetes-sigs/metrics-server/releases/latest/download/components.yaml
-    dest: "{{ ansible_user_dir }}/metrics-server/components.yaml"
-    force: yes
-
 - name: copy kustomizations for metrics-server
   tags:
     - metrics-server
