@@ -34,6 +34,7 @@ Host master-dsvm.kvm.work
 Host pike-dsvm.kvm.work
 Host queens-dsvm.kvm.work
 Host ussuri-dsvm.kvm.work
+Host victoria-dsvm.kvm.work
 Host nfs-dsvm.kvm.work
 Host ubuntu.kvm.work
 

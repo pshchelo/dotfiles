@@ -8,7 +8,9 @@ all:
         nfs-dsvm.kvm.work:
         pike-dsvm.kvm.work:
         queens-dsvm.kvm.work:
+        ubuntu.kvm.work:
         ussuri-dsvm.kvm.work:
+        victoria-dsvm.kvm.work:
     hypervisors:
       hosts:
         kvm.work:
