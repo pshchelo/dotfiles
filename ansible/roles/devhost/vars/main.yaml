@@ -95,5 +95,5 @@ links_to_create:
     src: "{{ dotfiles_dir }}/ansible/ansible.cfg"
   - path: "{{ userhome }}/.local/share/bash-completion/completions/tig"
     src: "{{ dotfiles_dir }}/git/tig-completion.bash"
-  - path: "{{ userhome }}/.local/bin/kubectl-decode-secret"
-    src: "{{ dotfiles_dir }}/k8s/kubectl-decode-secret"
+  - path: "{{ userhome }}/.local/bin/k8s-decode-secret"
+    src: "{{ dotfiles_dir }}/k8s/k8s-decode-secret"
