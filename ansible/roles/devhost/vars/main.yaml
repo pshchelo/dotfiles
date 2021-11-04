@@ -97,3 +97,7 @@ links_to_create:
     src: "{{ dotfiles_dir }}/git/tig-completion.bash"
   - path: "{{ userhome }}/.local/bin/k8s-decode-secret"
     src: "{{ dotfiles_dir }}/k8s/k8s-decode-secret"
+  - path: "{{ userhome }}/.local/bin/mosk-shell"
+    src: "{{ dotfiles_dir }}/k8s/mosk-shell"
+  - path: "{{ userhome }}/.local/bin/kopenstack"
+    src: "{{ dotfiles_dir }}/k8s/kopenstack"

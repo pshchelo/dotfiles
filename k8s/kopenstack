@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 completions_dir=${HOME}/.local/share/bash-completion/completions
 completions_file=$completions_dir/kopenstack
-client_pod=$(kubectl -n openstack get pod -l application=keystone,component=client -ojsonpath='{.items[*].metadata.name}')
+client_pod=$(kubectl -n openstack get pod -l application=keystone,component=client -oname)
 exec_command="kubectl -n openstack exec $client_pod -c keystone-client -- openstack"
 if [ ! -f $completions_file ]; then
     mkdir -p $completions_dir
