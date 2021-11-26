@@ -46,6 +46,11 @@ Host codesearch.vm.mirantis.net
     IdentityFile ~/.ssh/aio_rsa
     User ubuntu
 
+Host odl-pike-lab
+    HostName 172.16.162.66
+    IdentityFile ~/.ssh/id_ed25519
+    ForwardAgent yes
+
 # Some ranges if private IP addresses I use for ephemeral instances
 # Virt-manager local networks, DevStack public and private networks
 Host 192.168.*.* 10.*.*.* 172.24.4.* 172.17.48.* 172.17.49.* 172.17.50.* 172.16.242.* 172.16.243.*
