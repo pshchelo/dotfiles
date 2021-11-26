@@ -146,3 +146,11 @@ if [ -f ${DOTFILES}/shell/bash_prompt.sh ]; then
             source ${DOTFILES}/shell/bash_prompt.sh ;;
     esac
 fi
+
+
+# CUSTOM FUNCTIONS
+
+# extract kube api IPv4 from active kubeconfig by the cluster name
+function k8s-api-ip4 {
+    kubectl config view -o jsonpath="{.clusters[?(@.name == \"$1\")].cluster.server}" | awk -F ":" "{print \$2}" | cut -c3-
+}

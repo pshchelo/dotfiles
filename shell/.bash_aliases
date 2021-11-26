@@ -46,9 +46,6 @@ alias aiosshuttle="sshuttle -e 'ssh -o StrictHostKeyChecking=no -o UserKnownHost
 # make tunnels for public API network (needs /etc/hosts edited, see openstackk8sfqdn.sh script) and default configured public network for floating IPs
 alias mosk-dev-sshuttle="sshuttle -e 'ssh -o StrictHostKeyChecking=no -o UserKnownHostsFile=/dev/null -i ~/.ssh/aio_rsa -l ubuntu' 10.172.1.0/24 10.11.12.0/24 -r"
 
-# extract kube api IPv4 from active kubeconfig that has single cluster entry
-alias k8s-api-ip4='(grep "server:" ${KUBECONFIG:-~/.kube/config} | awk -F ":" "{print \$3}" | cut -c3-)'
-
 # test http(s) connection timings for a URL
 alias timecurl="curl -s -w '\nTesting Website Response Time for: %{url_effective}\n\nLookup Time:\t\t%{time_namelookup}\nConnect Time:\t\t%{time_connect}\nPre-transfer Time:\t%{time_pretransfer}\nStart-transfer Time:\t%{time_starttransfer}\n\nTotal Time:\t\t%{time_total}\n' -o /dev/null"
 
