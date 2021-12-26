@@ -27,7 +27,7 @@ all:
                 mosk.dev.masters:
                   hosts:
                     mosk.dev.master1:
-                      # openstack stack output show <stack name/id> ucp_ips -f value -c output_value`
+                      # openstack stack output show <stack name/id> ucp_ips -f value -c output_value
                       ansible_host:
                 mosk.dev.workers:
                   hosts:
