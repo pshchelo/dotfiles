@@ -161,6 +161,8 @@ call plug#begin()
 "
 " GENARAL VIM GOODIES
 "
+" open file paths in log/debug format as file:<line>
+Plug 'wsdjeg/vim-fetch'
 " close files instead of closing views
 Plug 'moll/vim-bbye'
 " command line fuzzy file search and open
@@ -176,7 +178,9 @@ else
     Plug 'dyng/ctrlsf.vim', { 'commit': '3f33f5e7689a0e4c7dcd6c3c277b709c8468ceee'}
 endif
 " multiple cursors
-Plug 'terryma/vim-multiple-cursors'
+" this one announces that it is deprecated
+"Plug 'terryma/vim-multiple-cursors'
+Plug 'mg979/vim-visual-multi'
 " pairs of commands
 Plug 'tpope/vim-unimpaired'
 " repeat full actions from plugins via .
