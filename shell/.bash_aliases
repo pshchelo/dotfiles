@@ -59,4 +59,4 @@ alias tenantfreeramGB="(openstack limits show --absolute -f value | grep -i tota
 alias fvim='vim $(fzf)'
 
 # refresh all system software
-alias ubuntu-update-all='sudo apt update && sudo apt upgrade && sudo apt autoremove && sudo snap refresh; if [ -f /var/run/reboot-required ]; then cat /var/run/reboot-required && cat /var/run/reboot-required.pkgs; fi'
+alias ubuntu-update-all='sudo apt update && sudo apt upgrade && sudo apt autoremove; if command -v snap &> /dev/null; then sudo snap refresh; fi; if [ -f /var/run/reboot-required ]; then cat /var/run/reboot-required && cat /var/run/reboot-required.pkgs; fi'
