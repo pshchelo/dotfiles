@@ -15,7 +15,7 @@ apt_packages_dev:
   - tig
   - git
   - curl
-  - devscripts
+  #- devscripts
   - vim-nox
 #  - fzf
 
