@@ -51,6 +51,18 @@ clouds:
     region_name: RegionOne
     interface: public
     insecure: True
+  mosk-dev-admin-demo:
+    auth:
+      username: admin
+      project_domain_name: Default
+      user_domain_name: Default
+      auth_url: https://keystone.it.just.works
+      project_name: demo
+      #password: kubectl -n openstack get secret keystone-keystone-admin -o jsonpath='{.data.password}' | base64 -d
+    identity_api_version: '3'
+    region_name: RegionOne
+    interface: public
+    insecure: True
   mosk-dev-demo:
     auth:
       username: demo
