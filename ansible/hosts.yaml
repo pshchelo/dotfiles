@@ -11,6 +11,8 @@ all:
         ubuntu.kvm.work:
         ussuri-dsvm.kvm.work:
         victoria-dsvm.kvm.work:
+        pshchelo-devstack-master:
+        pshchelo-devstack-pike:
     hypervisors:
       hosts:
         kvm.work:
