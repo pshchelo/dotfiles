@@ -178,9 +178,12 @@ else
     Plug 'dyng/ctrlsf.vim', { 'commit': '3f33f5e7689a0e4c7dcd6c3c277b709c8468ceee'}
 endif
 " multiple cursors
-" this one announces that it is deprecated
-"Plug 'terryma/vim-multiple-cursors'
-Plug 'mg979/vim-visual-multi'
+if v:version < 800
+    " this one announces that it is deprecated
+    Plug 'terryma/vim-multiple-cursors'
+else
+    Plug 'mg979/vim-visual-multi'
+endif
 " pairs of commands
 Plug 'tpope/vim-unimpaired'
 " repeat full actions from plugins via .
