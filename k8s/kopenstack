@@ -7,4 +7,4 @@ if [ ! -f $completions_file ]; then
     mkdir -p $completions_dir
     $exec_command complete --shell bash --name kopenstack > $completions_file
 fi
-$exec_command $@
+$exec_command "$@"
