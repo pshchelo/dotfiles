@@ -8,6 +8,7 @@ clouds:
       project_name: oscore-team
     identity_api_version: '3'
     region_name: RegionOne
+    endpoint_type: public
     interface: public
   oscore-us:
     auth:
@@ -18,6 +19,7 @@ clouds:
       project_name: oscore-team
     identity_api_version: '3'
     region_name: RegionOne
+    endpoint_type: public
     interface: public
   oscore-ci-us:
     auth:
@@ -28,6 +30,7 @@ clouds:
       project_name: oscore-ci-team
     identity_api_version: '3'
     region_name: RegionOne
+    endpoint_type: public
     interface: public
   oscore-ci-eu:
     auth:
@@ -38,6 +41,7 @@ clouds:
       project_name: oscore-ci-team
     identity_api_version: '3'
     region_name: RegionOne
+    endpoint_type: public
     interface: public
   mosk-dev-admin:
     auth:
@@ -49,6 +53,7 @@ clouds:
       #password: kubectl -n openstack get secret keystone-keystone-admin -o jsonpath='{.data.password}' | base64 -d
     identity_api_version: '3'
     region_name: RegionOne
+    endpoint_type: public
     interface: public
     insecure: True
   mosk-dev-admin-demo:
@@ -61,6 +66,7 @@ clouds:
       #password: kubectl -n openstack get secret keystone-keystone-admin -o jsonpath='{.data.password}' | base64 -d
     identity_api_version: '3'
     region_name: RegionOne
+    endpoint_type: public
     interface: public
     insecure: True
   mosk-dev-demo:
@@ -73,6 +79,7 @@ clouds:
       password: admin
     identity_api_version: '3'
     region_name: RegionOne
+    endpoint_type: public
     interface: public
     insecure: True
   mosk-dev-alt:
@@ -85,6 +92,7 @@ clouds:
       password: admin
     identity_api_version: '3'
     region_name: RegionOne
+    endpoint_type: public
     interface: public
     insecure: True
 ansible:
