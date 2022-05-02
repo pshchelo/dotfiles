@@ -27,9 +27,22 @@ k9s:
     fgColor: *main
     bgColor: default
     logoColor: *orange
+  prompt:
+    fgColor: *main
+    bgColor: default
+    suggestColor: *blue
   info:
     fgColor: *cyan
     sectionColor: *main_hl
+  dialog:
+    fgColor: *main
+    bgColor: default
+    buttonFgColor: *main
+    buttonBgColor: default
+    buttonFocusFgColor: *red
+    buttonFocusBgColor: *background_hl
+    labelFgColor: *cyan
+    fieldFgColor: *red
   frame:
     border:
       fgColor: *main
@@ -52,25 +65,27 @@ k9s:
       completedColor: *comment
     title:
       fgColor: *main
+      bgColor: default
       highlightColor: *violet
-      counterColor: *main
-      filterColor: *green
+      counterColor: *cyan
+      filterColor: *blue
   views:
     charts:
       bgColor: default
       defaultDialColors:
-        - *green
+        - *violet
         - *orange
       defaultChartColors:
-        - *green
+        - *violet
         - *orange
     table:
       fgColor: *main
       bgColor: default
-      cursorColor: *background_hl
+      cursorBgColor: default
+      cursorFgColor: *background_hl
       markColor: *yellow
       header:
-        fgColor: *main
+        fgColor: *blue
         bgColor: default
         sorterColor: *orange
     xray:
@@ -86,3 +101,6 @@ k9s:
     logs:
       fgColor: *main
       bgColor: default
+      indicator:
+        fgColor: *main
+        bgColor: default
