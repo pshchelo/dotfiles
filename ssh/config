@@ -5,30 +5,30 @@ IdentitiesOnly yes
 # Host swthm
 #     HostName 192.168.1.11
 #     IdentityFile ~/.ssh/phys_ed25519
-# 
+
 # Host swthm-ext
 #     HostName 192.168.1.21
 #     IdentityFile ~/.ssh/phys_ed25519
-# 
+
 # Host cube
 #     HostName 192.168.1.12
 #     IdentityFile ~/.ssh/phys_ed25519
-# 
+
 # Host cube-ext
 #     HostName 192.168.1.22
 #     IdentityFile ~/.ssh/phys_ed25519
-# 
+
 # Host kvm.work
 #     HostName pshchelokovskyy-pc.kha.mirantis.net
 #     IdentityFile ~/.ssh/phys_ed25519
-# 
+
 # Host *-dsvm.kvm.work
 #     ForwardAgent yes
 #     ProxyCommand ssh -W %h:%p kvm.work
 #     StrictHostKeyChecking no
 #     UserKnownHostsFile /dev/null
 #     LogLevel QUIET
-# 
+
 # # just for autocomplete to work
 # Host master-dsvm.kvm.work
 # Host pike-dsvm.kvm.work
@@ -37,6 +37,7 @@ IdentitiesOnly yes
 # Host victoria-dsvm.kvm.work
 # Host nfs-dsvm.kvm.work
 # Host ubuntu.kvm.work
+
 
 Host pshchelo-devstack-*
     User ubuntu
@@ -49,6 +50,10 @@ Host pshchelo-devstack-master
 
 Host pshchelo-devstack-pike
     HostName 172.19.117.77
+
+Host pshchelo-mcp-env
+    HostName 172.19.123.99
+    ForwardAgent yes
 
 Host oscore-security.vm.mirantis.net
     IdentityFile ~/.ssh/aio_rsa
@@ -69,6 +74,14 @@ Host 192.168.*.* 10.*.*.* 172.24.4.* 172.17.48.* 172.17.49.* 172.17.50.* 172.16.
     StrictHostKeyChecking no
     UserKnownHostsFile /dev/null
     LogLevel QUIET
+
+Host review.opendev.org
+    HostkeyAlgorithms +ssh-rsa
+    PubkeyAcceptedAlgorithms +ssh-rsa
+
+Host review.fuel-infra.org
+    HostkeyAlgorithms +ssh-rsa
+    PubkeyAcceptedAlgorithms +ssh-rsa
 
 Host *
     ServerAliveInterval 120
