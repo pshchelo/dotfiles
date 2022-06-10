@@ -8,11 +8,21 @@
 
 - include: apt.yaml
   when: ansible_os_family == 'Debian'
+  tags:
+  - pkgs
 
 - include: python.yaml
+  tags:
+  - python
 
 - include: dotfiles.yaml
+  tags:
+  - dotfiles
 
 - include: binaries.yaml
+  tags:
+  - bin
 
 - include: vim.yaml
+  tags:
+  - vim
