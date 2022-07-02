@@ -58,7 +58,18 @@ clouds:
     region_name: RegionOne
     endpoint_type: public
     interface: public
-    insecure: True
+    insecure: true
+  mosk-dev-admin-system:
+    auth:
+      username: admin
+      user_domain_name: Default
+      auth_url: https://keystone.it.just.works
+      system_scope: all
+    identity_api_version: '3'
+    region_name: RegionOne
+    endpoint_type: public
+    interface: public
+    insecure: true
   mosk-dev-admin-demo:
     auth:
       username: admin
@@ -71,7 +82,7 @@ clouds:
     region_name: RegionOne
     endpoint_type: public
     interface: public
-    insecure: True
+    insecure: true
   mosk-dev-demo:
     auth:
       username: demo
@@ -84,7 +95,19 @@ clouds:
     region_name: RegionOne
     endpoint_type: public
     interface: public
-    insecure: True
+    insecure: true
+  mosk-dev-demo-system:
+    auth:
+      username: demo
+      user_domain_name: Default
+      auth_url: https://keystone.it.just.works
+      password: admin
+      system_scope: all
+    identity_api_version: '3'
+    region_name: RegionOne
+    endpoint_type: public
+    interface: public
+    insecure: true
   mosk-dev-alt:
     auth:
       username: alt_demo
@@ -97,7 +120,7 @@ clouds:
     region_name: RegionOne
     endpoint_type: public
     interface: public
-    insecure: True
+    insecure: true
   mosk-dev-fed:
     auth_type: v3oidcpassword
     auth:
@@ -116,8 +139,27 @@ clouds:
     region_name: RegionOne
     endpoint_type: public
     interface: public
-    insecure: True
+    insecure: true
+  mosk-dev-fed-prj:
+    auth_type: v3oidcpassword
+    auth:
+      username: writer
+      project_domain_name: keycloak
+      auth_url: https://keystone.it.just.works/v3
+      project_name: test-project
+      password: password
+      identity_provider: keycloak
+      protocol: mapped
+      discovery_endpoint: https://keycloak.it.just.works/auth/realms/iam/.well-known/openid-configuration
+      openid_scope: openid
+      client_id: os
+      client_secret: someRandomClientSecretMightBeNull
+    identity_api_version: '3'
+    region_name: RegionOne
+    endpoint_type: public
+    interface: public
+    insecure: true
 ansible:
-  use_hostnames: True
-  expand_hostvars: False
-  fail_on_errors: True
+  use_hostnames: true
+  expand_hostvars: false
+  fail_on_errors: true
