@@ -2,9 +2,9 @@ IdentityFile ~/.ssh/id_ed25519
 IdentityFile ~/.ssh/id_rsa
 IdentitiesOnly yes
 
-# Host swthm
-#     HostName 192.168.1.11
-#     IdentityFile ~/.ssh/phys_ed25519
+ Host swthm
+     HostName 192.168.0.107
+     IdentityFile ~/.ssh/phys_ed25519
 
 # Host swthm-ext
 #     HostName 192.168.1.21
