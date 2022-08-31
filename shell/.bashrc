@@ -154,3 +154,7 @@ fi
 function k8s-api-ip4 {
     kubectl config view -o jsonpath="{.clusters[?(@.name == \"$1\")].cluster.server}" | awk -F ":" "{print \$2}" | cut -c3-
 }
+
+if [ -x "$(command -v direnv)" ]; then
+    eval "$(direnv hook bash)"
+fi
