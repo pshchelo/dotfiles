@@ -103,5 +103,7 @@ links_to_create:
     src: "{{ dotfiles_dir }}/k8s/mosk-ctl-shell"
   - path: "{{ userhome }}/.local/bin/mosk-ctl-logs"
     src: "{{ dotfiles_dir }}/k8s/mosk-ctl-logs"
+  - path: "{{ userhome }}/.local/bin/mosk-dev-sshuttle"
+    src: "{{ dotfiles_dir }}/k8s/mosk-dev-sshuttle"
   - path: "{{ userhome }}/.local/bin/kopenstack"
     src: "{{ dotfiles_dir }}/k8s/kopenstack"

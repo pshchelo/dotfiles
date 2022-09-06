@@ -44,7 +44,7 @@ alias aiomosh="mosh --ssh 'ssh -o StrictHostKeyChecking=no -o UserKnownHostsFile
 alias aiosshuttle="sshuttle -e 'ssh -o StrictHostKeyChecking=no -o UserKnownHostsFile=/dev/null -i ~/.ssh/aio_rsa -l ubuntu'"
 
 # make tunnels for public API network (needs /etc/hosts edited, see openstackk8sfqdn.sh script) and default configured public network for floating IPs
-alias mosk-dev-sshuttle="sshuttle -e 'ssh -o StrictHostKeyChecking=no -o UserKnownHostsFile=/dev/null -i ~/.ssh/aio_rsa -l ubuntu' 10.172.1.0/24 10.11.12.0/24 -r"
+#alias mosk-dev-sshuttle="sshuttle -e 'ssh -o StrictHostKeyChecking=no -o UserKnownHostsFile=/dev/null -i ~/.ssh/aio_rsa -l ubuntu' 10.172.1.0/24 10.11.12.0/24 -r"
 
 # test http(s) connection timings for a URL
 alias timecurl="curl -s -w '\nTesting Website Response Time for: %{url_effective}\n\nLookup Time:\t\t%{time_namelookup}\nConnect Time:\t\t%{time_connect}\nPre-transfer Time:\t%{time_pretransfer}\nStart-transfer Time:\t%{time_starttransfer}\n\nTotal Time:\t\t%{time_total}\n' -o /dev/null"
