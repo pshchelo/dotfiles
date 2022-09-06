@@ -598,6 +598,12 @@ noremap <Leader>L :set list!<CR>
 " Toggle line numbers
 noremap <Leader>N :set number!<CR>
 
+" Remove trailing whitespace
+noremap <Leader>W :%s/\s\+$//e<CR>
+
+" Re-tab
+noremap <Leader>T :retab<CR>
+
 " Write to file anyway if having enough permissions
 cnoremap w!! execute 'silent! write !sudo tee % >/dev/null' <bar> edit!
 
