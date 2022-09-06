@@ -16,6 +16,8 @@ apt_packages_dev:
   - git
   - curl
   - vim-nox
+  - direnv
+  #- docker-clean
   #- devscripts
   #- fzf
 
