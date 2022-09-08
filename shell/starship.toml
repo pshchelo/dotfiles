@@ -1,0 +1,78 @@
+# https://starship.rs/config
+
+# Get editor completions based on the config schema
+"$schema" = 'https://starship.rs/config-schema.json'
+
+add_newline = true
+
+# powerline-like examples
+# https://starship.rs/presets/pastel-powerline.html
+# https://gist.github.com/notheotherben/92302a60f8599ba73f1c2840f3c6d455
+format = """
+$username\
+$hostname\
+$localip\
+$shlvl\
+$kubernetes\
+$directory\
+$git_branch\
+$git_commit\
+$git_state\
+$git_metrics\
+$git_status\
+$package\
+$c\
+$cmake\
+$golang\
+$haskell\
+$helm\
+$nodejs\
+$python\
+$rust\
+$memory_usage\
+$openstack\
+$env_var\
+$custom\
+$sudo\
+$cmd_duration\
+$line_break\
+$jobs\
+$battery\
+$time\
+$status\
+$container\
+$shell\
+$character"""
+
+[c]
+symbol = " "
+
+[directory]
+read_only = " "
+
+[git_branch]
+symbol = " "
+
+[golang]
+symbol = " "
+
+[haskell]
+symbol = " "
+
+[kubernetes]
+disabled = false
+
+[memory_usage]
+symbol = " "
+
+[nodejs]
+symbol = " "
+
+[package]
+symbol = " "
+
+[python]
+symbol = " "
+
+[rust]
+symbol = " "

@@ -135,16 +135,27 @@ stty -ixon
 # Use a vi-style line editing interface.
 #set -o vi
 
+function set_fancy_prompt {
+    if [ -x "$(command -v starship)" ]; then
+        eval "$(starship init bash)"
+    elif [ -f ${DOTFILES}/shell/bash_prompt.sh ]; then
+        source ${DOTFILES}/shell/bash_prompt.sh
+    fi
+}
+
+
 # Do not use custom prompt on local ssh connections
-if [ -f ${DOTFILES}/shell/bash_prompt.sh ]; then
-    self_tty=$(tty)
-    host_from=`w | grep ${self_tty:5} | awk '{print $3}'`
-    case $host_from in
-        "localhost"|"::1"|"127.0.0.1")
-            : ;;
-        *)
-            source ${DOTFILES}/shell/bash_prompt.sh ;;
-    esac
+self_tty=$(tty)
+host_from=`w | grep ${self_tty:5} | awk '{print $3}'`
+case $host_from in
+    "localhost"|"::1"|"127.0.0.1")
+        : ;;
+    *)
+        set_fancy_prompt ;;
+esac
+
+if [ -x "$(command -v direnv)" ]; then
+    eval "$(direnv hook bash)"
 fi
 
 
@@ -154,7 +165,3 @@ fi
 function k8s-api-ip4 {
     kubectl config view -o jsonpath="{.clusters[?(@.name == \"$1\")].cluster.server}" | awk -F ":" "{print \$2}" | cut -c3-
 }
-
-if [ -x "$(command -v direnv)" ]; then
-    eval "$(direnv hook bash)"
-fi
