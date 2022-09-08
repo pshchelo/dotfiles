@@ -53,6 +53,19 @@ read_only = " "
 [git_branch]
 symbol = " "
 
+[git_status]
+ahead = "⇡$count"
+behind = "⇣$count"
+diverged = "⇕$ahead_count÷$behind_count"
+modified = "[±$count](blue)"
+untracked = "[?$count](grey)"
+deleted = "[✗$count](red)"
+staged = "[*$count](green)"
+conflicted = "[≠$count](purple)"
+renamed = "[»$count](green)"
+stashed = "[$](orange)"
+up_to_date = "[✓](green)"
+
 [golang]
 symbol = " "
 
