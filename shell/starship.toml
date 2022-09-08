@@ -76,3 +76,7 @@ symbol = " "
 
 [rust]
 symbol = " "
+
+[status]
+disabled = false
+format = "[$symbol $status]($style) "
