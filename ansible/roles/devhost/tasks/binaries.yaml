@@ -15,17 +15,18 @@
     mode: "u+x"
     force: yes
 
-#- name: get latest yq release
-#  uri:
-#    url: https://api.github.com/repos/mikefarah/yq/releases/latest
-#  register: yq_latest
+- name: get latest starship release
+  uri:
+    url: https://api.github.com/repos/starship/starship/releases/latest
+  register: starship_latest
 
-#- name: download latest yq
-#  get_url:
-#    url: "{{yq_latest.json.assets | selectattr('name', 'search', 'linux_amd64')| map(attribute='browser_download_url')|first}}"
-#    dest: "{{ansible_user_dir}}/.local/bin/yq"
-#    mode: "u+x"
-#    force: yes
+- name: download starship
+  become: yes
+  unarchive:
+    remote_src: yes
+    src: "{{starship_latest.json.assets | selectattr('name', 'search', 'x86_64-unknown-linux-musl')| map(attribute='browser_download_url')|first}}"
+    dest: /usr/local/bin/
+    keep_newer: yes
 
 #- name: get latest fzf
 #  uri:
