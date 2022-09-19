@@ -166,9 +166,8 @@ Plug 'wsdjeg/vim-fetch'
 " close files instead of closing views
 Plug 'moll/vim-bbye'
 " command line fuzzy file search and open
-Plug 'ctrlpvim/ctrlp.vim'
-" ack/ag integration
-"Plug 'mileszs/ack.vim'
+Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
+Plug 'junegunn/fzf.vim'
 " async ag-based search
 if exists("*winlayout")
     Plug 'dyng/ctrlsf.vim'
@@ -328,18 +327,6 @@ set background=dark
 :silent! colorscheme solarized
 :silent! call togglebg#map("<F5>")
 
-"=====
-"Ack
-"=====
-if executable('ag')
-    let g:ackprg = 'ag --vimgrep --smart-case'
-    cnoreabbrev ag Ack
-    cnoreabbrev aG Ack
-    cnoreabbrev Ag Ack
-    cnoreabbrev AG Ack
-endif
-let g:ackhighlight = 1
-
 "======
 "CtrlSF
 "======
@@ -354,10 +341,11 @@ nnoremap <C-F>o :CtrlSFOpen<CR>
 nnoremap <C-F>t :CtrlSFToggle<CR>
 inoremap <C-F>t <Esc>:CtrlSFToggle<CR>
 
-"=====
-"CtrlP
-"=====
-let g:ctrlp_cmd = 'CtrlPMixed'
+"====
+" FZF
+"====
+nnoremap <C-p> :GFiles<Cr>
+nnoremap <C-P> :Files!<Cr>
 
 "=====
 " Jedi
