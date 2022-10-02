@@ -70,18 +70,15 @@ Host odl-pike-lab
 
 # Some ranges if private IP addresses I use for ephemeral instances
 # Virt-manager local networks, DevStack public and private networks
+# PubkeyAcceptedKeyTypes is a backwards compatible alias to PubkeyAcceptedAlgorithms
 Host 192.168.*.* 10.*.*.* 172.24.4.* 172.17.48.* 172.17.49.* 172.17.50.* 172.16.242.* 172.16.243.*
     StrictHostKeyChecking no
     UserKnownHostsFile /dev/null
+    PubkeyAcceptedKeyTypes=+ssh-rsa
     LogLevel QUIET
 
 Host review.opendev.org
-    HostkeyAlgorithms +ssh-rsa
-    PubkeyAcceptedAlgorithms +ssh-rsa
-
-Host review.fuel-infra.org
-    HostkeyAlgorithms +ssh-rsa
-    PubkeyAcceptedAlgorithms +ssh-rsa
+    PubkeyAcceptedKeyTypes=+ssh-rsa
 
 Host *
     ServerAliveInterval 120
