@@ -27,3 +27,5 @@
     cfuel = "!f() { git clone ssh://pshchelo@review.fuel-infra.org:29418/$1; }; f"
     rmcp = "!f() { prj=${1:-$(basename $PWD)}; git remote add mcp ssh://pshchelokovskyy@gerrit.mcp.mirantis.com:29418/packaging/sources/$prj && git fetch mcp; }; f"
     rfuel = "!f() { prj=${1:-$(basename $PWD)}; git remote add fuel ssh://pshchelo@review.fuel-infra.org:29418/openstack/$prj && git fetch fuel; }; f"
+    b = "branch"
+    p = "pull --all"
