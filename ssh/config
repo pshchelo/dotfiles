@@ -3,7 +3,7 @@ IdentityFile ~/.ssh/id_rsa
 IdentitiesOnly yes
 
  Host swthm
-     HostName 192.168.0.107
+     HostName 192.168.0.101
      IdentityFile ~/.ssh/phys_ed25519
 
 # Host swthm-ext
