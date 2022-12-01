@@ -19,7 +19,7 @@ clouds:
     auth:
       auth_url: https://keystone.it.just.works
       username: demo
-      password: alt-demo
+      password: demo
       project_name: demo
       project_domain_name: Default
       user_domain_name: Default
