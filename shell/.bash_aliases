@@ -29,7 +29,7 @@ alias ttools='python -m testtools.run'
 alias stox='tox --skip-missing-interpreters'
 
 # login to default dev VMs in the cloud via ssh
-alias aiossh="ssh -o StrictHostKeyChecking=no -o UserKnownHostsFile=/dev/null -i ~/.ssh/aio_rsa -l ubuntu"
+alias aiossh="ssh -o StrictHostKeyChecking=no -o UserKnownHostsFile=/dev/null -i ~/.ssh/aio_rsa"
 
 # login to default dev VMs in the cloud via Mosh
 alias aiomosh="mosh --ssh 'ssh -o StrictHostKeyChecking=no -o UserKnownHostsFile=/dev/null -i ~/.ssh/aio_rsa -l ubuntu'"
