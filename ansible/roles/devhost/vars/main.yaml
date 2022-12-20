@@ -109,7 +109,5 @@ links_to_create:
     src: "{{ dotfiles_dir }}/scripts/mosk/mosk-dev-sshuttle"
   - path: "{{ userhome }}/.local/bin/mosk-db-admin"
     src: "{{ dotfiles_dir }}/scripts/mosk/mosk-db-admin"
-  - path: "{{ userhome }}/.local/bin/kopenstack"
-    src: "{{ dotfiles_dir }}/scripts/mosk/kopenstack"
   - path: "{{ userhome }}/.config/starship.toml"
     src: "{{ dotfiles_dir }}/shell/starship.toml

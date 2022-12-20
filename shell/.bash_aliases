@@ -55,3 +55,5 @@ alias ubuntu-update-all='sudo apt update && sudo apt upgrade && sudo apt autorem
 alias lxc-as-me="lxc exec --user 1000 --group 1000 --env HOME=$HOME"
 
 alias tmax='tmux new -As'
+
+alias kopenstack="kubectl -n openstack exec -ti deploy/keystone-client -c keystone-client -- openstack"
