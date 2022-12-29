@@ -110,4 +110,4 @@ links_to_create:
   - path: "{{ userhome }}/.local/bin/mosk-db-admin"
     src: "{{ dotfiles_dir }}/scripts/mosk/mosk-db-admin"
   - path: "{{ userhome }}/.config/starship.toml"
-    src: "{{ dotfiles_dir }}/shell/starship.toml
+    src: "{{ dotfiles_dir }}/shell/starship.toml"

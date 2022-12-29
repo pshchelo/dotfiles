@@ -6,23 +6,23 @@
   with_items: "{{ ssh_keys }}"
   when: copy_keys | bool
 
-- include: apt.yaml
+- import_tasks: apt.yaml
   when: ansible_os_family == 'Debian'
   tags:
   - pkgs
 
-- include: python.yaml
+- import_tasks: python.yaml
   tags:
   - python
 
-- include: dotfiles.yaml
+- import_tasks: dotfiles.yaml
   tags:
   - dotfiles
 
-- include: binaries.yaml
+- import_tasks: binaries.yaml
   tags:
   - bin
 
-- include: vim.yaml
+- import_tasks: vim.yaml
   tags:
   - vim
