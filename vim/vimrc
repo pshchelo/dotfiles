@@ -631,3 +631,7 @@ autocmd FileType python nnoremap <leader>B yyP^Cbreakpoint()  # XXX:breakpoint<E
 " more ⚠ ♨ ⚡ ⌥ ⌦ ⎇ 🗲
 " Powerline symbols (from private Unicode space)
 "       
+
+" abbreviations and autocorrects
+iabbrev IMPI IPMI
+iabbrev impi ipmi
