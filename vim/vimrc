@@ -166,7 +166,11 @@ Plug 'wsdjeg/vim-fetch'
 " close files instead of closing views
 Plug 'moll/vim-bbye'
 " command line fuzzy file search and open
-Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
+if v:version < 800
+    Plug 'junegunn/fzf'
+else
+    Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
+endif
 Plug 'junegunn/fzf.vim'
 " async ag-based search
 if exists("*winlayout")
