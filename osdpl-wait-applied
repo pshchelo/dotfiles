@@ -1,0 +1,6 @@
+#!/usr/bin/env bash
+osdplst=$(kubectl -n openstack get osdplst --no-headers | awk '{print $1}')
+until [ "$(kubectl -n openstack get osdplst $osdplst -ojsonpath='{.status.osdpl.state}')" == "APPLIED" ]; do
+    # TODO: some spinner?
+    sleep 10;
+done
