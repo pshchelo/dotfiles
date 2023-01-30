@@ -80,7 +80,7 @@
     - k9s
   unarchive:
     remote_src: yes
-    src: "{{ k9s_latest.json.assets | selectattr('name', 'search', 'Linux_x86_64')| map(attribute='browser_download_url')|first}}"
+    src: "{{ k9s_latest.json.assets | selectattr('name', 'search', 'Linux_amd64')| map(attribute='browser_download_url')|first}}"
     dest: "{{ ansible_user_dir }}/.local/bin/"
     keep_newer: yes
     extra_opts:
