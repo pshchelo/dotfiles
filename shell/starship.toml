@@ -53,6 +53,9 @@ read_only = " "
 [git_branch]
 symbol = " "
 
+[git_commit]
+tag_disabled = false
+
 [git_status]
 ahead = "⇡${count}"
 behind = "⇣${count}"
