@@ -57,3 +57,5 @@ alias lxc-as-me="lxc exec --user 1000 --group 1000 --env HOME=$HOME"
 alias tmax='tmux new -As'
 
 alias kopenstack="kubectl -n openstack exec -ti deploy/keystone-client -c keystone-client -- openstack"
+
+alias gitroot='cd $(git rev-parse --show-toplevel)'
