@@ -46,10 +46,13 @@ Host pshchelo-devstack-*
     LogLevel QUIET
 
 Host pshchelo-devstack-master
-    HostName 172.19.114.228
+    HostName 172.19.116.1
+
+Host pshchelo-devstack-yoga
+    HostName 172.19.119.123
 
 Host pshchelo-devstack-pike
-    HostName 172.19.117.77
+    HostName 172.19.123.19
 
 Host oscore-security.vm.mirantis.net
     IdentityFile ~/.ssh/aio_rsa
