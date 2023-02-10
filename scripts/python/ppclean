@@ -1,12 +1,10 @@
-#!/usr/bin/env sh
-
+#!/usr/bin/env bash
 # Clean _P_ython _p_roject versioned by git
-
+pushd $(git rev-parse --show-toplevel)
 # delete leftovers of git merges
 find -type f -name "*.orig" -delete
-
 # delete Python compiled files
 find -type f -name "*.pyc" -delete
-
 # delete empty folders outside .git folder
 find -type d -not -path "./.git/*" -empty -delete
+popd
