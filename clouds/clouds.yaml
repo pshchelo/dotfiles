@@ -45,12 +45,12 @@ clouds:
     interface: public
   mosk-dev-admin:
     auth:
-      username: admin
       project_domain_name: Default
       user_domain_name: Default
       auth_url: https://keystone.it.just.works
       project_name: admin
-      #password: kubectl -n openstack get secret keystone-keystone-admin -o jsonpath='{.data.password}' | base64 -d
+      #username: kubectl -n openstack get secret keystone-os-clouds -ojsonpath='{.data.clouds\.yaml}' | base64 -d | yq -r .clouds.admin.auth.username
+      #password: kubectl -n openstack get secret keystone-os-clouds -ojsonpath='{.data.clouds\.yaml}' | base64 -d | yq -r .clouds.admin.auth.password
     identity_api_version: '3'
     region_name: CustomRegion
     endpoint_type: public
