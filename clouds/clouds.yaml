@@ -68,6 +68,18 @@ clouds:
     identity_api_version: 3
     interface: public
     insecure: true
+  mosk-dev-demo_alt:
+    auth:
+      auth_url: https://keystone.it.just.works
+      username: demo
+      password: demo
+      project_name: alt-demo
+      project_domain_name: Default
+      user_domain_name: Default
+    region_name: CustomRegion
+    identity_api_version: 3
+    interface: public
+    insecure: true
   mosk-dev-alt-demo:
     auth:
       auth_url: https://keystone.it.just.works
