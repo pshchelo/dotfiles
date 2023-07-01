@@ -1,0 +1,33 @@
+#!/usr/bin/env bash
+HLP_MSG="Usage: $0 (u[p]|d[own]|h[elp]) [connection]"
+action=$1
+conn=${2:-Mirantis}
+
+function vpn_up {
+if [ -z  "$(nmcli connection show --active $conn)" ]; then
+    nmcli connection up $conn
+fi
+}
+
+function vpn_down {
+if [ -n "$(nmcli connection show --active $conn)" ]; then
+    nmcli connection down $conn
+fi
+}
+
+case $action in
+    up|u)
+        vpn_up
+        ;;
+    down|d)
+        vpn_down
+        ;;
+    help|h)
+        echo $HLP_MSG
+        exit 0
+        ;;
+    *)
+        echo $HLP_MSG
+        exit 1
+        ;;
+esac
