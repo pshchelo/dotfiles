@@ -56,6 +56,42 @@ clouds:
     endpoint_type: public
     interface: public
     insecure: true
+  mosk-dev-system-admin:
+    auth:
+      user_domain_name: Default
+      auth_url: https://keystone.it.just.works
+      username: superadmin
+      password: superadmin
+      system_scope: all
+    identity_api_version: '3'
+    region_name: CustomRegion
+    endpoint_type: public
+    interface: public
+    insecure: true
+  mosk-dev-system-reader:
+    auth:
+      user_domain_name: Default
+      auth_url: https://keystone.it.just.works
+      username: viewer
+      password: viewer
+      system_scope: all
+    identity_api_version: '3'
+    region_name: CustomRegion
+    endpoint_type: public
+    interface: public
+    insecure: true
+  mosk-dev-demo-reader:
+    auth:
+      auth_url: https://keystone.it.just.works
+      username: viewer
+      password: viewer
+      project_name: demo
+      project_domain_name: Default
+      user_domain_name: Default
+    region_name: CustomRegion
+    identity_api_version: 3
+    interface: public
+    insecure: true
   mosk-dev-demo:
     auth:
       auth_url: https://keystone.it.just.works
