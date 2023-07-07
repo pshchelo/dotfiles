@@ -100,27 +100,3 @@
     url: https://raw.githubusercontent.com/pshchelo/dotfiles/master/colors/k9s-solarized-dark.yml
     dest: "{{ ansible_user_dir }}/.config/k9s/skin.yml"
     force: yes
-
-- name: make directory for metrics-server
-  tags:
-    - metrics-server
-  file:
-    path: "{{ ansible_user_dir }}/metrics-server"
-    state: directory
-
-- name: copy kustomizations for metrics-server
-  tags:
-    - metrics-server
-  copy:
-    dest: "{{ ansible_user_dir}}/metrics-server/{{ item }}"
-    src: "{{ item }}"
-  with_items:
-    - metrics-server-insecure.yaml
-    - kustomization.yaml
-
-- name: deploy metrics server
-  tags:
-    - metrics-server
-  command:
-    cmd: kubectl apply -k .
-    chdir: "{{ ansible_user_dir}}/metrics-server"
