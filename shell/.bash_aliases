@@ -43,6 +43,10 @@ alias timecurl="curl -s -w '\nTesting Website Response Time for: %{url_effective
 # make authorized calls to OpenStack's APIs (requires openstack client and loaded env vars for it)
 alias os-curl='curl -sS -k -H "X-Auth-Token: `openstack token issue -f value -c id`" -H "Content-Type: application/json"'
 
+# aliases for httpie with OpenStack
+alias os-https='https -A keystone --verify=false'
+alias os-http='http -A keystone --verify=false'
+
 # calculate free RAM quota in OpenStack project
 alias tenantfreeramGB="(openstack limits show --absolute -f value | grep -i totalram | awk '{print \$2}' | sort -rn; echo -1024/p ) | dc"
 
