@@ -80,6 +80,18 @@ clouds:
     endpoint_type: public
     interface: public
     insecure: true
+  mosk-dev-admin-reader:
+    auth:
+      auth_url: https://keystone.it.just.works
+      username: viewer
+      password: viewer
+      project_name: admin
+      project_domain_name: Default
+      user_domain_name: Default
+    region_name: CustomRegion
+    identity_api_version: 3
+    interface: public
+    insecure: true
   mosk-dev-demo-reader:
     auth:
       auth_url: https://keystone.it.just.works
