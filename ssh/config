@@ -62,6 +62,10 @@ Host codesearch.vm.mirantis.net
     IdentityFile ~/.ssh/aio_rsa
     User ubuntu
 
+Host workvm
+    HostName 172.19.114.44
+    User ubuntu
+
 Host odl-pike-lab
     HostName 172.16.162.66
     IdentityFile ~/.ssh/id_ed25519

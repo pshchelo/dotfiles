@@ -3,6 +3,7 @@ all:
     localhost:
      ansible_connection: local
     cube:
+    workvm:
   children:
     dsvm:
       hosts:

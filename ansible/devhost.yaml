@@ -2,6 +2,7 @@
 - hosts: all
   vars:
     set_hostname: False
+    copy_keys: False
   roles:
     - role: hostname
       when: set_hostname | bool
