@@ -63,3 +63,4 @@ alias tmax='tmux new -As'
 alias kopenstack="kubectl -n openstack exec -ti deploy/keystone-client -c keystone-client -- openstack"
 
 alias gitroot='cd $(git rev-parse --show-toplevel)'
+alias groot='cd $(git rev-parse --show-toplevel)'
