@@ -5,6 +5,13 @@
     accept_hostkey: yes
     update: no
 
+- name: set push url for dotfiles repo
+  git_config:
+    repo: "{{ dotfiles_dir }}"
+    scope: "local"
+    name: "remote.origin.pushurl"
+    value: "{{ dotfiles_repo_push }}"
+
 - name: backup some files
   shell: mv {{ item }} {{ item }}.orig
   args:
