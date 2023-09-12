@@ -7,4 +7,10 @@ find -type f -name "*.orig" -delete
 find -type f -name "*.pyc" -delete
 # delete empty folders outside .git folder
 find -type d -not -path "./.git/*" -empty -delete
+
+if [[ $1 = "-a" ]]; then
+    rm -rf .tox/
+    rm -rf .stestr/
+    rm -rf .testr/
+fi
 popd
