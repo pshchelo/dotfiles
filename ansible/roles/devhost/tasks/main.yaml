@@ -6,6 +6,11 @@
   with_items: "{{ ssh_keys }}"
   when: copy_keys | bool
 
+- name: ensure dir for sources exists
+  file:
+    path: "{{ src_dir }}"
+    state: directory
+
 - import_tasks: apt.yaml
   when: ansible_os_family == 'Debian'
   tags:

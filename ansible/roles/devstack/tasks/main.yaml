@@ -3,7 +3,7 @@
   file:
     state: directory
     path: "{{ stack_dir }}"
-    owner: "{{ ansible_user_id }}"
+    owner: "{{ username }}"
     recurse: yes
 
 - name: get latest DevStack
@@ -12,7 +12,12 @@
     dest: "{{ stack_dir }}/devstack"
 
 - name: ensure github.com is a known host
-  shell: ssh-keyscan github.com >> {{ ansible_user_dir }}/.ssh/known_hosts
+  shell: ssh-keyscan github.com >> {{ userhome }}/.ssh/known_hosts
+
+- name: ensure dir for sources exists
+  file:
+    path: "{{ src_dir }}"
+    state: directory
 
 - name: get my stackdev repo
   git:

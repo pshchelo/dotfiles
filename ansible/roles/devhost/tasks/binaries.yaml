@@ -1,6 +1,6 @@
 - name: ensure local bin folder exists
   file:
-    path: "{{ansible_user_dir}}/.local/bin"
+    path: "{{ local_bin_dir }}"
     state: directory
 
 - name: get latest jq release
@@ -11,7 +11,7 @@
 - name: download latest jq
   get_url:
     url: "{{jq_latest.json.assets | selectattr('name', 'search', 'linux64')| map(attribute='browser_download_url')|first}}"
-    dest: "{{ansible_user_dir}}/.local/bin/jq"
+    dest: "{{ local_bin_dir }}/jq"
     mode: "u+x"
     force: yes
 
@@ -41,7 +41,7 @@
   unarchive:
     remote_src: yes
     src: "{{ k9s_latest.json.assets | selectattr('name', 'search', 'Linux_amd64')| map(attribute='browser_download_url')|first}}"
-    dest: "{{ ansible_user_dir }}/.local/bin/"
+    dest: "{{ local_bin_dir }}/"
     keep_newer: yes
     extra_opts:
       - "k9s"
@@ -50,7 +50,7 @@
   tags:
     - k9s
   file:
-    path: "{{ ansible_user_dir }}/.config/k9s"
+    path: "{{ userhome }}/.config/k9s"
     state: directory
 
 - name: install my solarized colorscheme for k9s
@@ -58,7 +58,7 @@
     - k9s
   get_url:
     url: https://raw.githubusercontent.com/pshchelo/dotfiles/master/colors/k9s-solarized-dark.yml
-    dest: "{{ ansible_user_dir }}/.config/k9s/skin.yml"
+    dest: "{{ userhome }}/.config/k9s/skin.yml"
     force: yes
 
 #- name: get latest fzf
@@ -70,7 +70,7 @@
 #  unarchive:
 #    remote_src: yes
 #    src: "{{ fzf_latest.json.assets | selectattr('name', 'search', 'linux_amd64')| map(attribute='browser_download_url')|first}}"
-#    dest: "{{ ansible_user_dir }}/.local/bin/"
+#    dest: "{{ local_bin_dir }}/"
 #    keep_newer: yes
 #    extra_opts:
 #      - "fzf"

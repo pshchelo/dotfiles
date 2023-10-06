@@ -1,6 +1,9 @@
+username: "{{ ansible_user_id }}"
+userhome: "{{ ansible_user_dir }}"
 stack_dir: /opt/stack
-stackdev_dir: "{{ ansible_user_dir }}/stackdev"
-stackdev_scripts_target_dir: "{{ ansible_user_dir }}/.local/bin"
+src_dir: "{{ userhome }}/src"
+stackdev_dir: "{{ src_dir }}/stackdev"
+stackdev_scripts_target_dir: "{{ userhome }}/.local/bin"
 stackdev_scripts:
   - src: "{{ stackdev_dir }}/scripts/devlog"
     path: "{{ stackdev_scripts_target_dir }}/devlog"
