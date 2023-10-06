@@ -15,6 +15,7 @@ all:
         ussuri-dsvm.kvm.work:
         victoria-dsvm.kvm.work:
         pshchelo-devstack-master:
+        pshchelo-devstack-master-compute:
         pshchelo-devstack-yoga:
         pshchelo-devstack-pike:
     hypervisors:

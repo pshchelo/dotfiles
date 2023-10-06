@@ -48,6 +48,9 @@ Host pshchelo-devstack-*
 Host pshchelo-devstack-master
     HostName 172.19.116.1
 
+Host pshchelo-devstack-master-compute
+    HostName 172.19.114.92
+
 Host pshchelo-devstack-yoga
     HostName 172.19.119.123
 
