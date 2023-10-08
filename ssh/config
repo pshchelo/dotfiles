@@ -45,16 +45,16 @@ Host pshchelo-devstack-*
     UserKnownHostsFile /dev/null
     LogLevel QUIET
 
-Host pshchelo-devstack-master
+Host pshchelo-devstack-jammy
     HostName 172.19.116.1
 
-Host pshchelo-devstack-master-compute
+Host pshchelo-devstack-jammy-compute
     HostName 172.19.114.92
 
-Host pshchelo-devstack-yoga
+Host pshchelo-devstack-focal
     HostName 172.19.119.123
 
-Host pshchelo-devstack-pike
+Host pshchelo-devstack-xenial
     HostName 172.19.123.19
 
 Host oscore-security.vm.mirantis.net
