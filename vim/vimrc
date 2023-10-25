@@ -1,3 +1,10 @@
+"=======
+" SYSTEM
+"=======
+"maxmem=8186122
+"maxmemtot=8186122
+"maxmempattern=1000
+set maxmempattern=5000
 "=========
 " BEHAVIOR
 "=========
