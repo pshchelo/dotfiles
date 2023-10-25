@@ -172,25 +172,17 @@ call plug#begin()
 Plug 'wsdjeg/vim-fetch'
 " close files instead of closing views
 Plug 'moll/vim-bbye'
+" gracefully close buffers with vim-bbye
+nnoremap <Leader>q :Bdelete<CR>
 
 " command line fuzzy file search and open
-if v:version < 800
-    Plug 'junegunn/fzf'
-else
-    Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
-endif
+Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
 Plug 'junegunn/fzf.vim'
 nnoremap <C-p> :GFiles<Cr>
 nnoremap <C-P> :Files!<Cr>
 
 " async ag-based search
-if exists("*winlayout")
-    Plug 'dyng/ctrlsf.vim'
-else
-    " the last commit that is not using winlayout() function
-    " which is available only since 8.1.0307
-    Plug 'dyng/ctrlsf.vim', { 'commit': '3f33f5e7689a0e4c7dcd6c3c277b709c8468ceee'}
-endif
+Plug 'dyng/ctrlsf.vim'
 let g:ctrlsf_backend = 'ag'
 nmap     <C-F>f <Plug>CtrlSFPrompt
 vmap     <C-F>f <Plug>CtrlSFVwordPath
@@ -204,12 +196,7 @@ nnoremap <C-F>t :CtrlSFToggle<CR>
 inoremap <C-F>t <Esc>:CtrlSFToggle<CR>
 
 " multiple cursors
-if v:version < 800
-    " this one announces that it is deprecated
-    Plug 'terryma/vim-multiple-cursors'
-else
-    Plug 'mg979/vim-visual-multi'
-endif
+Plug 'mg979/vim-visual-multi'
 " pairs of commands
 Plug 'tpope/vim-unimpaired'
 " repeat full actions from plugins via .
@@ -255,65 +242,25 @@ let g:tagbar_width = 32
 " Key to toggle TagBar sidebar
 nmap <F4> :TagbarToggle<CR>
 
-" autocompletion
-if v:version < 800
-    " auto-complete, supports Jedi for Python code
-    Plug 'Shougo/neocomplete' | Plug 'Konfekt/FastFold'
-    " Use neocomplete.
-    let g:neocomplete#enable_at_startup = 1
-    " Use smartcase.
-    let g:neocomplete#enable_smart_case = 1
-    " Set minimum syntax keyword length.
-    let g:neocomplete#sources#syntax#min_keyword_length = 3
-    let g:neocomplete#lock_buffer_name_pattern = '\*ku\*'
-    " Python / jedi-vim completion
-    autocmd FileType python setlocal omnifunc=jedi#completions
-    if !exists('g:neocomplete#force_omni_input_patterns')
-        let g:neocomplete#force_omni_input_patterns = {}
-    endif
-    let g:neocomplete#force_omni_input_patterns.python = '\%([^. \t]\.\|^\s*@\|^\s*from\s.\+import \|^\s*from \|^\s*import \)\w*'
-    " Other completions (builtin)
-    autocmd FileType css setlocal omnifunc=csscomplete#CompleteCSS
-    autocmd FileType html,markdown setlocal omnifunc=htmlcomplete#CompleteTags
-    autocmd FileType javascript setlocal omnifunc=javascriptcomplete#CompleteJS
-    autocmd FileType xml setlocal omnifunc=xmlcomplete#CompleteTags
-else
-    " async auto-complete
-    Plug 'maralla/completor.vim'
-    let g:completor_python_binary = '/usr/bin/python3'
-    let g:completor_filesize_limit = 2048 " default is 1024 == 1MB
-endif
+" async auto-complete
+Plug 'maralla/completor.vim'
+let g:completor_python_binary = '/usr/bin/python3'
+let g:completor_filesize_limit = 2048 " default is 1024 == 1MB
+" use Tab to select completion
+inoremap <expr> <Tab> pumvisible() ? "\<C-n>" : "\<Tab>"
+inoremap <expr> <S-Tab> pumvisible() ? "\<C-p>" : "\<S-Tab>"
+inoremap <expr> <cr> pumvisible() ? "\<C-y>\<cr>" : "\<cr>"
 
-" code and style linters
-if v:version < 800
-    " code and style checks
-    Plug 'scrooloose/syntastic'
-    " Define nice error symbols
-    let g:syntastic_error_symbol='✗'
-    let g:syntastic_warning_symbol='⚠'
-
-    " Allways stick found errors to loclist
-    let g:syntastic_always_populate_loc_list=1
-    " Automatically close and open loclist
-    let g:syntastic_auto_loc_list=1
-    " Aggregate errors from all checkers
-    let g:syntastic_aggregate_errors=1
-
-    " Use flake8 as a sole checker for Python files
-    " Available are pep8,pep257,pyflakes,pylint,py3kwarn,python,flake8,pylama
-    let g:syntastic_python_checkers = ['flake8']
-else
-    " async linter
-    Plug 'dense-analysis/ale'
-     let g:airline#extensions#ale#enabled = 1
-     let g:ale_sign_error = '✗'
-     let g:ale_sign_warning = '⚠'
-     let g:ale_open_list = 1
-     let g:ale_linters = {'python': ['ruff'],}
-     let g:ale_lint_on_enter = 0
-     let g:ale_lint_on_insert_leave = 1
-     let g:ale_lint_on_text_changed = 'normal'
-endif
+" async linter
+Plug 'dense-analysis/ale'
+let g:airline#extensions#ale#enabled = 1
+let g:ale_sign_error = '✗'
+let g:ale_sign_warning = '⚠'
+let g:ale_open_list = 1
+let g:ale_linters = {'python': ['ruff'],}
+let g:ale_lint_on_enter = 0
+let g:ale_lint_on_insert_leave = 1
+let g:ale_lint_on_text_changed = 'normal'
 
 " LANGUAGE SERVER PROTOCOL
 "Plug 'prabirshrestha/vim-lsp'
@@ -334,6 +281,13 @@ python3 << ENDPYTHON
 import sys, vim
 vim.command("let python3Version = %s%s" % (str(sys.version_info.major), str(sys.version_info.minor)))
 ENDPYTHON
+endif
+
+" key map to insert (pdb) breakpoint if no Python-mode is present
+if has("python3") && python3Version > 36
+    autocmd FileType python nnoremap <leader>b yyP^Cbreakpoint()  # XXX:breakpoint<Esc>
+else
+    autocmd FileType python nnoremap <leader>b yyP^Cimport pdb; pdb.set_trace()  # XXX:breakpoint<Esc>
 endif
 
 " Python goodies - disabled for now, conflicts with Jedi, trying to compensate
@@ -503,9 +457,6 @@ call plug#end()
 " turn off active search highlighting
 nnoremap <silent> <Space> :nohlsearch<Bar>:echo<CR>
 
-" Mapping for gracefully closing buffers with vim-bbye
-:nnoremap <Leader>q :Bdelete<CR>
-
 " Disable shortcut for entering Ex mode
 nnoremap Q <nop>
 
@@ -514,21 +465,6 @@ nmap <Leader>s :setlocal spell! spelllang=en_us<CR>
 
 " Toggle vertical centring of the cursor
 nnoremap <Leader>zz :let &scrolloff=999-&scrolloff<CR>:echo "scrolloff toggled"<CR>
-
-" Neocomplete
-" <CR>: close popup
- if v:version < 800
-    inoremap <silent> <CR> <C-r>=<SID>my_cr_function()<CR>
-    function! s:my_cr_function()
-      return pumvisible() ? "\<C-y>" : "\<CR>"
-    endfunction
-    " <TAB>: completion.
-    inoremap <expr><TAB>  pumvisible() ? "\<C-n>" : "\<TAB>"
-else
-    inoremap <expr> <Tab> pumvisible() ? "\<C-n>" : "\<Tab>"
-    inoremap <expr> <S-Tab> pumvisible() ? "\<C-p>" : "\<S-Tab>"
-    inoremap <expr> <cr> pumvisible() ? "\<C-y>\<cr>" : "\<cr>"
-endif
 
 " Paste mode toggle
 set pastetoggle=<Leader>p
@@ -569,11 +505,6 @@ cnoremap w!! execute 'silent! write !sudo tee % >/dev/null' <bar> edit!
 "map <C-j> <C-w>j
 "map <C-k> <C-w>k
 "map <C-l> <C-w>l
-
-" key map to insert pdb breakpoint if no Python-mode is present
-autocmd FileType python nnoremap <leader>b yyP^Cimport pdb; pdb.set_trace()  # XXX:breakpoint<Esc>
-" newer variant, supported by  Python 3.7+
-autocmd FileType python nnoremap <leader>B yyP^Cbreakpoint()  # XXX:breakpoint<Esc>
 
 " make vim understand commands without leaving russian keyboard layout
 "set langmap=!\\"№\\;%?*ёйцукенгшщзхъфывапролджэячсмитьбюЁЙЦУКЕHГШЩЗХЪФЫВАПРОЛДЖЭЯЧСМИТЬБЮ;!@#$%&*`qwertyuiop[]asdfghjkl\\;'zxcvbnm\\,.~QWERTYUIOP{}ASDFGHJKL:\\"ZXCVBNM<>
