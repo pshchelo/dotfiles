@@ -218,7 +218,7 @@ Plug 'prabirshrestha/vim-lsp'
 Plug 'prabirshrestha/asyncomplete.vim'
 Plug 'prabirshrestha/asyncomplete-lsp.vim'
 " async auto-complete
-"Plug 'maralla/completor.vim'
+Plug 'maralla/completor.vim'
 " better Python motion objects
 Plug 'jeetsukumaran/vim-pythonsense'
 " better python indentation
@@ -307,10 +307,11 @@ let g:indentLine_color_term = 240
 let g:indentLine_char_list = ['|', '¦', '┆', '┊']
 
 " completor settings
+let g:completor_blacklist = ['tagbar', 'qf', 'netrw', 'unite', 'vimwiki', 'python']
 "let g:completor_python_binary = '/usr/bin/python3'
-"let g:completor_python_binary = ''
 " default filesize limiti is 1024 (1MB)
-"let g:completor_filesize_limit = 2048
+let g:completor_filesize_limit = 2048
+" attempted LSP integration
 "let g:completor_filetype_map = {}
 "let g:completor_filetype_map.python = {'ft': 'lsp', 'cmd': 'pylsp'}
 
@@ -362,6 +363,7 @@ endif
 let g:airline#extensions#ale#enabled = 1
 let g:ale_sign_error = '✗'
 let g:ale_sign_warning = '⚠'
+let g:ale_sign_info = '🛈'
 let g:ale_open_list = 1
 let g:ale_linters = {'python': [],}
 let g:ale_lint_on_enter = 0
@@ -610,6 +612,6 @@ cnoremap w!! execute 'silent! write !sudo tee % >/dev/null' <bar> edit!
 
 " USEFUL UNICODE SYMBOLS
 " check marks/crosses ✅ ✓ ✔ ✗ ✘ 🗴 🗶 🗸
-" more ⚠ ♨ ⚡ ⌥ ⌦ ⎇  🗲 ‣
+" more ⚠ ♨ ⚡ ⌥ ⌦ ⎇  🗲 ‣ 🛈
 " Powerline symbols (from private Unicode space)
 "       
