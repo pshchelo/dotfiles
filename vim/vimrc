@@ -151,50 +151,39 @@ autocmd BufRead,BufNewFile *.conf set filetype=dosini
 function! AutoCorrect()
     ia ixpe ipxe
     ia iXPE iPXE
+    ia IMPI IPMI
+    ia impi ipmi
 endfunction
 
 autocmd filetype text call AutoCorrect()
 autocmd filetype rst call AutoCorrect()
 
-"=================================
+if has("python3")
+" define python3Version (MAJ.MIN) variable
+python3 << ENDPYTHON
+import sys, vim
+vim.command("let python3Version = %s%s" % (str(sys.version_info.major), str(sys.version_info.minor)))
+ENDPYTHON
+endif
+
+"========
 "
 " PLUGINS
 "
-"=================================
+"========
 "=====
 " Plug
 "=====
 call plug#begin()
-"
-" GENARAL VIM GOODIES
-"
 " open file paths in log/debug format as file:<line>
 Plug 'wsdjeg/vim-fetch'
 " close files instead of closing views
 Plug 'moll/vim-bbye'
-" gracefully close buffers with vim-bbye
-nnoremap <Leader>q :Bdelete<CR>
-
 " command line fuzzy file search and open
 Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
 Plug 'junegunn/fzf.vim'
-nnoremap <C-p> :GFiles<Cr>
-nnoremap <C-P> :Files!<Cr>
-
 " async ag-based search
 Plug 'dyng/ctrlsf.vim'
-let g:ctrlsf_backend = 'ag'
-nmap     <C-F>f <Plug>CtrlSFPrompt
-vmap     <C-F>f <Plug>CtrlSFVwordPath
-vmap     <C-F>F <Plug>CtrlSFVwordExec
-nmap     <C-F>n <Plug>CtrlSFCwordPath
-nmap     <C-F>N <Plug>CtrlSFCwordExec
-nmap     <C-F>p <Plug>CtrlSFPwordPath
-nmap     <C-F>P <Plug>CtrlSFPwordExec
-nnoremap <C-F>o :CtrlSFOpen<CR>
-nnoremap <C-F>t :CtrlSFToggle<CR>
-inoremap <C-F>t <Esc>:CtrlSFToggle<CR>
-
 " multiple cursors
 Plug 'mg979/vim-visual-multi'
 " pairs of commands
@@ -203,9 +192,98 @@ Plug 'tpope/vim-unimpaired'
 Plug 'tpope/vim-repeat'
 " work with surrounding quotes/braces/tags
 Plug 'tpope/vim-surround'
-
 " nicer (un)comment commands
 Plug 'scrooloose/nerdcommenter'
+" sidebar file browser + in single panel
+Plug 'jistr/vim-nerdtree-tabs' | Plug 'scrooloose/nerdtree'
+" use vimdiff on folders!
+Plug 'will133/vim-dirdiff'
+" Paste/fetch text from LodgeIt pastebins, defaults to paste.openstack.org
+Plug 'pshchelo/lodgeit.vim'
+" Git integration
+Plug 'tpope/vim-fugitive'
+" display git status per line in buffer, stage/instage hunks, integrates with vim-airline
+"Plug 'airblade/vim-gitgutter'
+Plug 'mhinz/vim-signify'
+" sidebar code structure browser, requires exuberant-tags to be installed
+Plug 'majutsushi/tagbar', { 'on':  'TagbarToggle' }
+" indentation guides visualisation
+Plug 'yggdroot/indentline'
+" Plug 'jiangmiao/auto-pairs'
+" async linter
+Plug 'dense-analysis/ale'
+" general LSP integration
+Plug 'prabirshrestha/vim-lsp'
+" async complete
+Plug 'prabirshrestha/asyncomplete.vim'
+Plug 'prabirshrestha/asyncomplete-lsp.vim'
+" async auto-complete
+"Plug 'maralla/completor.vim'
+" better Python motion objects
+Plug 'jeetsukumaran/vim-pythonsense'
+" better python indentation
+Plug 'vim-scripts/indentpython.vim'
+" Rope-based Python code tools
+" disabled for now, conflicts with Jedi, trying to compensate with other plugins
+"Plug 'python-mode/python-mode', { 'branch': 'develop', 'for': 'python' }
+" Jedi-based Python code completion and refactoring
+" disabled for now, trying out LSP integration.
+"if has("python3") && python3Version > 35
+    "Plug 'davidhalter/jedi-vim', { 'for': 'python' }
+"else
+    "Plug 'davidhalter/jedi-vim', { 'for': 'python', 'tag': '0.10.0' }
+"endif
+" haskell
+if executable('ghc')
+    " introspection
+    Plug 'eagletmt/ghcmod-vim', {'for': 'haskell'}
+    " completion
+    Plug 'eagletmt/neco-ghc', {'for': 'haskell'}
+endif
+" Golang
+if executable('go')
+    Plug 'fatih/vim-go', {'for': 'go'}
+endif
+" reStructured text
+Plug 'gu-fan/riv.vim', { 'for': 'rst' }
+" YAML indentation
+Plug 'avakhov/vim-yaml', { 'for': 'yaml' }
+" YAML folds
+Plug 'digitalrounin/vim-yaml-folds', { 'for': 'yaml' }
+" Jinja2 template files
+Plug 'Glench/Vim-Jinja2-Syntax'
+" Salt-flavored YAML (YAML + Jinja)
+Plug 'saltstack/salt-vim', { 'for': 'sls' }
+" Helm charts (yaml + gotmpl + sprig + custom)
+Plug 'towolf/vim-helm'
+" best colorscheme of them all
+Plug 'altercation/vim-colors-solarized'
+" lightweight alternative to Powerline
+Plug 'vim-airline/vim-airline'
+" additional themes for vim-airline
+Plug 'vim-airline/vim-airline-themes'
+" RARELY USED OR JUST FOR FUN - enable when needed
+" (La)TeX goodies
+"Plug 'lervag/vimtex'
+" generate Powerline-like config for Tmux interface, based on vim-airline
+"Plug 'edkolev/tmuxline.vim', { 'on': 'Tmuxline' }
+" generate Powerline-like config for shell command line, based on vim-airline
+"Plug 'edkolev/promptline.vim', { 'on': 'PromptlineSnapshot' }
+" opinionated 'sensible' defaults for Vim
+"Plug 'tpope/vim-sensible'
+call plug#end()
+
+" ===============
+"
+" PLUGIN SETTINGS
+"
+" ===============
+
+" ctrlsf settings
+" set search backend, can swith for e.g 'rg'
+let g:ctrlsf_backend = 'ag'
+
+" nerdcommenter settings
 let g:NERDSpaceDelims = 0
 let g:NERDDefaultAlign = 'left'
 " Use octothorpe for comments in ini/conf files, keep ; as alternative
@@ -213,46 +291,74 @@ let g:NERDCustomDelimiters = {
     \ 'dosini': {'left': '#', 'leftAlt': ';'}
     \ }
 
-" sidebar file browser + in single panel
-Plug 'jistr/vim-nerdtree-tabs' | Plug 'scrooloose/nerdtree'
-" filter on *.pyc files in NERDTree plugin
+" nerdtree settings
+" filter on *.pyc files
 let NERDTreeIgnore = ['\.pyc$']
-" Key to toggle NERDTree sidebar
-map <F3> :NERDTreeTabsToggle<CR>
 
-" use vimdiff on folders!
-Plug 'will133/vim-dirdiff'
-" Paste/fetch text from LodgeIt pastebins, defaults to paste.openstack.org
-Plug 'pshchelo/lodgeit.vim'
-"
-" GIT INTEGRATION
-
-" Git integration
-Plug 'tpope/vim-fugitive'
-" display git status per line in buffer, stage/instage hunks, integrates with vim-airline
-"Plug 'airblade/vim-gitgutter'
-Plug 'mhinz/vim-signify'
+" signify settings
+" ignore everything but Git DVCS
 let g:signify_vcs_list = [ 'git',]
 
-" GENRAL PROGRAMMING
-"
-" sidebar code structure browser, requires exuberant-tags to be installed
-Plug 'majutsushi/tagbar', { 'on':  'TagbarToggle' }
+" tagbar settings
 let g:tagbar_width = 32
-" Key to toggle TagBar sidebar
-nmap <F4> :TagbarToggle<CR>
 
-" async auto-complete
-Plug 'maralla/completor.vim'
-let g:completor_python_binary = '/usr/bin/python3'
-let g:completor_filesize_limit = 2048 " default is 1024 == 1MB
-" use Tab to select completion
-inoremap <expr> <Tab> pumvisible() ? "\<C-n>" : "\<Tab>"
-inoremap <expr> <S-Tab> pumvisible() ? "\<C-p>" : "\<S-Tab>"
-inoremap <expr> <cr> pumvisible() ? "\<C-y>\<cr>" : "\<cr>"
+" indentline settings
+let g:indentLine_color_term = 240
+let g:indentLine_char_list = ['|', '¦', '┆', '┊']
 
-" async linter
-Plug 'dense-analysis/ale'
+" completor settings
+"let g:completor_python_binary = '/usr/bin/python3'
+"let g:completor_python_binary = ''
+" default filesize limiti is 1024 (1MB)
+"let g:completor_filesize_limit = 2048
+"let g:completor_filetype_map = {}
+"let g:completor_filetype_map.python = {'ft': 'lsp', 'cmd': 'pylsp'}
+
+" vim-lsp settings
+let g:lsp_use_native_client = 1
+let g:lsp_semantic_enabled = 1
+"let g:lsp_diagnostics_highlights_enabled = 0
+let g:lsp_format_sync_timeout = 1000
+let g:lsp_diagnostics_virtual_text_prefix = "⌦"
+let g:lsp_document_code_action_signs_hint = {'text': '‣'}
+if executable('pylsp')
+    au User lsp_setup call lsp#register_server({
+        \  'name': 'pylsp',
+        \  'cmd': {server_info->['pylsp']},
+        \  'allowlist': ['python'],
+        \  'root_uri':{server_info->lsp#utils#path_to_uri(
+        \      lsp#utils#find_nearest_parent_file_directory(
+        \          lsp#utils#get_buffer_path(),
+        \          [
+        \           'pyproject.toml',
+        \           'setup.cfg',
+        \           'setup.py',
+        \           'tox.ini',
+        \           '.git/'
+        \          ]
+        \  ))},
+        \  'workspace_config': {
+        \        'pylsp': {
+        \            'configurationSources': ['ruff'],
+        \            'plugins': {
+        \                'black': {'enabled': v:true},
+        \                'ruff': {'enabled': v:true},
+        \                'mypy': {'enabled': v:false},
+        \            }
+        \        }
+        \  }
+        \})
+" Other possible options to pass:
+" initialization_options
+" blocklist
+" config
+endif
+" folding via LSP, does not work - at least with pylsp, vim freezes
+"set foldmethod=expr
+"set foldexpr=lsp#ui#vim#folding#foldexpr()
+"set foldtext=lsp#ui#vim#folding#foldtext()
+
+" ale settings
 let g:airline#extensions#ale#enabled = 1
 let g:ale_sign_error = '✗'
 let g:ale_sign_warning = '⚠'
@@ -262,37 +368,7 @@ let g:ale_lint_on_enter = 0
 let g:ale_lint_on_insert_leave = 1
 let g:ale_lint_on_text_changed = 'normal'
 
-" LANGUAGE SERVER PROTOCOL
-"Plug 'prabirshrestha/vim-lsp'
-"Plug 'mattn/vim-lsp-settings'
-"let g:lsp_settings_servers_dir="~/.local/share/vim-lsp-settings/servers"
-"let g:lsp_settings_filetype_python = 'pylsp'
-"Plug 'prabirshrestha/asyncomplete.vim'
-"Plug 'prabirshrestha/asyncomplete-lsp.vim'
-" Plug 'github/copilot.vim'
-" Plug 'itchyny/lightline.vim'
-" Plug 'maximbaz/lightline-ale'
-" Plug 'jiangmiao/auto-pairs'
-
-" PYTHON SUPPORT
-if has("python3")
-" define python3Version (MAJ.MIN) variable
-python3 << ENDPYTHON
-import sys, vim
-vim.command("let python3Version = %s%s" % (str(sys.version_info.major), str(sys.version_info.minor)))
-ENDPYTHON
-endif
-
-" key map to insert (pdb) breakpoint if no Python-mode is present
-if has("python3") && python3Version > 36
-    autocmd FileType python nnoremap <leader>b yyP^Cbreakpoint()  # XXX:breakpoint<Esc>
-else
-    autocmd FileType python nnoremap <leader>b yyP^Cimport pdb; pdb.set_trace()  # XXX:breakpoint<Esc>
-endif
-
-" Python goodies - disabled for now, conflicts with Jedi, trying to compensate
-" with other plugins
-" Plug 'python-mode/python-mode', { 'branch': 'develop', 'for': 'python' }
+" python-mode settings
 "let g:pymode = 1
 " disable some features in favor of Jedi
 "let g:pymode_rope = 0
@@ -323,52 +399,30 @@ endif
 "let g:pymode_options_max_line_length = 79
 "let g:pymode_options_colorcolumn = 1
 
-" better Python motion objects
-Plug 'jeetsukumaran/vim-pythonsense'
-" better python indentation
-Plug 'vim-scripts/indentpython.vim'
-
-" Python code completion and refactoring
-
-" rely on lazy eval
-if has("python3") && python3Version > 35
-    Plug 'davidhalter/jedi-vim', { 'for': 'python' }
-else
-    Plug 'davidhalter/jedi-vim', { 'for': 'python', 'tag': '0.10.0' }
-endif
+" jedi-vim settings
 " Do not use Jedi for autocompletion (using completor/neocomplete for that)
-let g:jedi#completions_enabled = 0
-let g:jedi#auto_vim_configuration = 0
-let g:jedi#smart_auto_mappings = 0
-
-" Change default binding of jedi's rename command
-let g:jedi#rename_command = "<leader>rn"
+"let g:jedi#auto_initialization = 0
+"let g:jedi#auto_vim_configuration = 0
+"let g:jedi#popup_on_dot = 0
+"let g:jedi#completions_enabled = 0
+"let g:jedi#smart_auto_mappings = 0
 " Set function call signatures display
 " 0 - turned off
 " 1 - pop-up (easier to refer to)
 " 2 - vim's command line (nicer undo history)
-let g:jedi#show_call_signatures = 1
+"let g:jedi#show_call_signatures = 0
 " Use tabs for go-to commands
-let g:jedi#use_tabs_not_buffers = 1
+"let g:jedi#use_tabs_not_buffers = 1
+" Set the key bindings manually since the auto_initialization is disabled
+"nnoremap <silent> <buffer> <localleader>d :call jedi#goto()<cr>
+"nnoremap <silent> <buffer> <localleader>g :call jedi#goto_assignments()<cr>
+"nnoremap <silent> <buffer> <localleader>s :call jedi#goto_stubs()<cr>
+"nnoremap <silent> <buffer> <localleader>K :call jedi#show_documentation()<cr>
+"nnoremap <silent> <buffer> <localleader>r :call jedi#rename()<cr>
+"nnoremap <silent> <buffer> <localleader>R :call jedi#rename_keep_name()<cr>
+"nnoremap <silent> <buffer> <localleader>n :call jedi#usages()<cr>
 
-
-if executable('ghc')
-    " HASKELL SUPPORT
-    " introspection
-    Plug 'eagletmt/ghcmod-vim', {'for': 'haskell'}
-    " completion
-    Plug 'eagletmt/neco-ghc', {'for': 'haskell'}
-endif
-
-if executable('go')
-    " GO SUPPORT
-    Plug 'fatih/vim-go', {'for': 'go'}
-endif
-"
-" MARKUP LANGUAGES SUPPORT
-"
-" reStructured text
-Plug 'gu-fan/riv.vim', { 'for': 'rst,python' }
+" riv.vim settings
 " output path for converted file _not_ in projects
 let g:riv_temp_path = 0  " the same dir as source
 " highlight Python docstrings as RST
@@ -378,29 +432,24 @@ let g:riv_highlight_code = 'python'
 "do not use fixdel
 let g:riv_disable_del = 1
 
-" YAML indentation
-Plug 'avakhov/vim-yaml', { 'for': 'yaml' }
-" YAML folds
-Plug 'digitalrounin/vim-yaml-folds', { 'for': 'yaml' }
-" Jinja2 template files
-Plug 'Glench/Vim-Jinja2-Syntax'
-
-" Salt-flavored YAML (YAML + Jinja)
-Plug 'saltstack/salt-vim', { 'for': 'sls' }
+" salt-vim settins
 " Force using the Jinja2 template syntax file
 let g:sls_use_jinja_syntax = 1
 
-" Helm charts (yaml + gotmpl + sprig + custom)
-Plug 'towolf/vim-helm'
-"
-" RARELY USED OR JUST FOR FUN
-" enable when needed
-"
-" generate Powerline-like config for Tmux interface, based on vim-airline
-"Plug 'edkolev/tmuxline.vim', { 'on': 'Tmuxline' }
+" Set colorscheme
+set background=dark
+:silent! colorscheme solarized
 
-" generate Powerline-like config for shell command line, based on vim-airline
-"Plug 'edkolev/promptline.vim', { 'on': 'PromptlineSnapshot' }
+" vim-airline settings
+let g:airline_powerline_fonts = 1
+let g:airline_theme='solarized'
+let g:airline#extensions#whitespace#enabled = 1
+let g:airline#extensions#tabline#enabled = 1
+" do not live-override tmux and prompt settings with airline ones
+let g:airline#extensions#tmuxline#enabled = 0
+let g:airline#extensions#promptline#enabled = 0
+
+" promptline.vim settings
 "let g:promptline_theme = 'powerlineclone'
 ":silent! let g:promptline_preset = {
 "        \'a' : [ promptline#slices#host() ],
@@ -411,48 +460,101 @@ Plug 'towolf/vim-helm'
 "        \'z' : [ promptline#slices#jobs() ],
 "        \'warn' : [ promptline#slices#last_exit_code() ]}
 
-" Online REPL sidepanel
-"Plug 'metakirby5/codi.vim', { 'on': 'Codi' }
-" interact with JSON-based REST APIs
-"Plug 'diepm/vim-rest-console', { 'for': 'rest' }
-" (La)TeX goodies
-"Plug 'lervag/vimtex'
-" opinionated 'sensible' defaults for Vim
-"Plug 'tpope/vim-sensible'
-" indentation visual guides - must figure out proper colors for Solarized yet
-"Plug 'nathanaelkane/vim-indent-guides'
-"hi IndentGuidesOdd  ctermbg=darkgrey
-"hi IndentGuidesEven ctermbg=lightgrey
-"let g:indent_guides_guide_size = 1
-" another indentation visualisation
-Plug 'yggdroot/indentline'
-let g:indentLine_color_term = 240
-let g:indentLine_char_list = ['|', '¦', '┆', '┊']
-
-" VISUAL THEME
-"
-" best colorscheme of them all
-Plug 'altercation/vim-colors-solarized'
-set background=dark
-" lightweight alternative to Powerline
-Plug 'vim-airline/vim-airline'
-" additional themes for vim-airline
-Plug 'vim-airline/vim-airline-themes'
-let g:airline_powerline_fonts = 1
-let g:airline_theme='solarized'
-" do not live-override tmux settings with airline ones
-let g:airline#extensions#tmuxline#enabled = 0
-" do not live-override prompt settings with airline ones
-let g:airline#extensions#promptline#enabled = 0
-let g:airline#extensions#whitespace#enabled = 1
-let g:airline#extensions#tabline#enabled = 1
-call plug#end()
-:silent! colorscheme solarized
-:silent! call togglebg#map("<F5>")
 "=================================
 "
 " KEYMAPS
 "
+"=================================
+" vim-lsp keymaps
+" register LSP-related key bindings if any LSP is registered
+function! s:on_lsp_buffer_enabled() abort
+    setlocal omnifunc=lsp#complete
+    setlocal signcolumn=yes
+    if exists('+tagfunc') | setlocal tagfunc=lsp#tagfunc | endif
+    nmap <buffer> <leader>g <plug>(lsp-definition)
+    "nmap <buffer> <leader>d <plug>(lsp-declaration)
+    nmap <buffer> gs <plug>(lsp-document-symbol-search)
+    nmap <buffer> gS <plug>(lsp-workspace-symbol-search)
+    nmap <buffer> <leader>n <plug>(lsp-references)
+    "nmap <buffer> <leader>i <plug>(lsp-implementation)
+    "nmap <buffer> <leader>t <plug>(lsp-type-definition)
+    nmap <buffer> <leader>r <plug>(lsp-rename)
+    nmap <buffer> [g <plug>(lsp-previous-diagnostic)
+    nmap <buffer> ]g <plug>(lsp-next-diagnostic)
+    nmap <buffer> K <plug>(lsp-hover)
+    nnoremap <buffer> <expr><c-f> lsp#scroll(+4)
+    nnoremap <buffer> <expr><c-d> lsp#scroll(-4)
+    " refer to doc to add more commands
+    " move that to registering the respective LSP
+    "autocmd! BufWritePre *.rs,*.go call execute('LspDocumentFormatSync')
+endfunction
+augroup lsp_install
+    au!
+    " call s:on_lsp_buffer_enabled only for languages that has the server registered.
+    autocmd User lsp_buffer_enabled call s:on_lsp_buffer_enabled()
+augroup END
+
+" vim-bbye keymaps
+" gracefully close buffers with vim-bbye
+nnoremap <leader>q :Bdelete<CR>
+
+" vim-fzf keymaps
+" use fzf as replacement for CtrlP plugin
+nnoremap <C-p> :GFiles<Cr>
+nnoremap <C-P> :Files!<Cr>
+
+" CtrlSF keymaps
+nmap     <C-F>f <Plug>CtrlSFPrompt
+vmap     <C-F>f <Plug>CtrlSFVwordPath
+vmap     <C-F>F <Plug>CtrlSFVwordExec
+nmap     <C-F>n <Plug>CtrlSFCwordPath
+nmap     <C-F>N <Plug>CtrlSFCwordExec
+nmap     <C-F>p <Plug>CtrlSFPwordPath
+nmap     <C-F>P <Plug>CtrlSFPwordExec
+nnoremap <C-F>o :CtrlSFOpen<CR>
+nnoremap <C-F>t :CtrlSFToggle<CR>
+inoremap <C-F>t <Esc>:CtrlSFToggle<CR>
+
+" nerdtree keymaps
+map <F3> :NERDTreeTabsToggle<CR>
+
+" TagBar keymaps
+nmap <F4> :TagbarToggle<CR>
+
+" completor keymaps
+" completor LSP commands
+"noremap <silent> <buffer> <localleader>d :call completor#do('definition')<CR>
+"noremap <silent> <buffer> <localleader>c :call completor#do('doc')<CR>
+"noremap <silent> <buffer> <localleader>f :call completor#do('format')<CR>
+"noremap <silent> <buffer> <localleader>h :call completor#do('hover')<CR>
+
+" asyncomplete keymaps
+imap <c-@> <Plug>(asyncomplete_force_refresh)
+
+" use Tab to select completion
+inoremap <expr> <Tab> pumvisible() ? "\<C-n>" : "\<Tab>"
+inoremap <expr> <S-Tab> pumvisible() ? "\<C-p>" : "\<S-Tab>"
+inoremap <expr> <cr> pumvisible() ? "\<C-y>\<cr>" : "\<cr>"
+autocmd! CompleteDone * if pumvisible() == 0 | pclose | endif
+
+" key map to insert (pdb) breakpoint if no Python-mode is present
+if has("python3") && python3Version > 36
+    autocmd FileType python nnoremap <leader>b
+            \   yyP^Cbreakpoint()  # XXX:breakpoint<Esc>
+else
+    autocmd FileType python nnoremap <leader>b
+            \   yyP^Cimport pdb; pdb.set_trace()  # XXX:breakpoint<Esc>
+endif
+" key to insert rpdb breakpoint
+autocmd FileType python nnoremap <leader>B
+            \ yyP^Cimport rpdb; rpdb.set_trace()  # XXX:breakpoint<Esc>
+
+" Toggle between light and dark colorscheme, dark is default
+:silent! call togglebg#map("<F5>")
+
+" make vim understand commands without leaving ukr keyboard layout
+set langmap=!\\"№\\;%?*йцукенгшщзхїфівапролджєячсмитьбюЙЦУКЕHГШЩЗХЪФЫВАПРОЛДЖЭЯЧСМИТЬБЮ;!@#$%&*qwertyuiop[]asdfghjkl\\;'zxcvbnm\\,.QWERTYUIOP{}ASDFGHJKL:\\"ZXCVBNM<>
+
 "=================================
 " turn off active search highlighting
 nnoremap <silent> <Space> :nohlsearch<Bar>:echo<CR>
@@ -461,25 +563,25 @@ nnoremap <silent> <Space> :nohlsearch<Bar>:echo<CR>
 nnoremap Q <nop>
 
 " Set spellcheck toggle
-nmap <Leader>s :setlocal spell! spelllang=en_us<CR>
+nmap <leader>s :setlocal spell! spelllang=en_us<CR>
 
 " Toggle vertical centring of the cursor
-nnoremap <Leader>zz :let &scrolloff=999-&scrolloff<CR>:echo "scrolloff toggled"<CR>
+nnoremap <leader>zz :let &scrolloff=999-&scrolloff<CR>:echo "scrolloff toggled"<CR>
 
 " Paste mode toggle
-set pastetoggle=<Leader>p
+set pastetoggle=<leader>p
 
 " Toggle list mode (special characters)
-noremap <Leader>L :set list!<CR>
+noremap <leader>L :set list!<CR>
 
 " Toggle line numbers
-noremap <Leader>N :set number!<CR>
+noremap <leader>N :set number!<CR>
 
 " Remove trailing whitespace
-noremap <Leader>W :%s/\s\+$//e<CR>
+noremap <leader>W :%s/\s\+$//e<CR>
 
 " Re-tab
-noremap <Leader>T :retab<CR>
+noremap <leader>T :retab<CR>
 
 " Write to file anyway if having enough permissions
 cnoremap w!! execute 'silent! write !sudo tee % >/dev/null' <bar> edit!
@@ -506,15 +608,8 @@ cnoremap w!! execute 'silent! write !sudo tee % >/dev/null' <bar> edit!
 "map <C-k> <C-w>k
 "map <C-l> <C-w>l
 
-" make vim understand commands without leaving russian keyboard layout
-"set langmap=!\\"№\\;%?*ёйцукенгшщзхъфывапролджэячсмитьбюЁЙЦУКЕHГШЩЗХЪФЫВАПРОЛДЖЭЯЧСМИТЬБЮ;!@#$%&*`qwertyuiop[]asdfghjkl\\;'zxcvbnm\\,.~QWERTYUIOP{}ASDFGHJKL:\\"ZXCVBNM<>
-
 " USEFUL UNICODE SYMBOLS
 " check marks/crosses ✅ ✓ ✔ ✗ ✘ 🗴 🗶 🗸
-" more ⚠ ♨ ⚡ ⌥ ⌦ ⎇ 🗲
+" more ⚠ ♨ ⚡ ⌥ ⌦ ⎇  🗲 ‣
 " Powerline symbols (from private Unicode space)
 "       
-
-" abbreviations and autocorrects
-iabbrev IMPI IPMI
-iabbrev impi ipmi
