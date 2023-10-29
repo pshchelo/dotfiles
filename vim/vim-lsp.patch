@@ -1,0 +1,14 @@
+diff --git a/autoload/lsp/internal/diagnostics/highlights.vim b/autoload/lsp/internal/diagnostics/highlights.vim
+index ca7b2e7..5971e28 100644
+--- a/autoload/lsp/internal/diagnostics/highlights.vim
++++ b/autoload/lsp/internal/diagnostics/highlights.vim
+@@ -186,7 +186,8 @@ function! s:place_highlights(server, diagnostics_response, bufnr) abort
+                     if l:line == l:end_line
+                         let l:highlight_end_col = l:end_col
+                     else
+-                        let l:highlight_end_col = strlen(getbufoneline(a:bufnr, l:line)) + 1
++                        " https://stackoverflow.com/a/76510661
++                        let l:highlight_end_col = strlen(line(l:line, bufwinid(a:bufnr))) + 1
+                     endif
+ 
+                     try
