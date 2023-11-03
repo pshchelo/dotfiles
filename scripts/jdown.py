@@ -2,9 +2,7 @@
 import os
 import pathlib
 import sys
-
 import requests
-
 """Download Jira issue attachments from CLI."""
 # TODO: proper config load from some JSON in ~/.config or smth
 JIRA_SERVER = os.getenv("JIRA_SERVER")
@@ -23,13 +21,19 @@ s = requests.Session()
 s.auth = (JIRA_USERNAME, JIRA_TOKEN)
 # TODO: interactive mode, list available attachments and ask what to download
 # TODO: some progress bar / work being done feedback
-# TODO: handle errors/not found etc
 # TODO: do not overwrite existing files, may be check integrity somehow first
-issue = s.get(JIRA_API + f"/issue/{issue_id}", timeout=JIRA_TIMEOUT).json()
-attachments = issue["fields"]["attachment"]
+resp = s.get(JIRA_API + f"/issue/{issue_id}", timeout=JIRA_TIMEOUT)
+if resp.status_code != 200:
+    sys.exit(f"{resp.status_code}: {resp.text}")
+attachments = resp.json()["fields"]["attachment"]
+if not attachments:
+    sys.exit(f"Issue {issue_id} has no attachments. Wrong issue id?")
 # FIXME: could there be duplicate filename but different attachment id?
-download_dir = pathlib.Path(issue_id)
-os.makedirs(download_dir, exist_ok=True)
+if not attachment_names:
+    download_dir = pathlib.Path(issue_id)
+    os.makedirs(download_dir, exist_ok=True)
+else:
+    download_dir = pathlib.Path(".")
 for a in attachments:
     fname = a["filename"]
     if attachment_names and fname not in attachment_names:
