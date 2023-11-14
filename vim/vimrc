@@ -139,6 +139,10 @@ autocmd BufRead,BufNewFile *.yaml,*.yml,*.hot match BadWhitespace /\s\+$/
 " Trim trailing whitespace on save for YAML files
 autocmd BufWritePre *.yaml,*.yml,*.hot :%s/\s\+$//e
 
+" JSON
+" Disable quote concealing in JSON files
+let g:vim_json_conceal=0
+
 " Config files
 " treat *.conf files as in dosini format
 autocmd BufRead,BufNewFile *.conf set filetype=dosini
