@@ -30,6 +30,7 @@ alias stox='tox --skip-missing-interpreters'
 
 # login to default dev VMs in the cloud via ssh
 alias aiossh="ssh -o StrictHostKeyChecking=no -o UserKnownHostsFile=/dev/null -i ~/.ssh/aio_rsa -o LogLevel=ERROR"
+alias aioscp="scp -o StrictHostKeyChecking=no -o UserKnownHostsFile=/dev/null -i ~/.ssh/aio_rsa -o LogLevel=ERROR"
 
 # login to default dev VMs in the cloud via Mosh
 alias aiomosh="mosh --ssh 'ssh -o StrictHostKeyChecking=no -o UserKnownHostsFile=/dev/null -i ~/.ssh/aio_rsa -o LogLevel=ERROR -l ubuntu'"
@@ -56,7 +57,7 @@ alias fvim='vim $(fzf)'
 # refresh all system software
 alias ubuntu-update-all='sudo apt update && sudo apt upgrade && sudo apt autoremove; if command -v snap &> /dev/null; then sudo snap refresh; fi; if [ -f /var/run/reboot-required ]; then cat /var/run/reboot-required && cat /var/run/reboot-required.pkgs; fi'
 
-alias lxc-as-me="lxc exec --user 1000 --group 1000 --env HOME=$HOME"
+alias lxc-as-me="lxc exec --user 1000 --group 1000 --env HOME=\$HOME"
 
 alias tmax='tmux new -As'
 
