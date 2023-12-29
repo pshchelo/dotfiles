@@ -49,13 +49,14 @@ alias os-https='https -A keystone --verify=false'
 alias os-http='http -A keystone --verify=false'
 
 # calculate free RAM quota in OpenStack project
+# shellcheck disable=SC2142 # there's no positional parameters, these are awk columns
 alias tenantfreeramGB="(openstack limits show --absolute -f value | grep -i totalram | awk '{print \$2}' | sort -rn; echo -1024/p ) | dc"
 
 # search files by fzf and open in vim
 alias fvim='vim $(fzf)'
 
 # refresh all system software
-alias ubuntu-update-all='sudo apt update && sudo apt upgrade && sudo apt autoremove; if command -v snap &> /dev/null; then sudo snap refresh; fi; if [ -f /var/run/reboot-required ]; then cat /var/run/reboot-required && cat /var/run/reboot-required.pkgs; fi'
+alias ubuntu-update-all='sudo apt update && sudo apt upgrade && sudo apt autoremove; if command -v snap &> /dev/null; then sudo snap refresh; fi; if command -v flatpak &> /dev/null; then sudo flatpak update; fi; if [ -f /var/run/reboot-required ]; then cat /var/run/reboot-required && cat /var/run/reboot-required.pkgs; fi'
 
 alias lxc-as-me="lxc exec --user 1000 --group 1000 --env HOME=\$HOME"
 
