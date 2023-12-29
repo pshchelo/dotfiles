@@ -101,8 +101,8 @@ alias alert='notify-send --urgency=low -i "$([ $? = 0 ] && echo terminal || echo
 # ~/.bash_aliases, instead of adding them here directly.
 # See /usr/share/doc/bash-doc/examples in the bash-doc package.
 
-if [ -f ~/.bash_aliases ]; then
-    . ~/.bash_aliases
+if [ -f "${HOME}/.bash_aliases" ]; then
+    . "${HOME}/.bash_aliases"
 fi
 
 # enable programmable completion features (you don't need to enable
@@ -140,15 +140,15 @@ stty -ixon
 function set_fancy_prompt {
     if [ -x "$(command -v starship)" ]; then
         eval "$(starship init bash)"
-    elif [ -f ${DOTFILES}/shell/bash_prompt.sh ]; then
-        source ${DOTFILES}/shell/bash_prompt.sh
+    elif [ -f "${DOTFILES}/shell/bash_prompt.sh" ]; then
+        source "${DOTFILES}/shell/bash_prompt.sh"
     fi
 }
 
 
 # Do not use custom prompt on local ssh connections
 self_tty=$(tty)
-host_from=`w | grep ${self_tty:5} | awk '{print $3}'`
+host_from=$(w | grep "${self_tty:5}" | awk '{print $3}')
 case $host_from in
     "localhost"|"::1"|"127.0.0.1")
         : ;;
