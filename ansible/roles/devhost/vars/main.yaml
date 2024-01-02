@@ -64,7 +64,8 @@ files_to_backup:
 
 dirs_to_create:
   - "{{ local_bin_dir }}"
-  - "{{ userhome }}/.config"
+  # create all currently needed in one go
+  - "{{ userhome }}/.config/k9s/skins"
   - "{{ userhome }}/.local/share/bash-completion/completions"
 
 links_to_create:
@@ -112,3 +113,9 @@ links_to_create:
     src: "{{ dotfiles_dir }}/scripts/mosk/mosk-db-admin"
   - path: "{{ userhome }}/.config/starship.toml"
     src: "{{ dotfiles_dir }}/shell/starship.toml"
+  - path: "{{ userhome }}/.config/k9s/config.yaml"
+    src: "{{ dotfiles_dir }}/k9s/config.yaml"
+  - path: "{{ userhome }}/.config/k9s/views.yaml"
+    src: "{{ dotfiles_dir }}/k9s/views.yaml"
+  - path: "{{ userhome }}/.config/colors/k9s-solarized-dark.yaml"
+    src: "{{ dotfiles_dir }}/k9s/skins/k9s-solarized-dark.yaml"
