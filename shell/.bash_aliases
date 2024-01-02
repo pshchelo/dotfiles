@@ -48,10 +48,6 @@ alias os-curl='curl -sS -k -H "X-Auth-Token: `openstack token issue -f value -c 
 alias os-https='https -A keystone --verify=false'
 alias os-http='http -A keystone --verify=false'
 
-# calculate free RAM quota in OpenStack project
-# shellcheck disable=SC2142 # there's no positional parameters, these are awk columns
-alias tenantfreeramGB="(openstack limits show --absolute -f value | grep -i totalram | awk '{print \$2}' | sort -rn; echo -1024/p ) | dc"
-
 # search files by fzf and open in vim
 alias fvim='vim $(fzf)'
 
