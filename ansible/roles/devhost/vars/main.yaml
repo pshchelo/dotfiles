@@ -119,3 +119,5 @@ links_to_create:
     src: "{{ dotfiles_dir }}/k9s/views.yaml"
   - path: "{{ userhome }}/.config/colors/k9s-solarized-dark.yaml"
     src: "{{ dotfiles_dir }}/k9s/skins/k9s-solarized-dark.yaml"
+  - path: "{{ local_bin_dir }}/ubuntu-update-all"
+    src: "{{ dotfiles_dir }}/scripts/ubuntu-update-all.sh"
