@@ -1,37 +1,61 @@
 #!/bin/sh
-STARHIP_URL="https://github.com/starship/starship/releases/latest/download/starship-x86_64-unknown-linux-musl.tar.gz"
-JQ_URL="https://github.com/jqlang/jq/releases/latest/download/jq-linux-amd64"
-K9S_URL="https://github.com/derailed/k9s/releases/latest/download/k9s_Linux_amd64.tar.gz"
-FZF_RELEASE_URL="https://api.github.com/repos/junegunn/fzf/releases/latest"
 BIN_INSTALL_DIR="/usr/local/bin"
 
+github_release_api_url() {
+    repo=$1
+    echo "https://api.github.com/repos/$repo/releases/latest"
+}
+
+github_release_download_url() {
+    repo=$1
+    fname=$2
+    echo "https://github.com/$repo/releases/latest/download/$fname"
+}
+
+chmodx_and_install() {
+    fname=$1
+    chmod +x "$fname"
+    sudo mv "$fname" "$BIN_INSTALL_DIR"
+}
+
+fetch_and_install_from_targz() {
+    url=$1
+    fname=$2
+    curl -sSL "$url" | tar -C /tmp -xz "$fname"
+    chmodx_and_install "/tmp/$fname"
+}
+
 update_k9s() {
+    url="$( github_release_download_url derailed/k9s k9s_Linux_amd64.tar.gz )"
     echo "=== fetching k9s ==="
-    curl -sSL "$K9S_URL" | tar -C /tmp -xz k9s
-    chmod +x /tmp/k9s
-    sudo mv /tmp/k9s "$BIN_INSTALL_DIR"
+    fetch_and_install_from_targz "$url" k9s
+}
+
+
+update_starship() {
+    url="$( github_release_download_url starship/starship starship-x86_64-unknown-linux-musl.tar.gz )"
+    echo "=== fetching starship ==="
+    fetch_and_install_from_targz "$url" starship
+}
+
+update_lf() {
+    url="$( github_release_download_url gokcehan/lf lf-linux-amd64.tar.gz )"
+    echo "=== fetching lf ==="
+    fetch_and_install_from_targz "$url" lf
 }
 
 update_jq() {
+    url="$( github_release_download_url jqlang/jq jq-linux-amd64 )"
     echo "=== fetching jq ==="
-    curl -sSL "$JQ_URL" > /tmp/jq
-    chmod +x /tmp/jq
-    sudo mv /tmp/jq $BIN_INSTALL_DIR
+    curl -sSL "$url" > /tmp/jq
+    chmodx_and_install /tmp/jq
 }
 
 update_fzf() {
+    api_url="$(github_release_api_url junegunn/fzf )"
     echo "=== fetching fzf ==="
-    fzf_url=$(curl -sSL "$FZF_RELEASE_URL" | jq -r '.assets[] | select((.name|contains("linux_amd64")) and .content_type == "application/gzip") | .browser_download_url')
-    curl -sSL "$fzf_url" | tar -C /tmp -xz fzf
-    chmod +x /tmp/fzf
-    sudo mv /tmp/fzf $BIN_INSTALL_DIR
-}
-
-update_starship() {
-    echo "=== fetching starship ==="
-    curl -sSL "$STARHIP_URL" | tar -C /tmp -xz starship
-    chmod +x /tmp/starship
-    sudo mv /tmp/starship "$BIN_INSTALL_DIR/starship"
+    url=$(curl -sSL "$api_url" | jq -r '.assets[] | select((.name|contains("linux_amd64")) and .content_type == "application/gzip") | .browser_download_url')
+    fetch_and_install_from_targz "$url" fzf
 }
 
 update_apt() {
@@ -49,6 +73,7 @@ update_snap() {
         sudo snap refresh
     fi
 }
+
 update_flatpak() {
     if command -v flatpak > /dev/null; then
         echo "=== updating flatpak apps ==="
@@ -70,4 +95,5 @@ update_jq
 update_fzf
 update_k9s
 update_starship
+update_lf
 check_reboot_required
