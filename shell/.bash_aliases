@@ -16,9 +16,6 @@ alias tb='nc termbin.com 9999'
 # open files from terminal with GUI default application
 alias xopen=xdg-open
 
-# cat with more eye candy (the bat command was already taken in Debian)
-alias bat=batcat
-
 # reset forwarded SSH agent connection inside tmux after detach/relogin/attach
 alias fixsshagt='eval $(tmux showenv -s SSH_AUTH_SOCK)'
 
