@@ -1,5 +1,6 @@
 #!/usr/bin/env bash
 # TODO: find some what to not download when not actually newer
+INSTALL_BINARIES=0
 BIN_INSTALL_DIR="/usr/local/bin"
 
 github_release_api_url() {
@@ -123,11 +124,22 @@ check_reboot_required() {
 update_apt
 update_snap
 update_flatpak
-update_jq
-update_fzf
-update_k9s
-update_starship
-update_lf
-update_bat
-update_fd
+
+while getopts ':b' arg; do
+    case "${arg}" in
+        b) INSTALL_BINARIES=1 ;;
+        *) exit 1 ;;
+    esac
+done
+
+if [ "$INSTALL_BINARIES" == 1 ] ; then
+    update_jq
+    update_fzf
+    update_k9s
+    update_starship
+    update_lf
+    update_bat
+    update_fd
+fi
+
 check_reboot_required
