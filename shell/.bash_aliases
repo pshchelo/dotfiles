@@ -25,9 +25,11 @@ alias ttools='python -m testtools.run'
 # do not fail tox on missing interpreters
 alias stox='tox --skip-missing-interpreters'
 
+# silent ssh
+alias sssh="ssh -o StrictHostKeyChecking=no -o UserKnownHostsFile=/dev/null -o LogLevel=ERROR"
 # login to default dev VMs in the cloud via ssh
-alias aiossh="ssh -o StrictHostKeyChecking=no -o UserKnownHostsFile=/dev/null -i ~/.ssh/aio_rsa -o LogLevel=ERROR"
-alias aioscp="scp -o StrictHostKeyChecking=no -o UserKnownHostsFile=/dev/null -i ~/.ssh/aio_rsa -o LogLevel=ERROR"
+alias aiossh="ssh -o StrictHostKeyChecking=no -o UserKnownHostsFile=/dev/null -o LogLevel=ERROR -i ~/.ssh/aio_rsa"
+alias aioscp="scp -o StrictHostKeyChecking=no -o UserKnownHostsFile=/dev/null -o LogLevel=ERROR -i ~/.ssh/aio_rsa"
 
 # login to default dev VMs in the cloud via Mosh
 alias aiomosh="mosh --ssh 'ssh -o StrictHostKeyChecking=no -o UserKnownHostsFile=/dev/null -i ~/.ssh/aio_rsa -o LogLevel=ERROR -l ubuntu'"
