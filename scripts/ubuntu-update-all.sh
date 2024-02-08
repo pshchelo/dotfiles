@@ -1,6 +1,5 @@
 #!/usr/bin/env bash
-# TODO: find some what to not download when not actually newer
-INSTALL_BINARIES=0
+# TODO: do not download binaries when version is not actually newer
 BIN_INSTALL_DIR="/usr/local/bin"
 
 github_release_api_url() {
@@ -121,16 +120,36 @@ check_reboot_required() {
     fi
 }
 
-update_apt
-update_snap
-update_flatpak
+usage() {
+    echo "Usage: $0 [-b | -B]"
+    echo "Update all known software."
+    echo "By default, updates apt packages, and snap and flatpak apps if installed."
+    echo "-b - also update certain known standalone single binary apps, currently supported are"
+    echo "     jq, fzf, k9s, starship, lf, bat, fd"
+    echo "-B - ONLY update the standalone binaries"
+}
 
-while getopts ':b' arg; do
+INSTALL_BINARIES=0
+INSTALL_PACKAGES=1
+while getopts ':b:B' arg; do
     case "${arg}" in
-        b) INSTALL_BINARIES=1 ;;
-        *) exit 1 ;;
+        b) INSTALL_BINARIES=1
+        ;;
+        B) INSTALL_BINARIES=1
+           INSTALL_PACKAGES=0
+        ;;
+        *)
+            usage
+            exit 1
+        ;;
     esac
 done
+
+if [ "$INSTALL_PACKAGES" == 1 ] ; then
+    update_apt
+    update_snap
+    update_flatpak
+fi
 
 if [ "$INSTALL_BINARIES" == 1 ] ; then
     update_jq
