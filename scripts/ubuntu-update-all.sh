@@ -131,19 +131,22 @@ usage() {
 
 INSTALL_BINARIES=0
 INSTALL_PACKAGES=1
-while getopts ':b:B' arg; do
+while getopts "bB" arg; do
     case "${arg}" in
-        b) INSTALL_BINARIES=1
-        ;;
-        B) INSTALL_BINARIES=1
-           INSTALL_PACKAGES=0
-        ;;
+        b)
+            INSTALL_BINARIES=1
+            ;;
+        B)
+            INSTALL_BINARIES=1
+            INSTALL_PACKAGES=0
+            ;;
         *)
             usage
             exit 1
-        ;;
+            ;;
     esac
 done
+shift $((OPTIND-1))
 
 if [ "$INSTALL_PACKAGES" == 1 ] ; then
     update_apt
