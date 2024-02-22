@@ -122,8 +122,8 @@ autocmd BufRead,BufNewFile *.py,*.pyw*,.pyx,*.c,*.h match BadWhitespace /\s\+$/
 autocmd BufWritePre *.py,*.pyw*,.pyx,*.c,*.h :%s/\s\+$//e
 
 " RST and TXT
-" Enable spell-check for RST and plain text files
-autocmd BufNewFile,BufRead *.{txt,rst} setlocal spell spelllang=en_us
+" Enable spell-check for RST, MD and plain text files
+autocmd BufNewFile,BufRead *.{txt,rst,md} setlocal spell spelllang=en_us
 " Make trailing whitespace be flagged as bad for RST files
 autocmd BufRead,BufNewFile *.rst match BadWhitespace /\s\+$/
 " Trim trailing whitespace on save for RST files
