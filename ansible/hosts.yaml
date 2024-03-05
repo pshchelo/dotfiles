@@ -2,25 +2,16 @@ all:
   hosts:
     localhost:
      ansible_connection: local
+    swthm:
     cube:
     workvm:
   children:
     dsvm:
       hosts:
-        master-dsvm.kvm.work:
-        nfs-dsvm.kvm.work:
-        pike-dsvm.kvm.work:
-        queens-dsvm.kvm.work:
-        ubuntu.kvm.work:
-        ussuri-dsvm.kvm.work:
-        victoria-dsvm.kvm.work:
-        pshchelo-devstack-master:
-        pshchelo-devstack-master-compute:
-        pshchelo-devstack-yoga:
-        pshchelo-devstack-pike:
-    hypervisors:
-      hosts:
-        kvm.work:
+        pshchelo-devstack-jammy:
+        pshchelo-devstack-jammy-compute:
+        pshchelo-devstack-focal:
+        pshchelo-devstack-xenial:
     aio:
       vars:
         ansible_ssh_common_args: "-o StrictHostKeyChecking=no -o UserKnownHostsFile=/dev/null"
