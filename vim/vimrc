@@ -561,10 +561,6 @@ autocmd FileType python nnoremap <leader>B
 " Toggle between light and dark colorscheme, dark is default
 :silent! call togglebg#map("<F5>")
 
-" make vim understand commands without leaving ukr keyboard layout
-set langmap=!\\"№\\;%?*йцукенгшщзхїфівапролджєячсмитьбюЙЦУКЕHГШЩЗХЪФЫВАПРОЛДЖЭЯЧСМИТЬБЮ;!@#$%&*qwertyuiop[]asdfghjkl\\;'zxcvbnm\\,.QWERTYUIOP{}ASDFGHJKL:\\"ZXCVBNM<>
-
-"=================================
 " turn off active search highlighting
 nnoremap <silent> <Space> :nohlsearch<Bar>:echo<CR>
 
@@ -594,6 +590,17 @@ noremap <leader>T :retab<CR>
 
 " Write to file anyway if having enough permissions
 cnoremap w!! execute 'silent! write !sudo tee % >/dev/null' <bar> edit!
+
+" make vim understand commands without leaving ukr keyboard layout
+" FIXME: DISABLED FOR NOW
+" somehow in vim9 it started to intervere with insert from 0 buffer and other things
+"set langmap=!\\"№\\;%?*йцукенгшщзхїфівапролджєячсмитьбюЙЦУКЕHГШЩЗХЪФЫВАПРОЛДЖЭЯЧСМИТЬБЮ;!@#$%&*qwertyuiop[]asdfghjkl\\;'zxcvbnm\\,.QWERTYUIOP{}ASDFGHJKL:\\"ZXCVBNM<>
+
+" add Ukr lang input, toggle in insert mode with <C-6>
+set keymap=ukrainian-jcuken
+" use QWERTY Eng lang by default
+set iminsert=0
+au BufRead * silent setlocal iminsert=0
 
 " disable arrow keys to force working with standard HJKL movement keys
 "map <up> <nop>
