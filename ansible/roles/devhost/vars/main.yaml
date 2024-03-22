@@ -17,9 +17,10 @@ apt_packages_dev:
   - curl
   - vim-nox
   - direnv
-  #- docker-clean
+  - docker-compose-v2
+  - docker-buildx
+  - docker-clean
   #- devscripts
-  #- fzf
 
 apt_packages_build:
   - build-essential
