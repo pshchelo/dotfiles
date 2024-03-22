@@ -27,6 +27,7 @@
 - import_tasks: binaries.yaml
   tags:
   - bin
+  when: false
 
 - import_tasks: vim.yaml
   tags:
