@@ -19,6 +19,19 @@ pipx inject python-lsp-server --include-deps \
     pylsp-mypy \
     python-lsp-black \
     python-lsp-ruff
+# other recoginized optional dependencies possible to inject:
+#McCabe: linter for complexity checking
+#pyls-memestra: detecting the use of deprecated APIs.
+#
+# taken care of by ruff and black:
+#Pyflakes: linter to detect various errors
+#pycodestyle: linter for style checking
+#pydocstyle: linter for docstring style checking (disabled by default)
+#autopep8: for code formatting
+#YAPF: for code formatting (preferred over autopep8)
+#flake8: for error checking (disabled by default)
+#pylint: for code linting (disabled by default)
+#pyls-isort: code formatting using isort (automatic import sorting).
 
 # installs a pipx env with python-openstackclient and all plugins
 # for services supported in MOSK
