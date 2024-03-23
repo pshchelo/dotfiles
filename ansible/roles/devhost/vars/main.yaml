@@ -122,3 +122,5 @@ links_to_create:
     src: "{{ dotfiles_dir }}/colors/k9s-solarized-dark.yaml"
   - path: "{{ local_bin_dir }}/ubuntu-update-all.sh"
     src: "{{ dotfiles_dir }}/scripts/ubuntu-update-all.sh"
+  - path: "{{ userhome }}/.config/nvim"
+    src: "{{ dotfiles_dir }}/nvim"
