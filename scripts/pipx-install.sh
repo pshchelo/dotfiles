@@ -75,6 +75,12 @@ pipx install frogmouth
 # log viewer
 pipx install toolong
 
+# enhanced DB CLI's - https://www.dbcli.com
+# pipx install mycli
+# pipx install pgcli
+# pipx install litecli
+# pipx install iredis
+
 # GUI
 # posterize pdf or images to multiple sheets that can be glued together
 #pipx install plakativ
