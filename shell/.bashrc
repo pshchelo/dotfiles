@@ -116,15 +116,21 @@ if ! shopt -oq posix; then
   fi
 fi
 
-# virtualenvwrapper setup if installed globally
-# TODO: older distros might be placing it as /usr/local/bin/virtualenvwrapper.sh
-if [ -f /usr/share/virtualenvwrapper/virtualenvwrapper.sh ]; then
-
+venvwrapper_file_paths="${HOME}/.local/bin/virtualenvwrapper.sh
+/usr/share/virtualenvwrapper/virtualenvwrapper.sh
+/usr/share/virtualenvwrapper/virtualenvwrapper.sh"
+for fpath in $venvwrapper_file_paths; do
+    if [ -f "$fpath" ]; then
+        VENVWRAPPER_SCRIPT="$fpath"
+        break
+    fi
+done
+if [ -n "$VENVWRAPPER_SCRIPT" ]; then
     if python3 -c 'import virtualenvwrapper' > /dev/null 2>&1; then
         export VIRTUALENVWRAPPER_PYTHON=/usr/bin/python3
     fi
     export WORKON_HOME=$HOME/.virtualenvs
-    source /usr/share/virtualenvwrapper/virtualenvwrapper.sh
+    source "$VENVWRAPPER_SCRIPT"
 fi
 
 DOTFILES=${HOME}/dotfiles
