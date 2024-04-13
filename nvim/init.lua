@@ -17,3 +17,9 @@ require("lazy").setup({
 })
 vim.cmd "colorscheme solarized"
 vim.o.background = "dark" -- TODO: add toggle to switch between light and dark, <F5>
+
+vim.g.python3_host_prog = "/usr/bin/python3"
+vim.g.loaded_ruby_provider = 0
+vim.g.loaded_node_provider = 0
+vim.g.loaded_perl_provider = 0
+
