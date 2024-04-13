@@ -19,6 +19,7 @@
     rebase = false
 [alias]
     b = branch
+    cp = cherry-pick
     p = pull --all --prune
     graph = log --graph --oneline --decorate
     head = log --graph --oneline --decorate -5
