@@ -48,7 +48,7 @@ $character"""
 symbol = " "
 
 [directory]
-read_only = " "
+read_only = " "
 
 [git_branch]
 symbol = " "
@@ -66,7 +66,7 @@ deleted = "[✗${count}](red)"
 staged = "[*${count}](green)"
 conflicted = "[≠${count}](purple)"
 renamed = "[»${count}](green)"
-stashed = "[\\$](yellow)"
+stashed = "[󰃨 ](yellow)"
 up_to_date = "[✓](green)"
 
 [golang]
@@ -80,16 +80,16 @@ disabled = false
 style = "bold blue"
 
 [memory_usage]
-symbol = " "
+symbol = "󰍛 "
 
 [nodejs]
 symbol = " "
 
 [package]
-symbol = " "
+symbol = "󰏖 "
 
 [python]
-symbol = " "
+symbol = " "
 
 [rust]
 symbol = " "
