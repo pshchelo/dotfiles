@@ -68,7 +68,7 @@ update_fzf() {
     local api_url
     api_url="$(github_release_api_url junegunn/fzf )"
     echo "=== fetching fzf ==="
-    url=$(curl -sSL "$api_url" | jq -r '.assets[] | select((.name|contains("linux_amd64")) and .content_type == "application/gzip") | .browser_download_url')
+    url=$(curl -sSL "$api_url" | jq -r '.assets[] | select(.name|contains("linux_amd64")) | .browser_download_url')
     fetch_and_install_from_targz "$url" fzf
 }
 
