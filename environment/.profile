@@ -38,6 +38,6 @@ export VIEWER="vim -R"
 export GOPATH="$HOME/src/go"
 
 # set PATH so it includes user's local bin if exists
-if [ -d "$HOME/.local/bin" ]; then
+if [ -d "$HOME/.local/bin" ] && ! [ $(echo "$PATH" | grep "$HOME/.local/bin") ]; then
     PATH="$HOME/.local/bin:$PATH"
 fi
