@@ -101,6 +101,11 @@ if [ -d "$HOME/.local/bin" ] && ! [ $(echo "$PATH" | grep "$HOME/.local/bin") ];
     PATH="$HOME/.local/bin:$PATH"
 fi
 
+# homebrew
+if [ -f /home/linuxbrew/.linuxbrew/bin/brew ]; then
+    eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"
+fi
+
 # Alias definitions.
 # You may want to put all your additions into a separate file like
 # ~/.bash_aliases, instead of adding them here directly.
@@ -181,4 +186,3 @@ fi
 function k8s-api-ip4 {
     kubectl config view -o jsonpath="{.clusters[?(@.name == \"$1\")].cluster.server}" | awk -F ":" "{print \$2}" | cut -c3-
 }
-
