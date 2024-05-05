@@ -161,7 +161,6 @@ function set_fancy_prompt {
     fi
 }
 
-
 # Do not use custom prompt on local ssh connections
 self_tty=$(tty)
 host_from=$(w | grep "${self_tty:5}" | awk '{print $3}')
@@ -171,6 +170,10 @@ case $host_from in
     *)
         set_fancy_prompt ;;
 esac
+
+if [ -x "$(command -v fzf)" ]; then
+    eval "$(fzf --bash)"
+fi
 
 if [ -x "$(command -v direnv)" ]; then
     eval "$(direnv hook bash)"
