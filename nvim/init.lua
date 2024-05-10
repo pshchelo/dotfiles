@@ -1,25 +1,751 @@
--- !! change core keymappings before that !!
--- setup lazy.nvim plugin manager
-local lazypath = vim.fn.stdpath("data") .. "/lazy/lazy.nvim"
-if not vim.loop.fs_stat(lazypath) then
-  vim.fn.system({
-    "git",
-    "clone",
-    "--filter=blob:none",
-    "https://github.com/folke/lazy.nvim.git",
-    "--branch=stable", -- latest stable release
-    lazypath,
-  })
-end
-vim.opt.rtp:prepend(lazypath)
-require("lazy").setup({
-  { "altercation/vim-colors-solarized", lazy=false, priority=1000 },
-})
-vim.cmd "colorscheme solarized"
-vim.o.background = "dark" -- TODO: add toggle to switch between light and dark, <F5>
+-- TODO: maxmempattern? need to try on huge files
 
+-- do not force to save buffers when switching to new ones
+vim.o.hidden = true
+
+-- allow backspacing over everything in insert mode - NEEDED?
+-- vim.o.backspace = 'indent,eol,start'
+
+-- ===========
+-- INDENTATION
+-- ===========
+-- default indentation
+vim.o.expandtab = true
+vim.o.smarttab = true
+vim.o.tabstop = 8
+vim.o.shiftwidth = 4
+vim.o.softtabstop = 4
+
+vim.o.autoindent = true
+-- vim.o.smartindent = true -- might interfere with file type based indentation, and should never be used in conjunction with it
+-- copy the previous indentation on autoindenting - needed?
+vim.o.copyindent = true
+
+-- ======
+-- SEARCH
+-- ======
+
+-- ignore case if search pattern is all lowercase, case-sensitive otherwise
+vim.o.smartcase = true
+-- use incremental search
+vim.o.incsearch = true
+-- set show matching parenthesis
+vim.o.showmatch = true
+-- highlight search terms
+vim.o.hlsearch = true
+
+-- VISUALS
+-- show colored border column
+vim.o.colorcolumn = 80 -- FIXME: does not seem to work for now
+vim.cmd.highlight({"ColorColumn", "ctermbg=lightgrey", "guibg=lightgrey"})
+-- show line numbers
+vim.o.number = true
+-- hide default mode test (e.g. -- INSERT -- below statusline), use lualine instead
+vim.o.showmode = false
+-- always show status line
+vim.o.laststatus = 2
+-- set terminal colors -- TODO: NEEDED?
+vim.o.t_Co = 16
+
+-- Use this highlight group when displaying bad whitespace is desired.
+vim.cmd.highlight({"BadWhitespace", "ctermbg=red", "guibg=red"})
+-- nice chars for displaying special symbols with ':set list'
+vim.opt.listchars = {
+    tab = '→ ',
+    space = '·',
+    nbsp = '␣',
+    trail = '•',
+    eol = '¶',
+    precedes = '«',
+    extends = '»',
+}
+
+-- MOUSE -- TODO: needed?
+-- vim.o.clipboard = "unnamedplus"
+-- vim.o.mouse = "a"
+-- vim.o.mousemodel = "popup_setpos"
+
+-- FILE TYPES
+vim.o.backup = false
+vim.o.swapfile = false
+vim.opt.wildignore = {
+    '*.swp',
+    '*.bak',
+    '*.pyc',
+    '*.class',
+}
+-- NeoVim defaults to utf-8 for 'encoding'
+vim.opt.fileencodings:append("cp1251")
+
+-- TODO: check the C format function
+vim.api.nvim_create_autocmd(
+    {"BufRead","BufNewFile"},
+    {
+        pattern = "*.c,*.h",
+        callback = function()
+            if vim.fn.search('^\t', 'n', 150) then
+                vim.o.shiftwidth = 8
+                vim.o.expandtab = false
+            else
+                vim.o.shoftwidth = 4
+                vim.o.expandtab = true
+            end
+        end,
+        desc = "Choose correct tab settings for C files dependent on how TABS are already used",
+    }
+)
+vim.api.nvim_create_autocmd(
+    {"BufRead","BufNewFile"},
+    {
+        pattern = "Makefile*",
+        command = [[set noexpandtab]],
+        desc = "Disable tab expansion for Makefiles",
+    }
+)
+vim.api.nvim_create_autocmd(
+    {"BufRead","BufNewFile"},
+    {
+        pattern = "*.py,*.pyw,*.pyx",
+        command = [[match BadWhitespace /^\t\+/]],
+        desc = "Mark leading tabs as bad for Python",
+    }
+)
+vim.api.nvim_create_autocmd(
+    {"BufRead","BufNewFile"},
+    {
+        pattern = "*.py,*.pyw,*.pyx,*.c,*.h",
+        command = [[match BadWhitespace /\s\+$/]],
+        desc = "Mark trailing whitespace as bad for Python and C",
+    }
+)
+vim.api.nvim_create_autocmd(
+    {"BufWritePre"},
+    {
+        pattern = "*.py,*.pyw,*.pyx,*.c,*.h",
+        command = [[:%s/\s\+$//e]],
+        desc = "Trim trailing whitespace on save for Python and C",
+    }
+)
+vim.api.nvim_create_autocmd(
+    {"BufRead","BufNewFile"},
+    {
+        pattern = "*.{txt,rst,md}",
+        command = [[setlocal spell spelllang=en_us]],
+        desc = "Enable En-US spellcheck for RST, MD and TXT",
+    }
+)
+vim.api.nvim_create_autocmd(
+    {"BufRead","BufNewFile"},
+    {
+        pattern = "*.rst",
+        command = [[match BadWhitespace /\s\+$/]],
+        desc = "Mark trailing whitespace as bad for RST",
+    }
+)
+vim.api.nvim_create_autocmd(
+    {"BufWritePre"},
+    {
+        pattern = "*.rst",
+        command = [[:%s/\s\+$//e]],
+        desc = "Trim trailing whitespace on save for RST",
+    }
+)
+
+vim.api.nvim_create_autocmd(
+    {"BufRead","BufNewFile"},
+    {
+        pattern = "*.hot",
+        command = [[set filetype=yaml]],
+        desc = "Treat OpenStack Heat's HOT files as YAML",
+    }
+)
+vim.api.nvim_create_autocmd(
+    {"Filetype"},
+    {
+        pattern = "yaml",
+        command = "setlocal ts=2 sw=2 expandtab",
+        desc = "Set indentation to 2 for YAML etc files",
+    }
+)
+vim.api.nvim_create_autocmd(
+    {"BufRead","BufNewFile"},
+    {
+        pattern = "*.yaml,*.yml,*.hot",
+        command = [[match BadWhitespace /\s\+$/]],
+        desc = "Mark trailing whitespace as bad for YAML etc files"
+    }
+)
+vim.api.nvim_create_autocmd(
+    {"BufWritePre"},
+    {
+        pattern = "*.yaml,*.yml,*.hot",
+        command = [[:%s/\s\+$//e]],
+        desc = "Trim trailing whitespace on save for YAML etc files"
+    }
+)
+vim.api.nvim_create_autocmd(
+    {"BufRead","BufNewFile"},
+    {
+        pattern = "*.conf",
+        command = [[set filetype=dosini]],
+        desc = "Treat *.conf files as DOSINI format",
+    }
+)
+
+
+-- =========
+-- PROVIDERS
+-- =========
 vim.g.python3_host_prog = "/usr/bin/python3"
 vim.g.loaded_ruby_provider = 0
 vim.g.loaded_node_provider = 0
 vim.g.loaded_perl_provider = 0
 
+-- !! change core keymappings before that !!
+-- ============
+-- PLUGINS
+-- ============
+-- setup lazy.nvim plugin manager
+local lazypath = vim.fn.stdpath("data") .. "/lazy/lazy.nvim"
+if not vim.loop.fs_stat(lazypath) then
+    vim.fn.system({
+        "git",
+        "clone",
+        "--filter=blob:none",
+        "https://github.com/folke/lazy.nvim.git",
+        "--branch=stable", -- latest stable release
+        lazypath,
+    })
+end
+vim.opt.rtp:prepend(lazypath)
+require("lazy").setup({
+    {
+        "altercation/vim-colors-solarized",
+        lazy=false,
+        priority=1000
+    },
+    {"nvim-tree/nvim-web-devicons"},
+    {
+        "nvim-lualine/lualine.nvim",
+        dependencies = {"nvim-tree/nvim-web-devicons"},
+    },
+    {
+        "nvim-treesitter/nvim-treesitter",
+        build = ":TSUpdate"
+    },
+    {
+        "nvim-treesitter/nvim-treesitter-textobjects",
+        dependencies = {"nvim-treesitter/nvim-treesitter"},
+    },
+    {"neovim/nvim-lspconfig"},
+    {"hrsh7th/nvim-cmp"}, -- Autocompletion plugin
+    {"hrsh7th/cmp-nvim-lsp"}, -- LSP source for completions
+    {"hrsh7th/cmp-buffer"}, -- buffer content source for completions
+    {"hrsh7th/cmp-path"},  -- file paths source for completions
+    {"hrsh7th/cmp-cmdline"}, -- completions for search (/) and command mode
+    {
+        "petertriho/cmp-git", -- Git source for completions
+        dependencies = {"nvim-lua/plenary.nvim"},
+    },
+--  { 'saadparwaiz1/cmp_luasnip', lazy=false }, -- Snippets source for nvim-cmp
+--  { 'L3MON4D3/LuaSnip', lazy=false }, -- Snippets plugin
+    {
+        "nvim-telescope/telescope.nvim",
+        branch = "0.1.x",
+        dependencies = {"nvim-lua/plenary.nvim"},
+    },
+    {
+        "nvim-telescope/telescope-fzf-native.nvim",
+        build = "make"
+    },
+    {"wsdjeg/vim-fetch"}, -- open file paths in log/debug format as file:<line>:<column>
+    {"moll/vim-bbye"}, -- close files instead of closing views
+    {"scrooloose/nerdcommenter"}, -- nicer (un)comment commands
+    {
+        "jistr/vim-nerdtree-tabs",
+        dependencies = {"scrooloose/nerdtree"}, -- sidebar file browser + in single panel
+    },
+    {"will133/vim-dirdiff"}, -- use vimdiff on folders
+    {"tpope/vim-fugitive"}, -- git commands
+    {
+        "rbong/vim-flog", -- git log, somehow similar to tig?
+        lazy = true,
+        cmd = { "Flog", "Flogsplit", "Floggit" },
+        dependencies = {"tpope/vim-fugitive"},
+    },
+    {"lewis6991/gitsigns.nvim"}, -- git signis in the gutter
+    {"dense-analysis/ale"}, -- async linter  TODO: evaluate mfussenegger/nvim-lint
+    {"lukas-reineke/indent-blankline.nvim", main = "ibl"}, -- indentation giudes
+    {"preservim/tagbar"}, -- tagbar, requires universal-ctags
+    {"tpope/vim-unimpaired"}, -- pairs of commands
+    {"tpope/vim-repeat"}, -- repeat full actions from plugins via .
+    {"tpope/vim-surround"}, -- work with surrounding quotes/braces/tags
+    {"folke/trouble.nvim"}, -- nicer display of diagnostics
+    {
+        "folke/todo-comments.nvim", -- better work with comment prefixes
+        dependencies = {"nvim-lua/plenary.nvim"},
+    },
+    {"folke/lsp-colors.nvim"}, -- add missing LSP color groups to colorschemes
+    -- TODO: evaluate necessity for more plugins:
+    -- mg979/vim-visual-multi? multi-cursor
+    -- pshchelo/lodgeit.vim ?? re-write in lua?
+    -- milkypostman/vim-togglelist? quick toggles for LocationList and QuickFixList
+    -- jiangmiao/auto-pairs?
+    -- jeetsukumaran/vim-pythonsense? do I really need it? would treesitter suffice?
+    -- haskell stuff? eagletmt/ghcmod-vim eagletmt/neco-ghc
+    -- go stuff? fatih/vim-go
+    -- rst stuff? gu-fan/riv.vim
+    -- yaml stuff? avakhov/vim-yaml - indentation, digitalrounin/vim-yaml-folds - folds. but would treesitter suffice?
+    -- Jinja2 stuff? Glench/Vim-Jinja2-Syntax
+    -- Salt stuff? saltstack/salt-vim
+    -- Helm stuff? towolf/vim-helm - yaml + gotmpl + sprig + custom, but would treesitter suffice?
+    -- LaTeX stuff? lervag/vimtex
+})
+-- ===============
+-- PLUGIN SETTINGS
+-- ===============
+-- solarized color scheme
+vim.cmd.colorscheme("solarized")
+vim.o.background = "dark"
+vim.cmd(':silent! call togglebg#map("<F5>"') -- toggle between light and dark variant FIXME: hide the displayed command in status bar
+
+-- lualine
+-- TODO:
+-- ? display paste mode status? paste it seems is not so much useful in neovim
+-- integrate with ale? Trouble?
+-- add toggle between light and dark together with background (see solarized config above)
+-- hide default encoding and line endings https://www.reddit.com/r/neovim/comments/u2uc4p/comment/i4muvp6
+require('lualine').setup({
+    options = { theme = 'solarized_dark' },
+--     sections = {
+--         lualine_a = {
+--           { 'mode',
+--             fmt = function(mode) return vim.go.paste == true and mode .. ' (paste)' or mode end
+--           },
+--         },
+--     },
+})
+
+-- LSP and autocomplete settings
+local cmp = require("cmp")
+local has_words_before = function()
+  unpack = unpack or table.unpack
+  local line, col = unpack(vim.api.nvim_win_get_cursor(0))
+  return col ~= 0 and vim.api.nvim_buf_get_lines(0, line - 1, line, true)[1]:sub(col, col):match("%s") == nil
+end
+cmp.setup({
+    snippet = {},
+    window = {
+      -- completion = cmp.config.window.bordered(),
+      -- documentation = cmp.config.window.bordered(),
+    },
+    mapping = cmp.mapping.preset.insert({
+        ['<C-b>'] = cmp.mapping.scroll_docs(-4),
+        ['<C-f>'] = cmp.mapping.scroll_docs(4),
+        ['<C-Space>'] = cmp.mapping.complete(),
+        ["<Tab>"] = cmp.mapping(function(fallback)
+            if cmp.visible() then
+                cmp.select_next_item()
+            elseif luasnip.expand_or_jumpable() then
+                luasnip.expand_or_jump()
+            elseif has_words_before() then
+                cmp.complete()
+            else
+                fallback()
+            end
+        end, { "i", "s" }),
+        ["<s-Tab>"] = cmp.mapping(function(fallback)
+            if cmp.visible() then
+                cmp.select_prev_item()
+            elseif luasnip.jumpable(-1) then
+                luasnip.jump(-1)
+            else
+                fallback()
+            end
+        end, { "i", "s" }),
+        ["<c-e>"] = cmp.mapping.abort(),
+        ["<CR>"] = cmp.mapping.confirm({ select=true }), -- Accept currently selected item. Set `select` to `false` to only confirm explicitly selected items.
+    }),
+    sources = cmp.config.sources({
+      { name = 'nvim_lsp' },
+      --{ name = 'vsnip' }, -- For vsnip users.
+      -- { name = 'luasnip' }, -- For luasnip users.
+      -- { name = 'ultisnips' }, -- For ultisnips users.
+      -- { name = 'snippy' }, -- For snippy users.
+    }, {
+      { name = 'buffer' },
+    })
+})
+cmp.setup.filetype(
+    'gitcommit',
+    {
+        sources = cmp.config.sources({
+          { name = 'git' },
+        }, {
+          { name = 'buffer' },
+        })
+    }
+)
+require("cmp_git").setup()
+
+-- Use buffer source for `/` and `?` (if you enabled `native_menu`, this won't work anymore).
+cmp.setup.cmdline({ '/', '?' }, {
+  mapping = cmp.mapping.preset.cmdline(),
+  sources = {
+    { name = 'buffer' }
+  }
+})
+
+-- Use cmdline & path source for ':' (if you enabled `native_menu`, this won't work anymore).
+cmp.setup.cmdline(':', {
+  mapping = cmp.mapping.preset.cmdline(),
+  sources = cmp.config.sources({
+    { name = 'path' }
+  }, {
+    { name = 'cmdline' }
+  }),
+  matching = { disallow_symbol_nonprefix_matching = false }
+})
+
+-- Add additional capabilities supported by nvim-cmp
+local capabilities = require("cmp_nvim_lsp").default_capabilities()
+
+local lspconfig = require('lspconfig')
+-- lspconfig does not fail when langserver is not available, just prints a warning in status line
+lspconfig.pylsp.setup({
+    -- on_attach = my_custom_on_attach,
+    capabilities = capabilities,
+    settings = {
+        pylsp = {
+            configurationSources = {'ruff', 'flake8'},
+            plugins = {
+                pycodestyle = {
+                    enabled = false
+                },
+                mccabe = {
+                    enabled = false
+                },
+                pyflakes = {
+                    enabled = false
+                },
+                flake8 = {
+                    enabled = true
+                },
+                pylsp_black = {
+                    enabled = true,
+                },
+                ruff = {
+                    enabled = true,
+                },
+                pylsp_mypy = {
+                    enabled = false,
+                },
+            },
+        },
+    },
+})
+
+-- TREE-SITTER
+require("nvim-treesitter.configs").setup({
+    -- ensure_installed = { "c", "lua", "vim", "vimdoc", "query", "javascript", "html", "python"},
+    ensure_installed = {
+        "javascript",
+        "css",
+        "html",
+        "css",
+        "python",
+        "rst",
+        "go",
+        "helm",
+        "bash",
+        "dockerfile",
+        "json",
+        "yaml",
+        "xml",
+        "toml",
+        "comment",
+    },
+    sync_install = false,
+    highlight = { enable = true },
+    indent = { enable = true },
+    incremental_selection = {
+        enable = true,
+        keymaps = { -- TODO: move to keymaps section, configure separately
+            init_selection = "gnn", -- set to `false` to disable one of the mappings
+            node_incremental = "grn",
+            scope_incremental = "grc",
+            node_decremental = "grm",
+    },
+  },
+})
+-- FOLDING
+vim.o.foldmethod = "expr" -- for treesitter
+vim.o.foldexpr = "nvim_treesitter#foldexpr()"
+-- start with all open folds
+vim.o.foldenable = false
+
+
+
+
+-- INDENT-BLANKLINE
+require("ibl").setup() -- TODO: change the symbol to be thinner/dimmer/less intrusive
+
+-- TELESCOPE
+require('telescope').setup({
+  extensions = {
+    fzf = {
+      fuzzy = true,                    -- false will only do exact matching
+      override_generic_sorter = true,  -- override the generic sorter
+      override_file_sorter = true,     -- override the file sorter
+      case_mode = "smart_case",        -- or "ignore_case" or "respect_case"
+                                       -- the default case_mode is "smart_case"
+    }
+  }
+})
+require('telescope').load_extension('fzf')
+
+-- GITSIGNS
+require('gitsigns').setup() -- TODO: ? replace colored bars with colored +-!_ signs as gitgutter
+
+-- NERDCOMMENTER
+vim.g.NERDSpaceDelims = 0
+vim.g.NERDDefaultAlign = "left"
+-- Use octothorpe for comments in ini/conf files, keep ; as alternative
+vim.g.NERDCustomDelimiters = { dosini = {left = "#", leftAlt = ";"} }
+
+-- NERDTree
+vim.g.NERDTreeIgnore = {[[\.pyc$]]}
+
+-- ALE
+--vim.g.airline#extensions#ale#enabled = 1
+vim.g.ale_sign_error = "✗"
+vim.g.ale_sign_warning = "⚠"
+vim.g.ale_sign_info = "🛈"
+vim.g.ale_open_list = 1
+vim.g.ale_linters = {python = {},}
+vim.g.ale_lint_on_enter = 0
+vim.g.ale_lint_on_insert_leave = 1
+vim.g.ale_lint_on_text_changed = "normal"
+
+-- todo-comments
+-- FIXME: higlighting does not seem to work
+require("todo-comments").setup({
+    signs = false,
+})
+--vim.api.nvim_set_hl(0, "@text.note", { link = "Search" })
+-- https://github.com/nvim-treesitter/nvim-treesitter/issues/236#issuecomment-1670906532
+vim.cmd.highlight({"link", "@text.note", "Todo"})
+
+-- =======
+-- KEYMAPS
+-- =======
+
+-- add Ukr lang input, toggle in insert mode with <C-6>
+vim.o.keymap = 'ukrainian-jcuken'
+-- use QWERTY Eng lang by default
+vim.o.iminsert = 0
+vim.cmd("au BufRead * silent setlocal iminsert=0")
+
+--vim.o.pastetoggle = "<leader>p" -- NEEDED? might not be that needed in NeoVim
+vim.keymap.set(
+    "n", "<Space>", ":nohlsearch<Bar>:echo<CR>",
+    {
+        silent = true,
+        desc = "turn off active search highlighting",
+    }
+)
+
+vim.keymap.set(
+    "n", "<leader>s", ":setlocal spell! spelllang=en_us<CR>",
+    {desc = "Toggle spellcheck (uses En-US)"}
+)
+
+vim.keymap.set(
+    "n", "<leader>zz", ':let &scrolloff=999-&scrolloff<CR>:echo "scrolloff toggled"<CR>',
+    {desc = "Toggle vertical centring of the cursor"}
+)
+
+vim.keymap.set(
+    "n", "<leader>L", ":set list!<CR>",
+    {desc = "Toggle display of special characters"}
+)
+
+vim.keymap.set(
+    "n", "<leader>N", ":set number!<CR>", -- TODO toggle gitsigns too??
+    {desc = "Toggle line numbers"}
+)
+
+vim.keymap.set(
+    "n", "<leader>W", [[:%s/\s\+$//e<CR>]],
+    {desc = "Remove trailing whitespace"}
+)
+
+vim.keymap.set(
+    "n", "<leader>T", ":retab<CR>",
+    {desc = "Replace tabs with spaces"}
+)
+
+-- FIXME: forced sudo does not work as is
+--vim.keymap.set(
+--    "c", "w!!", "execute 'silent! write !sudo tee % >/dev/null' <bar> edit!",
+--    {desc = "Write to file anyway if having enough permissions"}
+--)
+
+-- Python breakpoints
+vim.api.nvim_create_autocmd(
+    "Filetype",
+    {
+        pattern = "python",
+        callback = function()
+            vim.keymap.set(
+                "n", "<leader>B", "yyP^Cimport rpdb; rpdb.set_trace()  # XXX:breakpoint<Esc>",
+                {desc = "Set rpdb breakpoint in Python"}
+            )
+        end,
+    }
+)
+vim.api.nvim_create_autocmd(
+    "Filetype",
+    {
+        pattern = "python",
+        callback = function()
+            if vim.fn.has("python3") == 1 then
+                vim.keymap.set(
+                    "n", "<leader>b", "yyP^Cbreakpoint()  # XXX:breakpoint<Esc>",
+                    {desc = "Set py3.6+ breakpoint in Python (defaults to pdb)"}
+                )
+            else
+                vim.keymap.set(
+                    "n", "<leader>b", "yyP^Cimport pdb; pdb.set_trace()  # XXX:breakpoint<Esc>",
+                    {desc = "Set pdb breakpoint in Python"}
+                )
+            end
+        end,
+    }
+)
+
+-- vim-bbye
+vim.keymap.set(
+    "n", "<leader>q", ":Bdelete<CR>",
+    {desc = "Close buffers without closing windows"}
+)
+
+-- NERDTree
+vim.keymap.set(
+    "n", "<F3>", ":NERDTreeTabsToggle<CR>",
+    {desc = "Toggle NERDTREE file browser side bar"}
+)
+
+-- tagbar
+vim.keymap.set(
+    "n", "<F4>", ":TagbarToggle<CR>",
+    {desc = "Toggle Tags side bar (code structore outline)"}
+)
+
+-- TELESCOPE
+vim.keymap.set(
+    'n', '<C-p>', require('telescope.builtin').git_files,
+    {desc = "Search files .. TODO"}
+)
+vim.keymap.set(
+    'n', '<C-P>', require('telescope.builtin').find_files,
+    {desc = "Seatch files .. TODO"}
+)
+vim.keymap.set(
+    'n', '<C-f>f', require('telescope.builtin').live_grep,
+    {desc = "Search for work with incremental live feedback"}
+)
+vim.keymap.set(
+    'n', '<C-f>n', require('telescope.builtin').grep_string,
+    {desc = "Search word under cursor or selected"}
+)
+
+--vim.cmd("sign define LspDiagnosticsSignError text=🔴")
+--vim.cmd("sign define LspDiagnosticsSignWarning text=🟠")
+--vim.cmd("sign define LspDiagnosticsSignInformation text=🔵")
+--vim.cmd("sign define LspDiagnosticsSignHint text=🟢")
+-- LSP actions
+vim.keymap.set(
+    "n", "gd", vim.lsp.buf.definition,
+    {
+        silent = true,
+        desc = "LSP: Go to definition"
+    }
+)
+vim.keymap.set(
+    "n", "gi", vim.lsp.buf.implementation,
+    {
+        silent = true,
+        desc = "LSP: Go to implementation"
+    }
+)
+vim.keymap.set(
+    "n", "gD", vim.lsp.buf.declaration,
+    {
+        silent = true,
+        desc = "LSP: Go to declaration"
+    }
+)
+vim.keymap.set(
+    "n", "gr", vim.lsp.buf.references,
+    {
+        silent = true,
+        desc = "LSP: Show references"
+    }
+)
+-- FIXME
+vim.keymap.set(
+    "n", "ge", vim.diagnostic.setloclist,
+    {
+        silent = true,
+        desc = "LSP: Add buffer diagnostics to the location list"
+    }
+)
+vim.keymap.set(
+    "n", "K", vim.lsp.buf.hover,
+    {
+        silent = true,
+        desc = "LSP: Hover documentation"
+    }
+)
+vim.keymap.set(
+    "n", "<C-K>", vim.lsp.buf.signature_help,
+    {
+        silent = true,
+        desc = "LSP: Signature documentation"
+    }
+)
+vim.keymap.set(
+    "n", "<leader>f", vim.lsp.buf.format,
+    {
+        silent = true,
+        desc = "LSP: format buffer"
+    }
+)
+vim.keymap.set(
+    "n", "<leader>rn", vim.lsp.buf.rename,
+    {
+        silent = true,
+        desc = "LSP: rename symbol"
+    }
+)
+vim.keymap.set(
+    {"x", "n"}, "<leader>a", vim.lsp.buf.code_action,
+    {
+        silent = true,
+        desc = "LSP: show available code actions"
+    }
+)
+--vim.keymap.set(
+--    "x", "<leader>a", vim.lsp.buf.range_code_action,
+--    {
+--        silent = true,
+--        desc = "LSP: show available code actions for a range of lines"
+--    }
+--)
+
+--  USEFUL UNICODE SYMBOLS
+--  check marks/crosses ✅ ✓ ✔ ✗ ✘ 🗴 🗶 🗸
+--  more ⚠ ♨ ⚡ ⌥ ⌦ ⎇  🗲 ‣ 🛈
+--  Powerline symbols (from private Unicode space)
+--        

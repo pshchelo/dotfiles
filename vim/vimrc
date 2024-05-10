@@ -46,7 +46,7 @@ set foldmethod=indent
 " start with all open folds
 set foldlevelstart=999
 set autoindent
- " copy the previous indentation on autoindenting
+" copy the previous indentation on autoindenting
 set copyindent
 
 " alter tab settings for C files according to Python/C suggestions
