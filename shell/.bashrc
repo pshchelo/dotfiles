@@ -73,6 +73,7 @@ xterm*|rxvt*)
 esac
 
 # enable color support of ls and also add handy aliases
+# TODO: fix for MacOS
 if [ -x /usr/bin/dircolors ]; then
     test -r ~/.dircolors && eval "$(dircolors -b ~/.dircolors)" || eval "$(dircolors -b)"
     alias ls='ls --color=auto'
@@ -96,15 +97,24 @@ alias l='ls -CF'
 #   sleep 10; alert
 alias alert='notify-send --urgency=low -i "$([ $? = 0 ] && echo terminal || echo error)" "$(history|tail -n1|sed -e '\''s/^\s*[0-9]\+\s*//;s/[;&|]\s*alert$//'\'')"'
 
+
+# homebrew on Linux
+if [ -f /home/linuxbrew/.linuxbrew/bin/brew ]; then
+    eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"
+# .. or MacOS
+elif [ -f /opt/homebrew/bin/brew ]; then
+    eval "$(/opt/homebrew/bin/brew shellenv)"
+fi
+
 # set PATH so it includes user's local bin if exists
-if [ -d "$HOME/.local/bin" ] && ! [ $(echo "$PATH" | grep "$HOME/.local/bin") ]; then
+if [ -d "$HOME/.local/bin" ] && [[ "$HOME/.local/bin" != *"$PATH"* ]]; then
     PATH="$HOME/.local/bin:$PATH"
 fi
 
-# homebrew
-if [ -f /home/linuxbrew/.linuxbrew/bin/brew ]; then
-    eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"
-fi
+# set vi/vim as default editor
+export EDITOR="vi"
+export VISUAL="vim"
+export VIEWER="vim -R"
 
 # Alias definitions.
 # You may want to put all your additions into a separate file like
@@ -119,16 +129,20 @@ fi
 # this, if it's already enabled in /etc/bash.bashrc and /etc/profile
 # sources /etc/bash.bashrc).
 if ! shopt -oq posix; then
-  if [ -f /usr/share/bash-completion/bash_completion ]; then
-    . /usr/share/bash-completion/bash_completion
-  elif [ -f /etc/bash_completion ]; then
-    . /etc/bash_completion
-  fi
+    if [ -f /usr/share/bash-completion/bash_completion ]; then
+        . /usr/share/bash-completion/bash_completion
+    elif [ -f /etc/bash_completion ]; then
+        . /etc/bash_completion
+    # on MacOS
+    elif   [[ -r "/opt/homebrew/etc/profile.d/bash_completion.sh" ]]; then
+        . "/opt/homebrew/etc/profile.d/bash_completion.sh"
+    fi
 fi
 
 venvwrapper_file_paths="${HOME}/.local/bin/virtualenvwrapper.sh
 /usr/share/virtualenvwrapper/virtualenvwrapper.sh
-/usr/share/virtualenvwrapper/virtualenvwrapper.sh"
+/usr/local/bin/virtualenvwrapper/virtualenvwrapper.sh
+/opt/homebrew/bin/virtualenvwrapper.sh"
 for fpath in $venvwrapper_file_paths; do
     if [ -f "$fpath" ]; then
         VENVWRAPPER_SCRIPT="$fpath"
@@ -137,7 +151,7 @@ for fpath in $venvwrapper_file_paths; do
 done
 if [ -n "$VENVWRAPPER_SCRIPT" ]; then
     if python3 -c 'import virtualenvwrapper' > /dev/null 2>&1; then
-        export VIRTUALENVWRAPPER_PYTHON=/usr/bin/python3
+        export VIRTUALENVWRAPPER_PYTHON=$(which python3)
     fi
     export WORKON_HOME=$HOME/.virtualenvs
     source "$VENVWRAPPER_SCRIPT"
@@ -182,6 +196,8 @@ fi
 if [ -x "$(command -v thefuck)" ]; then
     eval "$(thefuck --alias)"
 fi
+
+export GOPATH="$HOME/src/go"
 
 # CUSTOM FUNCTIONS
 
