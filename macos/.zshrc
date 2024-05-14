@@ -31,9 +31,9 @@ eval "$(starship init zsh)"
 source virtualenvwrapper.sh
 
 # enable autocompletion
-autoload -Uz compinit && compinit
+autoload -Uz +X compinit && compinit
 # enable bash-style autocompletion
-autoload bashcompinit && bashcompinit
+autoload -Uz +X bashcompinit && bashcompinit
 
 # make Home/End keys work as expected
 bindkey '\e[H'    beginning-of-line
