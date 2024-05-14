@@ -1,0 +1,37 @@
+{
+    "description": "Logitech MX Keys UA (YR0073) - Swap RightCmd with RightOpt",
+    "manipulators": [
+        {
+            "from": {
+                "key_code": "right_option",
+                "modifiers": {
+                    "optional": [
+                        "any"
+                    ]
+                }
+            },
+            "to": [
+                {
+                    "key_code": "right_command"
+                }
+            ],
+            "type": "basic"
+        },
+        {
+            "from": {
+                "key_code": "right_command",
+                "modifiers": {
+                    "optional": [
+                        "any"
+                    ]
+                }
+            },
+            "to": [
+                {
+                    "key_code": "right_option"
+                }
+            ],
+            "type": "basic"
+        }
+    ]
+}

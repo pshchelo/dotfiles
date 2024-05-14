@@ -1,0 +1,37 @@
+{
+    "description": "Logitech MX Keys UA (YR0073) - Swap LeftCmd with LeftOpt",
+    "manipulators": [
+        {
+            "from": {
+                "key_code": "left_option",
+                "modifiers": {
+                    "optional": [
+                        "any"
+                    ]
+                }
+            },
+            "to": [
+                {
+                    "key_code": "left_command"
+                }
+            ],
+            "type": "basic"
+        },
+        {
+            "from": {
+                "key_code": "left_command",
+                "modifiers": {
+                    "optional": [
+                        "any"
+                    ]
+                }
+            },
+            "to": [
+                {
+                    "key_code": "left_option"
+                }
+            ],
+            "type": "basic"
+        }
+    ]
+}

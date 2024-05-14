@@ -34,3 +34,7 @@ source virtualenvwrapper.sh
 autoload -Uz compinit && compinit
 # enable bash-style autocompletion
 autoload bashcompinit && bashcompinit
+
+# make Home/End keys work as expected
+bindkey '\e[H'    beginning-of-line
+bindkey '\e[F'    end-of-line
