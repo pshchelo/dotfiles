@@ -346,8 +346,8 @@ cmp.setup({
         ["<Tab>"] = cmp.mapping(function(fallback)
             if cmp.visible() then
                 cmp.select_next_item()
-            elseif luasnip.expand_or_jumpable() then
-                luasnip.expand_or_jump()
+            --elseif luasnip.expand_or_jumpable() then
+            --    luasnip.expand_or_jump()
             elseif has_words_before() then
                 cmp.complete()
             else
@@ -357,8 +357,8 @@ cmp.setup({
         ["<s-Tab>"] = cmp.mapping(function(fallback)
             if cmp.visible() then
                 cmp.select_prev_item()
-            elseif luasnip.jumpable(-1) then
-                luasnip.jump(-1)
+            --elseif luasnip.jumpable(-1) then
+            --    luasnip.jump(-1)
             else
                 fallback()
             end
@@ -449,6 +449,11 @@ lspconfig.pylsp.setup({
 require("nvim-treesitter.configs").setup({
     -- ensure_installed = { "c", "lua", "vim", "vimdoc", "query", "javascript", "html", "python"},
     ensure_installed = {
+        "c",
+        "lua",
+        "vim",
+        "vimdoc",
+        "query",
         "javascript",
         "css",
         "html",
@@ -653,7 +658,7 @@ vim.keymap.set(
 )
 vim.keymap.set(
     'n', '<C-f>f', require('telescope.builtin').live_grep,
-    {desc = "Search for work with incremental live feedback"}
+    {desc = "Search for word with incremental live feedback"}
 )
 vim.keymap.set(
     'n', '<C-f>n', require('telescope.builtin').grep_string,
