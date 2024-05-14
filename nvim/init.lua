@@ -649,19 +649,19 @@ vim.keymap.set(
 
 -- TELESCOPE
 vim.keymap.set(
-    'n', '<C-p>', require('telescope.builtin').git_files,
+    'n', '<C-p>', function() require('telescope.builtin').git_files({hidden=true}) end,
     {desc = "Search files .. TODO"}
 )
 vim.keymap.set(
-    'n', '<C-P>', require('telescope.builtin').find_files,
+    'n', '<C-P>', function() require('telescope.builtin').find_files({hidden=true}) end,
     {desc = "Seatch files .. TODO"}
 )
 vim.keymap.set(
-    'n', '<C-f>f', require('telescope.builtin').live_grep,
+    'n', '<C-f>f', function() require('telescope.builtin').live_grep({hidden=true}) end,
     {desc = "Search for word with incremental live feedback"}
 )
 vim.keymap.set(
-    'n', '<C-f>n', require('telescope.builtin').grep_string,
+    'n', '<C-f>n', function() require('telescope.builtin').grep_string({hidden=true}) end,
     {desc = "Search word under cursor or selected"}
 )
 
