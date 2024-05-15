@@ -4,14 +4,39 @@ action=$1
 conn=${2:-Mirantis}
 
 function vpn_up {
-if [ -z  "$(nmcli connection show --active $conn)" ]; then
-    nmcli connection up $conn
-fi
+    if [ "$conn" = "Cato" ]; then
+        catovpn_up
+    else
+        openvpn_up
+    fi
 }
 
 function vpn_down {
+    if [ "$conn" = "Cato" ]; then
+        catovpn_down
+    else
+        openvpn_down
+    fi
+}
+
+function catovpn_up {
+    cato-sdp start --use-systemd-resolv --route 172.16.0.0/12 --metric 1000
+    sudo ip route add 172.16.0.0/12 dev tun0
+}
+
+function catovpn_down {
+    cato-sdp stop
+}
+
+function openvpn_up {
+if [ -z  "$(nmcli connection show --active $conn)" ]; then
+    nmcli connection up "$conn"
+fi
+}
+
+function openvpn_down {
 if [ -n "$(nmcli connection show --active $conn)" ]; then
-    nmcli connection down $conn
+    nmcli connection down "$conn"
 fi
 }
 
@@ -23,11 +48,11 @@ case $action in
         vpn_down
         ;;
     help|h)
-        echo $HLP_MSG
+        echo "$HLP_MSG"
         exit 0
         ;;
     *)
-        echo $HLP_MSG
+        echo "$HLP_MSG"
         exit 1
         ;;
 esac
