@@ -73,9 +73,12 @@ xterm*|rxvt*)
 esac
 
 # enable color support of ls and also add handy aliases
-# TODO: fix for MacOS
-if [ -x /usr/bin/dircolors ]; then
-    test -r ~/.dircolors && eval "$(dircolors -b ~/.dircolors)" || eval "$(dircolors -b)"
+if [ -x /usr/bin/dircolors ] || [ "$(uname)" == "Darwin" ]; then
+    if [ "$(uname)" == "Darwin" ]; then
+        export CLICOLOR=1
+    else
+        test -r ~/.dircolors && eval "$(dircolors -b ~/.dircolors)" || eval "$(dircolors -b)"
+    fi
     alias ls='ls --color=auto'
     #alias dir='dir --color=auto'
     #alias vdir='vdir --color=auto'
