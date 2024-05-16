@@ -36,7 +36,7 @@ vim.o.hlsearch = true
 
 -- VISUALS
 -- show colored border column
-vim.o.colorcolumn = 80 -- FIXME: does not seem to work for now
+vim.o.colorcolumn = "80"
 vim.cmd.highlight({"ColorColumn", "ctermbg=lightgrey", "guibg=lightgrey"})
 -- show line numbers
 vim.o.number = true
@@ -44,8 +44,6 @@ vim.o.number = true
 vim.o.showmode = false
 -- always show status line
 vim.o.laststatus = 2
--- set terminal colors -- TODO: NEEDED?
-vim.o.t_Co = 16
 
 -- Use this highlight group when displaying bad whitespace is desired.
 vim.cmd.highlight({"BadWhitespace", "ctermbg=red", "guibg=red"})
@@ -220,7 +218,8 @@ end
 vim.opt.rtp:prepend(lazypath)
 require("lazy").setup({
     {
-        "altercation/vim-colors-solarized",
+        --"altercation/vim-colors-solarized",
+        "maxmx03/solarized.nvim",
         lazy=false,
         priority=1000
     },
@@ -287,6 +286,7 @@ require("lazy").setup({
     },
     {"folke/lsp-colors.nvim"}, -- add missing LSP color groups to colorschemes
     -- TODO: evaluate necessity for more plugins:
+    --
     -- mg979/vim-visual-multi? multi-cursor
     -- pshchelo/lodgeit.vim ?? re-write in lua?
     -- milkypostman/vim-togglelist? quick toggles for LocationList and QuickFixList
@@ -305,18 +305,16 @@ require("lazy").setup({
 -- PLUGIN SETTINGS
 -- ===============
 -- solarized color scheme
-vim.cmd.colorscheme("solarized")
 vim.o.background = "dark"
-vim.cmd(':silent! call togglebg#map("<F5>"') -- toggle between light and dark variant FIXME: hide the displayed command in status bar
+require("solarized").setup()
+vim.cmd.colorscheme("solarized")
 
 -- lualine
--- TODO:
--- ? display paste mode status? paste it seems is not so much useful in neovim
--- integrate with ale? Trouble?
--- add toggle between light and dark together with background (see solarized config above)
--- hide default encoding and line endings https://www.reddit.com/r/neovim/comments/u2uc4p/comment/i4muvp6
+-- TODO: integrate with ale? Trouble?
+-- TODO: hide default encoding and line endings https://www.reddit.com/r/neovim/comments/u2uc4p/comment/i4muvp6
 require('lualine').setup({
-    options = { theme = 'solarized_dark' },
+    options = { theme = "auto" },
+-- TODO: ? display paste mode status? paste it seems is not so much useful in neovim
 --     sections = {
 --         lualine_a = {
 --           { 'mode',
@@ -552,6 +550,22 @@ vim.o.iminsert = 0
 vim.cmd("au BufRead * silent setlocal iminsert=0")
 
 --vim.o.pastetoggle = "<leader>p" -- NEEDED? might not be that needed in NeoVim
+
+local toggle_background = function()
+    if vim.o.background == "dark" then
+        vim.o.background = 'light'
+    elseif vim.o.background == 'light' then
+        vim.o.background = 'dark'
+    end
+end
+
+vim.keymap.set(
+    "n", "<F5>", toggle_background,
+    {
+        silent = true,
+        desc = "Toggle between light and dark backgrounds",
+    }
+)
 vim.keymap.set(
     "n", "<Space>", ":nohlsearch<Bar>:echo<CR>",
     {
