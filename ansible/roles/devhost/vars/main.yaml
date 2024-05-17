@@ -15,12 +15,10 @@ apt_packages_dev:
   - tig
   - git
   - curl
-  - vim-nox
   - direnv
   - docker-compose-v2
   - docker-buildx
   - docker-clean
-  #- devscripts
 
 apt_packages_build:
   - build-essential
