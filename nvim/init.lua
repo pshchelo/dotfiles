@@ -491,7 +491,12 @@ vim.o.foldenable = false
 
 
 -- INDENT-BLANKLINE
-require("ibl").setup() -- TODO: change the symbol to be thinner/dimmer/less intrusive
+require("ibl").setup({
+    indent = {
+        --char = {'▏', '|', '¦', '┆', '┊'},
+        char = '▏',
+    }
+})
 
 -- TELESCOPE
 require('telescope').setup({
@@ -508,7 +513,13 @@ require('telescope').setup({
 require('telescope').load_extension('fzf')
 
 -- GITSIGNS
-require('gitsigns').setup() -- TODO: ? replace colored bars with colored +-!_ signs as gitgutter
+require('gitsigns').setup({
+    signs = {
+        add = {text = "+"},
+        change = {text = "!"},
+        delete = {text = "_"},
+    },
+})
 
 -- NERDCOMMENTER
 vim.g.NERDSpaceDelims = 0
@@ -531,7 +542,6 @@ vim.g.ale_lint_on_insert_leave = 1
 vim.g.ale_lint_on_text_changed = "normal"
 
 -- todo-comments
--- FIXME: higlighting does not seem to work
 require("todo-comments").setup({
     signs = false,
 })
@@ -590,8 +600,16 @@ vim.keymap.set(
 )
 
 vim.keymap.set(
-    "n", "<leader>N", ":set number!<CR>", -- TODO toggle gitsigns too??
-    {desc = "Toggle line numbers"}
+    "n", "<leader>N", function()
+        -- toggle line numbers
+        vim.o.number = not vim.o.number;
+        -- togle signs
+        vim.o.signcolumn = vim.o.signcolumn == "auto" and "no" or "auto";
+        -- toggle indentation guides
+        vim.cmd("IBLToggle");
+        -- TODO: toggle relativenumber too?
+    end,
+    {desc = "Toggle line numbers and others to enable raw copy from terminal"}
 )
 
 vim.keymap.set(
@@ -712,7 +730,7 @@ vim.keymap.set(
         desc = "LSP: Show references"
     }
 )
--- FIXME
+-- FIXME:
 vim.keymap.set(
     "n", "ge", vim.diagnostic.setloclist,
     {
@@ -768,3 +786,9 @@ vim.keymap.set(
 --  more ⚠ ♨ ⚡ ⌥ ⌦ ⎇  🗲 ‣ 🛈
 --  Powerline symbols (from private Unicode space)
 --        
+-- vertical lines from unicode 'Box Drawing' and 'Block elements'
+-- {"▏", "▎", "▍", "▌", "▋", "▊", "▉", "█"} -- left aligned solid
+-- {"│", "┃"} -- center aligned solid
+-- {"▕", "▐"} -- right aligned solid
+-- {"╎", "╏", "┆", "┇", "┊", "┋" } -- center aligned dashed
+-- {"║"} -- center aligned double
