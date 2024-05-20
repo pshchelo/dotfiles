@@ -1,3 +1,5 @@
+Include /Users/pshchelo/.colima/ssh_config
+
 IdentityFile ~/.ssh/id_ed25519
 IdentityFile ~/.ssh/id_rsa
 IdentitiesOnly yes
