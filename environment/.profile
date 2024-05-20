@@ -22,6 +22,11 @@
 # LC_PAPER=en_GB.UTF-8
 # PAPERSIZE=a4
 
+if [ "$(uname)" = "Darwin" ]; then
+    export LANG=en_US.UTF-8
+    export LC_CTYPE=en_US.UTF-8
+fi
+
 # if running bash
 if [ -n "$BASH_VERSION" ]; then
     # include .bashrc if it exists
