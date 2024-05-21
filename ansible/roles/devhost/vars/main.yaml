@@ -8,7 +8,7 @@ ssh_keys:
 
 apt_packages_dev:
   - bash-completion
-  - exuberant-ctags
+  - universal-ctags
   - patch
   - tmux
   - silversearcher-ag

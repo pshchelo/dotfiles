@@ -209,7 +209,7 @@ Plug 'tpope/vim-fugitive'
 " display git status per line in buffer, stage/instage hunks, integrates with vim-airline
 "Plug 'airblade/vim-gitgutter'
 Plug 'mhinz/vim-signify'
-" sidebar code structure browser, requires exuberant-tags to be installed
+" sidebar code structure browser, requires some ctags to be installed (e.g. universal-ctags)
 Plug 'majutsushi/tagbar', { 'on':  'TagbarToggle' }
 " indentation guides visualisation
 Plug 'yggdroot/indentline'
