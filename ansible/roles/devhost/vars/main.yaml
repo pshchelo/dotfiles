@@ -64,6 +64,7 @@ files_to_backup:
 dirs_to_create:
   - "{{ local_bin_dir }}"
   # create all currently needed in one go
+  - "{{ userhome }}/.config/nvim"
   - "{{ userhome }}/.config/k9s/skins"
   - "{{ userhome }}/.local/share/bash-completion/completions"
 
@@ -120,5 +121,5 @@ links_to_create:
     src: "{{ dotfiles_dir }}/colors/k9s-solarized-dark.yaml"
   - path: "{{ local_bin_dir }}/ubuntu-update-all.sh"
     src: "{{ dotfiles_dir }}/scripts/ubuntu-update-all.sh"
-  - path: "{{ userhome }}/.config/nvim"
-    src: "{{ dotfiles_dir }}/nvim"
+  - path: "{{ userhome }}/.config/nvim/init.lua"
+    src: "{{ dotfiles_dir }}/nvim/init.lua"
