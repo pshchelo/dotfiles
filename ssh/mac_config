@@ -1,3 +1,4 @@
 Include ~/dotfiles/ssh/config
+Include ~/.colima/ssh_config
 AddKeysToAgent yes
 UseKeychain yes
