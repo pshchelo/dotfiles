@@ -487,9 +487,6 @@ vim.o.foldexpr = "nvim_treesitter#foldexpr()"
 -- start with all open folds
 vim.o.foldenable = false
 
-
-
-
 -- INDENT-BLANKLINE
 require("ibl").setup({
     indent = {
@@ -781,6 +778,10 @@ vim.keymap.set(
 --    }
 --)
 
+-- GUI
+if vim.g.neovide then
+    vim.o.guifont = "AnonymicePro Nerd Font:h16"
+end
 --  USEFUL UNICODE SYMBOLS
 --  check marks/crosses ✅ ✓ ✔ ✗ ✘ 🗴 🗶 🗸
 --  more ⚠ ♨ ⚡ ⌥ ⌦ ⎇  🗲 ‣ 🛈
