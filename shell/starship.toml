@@ -8,6 +8,8 @@ add_newline = true
 # powerline-like examples
 # https://starship.rs/presets/pastel-powerline.html
 # https://gist.github.com/notheotherben/92302a60f8599ba73f1c2840f3c6d455
+# depends on nerdfonts
+# https://www.nerdfonts.com/cheat-sheet
 format = """
 $username\
 $hostname\
@@ -97,3 +99,4 @@ symbol = " "
 [status]
 disabled = false
 format = "[$symbol $status]($style) "
+symbol = ''
