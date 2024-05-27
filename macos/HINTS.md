@@ -48,3 +48,14 @@ netstat -rn
 route <add|delete> <cidr> -interface <iface>
 ```
 see `man route` for more info
+
+# .DS_Store files
+
+disable on network volumes (may break samba/onecloud etc)
+```
+defaults write com.apple.desktopservices DSDontWriteNetworkStores true
+```
+disable on removable USB media
+```
+defaults write com.apple.desktopservices DSDontWriteUSBStores -bool true
+```

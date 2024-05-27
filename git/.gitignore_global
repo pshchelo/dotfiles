@@ -4,6 +4,9 @@
 *.bak
 .*.swp
 
+# System metadata files
+.DS_Store
+
 # Python compiled files
 *.py[cod]
 dist/
