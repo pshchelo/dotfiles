@@ -281,7 +281,11 @@ require("lazy").setup({
     {"tpope/vim-surround"}, -- work with surrounding quotes/braces/tags
     {"folke/trouble.nvim"}, -- nicer display of diagnostics
     {
-        "folke/todo-comments.nvim", -- better work with comment prefixes
+        --"folke/todo-comments.nvim", -- better work with comment prefixes
+        -- NOTE: this is PR#255 in the main repo, that can properly highlight e.g. NOTE(name):
+        -- TODO: move back to main repo once the PR is merged
+        "LunarLambda/todo-comments.nvim",
+        branch = "enhanced-matching",
         dependencies = {"nvim-lua/plenary.nvim"},
     },
     {"folke/lsp-colors.nvim"}, -- add missing LSP color groups to colorschemes
@@ -408,14 +412,14 @@ cmp.setup.cmdline(':', {
 -- Add additional capabilities supported by nvim-cmp
 local capabilities = require("cmp_nvim_lsp").default_capabilities()
 
-local lspconfig = require('lspconfig')
+local lspconfig = require("lspconfig")
 -- lspconfig does not fail when langserver is not available, just prints a warning in status line
 lspconfig.pylsp.setup({
     -- on_attach = my_custom_on_attach,
     capabilities = capabilities,
     settings = {
         pylsp = {
-            configurationSources = {'ruff', 'flake8'},
+            configurationSources = {"ruff", "flake8"},
             plugins = {
                 pycodestyle = {
                     enabled = false
@@ -541,10 +545,16 @@ vim.g.ale_lint_on_text_changed = "normal"
 -- todo-comments
 require("todo-comments").setup({
     signs = false,
+    -- NOTE: this depends on fork/PR in the original plugin repo for now
+    highlight = {
+      -- vimgrep regex, supporting the pattern TODO(name):
+      pattern = [[.*<((KEYWORDS)%(\(.{-1,}\))?):]],
+    },
+    search = {
+      -- ripgrep regex, supporting the pattern TODO(name):
+      pattern = [[\b(KEYWORDS)(\(\w*\))*:]],
+    },
 })
---vim.api.nvim_set_hl(0, "@text.note", { link = "Search" })
--- https://github.com/nvim-treesitter/nvim-treesitter/issues/236#issuecomment-1670906532
-vim.cmd.highlight({"link", "@text.note", "Todo"})
 
 -- =======
 -- KEYMAPS
