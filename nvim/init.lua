@@ -216,7 +216,7 @@ if not vim.loop.fs_stat(lazypath) then
     })
 end
 vim.opt.rtp:prepend(lazypath)
-require("lazy").setup({
+local allPlugins = {
     {
         --"altercation/vim-colors-solarized",
         "maxmx03/solarized.nvim",
@@ -304,7 +304,8 @@ require("lazy").setup({
     -- Salt stuff? saltstack/salt-vim
     -- Helm stuff? towolf/vim-helm - yaml + gotmpl + sprig + custom, but would treesitter suffice?
     -- LaTeX stuff? lervag/vimtex
-})
+}
+require("lazy").setup(allPlugins)
 -- ===============
 -- PLUGIN SETTINGS
 -- ===============
