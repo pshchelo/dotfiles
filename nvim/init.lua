@@ -237,6 +237,7 @@ local allPlugins = {
         dependencies = {"nvim-treesitter/nvim-treesitter"},
     },
     {"neovim/nvim-lspconfig"},
+    {"lspcontainers/lspcontainers.nvim"}, -- install and run LSPs in Docker
     {"hrsh7th/nvim-cmp"}, -- Autocompletion plugin
     {"hrsh7th/cmp-nvim-lsp"}, -- LSP source for completions
     {"hrsh7th/cmp-buffer"}, -- buffer content source for completions
@@ -289,8 +290,13 @@ local allPlugins = {
         dependencies = {"nvim-lua/plenary.nvim"},
     },
     {"folke/lsp-colors.nvim"}, -- add missing LSP color groups to colorschemes
+    {"gu-fan/riv.vim"}, -- reStructouredText support
+    {"HiPhish/jinja.vim"}, -- Jinja2 syntax support, also see Glench/Vim-Jinja2-Syntax
+    {"avakhov/vim-yaml"}, -- indentation
+    {"digitalrounin/vim-yaml-folds"}, -- folds. but would treesitter suffice?
+    {"saltstack/salt-vim"},
+    {"towolf/vim-helm"}, -- yaml + gotmpl + sprig + custom, but would treesitter suffice?
     -- TODO: evaluate necessity for more plugins:
-    --
     -- mg979/vim-visual-multi? multi-cursor
     -- pshchelo/lodgeit.vim ?? re-write in lua?
     -- milkypostman/vim-togglelist? quick toggles for LocationList and QuickFixList
@@ -298,11 +304,6 @@ local allPlugins = {
     -- jeetsukumaran/vim-pythonsense? do I really need it? would treesitter suffice?
     -- haskell stuff? eagletmt/ghcmod-vim eagletmt/neco-ghc
     -- go stuff? fatih/vim-go
-    -- rst stuff? gu-fan/riv.vim
-    -- yaml stuff? avakhov/vim-yaml - indentation, digitalrounin/vim-yaml-folds - folds. but would treesitter suffice?
-    -- Jinja2 stuff? Glench/Vim-Jinja2-Syntax
-    -- Salt stuff? saltstack/salt-vim
-    -- Helm stuff? towolf/vim-helm - yaml + gotmpl + sprig + custom, but would treesitter suffice?
     -- LaTeX stuff? lervag/vimtex
 }
 require("lazy").setup(allPlugins)
