@@ -59,3 +59,12 @@ disable on removable USB media
 ```
 defaults write com.apple.desktopservices DSDontWriteUSBStores -bool true
 ```
+
+# python-pcre
+```
+brew install pcre
+brew list pcre | grep pcre.h
+cpp -v # find include locations
+# than link pcre.h to some of those locations, e.g.
+sudo ln -s /opt/homebrew/Cellar/pcre/8.45/include/pcre.h /Library/Developer/CommandLineTools/usr/include/pcre.h
+```
