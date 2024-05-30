@@ -377,7 +377,7 @@ cmp.setup({
                 fallback()
             end
         end, { "i", "s" }),
-        ["<c-e>"] = cmp.mapping.abort(),
+        ["<Space>"] = cmp.mapping.abort(),
         ["<CR>"] = cmp.mapping.confirm({ select=true }), -- Accept currently selected item. Set `select` to `false` to only confirm explicitly selected items.
     }),
     sources = cmp.config.sources({
