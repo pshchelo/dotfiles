@@ -68,3 +68,7 @@ cpp -v # find include locations
 # than link pcre.h to some of those locations, e.g.
 sudo ln -s /opt/homebrew/Cellar/pcre/8.45/include/pcre.h /Library/Developer/CommandLineTools/usr/include/pcre.h
 ```
+
+# Karabiner config files
+custom complex rule definitions are to be placed in
+`~/.config/karabiner/assets/complex_modifications/` folder.
