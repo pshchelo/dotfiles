@@ -291,20 +291,30 @@ local allPlugins = {
     },
     {"folke/lsp-colors.nvim"}, -- add missing LSP color groups to colorschemes
     {"gu-fan/riv.vim"}, -- reStructouredText support
-    {"HiPhish/jinja.vim"}, -- Jinja2 syntax support, also see Glench/Vim-Jinja2-Syntax
-    {"avakhov/vim-yaml"}, -- indentation
-    {"digitalrounin/vim-yaml-folds"}, -- folds. but would treesitter suffice?
-    {"saltstack/salt-vim"},
-    {"towolf/vim-helm"}, -- yaml + gotmpl + sprig + custom, but would treesitter suffice?
+    {"HiPhish/jinja.vim"}, -- Jinja2 syntax support
+    {"towolf/vim-helm", ft='helm'}, -- yaml + gotmpl + sprig + custom, but would treesitter suffice?
+    {"saltstack/salt-vim", ft='sls'}, -- saltstack, good for yaml + Jinja2
+    {
+        "fatih/vim-go", -- Golang
+        ft='go',
+        enabled=vim.fn.executable('go')~=0,
+    },
+    {
+        "eagletmt/ghcmod-vim", -- Haskell
+        ft='haskell',
+        enabled=vim.fn.executable('ghc')~=0,
+    },
+    {
+        "lervag/vimtex", -- LaTex
+        ft={"latex", "tex"},
+        enabled=vim.fn.executable("latex")~=0,
+    },
     -- TODO: evaluate necessity for more plugins:
     -- mg979/vim-visual-multi? multi-cursor
     -- pshchelo/lodgeit.vim ?? re-write in lua?
     -- milkypostman/vim-togglelist? quick toggles for LocationList and QuickFixList
     -- jiangmiao/auto-pairs?
     -- jeetsukumaran/vim-pythonsense? do I really need it? would treesitter suffice?
-    -- haskell stuff? eagletmt/ghcmod-vim eagletmt/neco-ghc
-    -- go stuff? fatih/vim-go
-    -- LaTeX stuff? lervag/vimtex
 }
 require("lazy").setup(allPlugins)
 -- ===============
