@@ -38,6 +38,7 @@ Host codesearch.vm.mirantis.net
 
 Host workvm
     HostName 172.19.114.44
+    DynamicForward 8181
 
 # Some ranges if private IP addresses I use for ephemeral instances
 # Virt-manager local networks, DevStack public and private networks
