@@ -688,7 +688,7 @@ vim.keymap.set(
 
 -- NERDTree
 vim.keymap.set(
-    "n", "<F3>", ":NERDTreeTabsToggle<CR>",
+    "n", "<F3>", ":NERDTreeToggle %<CR>",
     {desc = "Toggle NERDTREE file browser side bar"}
 )
 
