@@ -1,13 +1,17 @@
 bash
 bash-completion@2
 bat
+chafa
 colima
 direnv
 docker
+docker-buildx
 docker-compose
+docker-credential-helper
 fd
 fzf
 helm
+htop
 ipython
 jq
 k9s
@@ -18,6 +22,7 @@ md5sha1sum
 midnight-commander
 mosh
 neovim
+pcre
 pipx
 python@3.10
 ripgrep
@@ -26,4 +31,7 @@ starship
 the_silver_searcher
 tig
 tmux
+universal-ctags
 virtualenvwrapper
+watch
+wget
