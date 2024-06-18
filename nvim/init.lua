@@ -419,6 +419,28 @@ cmp.setup.cmdline(':', {
 local capabilities = require("cmp_nvim_lsp").default_capabilities()
 
 local lspconfig = require("lspconfig")
+
+local function find_venv()
+
+  -- If there is an active virtual env, use that
+  if vim.env.VIRTUAL_ENV then
+    return { vim.env.VIRTUAL_ENV .. "/bin/python" }
+  end
+
+  -- Search within the current git repo to see if we can find a virtual env to use.
+  local repo = lspconfig.util.find_git_ancestor(vim.fn.getcwd())
+  if not repo then
+    return nil
+  end
+
+  local candidates = vim.fs.find("pyvenv.cfg", { path = repo })
+  if #candidates == 0 then
+    return nil
+  end
+
+  return { vim.fn.resolve(candidates[1] .. "./../bin/python") }
+end
+
 -- lspconfig does not fail when langserver is not available, just prints a warning in status line
 lspconfig.pylsp.setup({
     -- on_attach = my_custom_on_attach,
