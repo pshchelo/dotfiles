@@ -482,6 +482,13 @@ lspconfig.pylsp.setup({
 --  root_dir = require"lspconfig/util".root_pattern(".git", vim.fn.getcwd()),
 --})
 
+-- RST/Sphinx LSP
+--lspconfig.esbonio.setup {
+--  settings = {
+--    sphinx = { pythonCommand = find_venv() }
+--  }
+--}
+
 -- TREE-SITTER
 require("nvim-treesitter.configs").setup({
     -- ensure_installed = { "c", "lua", "vim", "vimdoc", "query", "javascript", "html", "python"},
