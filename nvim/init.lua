@@ -327,17 +327,8 @@ vim.cmd.colorscheme("solarized")
 
 -- lualine
 -- TODO: integrate with ale? Trouble?
--- TODO: hide default encoding and line endings https://www.reddit.com/r/neovim/comments/u2uc4p/comment/i4muvp6
 require('lualine').setup({
     options = { theme = "auto" },
--- TODO: ? display paste mode status? paste it seems is not so much useful in neovim
---     sections = {
---         lualine_a = {
---           { 'mode',
---             fmt = function(mode) return vim.go.paste == true and mode .. ' (paste)' or mode end
---           },
---         },
---     },
 })
 
 -- LSP and autocomplete settings
