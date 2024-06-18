@@ -474,6 +474,15 @@ lspconfig.pylsp.setup({
         },
     },
 })
+
+--lspconfig.tsserver.setup({
+--    before_init = function(params)
+--        params.processId = vim.NIL
+--    end,
+--    cmd = require'lspcontainers'.command('tsserver'),
+--    root_dir = require'lspconfig/util'.root_pattern(".git", vim.fn.getcwd()),
+--})
+
 --lspconfig.html.setup({
 --  before_init = function(params)
 --    params.processId = vim.NIL
@@ -483,11 +492,11 @@ lspconfig.pylsp.setup({
 --})
 
 -- RST/Sphinx LSP
---lspconfig.esbonio.setup {
+--lspconfig.esbonio.setup({
 --  settings = {
 --    sphinx = { pythonCommand = find_venv() }
 --  }
---}
+--})
 
 -- TREE-SITTER
 require("nvim-treesitter.configs").setup({
