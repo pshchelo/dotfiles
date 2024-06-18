@@ -474,6 +474,13 @@ lspconfig.pylsp.setup({
         },
     },
 })
+--lspconfig.html.setup({
+--  before_init = function(params)
+--    params.processId = vim.NIL
+--  end,
+--  cmd = require("lspcontainers").command("html"),
+--  root_dir = require"lspconfig/util".root_pattern(".git", vim.fn.getcwd()),
+--})
 
 -- TREE-SITTER
 require("nvim-treesitter.configs").setup({
