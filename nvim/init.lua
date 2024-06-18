@@ -339,6 +339,9 @@ local has_words_before = function()
   return col ~= 0 and vim.api.nvim_buf_get_lines(0, line - 1, line, true)[1]:sub(col, col):match("%s") == nil
 end
 cmp.setup({
+    completion = {
+        keyword_length = 3,
+    },
     snippet = {},
     window = {
        completion = cmp.config.window.bordered(),
@@ -372,22 +375,22 @@ cmp.setup({
         ["<CR>"] = cmp.mapping.confirm({ select=true }), -- Accept currently selected item. Set `select` to `false` to only confirm explicitly selected items.
     }),
     sources = cmp.config.sources({
-      { name = 'nvim_lsp' },
+      { name = 'nvim_lsp', keyword_length = 3, },
       --{ name = 'vsnip' }, -- For vsnip users.
       -- { name = 'luasnip' }, -- For luasnip users.
       -- { name = 'ultisnips' }, -- For ultisnips users.
       -- { name = 'snippy' }, -- For snippy users.
     }, {
-      { name = 'buffer' },
+      { name = 'buffer', keyword_length = 3, },
     })
 })
 cmp.setup.filetype(
     'gitcommit',
     {
         sources = cmp.config.sources({
-          { name = 'git' },
+          { name = 'git', keyword_length = 3, },
         }, {
-          { name = 'buffer' },
+          { name = 'buffer', keyword_length = 3, },
         })
     }
 )
@@ -397,7 +400,7 @@ require("cmp_git").setup()
 cmp.setup.cmdline({ '/', '?' }, {
   mapping = cmp.mapping.preset.cmdline(),
   sources = {
-    { name = 'buffer' }
+    { name = 'buffer', keyword_length = 3, }
   }
 })
 
@@ -405,9 +408,9 @@ cmp.setup.cmdline({ '/', '?' }, {
 cmp.setup.cmdline(':', {
   mapping = cmp.mapping.preset.cmdline(),
   sources = cmp.config.sources({
-    { name = 'path' }
+    { name = 'path', keyword_length = 3, }
   }, {
-    { name = 'cmdline' }
+    { name = 'cmdline', keyword_length = 3, }
   }),
   matching = { disallow_symbol_nonprefix_matching = false }
 })
