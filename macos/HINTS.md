@@ -72,3 +72,9 @@ sudo ln -s /opt/homebrew/Cellar/pcre/8.45/include/pcre.h /Library/Developer/Comm
 # Karabiner config files
 custom complex rule definitions are to be placed in
 `~/.config/karabiner/assets/complex_modifications/` folder.
+
+# Disable creating junk metadata files in archives
+Use undocumented `COPYFILE_DISABLE` env var, e.g.
+```
+COPYFILE_DISABLE=1 tar cf <archivename> ...
+```
