@@ -522,8 +522,8 @@ vim.o.foldenable = false
 -- INDENT-BLANKLINE
 require("ibl").setup({
     indent = {
-        --char = {'▏', '|', '¦', '┆', '┊'},
-        char = '▏',
+        char = {'▏', '|', '¦', '┆', '┊'},
+        --char = '▏',
     }
 })
 
