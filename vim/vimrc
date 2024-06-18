@@ -224,8 +224,10 @@ Plug 'prabirshrestha/vim-lsp'
 " async complete
 Plug 'prabirshrestha/asyncomplete.vim'
 Plug 'prabirshrestha/asyncomplete-lsp.vim'
-" async auto-complete
-Plug 'maralla/completor.vim'
+if has("python3")
+    " async auto-complete
+    Plug 'maralla/completor.vim'
+endif
 " better Python motion objects
 Plug 'jeetsukumaran/vim-pythonsense'
 " better python indentation
