@@ -159,6 +159,22 @@ clouds:
     endpoint_type: public
     interface: public
     insecure: true
+  mosk-dev-demo-mfa:
+    auth_type: v3multifactor
+    auth:
+      auth_methods:
+      - v3password
+      - v3totp
+      auth_url: https://keystone.it.just.works
+      username: demo
+      password: demo
+      project_name: demo
+      project_domain_name: Default
+      user_domain_name: Default
+    region_name: CustomRegion
+    identity_api_version: 3
+    interface: public
+    insecure: true
 ansible:
   use_hostnames: true
   expand_hostvars: false
