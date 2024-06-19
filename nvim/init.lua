@@ -160,9 +160,17 @@ vim.api.nvim_create_autocmd(
 vim.api.nvim_create_autocmd(
     {"Filetype"},
     {
-        pattern = "yaml",
+        pattern = "yaml,json",
         command = "setlocal ts=2 sw=2 expandtab",
-        desc = "Set indentation to 2 for YAML etc files",
+        desc = "Set indentation to 2 for YAML and JSON files",
+    }
+)
+vim.api.nvim_create_autocmd(
+    {"Filetype"},
+    {
+        pattern = "javascript,javascripreact,typescript,typescriptreact",
+        command = "setlocal ts=2 sw=2 expandtab",
+        desc = "Set indentation to 2 for javascript and typescript etc files",
     }
 )
 vim.api.nvim_create_autocmd(
@@ -189,7 +197,6 @@ vim.api.nvim_create_autocmd(
         desc = "Treat *.conf files as DOSINI format",
     }
 )
-
 
 -- =========
 -- PROVIDERS
