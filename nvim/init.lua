@@ -348,6 +348,7 @@ require('lualine').setup({
 
 -- LSP and autocomplete settings
 local cmp = require("cmp")
+local luasnip = require("luasnip")
 local has_words_before = function()
   unpack = unpack or table.unpack
   local line, col = unpack(vim.api.nvim_win_get_cursor(0))
@@ -494,6 +495,17 @@ lspconfig.pylsp.setup({
     },
 })
 
+vscode_servers = {
+    cssls = "vscode-css-language-server",
+    eslint = "vscode-eslint-language-server",
+    markdown = "vscode-markdown-language-server",
+}
+for lspname, server in pairs(vscode_servers) do
+    if vim.fn.executable(server)~=0 then
+        lspconfig[lspname].setup { capabilites = capabilites }
+    end
+end
+
 local before_init_container = function(params)
     params.processId = vim.NIL
 end
@@ -509,17 +521,14 @@ lspconfig.tsserver.setup(tsserver_setup)
 
 local containerized_servers = {
     html = "vscode-html-language-server",
-    cssls = "vscode-css-language-server",
     jsonls = "vscode-json-language-server",
-    eslint = "vscode-eslint-language-server",
     tailwindcss = "tailwindcss-language-server",
-    --markdown = "vscode-markdown-language-server",
 }
 for lspname, server in pairs(containerized_servers) do
     local config = { capabilites = capabilites }
     if vim.fn.executable(server)==0 then
         config["before_init"] = before_init_container
-        config["cmd"] = require'lspcontainers'.command(server)
+        config["cmd"] = require'lspcontainers'.command(lspname)
     end
     lspconfig[lspname].setup(config)
 end
