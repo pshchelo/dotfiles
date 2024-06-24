@@ -247,6 +247,7 @@ local allPlugins = {
     {"lspcontainers/lspcontainers.nvim"}, -- install and run LSPs in Docker
     {"hrsh7th/nvim-cmp"}, -- Autocompletion plugin
     {"hrsh7th/cmp-nvim-lsp"}, -- LSP source for completions
+    {"hrsh7th/cmp-nvim-lsp-signature-help"},  -- Functions signatures autocomplete
     {"hrsh7th/cmp-buffer"}, -- buffer content source for completions
     {"hrsh7th/cmp-path"},  -- file paths source for completions
     {"hrsh7th/cmp-cmdline"}, -- completions for search (/) and command mode
@@ -254,8 +255,15 @@ local allPlugins = {
         "petertriho/cmp-git", -- Git source for completions
         dependencies = {"nvim-lua/plenary.nvim"},
     },
---  { 'saadparwaiz1/cmp_luasnip', lazy=false }, -- Snippets source for nvim-cmp
---  { 'L3MON4D3/LuaSnip', lazy=false }, -- Snippets plugin
+    {
+        'saadparwaiz1/cmp_luasnip', -- Snippets source for nvim-cmp
+        dependencies = {
+            {
+                'L3MON4D3/LuaSnip',  -- Snippet engine
+                --build = "make install_jsregexp" -- optional, 
+            }
+        },
+    },
     {
         "nvim-telescope/telescope.nvim",
         branch = "0.1.x",
@@ -345,6 +353,26 @@ local has_words_before = function()
   local line, col = unpack(vim.api.nvim_win_get_cursor(0))
   return col ~= 0 and vim.api.nvim_buf_get_lines(0, line - 1, line, true)[1]:sub(col, col):match("%s") == nil
 end
+local completeOnTab = function(fallback)
+    if cmp.visible() then
+        cmp.select_next_item()
+    elseif luasnip.expand_or_jumpable() then
+        luasnip.expand_or_jump()
+    elseif has_words_before() then
+        cmp.complete()
+    else
+        fallback()
+    end
+end
+local completeOnShiftTab = function(fallback)
+    if cmp.visible() then
+        cmp.select_prev_item()
+    elseif luasnip.jumpable(-1) then
+        luasnip.jump(-1)
+    else
+        fallback()
+    end
+end
 cmp.setup({
     completion = {
         keyword_length = 3,
@@ -358,37 +386,21 @@ cmp.setup({
         ['<C-b>'] = cmp.mapping.scroll_docs(-4),
         ['<C-f>'] = cmp.mapping.scroll_docs(4),
         ['<C-Space>'] = cmp.mapping.complete(),
-        ["<Tab>"] = cmp.mapping(function(fallback)
-            if cmp.visible() then
-                cmp.select_next_item()
-            --elseif luasnip.expand_or_jumpable() then
-            --    luasnip.expand_or_jump()
-            elseif has_words_before() then
-                cmp.complete()
-            else
-                fallback()
-            end
-        end, { "i", "s" }),
-        ["<s-Tab>"] = cmp.mapping(function(fallback)
-            if cmp.visible() then
-                cmp.select_prev_item()
-            --elseif luasnip.jumpable(-1) then
-            --    luasnip.jump(-1)
-            else
-                fallback()
-            end
-        end, { "i", "s" }),
+        ["<Tab>"] = cmp.mapping(completeOnTab, { "i", "s" }),
+        ["<s-Tab>"] = cmp.mapping(completeOnShiftTab, { "i", "s" }),
         ["<Space>"] = cmp.mapping.abort(),
-        ["<CR>"] = cmp.mapping.confirm({ select=true }), -- Accept currently selected item. Set `select` to `false` to only confirm explicitly selected items.
+        -- Accept currently selected item.
+        -- Set `select` to `false` to only confirm explicitly selected items.
+        ["<CR>"] = cmp.mapping.confirm({ select=true }), 
     }),
     sources = cmp.config.sources({
-      { name = 'nvim_lsp', keyword_length = 3, },
-      --{ name = 'vsnip' }, -- For vsnip users.
-      -- { name = 'luasnip' }, -- For luasnip users.
-      -- { name = 'ultisnips' }, -- For ultisnips users.
-      -- { name = 'snippy' }, -- For snippy users.
-    }, {
-      { name = 'buffer', keyword_length = 3, },
+        { name = 'nvim_lsp', keyword_length = 3, },
+        { name = 'buffer', keyword_length = 3, },
+        { name = 'nvim_lsp_signature_help' },
+        { name = 'luasnip' }, -- For luasnip users.
+        --{ name = 'vsnip' }, -- For vsnip users.
+        --{ name = 'ultisnips' }, -- For ultisnips users.
+        --{ name = 'snippy' }, -- For snippy users.
     })
 })
 cmp.setup.filetype(
@@ -424,6 +436,7 @@ cmp.setup.cmdline(':', {
 
 -- Add additional capabilities supported by nvim-cmp
 local capabilities = require("cmp_nvim_lsp").default_capabilities()
+capabilities.textDocument.completion.completionItem.snippetSupport = true
 
 local lspconfig = require("lspconfig")
 
@@ -450,7 +463,6 @@ end
 
 -- lspconfig does not fail when langserver is not available, just prints a warning in status line
 lspconfig.pylsp.setup({
-    -- on_attach = my_custom_on_attach,
     capabilities = capabilities,
     settings = {
         pylsp = {
@@ -482,21 +494,35 @@ lspconfig.pylsp.setup({
     },
 })
 
---lspconfig.tsserver.setup({
---    before_init = function(params)
---        params.processId = vim.NIL
---    end,
---    cmd = require'lspcontainers'.command('tsserver'),
---    root_dir = require'lspconfig/util'.root_pattern(".git", vim.fn.getcwd()),
---})
+local before_init_container = function(params)
+    params.processId = vim.NIL
+end
 
---lspconfig.html.setup({
---  before_init = function(params)
---    params.processId = vim.NIL
---  end,
---  cmd = require("lspcontainers").command("html"),
---  root_dir = require"lspconfig/util".root_pattern(".git", vim.fn.getcwd()),
---})
+local tsserver_setup = { capabilites = capabilites }
+if vim.fn.executable('tsserver')~=0 then
+    tsserver_setup["cmd"] = { 'tsserver', '--stdio' }
+else
+    tsserver_setup["before_init"] = before_init_container
+    tsserver_setup["cmd"] = require'lspcontainers'.command('tsserver')
+end
+lspconfig.tsserver.setup(tsserver_setup)
+
+local containerized_servers = {
+    html = "vscode-html-language-server",
+    cssls = "vscode-css-language-server",
+    jsonls = "vscode-json-language-server",
+    eslint = "vscode-eslint-language-server",
+    tailwindcss = "tailwindcss-language-server",
+    --markdown = "vscode-markdown-language-server",
+}
+for lspname, server in pairs(containerized_servers) do
+    local config = { capabilites = capabilites }
+    if vim.fn.executable(server)==0 then
+        config["before_init"] = before_init_container
+        config["cmd"] = require'lspcontainers'.command(server)
+    end
+    lspconfig[lspname].setup(config)
+end
 
 -- RST/Sphinx LSP
 --lspconfig.esbonio.setup({
