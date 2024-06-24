@@ -498,7 +498,7 @@ lspconfig.pylsp.setup({
 vscode_servers = {
     cssls = "vscode-css-language-server",
     eslint = "vscode-eslint-language-server",
-    markdown = "vscode-markdown-language-server",
+    --markdown = "vscode-markdown-language-server",
 }
 for lspname, server in pairs(vscode_servers) do
     if vim.fn.executable(server)~=0 then
