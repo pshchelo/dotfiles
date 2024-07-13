@@ -10,6 +10,12 @@ Host cube
     HostName 192.168.0.102
     IdentityFile ~/.ssh/phys_ed25519
 
+Host raspas-wifi
+    HostName 192.168.0.103
+
+Host raspas-eth
+    HostName 192.168.0.104
+
 Host pshchelo-devstack-*
     User ubuntu
     StrictHostKeyChecking no
