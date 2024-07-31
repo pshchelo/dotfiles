@@ -14,6 +14,8 @@
     tool = vimdiff
 [diff]
     guitool = vimdiff
+[checkout]
+    defaultRemote = origin
 [gitreview]
     username = pshchelo
     rebase = false
