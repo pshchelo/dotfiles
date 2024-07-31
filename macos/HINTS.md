@@ -37,6 +37,14 @@ bash completion will find it:
 mkdir -p ~/.local/share/bash-completion/completions
 ln -s /Library/Developer/CommandLineTools/usr/share/git-core/git-completion.bash ~/.local/share/bash-completion/completions/git
 ```
+### ag bash completion is broken
+https://github.com/termux/termux-packages/issues/19352#issuecomment-1964379475
+`ag` was not updated to bash-completion 2.12 and uses private functions that
+were renamed, thus completion is broken with latest bash-completion version.
+
+*fix* Find `ag` completion file
+`$(brew --prefix)/etc/bash_completion.d/ag.bashcomp.sh`
+and replace the `_split_longopt` call with `_comp__split_longopt`.
 
 # routing table
 ## show routing table
