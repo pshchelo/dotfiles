@@ -344,6 +344,10 @@ vim.cmd.colorscheme("solarized")
 -- TODO: integrate with ale? Trouble?
 require('lualine').setup({
     options = { theme = "auto" },
+    tabline = {
+        lualine_a = {'buffers'},
+        lualine_z = {'tabs'}
+    },
 })
 
 -- LSP and autocomplete settings
