@@ -885,6 +885,35 @@ vim.keymap.set(
 --    }
 --)
 
+vim.keymap.set(
+    'n', '=l',
+    function()
+        local win = vim.api.nvim_get_current_win()
+        local ll_winid = vim.fn.getloclist(win, { winid = 0 }).winid
+        local action = ll_winid > 0 and 'lclose' or 'lopen'
+        vim.cmd(action)
+    end,
+    {
+        noremap = true,
+        silent = true,
+        desc = "Toggle LocList",
+    }
+)
+
+vim.keymap.set(
+    'n', '=q',
+    function()
+        local qf_winid = vim.fn.getqflist({ winid = 0 }).winid
+        local action = qf_winid > 0 and 'cclose' or 'copen'
+        vim.cmd('botright '..action)
+    end,
+    {
+        noremap = true,
+        silent = true,
+        desc = "Toggle QuickFixList",
+    }
+)
+
 -- GUI
 if vim.g.neovide then
     vim.o.guifont = "AnonymicePro Nerd Font:h16"
