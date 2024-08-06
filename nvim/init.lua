@@ -327,7 +327,6 @@ local allPlugins = {
     -- TODO: evaluate necessity for more plugins:
     -- mg979/vim-visual-multi? multi-cursor
     -- pshchelo/lodgeit.vim ?? re-write in lua?
-    -- milkypostman/vim-togglelist? quick toggles for LocationList and QuickFixList
     -- jiangmiao/auto-pairs?
     -- jeetsukumaran/vim-pythonsense? do I really need it? would treesitter suffice?
 }
@@ -396,7 +395,7 @@ cmp.setup({
         ["<Space>"] = cmp.mapping.abort(),
         -- Accept currently selected item.
         -- Set `select` to `false` to only confirm explicitly selected items.
-        ["<CR>"] = cmp.mapping.confirm({ select=true }), 
+        ["<CR>"] = cmp.mapping.confirm({ select=false }),
     }),
     sources = cmp.config.sources({
         { name = 'nvim_lsp', keyword_length = 3, },
@@ -929,3 +928,55 @@ end
 -- {"▕", "▐"} -- right aligned solid
 -- {"╎", "╏", "┆", "┇", "┊", "┋" } -- center aligned dashed
 -- {"║"} -- center aligned double
+--
+-- ### SUMMARY OF CUSTOM KEYMAPS ###
+
+-- === Autocompletion ===
+-- Ctrl-b     - scroll docs up
+-- Ctrl-f     - scroll docs down
+-- Ctrl-Space - complete symbol
+-- Tab        - cycle over completions
+-- Shift-Tab  - cycle back over completions
+-- Space      - abort completion
+-- Enter      - accept completion
+
+-- === LSP actions ===
+-- gd - go to definition
+-- gD - go to declaration
+-- gi - go to implementation
+-- gr - list references
+-- ge - put diagnostics into LocList
+-- K  - docs popup
+-- Ctrl-K - Signature docs
+-- <Leader>-f - format buffer
+-- <Leader>-rn - rename symbol
+-- <leader>-a - show other code actions
+
+-- === Treesitter ===
+-- gnn - init selection - select innner most code unit
+-- grn - node incremental - expand selection one code unit level
+-- grm - node decremental - shrink selection one code unit level
+-- grc - scope incremental
+
+-- === Telescope ===
+-- Ctrl-p - git_files
+-- Ctrl-P - find_files
+-- Ctrl-f f - live_grep - search for word with incremental live feedback
+-- Ctrl-f n - grep_string - search for word under cursor (or selection)
+
+-- === Other ===
+-- F3 - toggle NerdTree file browser
+-- F4 - toggle code structure outline sidebar
+-- F5 - toggle between dark and light
+-- Space - unhighlight search results
+-- =l - toggle LocList
+-- =q - toggle QuickFixList
+-- <leader>s - toggle EN_US spellcheck
+-- <leader>zz - toggle vertical center of cursor
+-- <leader>L - toggle display of special symbols
+-- <leader>N - toggle display of line numbers, signs and indent guides
+-- <leader>W - remove trailing whitespace
+-- <leader>T - replace tabs with spaces
+-- <leader>B - Python - insert rpdb breakpoint
+-- <leader>b - Python - insert standard breakpoint
+-- <leader>q - close buffer w/o closing window (vim-bbye)
