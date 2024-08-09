@@ -25,7 +25,7 @@ function catovpn_up {
 }
 
 function catovpn_down {
-    cato-sdp stop
+    sudo cato-sdp status | grep "^Cato client is disconnected" > /dev/null || cato-sdp stop
 }
 
 function openvpn_up {
