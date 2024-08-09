@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 HLP_MSG="Usage: $0 (u[p]|d[own]|h[elp]) [connection]"
 action=$1
-conn=${2:-Mirantis}
+conn=${2:-Cato}
 
 function vpn_up {
     if [ "$conn" = "Cato" ]; then
