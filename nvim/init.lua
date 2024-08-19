@@ -915,7 +915,7 @@ vim.keymap.set(
 
 -- GUI
 if vim.g.neovide then
-    vim.o.guifont = "AnonymicePro Nerd Font:h16"
+    vim.o.guifont = "AnonymicePro Nerd Font:h20"
 end
 --  USEFUL UNICODE SYMBOLS
 --  check marks/crosses ✅ ✓ ✔ ✗ ✘ 🗴 🗶 🗸
