@@ -38,6 +38,7 @@ pipx inject python-lsp-server --include-deps \
 # the rest are either non-OpenStack services/components,
 # OpenStack but do not have HTTP API (like metering (ceilometer)),
 # or are deprecated in MOSK (like events(panko))
+# NOTE: ironicclient <= 5.7.0 does not support Python 3.12 (not fixed yet), need to install from master
 pipx install python-openstackclient # supports Keystone, Nova, Glance, Cinder, Neutron, Swift
 pipx inject python-openstackclient \
     aodhclient \
