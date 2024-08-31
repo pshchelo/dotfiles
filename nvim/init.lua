@@ -336,7 +336,7 @@ require("lazy").setup(allPlugins)
 -- ===============
 -- solarized color scheme
 vim.o.background = "dark"
-require("solarized").setup()
+require("solarized").setup({})
 vim.cmd.colorscheme("solarized")
 
 -- lualine
