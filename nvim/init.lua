@@ -308,7 +308,7 @@ local allPlugins = {
     {"gu-fan/riv.vim"}, -- reStructouredText support
     {"HiPhish/jinja.vim"}, -- Jinja2 syntax support
     {"towolf/vim-helm", ft='helm'}, -- yaml + gotmpl + sprig + custom, but would treesitter suffice?
-    {"saltstack/salt-vim", ft='sls'}, -- saltstack, good for yaml + Jinja2
+    {"vmware-archive/salt-vim", ft={"yaml", "helm", "sls"}}, -- saltstack, good for yaml + Jinja2
     {
         "fatih/vim-go", -- Golang
         ft='go',
