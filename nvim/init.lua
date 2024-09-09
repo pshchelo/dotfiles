@@ -520,7 +520,7 @@ else
     tsserver_setup["before_init"] = before_init_container
     tsserver_setup["cmd"] = require'lspcontainers'.command('tsserver')
 end
-lspconfig.tsserver.setup(tsserver_setup)
+lspconfig.ts_ls.setup(tsserver_setup)
 
 local containerized_servers = {
     html = "vscode-html-language-server",
