@@ -41,7 +41,6 @@ apt_packages_tools:
   - uuid-runtime
   - man-db
   - git-man
-  - mosh
   - bc
 
 apt_packages:
