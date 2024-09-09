@@ -1,0 +1,16 @@
+alt-tab
+doll
+element
+firefox
+google-chrome
+iterm2
+keepassxc
+lapce
+neovide
+pycharm-ce
+rectangle
+slack
+telegram-desktop
+utm
+vlc
+zed
