@@ -28,9 +28,6 @@ Host pshchelo-devstack-jammy
 Host pshchelo-devstack-jammy-compute
     HostName 172.19.114.92
 
-Host pshchelo-devstack-focal
-    HostName 172.19.119.123
-
 Host pshchelo-devstack-xenial
     HostName 172.19.123.19
 

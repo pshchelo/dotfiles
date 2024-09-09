@@ -10,7 +10,6 @@ all:
       hosts:
         pshchelo-devstack-jammy:
         pshchelo-devstack-jammy-compute:
-        pshchelo-devstack-focal:
         pshchelo-devstack-xenial:
     aio:
       vars:
