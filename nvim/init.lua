@@ -1,5 +1,9 @@
 -- TODO: maxmempattern? need to try on huge files
 
+-- apparently fixes borked colors in mosh session
+-- https://github.com/mobile-shell/mosh/issues/928
+vim.o.termguicolors = true
+
 -- do not force to save buffers when switching to new ones
 vim.o.hidden = true
 
