@@ -17,9 +17,12 @@ brew install \
     bat \
     fd \
     fzf \
+    helm \
     jq \
     k9s \
+    kubectl \
     lf \
+    lnav \
     mosh \
     neovim \
     ripgrep \
