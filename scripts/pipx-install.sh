@@ -4,21 +4,27 @@
 pip install --user pipx
 
 # Python and others development tools
-pipx install flake8
-pipx install shellcheck-py
-pipx install git-review
 pipx install tox
-pipx install pre-commit
 pipx install twine
-pipx install bindep
-pipx install yq
+pipx install \
+    bindep \
+    flake8 \
+    git-review \
+    mycli \
+    pre-commit \
+    shellcheck-py \
+    yq
+# curl with human face
+pipx install httpie
+pipx inject httpie httpie-keystone-auth
 # python-lsp-server and plugins, expose plugins as tools
 pipx install python-lsp-server
-pipx inject python-lsp-server --include-deps \
+pipx inject python-lsp-server \
     pylsp-rope \
     pylsp-mypy \
     python-lsp-black \
-    python-lsp-ruff
+    python-lsp-ruff \
+    --include-deps 
 # other recoginized optional dependencies possible to inject:
 #McCabe: linter for complexity checking
 #pyls-memestra: detecting the use of deprecated APIs.
@@ -52,10 +58,6 @@ pipx inject python-openstackclient \
     python-octaviaclient # this one better from downstream for support of force-delete
 openstack complete > ~/.local/share/bash-completion/completions/openstack
 
-# curl with human face
-pipx install httpie
-pipx inject httpie httpie-keystone-auth
-
 # demo recording helpers
 pipx install asciinema
 pipx install demoshell
@@ -75,8 +77,7 @@ pipx install frogmouth
 # log viewer
 pipx install toolong
 
-# enhanced DB CLI's - https://www.dbcli.com
-# pipx install mycli
+# other enhanced DB CLI's - https://www.dbcli.com
 # pipx install pgcli
 # pipx install litecli
 # pipx install iredis
