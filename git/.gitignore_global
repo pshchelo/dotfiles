@@ -17,6 +17,7 @@ build/
 *.project
 *.pydevproject
 .ropeproject
+.vscode
 
 # (La)TeX temp files
 *.acn
