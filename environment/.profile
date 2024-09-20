@@ -36,9 +36,9 @@ if [ -n "$BASH_VERSION" ]; then
 fi
 
 # set vi/vim as default editor
-export EDITOR="vi"
+export EDITOR="vim"
 export VISUAL="vim"
-export VIEWER="vim -R"
+export VIEWER="bat"
 
 export GOPATH="$HOME/src/go"
 

@@ -115,9 +115,9 @@ if [ -d "$HOME/.local/bin" ] && [[ "$HOME/.local/bin" != *"$PATH"* ]]; then
 fi
 
 # set vi/vim as default editor
-export EDITOR="vi"
+export EDITOR="vim"
 export VISUAL="vim"
-export VIEWER="vim -R"
+export VIEWER="bat"
 
 # Alias definitions.
 # You may want to put all your additions into a separate file like
