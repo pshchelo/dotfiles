@@ -1,56 +1,25 @@
 -- TODO: maxmempattern? need to try on huge files
 
--- apparently fixes borked colors in mosh session
--- https://github.com/mobile-shell/mosh/issues/928
-vim.o.termguicolors = true
-
 -- do not force to save buffers when switching to new ones
 vim.o.hidden = true
 
 -- allow backspacing over everything in insert mode - NEEDED?
 -- vim.o.backspace = 'indent,eol,start'
 
--- ===========
--- INDENTATION
--- ===========
--- default indentation
-vim.o.expandtab = true
-vim.o.smarttab = true
-vim.o.tabstop = 8
-vim.o.shiftwidth = 4
-vim.o.softtabstop = 4
-
-vim.o.autoindent = true
--- vim.o.smartindent = true -- might interfere with file type based indentation, and should never be used in conjunction with it
--- copy the previous indentation on autoindenting - needed?
-vim.o.copyindent = true
-
--- ======
--- SEARCH
--- ======
-
--- ignore case if search pattern is all lowercase, case-sensitive otherwise
-vim.o.smartcase = true
--- use incremental search
-vim.o.incsearch = true
--- set show matching parenthesis
-vim.o.showmatch = true
--- highlight search terms
-vim.o.hlsearch = true
-
+-- =======
 -- VISUALS
+-- =======
+-- apparently fixes borked colors in mosh session
+-- https://github.com/mobile-shell/mosh/issues/928
+vim.o.termguicolors = true
 -- show colored border column
 vim.o.colorcolumn = "80"
-vim.cmd.highlight({"ColorColumn", "ctermbg=lightgrey", "guibg=lightgrey"})
 -- show line numbers
 vim.o.number = true
 -- hide default mode test (e.g. -- INSERT -- below statusline), use lualine instead
 vim.o.showmode = false
 -- always show status line
 vim.o.laststatus = 2
-
--- Use this highlight group when displaying bad whitespace is desired.
-vim.cmd.highlight({"BadWhitespace", "ctermbg=red", "guibg=red"})
 -- nice chars for displaying special symbols with ':set list'
 vim.opt.listchars = {
     tab = '→ ',
@@ -62,12 +31,62 @@ vim.opt.listchars = {
     extends = '»',
 }
 
+
+-- ======
+-- COLORS
+-- ======
+-- colored border column
+--vim.cmd.highlight({"ColorColumn", "ctermbg=lightgrey", "guibg=lightgrey"})
+-- Use this highlight group when displaying bad whitespace is desired.
+vim.cmd.highlight({"BadWhitespace", "ctermbg=red", "guibg=red"})
+-- Change how spellcheck highlights wrong words
+--vim.cmd.highlight({"SpellBad", "cterm=underline"})
+
+
+-- ===
+-- GUI
+-- ===
+if vim.g.neovide then
+    vim.o.guifont = "AnonymicePro Nerd Font:h20"
+end
+
+
+-- ===========
+-- INDENTATION
+-- ===========
+-- default indentation
+vim.o.expandtab = true
+vim.o.smarttab = true
+vim.o.tabstop = 8
+vim.o.shiftwidth = 4
+vim.o.softtabstop = 4
+vim.o.autoindent = true
+-- vim.o.smartindent = true -- might interfere with file type based indentation, and should never be used in conjunction with it
+-- copy the previous indentation on autoindenting - needed?
+vim.o.copyindent = true
+
+-- ======
+-- SEARCH
+-- ======
+-- ignore case if search pattern is all lowercase, case-sensitive otherwise
+vim.o.smartcase = true
+-- use incremental search
+vim.o.incsearch = true
+-- set show matching parenthesis
+vim.o.showmatch = true
+-- highlight search terms
+vim.o.hlsearch = true
+
+-- =====
 -- MOUSE -- TODO: needed?
+-- =====
 -- vim.o.clipboard = "unnamedplus"
 -- vim.o.mouse = "a"
 -- vim.o.mousemodel = "popup_setpos"
 
+-- ==========
 -- FILE TYPES
+-- ==========
 vim.o.backup = false
 vim.o.swapfile = false
 vim.opt.wildignore = {
@@ -211,9 +230,9 @@ vim.g.loaded_node_provider = 0
 vim.g.loaded_perl_provider = 0
 
 -- !! change core keymappings before that !!
--- ============
+-- =======
 -- PLUGINS
--- ============
+-- =======
 -- setup lazy.nvim plugin manager
 local lazypath = vim.fn.stdpath("data") .. "/lazy/lazy.nvim"
 if not vim.loop.fs_stat(lazypath) then
@@ -917,10 +936,6 @@ vim.keymap.set(
     }
 )
 
--- GUI
-if vim.g.neovide then
-    vim.o.guifont = "AnonymicePro Nerd Font:h20"
-end
 --  USEFUL UNICODE SYMBOLS
 --  check marks/crosses ✅ ✓ ✔ ✗ ✘ 🗴 🗶 🗸
 --  more ⚠ ♨ ⚡ ⌥ ⌦ ⎇  🗲 ‣ 🛈

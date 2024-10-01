@@ -66,8 +66,6 @@ autocmd BufRead,BufNewFile Makefile* set noexpandtab
 " VISUALS
 "========
 syntax on
-" Show colored border column
-set colorcolumn=80
 " Show line numbers
 set number
 " Diff shows vertical split by default
@@ -76,28 +74,40 @@ set diffopt+=vertical
 set showmatch
 " highlight search terms
 set hlsearch
-
-" Hide the default mode text (e.g. -- INSERT -- below the statusline)
-set noshowmode
-
-" set gui options
-" set guifont=Anonymous\ Pro\ for\ Powerline\ 12
-set guioptions-=T  "remove toolbar
-" set terminal colors
-set t_Co=16
-
-" Set interaction with system clipboard and mouse
-set clipboard=unnamedplus
-set mouse=a
-set mousemodel=popup_setpos
 " Always show status line
 set laststatus=2
+" Hide the default mode text (e.g. -- INSERT -- below the statusline)
+set noshowmode
+" Show colored border column
+set colorcolumn=80
+" nice chars for displaying special symbols with ':set list'
+set listchars=tab:→\ ,space:·,nbsp:␣,trail:•,eol:¶,precedes:«,extends:»
+
+
+"========
+" COLORS
+"========
+" set terminal colors
+set t_Co=16
 
 " Use the below highlight group when displaying bad whitespace is desired.
 highlight BadWhitespace ctermbg=red guibg=red
 
-" nice chars for displaying special symbols with ':set list'
-set listchars=tab:→\ ,space:·,nbsp:␣,trail:•,eol:¶,precedes:«,extends:»
+
+"====
+" GUI
+"====
+" set gui options
+" set guifont=Anonymous\ Pro\ for\ Powerline\ 12
+set guioptions-=T  "remove toolbar
+
+
+"==================
+" MOUSE & CLIPBOARD
+"==================
+set clipboard=unnamedplus
+set mouse=a
+set mousemodel=popup_setpos
 
 "================
 " FILES AND TYPES
@@ -147,11 +157,9 @@ let g:vim_json_conceal=0
 " treat *.conf files as in dosini format
 autocmd BufRead,BufNewFile *.conf set filetype=dosini
 
-"=================================
-"
+"=============
 " AUTO CORRECT
-"
-"=================================
+"=============
 function! AutoCorrect()
     ia ixpe ipxe
     ia iXPE iPXE
@@ -171,13 +179,8 @@ ENDPYTHON
 endif
 
 "========
-"
 " PLUGINS
-"
 "========
-"=====
-" Plug
-"=====
 call plug#begin()
 " open file paths in log/debug format as file:<line>
 Plug 'wsdjeg/vim-fetch'
@@ -281,12 +284,6 @@ Plug 'vim-airline/vim-airline-themes'
 " opinionated 'sensible' defaults for Vim
 "Plug 'tpope/vim-sensible'
 call plug#end()
-
-" ===============
-"
-" PLUGIN SETTINGS
-"
-" ===============
 
 " ctrlsf settings
 " set search backend, can swith for e.g 'rg'
@@ -471,11 +468,10 @@ let g:airline#extensions#promptline#enabled = 0
 "        \'z' : [ promptline#slices#jobs() ],
 "        \'warn' : [ promptline#slices#last_exit_code() ]}
 
-"=================================
-"
+
+"========
 " KEYMAPS
-"
-"=================================
+"========
 " vim-lsp keymaps
 " register LSP-related key bindings if any LSP is registered
 function! s:on_lsp_buffer_enabled() abort
