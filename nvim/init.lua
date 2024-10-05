@@ -415,10 +415,10 @@ cmp.setup({
         ['<C-Space>'] = cmp.mapping.complete(),
         ["<Tab>"] = cmp.mapping(completeOnTab, { "i", "s" }),
         ["<s-Tab>"] = cmp.mapping(completeOnShiftTab, { "i", "s" }),
-        ["<Space>"] = cmp.mapping.abort(),
+        ["C-e>"] = cmp.mapping.abort(),
         -- Accept currently selected item.
         -- Set `select` to `false` to only confirm explicitly selected items.
-        ["<CR>"] = cmp.mapping.confirm({ select=false }),
+        ["<CR>"] = cmp.mapping.confirm({ select=true }),
     }),
     sources = cmp.config.sources({
         { name = 'nvim_lsp', keyword_length = 3, },
@@ -956,7 +956,7 @@ vim.keymap.set(
 -- Ctrl-Space - complete symbol
 -- Tab        - cycle over completions
 -- Shift-Tab  - cycle back over completions
--- Space      - abort completion
+-- Ctrl-e     - abort completion
 -- Enter      - accept completion
 
 -- === LSP actions ===
