@@ -620,6 +620,16 @@ require("ibl").setup({
 
 -- TELESCOPE
 require('telescope').setup({
+  defaults = {
+    layout_strategy = "horizontal",
+    layout_config = {
+      horizontal = {
+        width = { padding = 0 },
+        height = { padding = 0 },
+        preview_width = 0.5,
+      },
+    },
+  },
   extensions = {
     fzf = {
       fuzzy = true,                    -- false will only do exact matching
