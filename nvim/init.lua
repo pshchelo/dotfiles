@@ -817,11 +817,11 @@ vim.keymap.set(
 
 -- TELESCOPE
 vim.keymap.set(
-    'n', '<C-p>', function() require('telescope.builtin').git_files({hidden=true}) end,
+    'n', '<C-p>', function() require('telescope.builtin').git_files() end,
     {desc = "Search files .. TODO"}
 )
 vim.keymap.set(
-    'n', '<C-P>', function() require('telescope.builtin').find_files({hidden=true}) end,
+    'n', '<C-P>', function() require('telescope.builtin').find_files({hidden=true,no_ignore=true}) end,
     {desc = "Seatch files .. TODO"}
 )
 vim.keymap.set(
