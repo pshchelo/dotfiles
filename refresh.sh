@@ -73,6 +73,39 @@ update_system() {
     fi
 }
 
+update_neovim() {
+    if command -v nvim > /dev/null; then
+        nvim --headless "+Lazy! sync" +qall
+        #nvim "+autocmd User VeryLazy Lazy! sync" +qa
+    fi
+}
+
+detect_vim() {
+    # on my machines, vim is usually neovim, and vi is vim
+    if command -v vim > /dev/null; then
+        if ! vim --version | grep -qi nvim ; then
+            echo "vim"
+            return 0
+        fi
+    fi
+    if command -v vi > /dev/null; then
+        if ! vi --version | grep -qi nvim; then
+            echo "vi"
+            return 0
+        fi
+    fi
+}
+
+update_vim() {
+    vim_cmd="$(detect_vim)"
+    $vim_cmd +PlugUpgrade +PlugUpdate +qa
+}
+
+update_editors() {
+    update_neovim
+    update_vim
+}
+
 check_reboot_required() {
     if [ "$PLATFORM" == "Linux" ]; then
         echo "=== check reboot pending ==="
@@ -91,14 +124,16 @@ SNAP=0
 FLATPAK=0
 BREW=0
 GIT=0
+EDITORS=0
 
-while getopts ':gpbsfvh' arg; do
+while getopts ':egpbsfvh' arg; do
     case "${arg}" in
         p) ALL=0; PKG=1;;
         s) ALL=0; SNAP=1;;
         f) ALL=0; FLATPAK=1;;
         b) ALL=0; BREW=1;;
         g) ALL=0; GIT=1;;
+        e) ALL=0; EDITORS=1;;
         v) set -x;;
         h) usage; exit 0;;
         *) usage; exit 1;;
@@ -111,6 +146,7 @@ if [[ $ALL -eq 1 ]]; then
     FLATPAK=1
     BREW=1
     GIT=1
+    EDITORS=1
 fi
 if [[ $GIT -eq 1 ]]; then
     update_git_repos
@@ -126,5 +162,8 @@ if [[ $FLATPAK -eq 1 ]]; then
 fi
 if [[ $BREW -eq 1 ]]; then
     update_brew
+fi
+if [[ $EDITORS -eq 1 ]]; then
+    update_editors
 fi
 check_reboot_required
