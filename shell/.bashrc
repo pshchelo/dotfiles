@@ -100,6 +100,10 @@ alias l='ls -CF'
 #   sleep 10; alert
 alias alert='notify-send --urgency=low -i "$([ $? = 0 ] && echo terminal || echo error)" "$(history|tail -n1|sed -e '\''s/^\s*[0-9]\+\s*//;s/[;&|]\s*alert$//'\'')"'
 
+# On MacOSX, disable archiving extended attributes
+if [ "$(uname)" == "Darwin" ]; then
+    alias tar="tar --disable-copyfile"
+fi
 
 # homebrew on Linux
 if [ -f /home/linuxbrew/.linuxbrew/bin/brew ]; then
