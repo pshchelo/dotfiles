@@ -102,6 +102,7 @@ update_vim() {
 }
 
 update_editors() {
+    echo "=== updating (neo)vim pligins ==="
     update_neovim
     update_vim
 }

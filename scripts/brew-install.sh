@@ -26,7 +26,8 @@ brew install \
     mosh \
     neovim \
     ripgrep \
-    starship
+    starship \
+    tailspin
 
 # for a brew-installed program to be available for sudo, it needs to be
 # in `secure_path` paths (https://github.com/orgs/Homebrew/discussions/3575):
