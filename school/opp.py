@@ -4,16 +4,11 @@ import sys
 
 import bs4
 from rich import table, console
+from selenium import webdriver
 
-"""
-Optima online school progress report.
-Parse the page with tasks progress to find past due and unfinished tasks.
-Login to https://b.optima-osvita.org/my/, save the page locally
-and parse HTML file using this script.
-Requires 'beautifulsoup4' library for HTML parsing append
-'rich' library for table display.
-"""
+"""Optima online college progress report."""
 
+OPTIMA_COLLEGE_SITE = "https://b.optima-osvita.org"
 LAST_DAY = dt.date(2024, 12, 27)
 EXCLUDE_WEEKDAYS = (6,)
 
@@ -134,6 +129,7 @@ def percent_done_todate(summary, type_):
     data = summary[type_]
     return 100 * data["done"] / (data["done"] + data["late"])
 
+
 def display_semester(semester, summary):
     n_of_days = days_between(
         TODAY, LAST_DAY, exclude_weekdays=EXCLUDE_WEEKDAYS
@@ -172,15 +168,19 @@ def display_semester(semester, summary):
     out.print(report)
 
 
-def make_soup(path):
-    with open(path) as f:
-        soup = bs4.BeautifulSoup(f, "html.parser")
+def make_soup() -> bs4.BeautifulSoup:
+    driver = webdriver.Firefox()
+    driver.get(OPTIMA_COLLEGE_SITE)
+    # TODO: implement login and switch to headless
+    input("Login and press any key to contunue...")
+    html = driver.execute_script("return document.documentElement.outerHTML")
+    driver.close()
+    soup = bs4.BeautifulSoup(html, "html.parser")
     return soup
 
 
 def main():
-    input_file = sys.argv[1]
-    soup = make_soup(input_file)
+    soup = make_soup()
     data = parse_progress_from_html(soup)
     semester = guess_semester(LAST_DAY)
     semester_data = filter_semester(data, semester)

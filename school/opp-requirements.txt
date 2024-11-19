@@ -1,0 +1,4 @@
+# also needs Firefox and geckodriver for selenium
+selenium  # scrapping
+beautifulsoup4  # parsing
+rich  # nice terminal output
