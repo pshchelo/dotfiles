@@ -1,0 +1,183 @@
+#!/bin/sh
+# lf's file previewer script.
+
+# cache dir
+dir="${XDG_CACHE_HOME:-$HOME/.cache}/lf/preview"
+
+# args
+f="$1" # file to preview
+w="$2" # width of preview window
+h="$3" # height of preview window
+x="$4" # x position of preview window
+y="$5" # y position of preview window
+
+main()
+{
+    [ -z "$1" ] && echo lf previewer script. && exit 1
+
+    mkdir -pm700 "$dir" || exit 1
+
+    twoext="$(printf '%s\n' "$f" | tr '[:upper:]' '[:lower:]' | rev | cut -d. -f1-2 | rev)"
+    ext="$(printf '%s\n' "$f" | tr '[:upper:]' '[:lower:]' | rev | cut -d. -f1 | rev)"
+
+    case "$twoext" in
+        tar.gz|tar.xz|tar.bz|tar.bz2|tar.z|tar.lzo|tar.lz|tar.7z|tar.zst)
+            run atool -l "$f"; return
+        ;;
+    esac
+
+    case "$ext" in
+        [1-8])
+            if head "$f" | grep -q '^\.TH'; then
+                man "$f"
+                return
+            fi
+        ;;
+    esac
+
+    case "$ext" in
+
+        tar|tgz|tbz|tbz2|tz|tzo|tlz|txz|t7z|tzst|zip|jar|war|rar|lha|lzh|7z|\
+        ace|a|arj|arc|rpm|deb|cab|zst|cpio)
+            run atool -l "$f"
+        ;;
+
+        gz) list_archive gzip "$f" ;;
+        xz) list_archive xz "$f" ;;
+        o) run -p binutils nm "$f" | less ;;
+        iso) run -p libcdio iso-info --no-header -l "$f" ;;
+        doc) run catdoc "$f" ;;
+        docx) run docx2txt "$f" - ;;
+        torrent) run -p transmission-cli transmission-show "$f" ;;
+        odt|ods|odp|sxw) run odt2txt "$f" ;;
+
+        wav|mp3|flac|m4a|wma|ape|ac3|og[agx]|spx|opus|as[fx])
+            run mediainfo "$f"
+        ;;
+
+        bmp|gif|jpg|jpeg|jfif|jpe|png|xpm|webp|dng|tif)
+            image "$f"
+        ;;
+
+        pdf)
+            thumbnail="$dir/$(uid "$f")"
+            if [ ! -f "$thumbnail.jpg" ]; then
+                run -p poppler pdftoppm -jpeg -jpegopt quality=50,optimize=y -f 1 -singlefile "$f" "$thumbnail" ||
+                    printf "[lfpreviewer]\nfailed generating a preview for this pdf file.\n"
+            fi
+            [ -f "$thumbnail.jpg" ] && image "$thumbnail.jpg"
+        ;;
+
+        svg)
+            thumbnail="$dir/$(uid "$f")"
+            if [ ! -f "$thumbnail.jpg" ]; then
+                run -p imagemagick convert "$f" "$thumbnail.jpg" ||
+                    printf "[lfpreviewer]\nfailed generating a preview for this svg file.\n"
+            fi
+            [ -f "$thumbnail.jpg" ] && image "$thumbnail.jpg"
+        ;;
+
+        psd|xcf)
+            if [ "$(du -b "$f" | cut -f1)" -gt 50000000 ]; then
+                printf "[lfpreviewer]\nfile is too big to preview.\n"
+                return
+            fi
+            thumbnail="$dir/$(uid "$f")"
+            if [ ! -f "$thumbnail.jpg" ]; then
+                pkill -xf '.*convert.*-flatten -resize.*'
+                run -p imagemagick -c convert timeout -k 5s 60s convert "$f" -flatten -resize 1500x "$thumbnail.jpg"
+                case $? in
+                    0) ;;
+                    124) printf "[lfpreviewer]\ngenerating this preview takes too long.\n" ;;
+                    *) printf "[lfpreviewer]\nfailed generating a preview for this file.\n"; exit 1 ;;
+                esac
+            fi
+            [ -f "$thumbnail.jpg" ] && image "$thumbnail.jpg"
+        ;;
+
+        epub)
+            thumbnail="$dir/$(uid "$f")"
+            if [ ! -f "$thumbnail.png" ]; then
+                run gnome-epub-thumbnailer --size 1024 "$f" "$thumbnail.png" ||
+                    printf "[lfpreviewer]\ncouldn't find a cover for this epub.\n"
+            fi
+            [ -f "$thumbnail.png" ] && image "$thumbnail.png"
+        ;;
+
+        prc|mobi|azw|azw3|kf8|kfx)
+            thumbnail="$dir/$(uid "$f")"
+            if [ ! -f "$thumbnail.png" ]; then
+                run gnome-mobi-thumbnailer --size 1024 "$f" "$thumbnail.png" ||
+                    printf "[lfpreviewer]\ncouldn't find a cover for this ebook.\n"
+            fi
+            [ -f "$thumbnail.png" ] && image "$thumbnail.png"
+        ;;
+
+        avi|mp4|wmv|dat|3gp|ogv|mkv|mpg|mpeg|vob|fl[icv]|\
+        m2v|mov|webm|ts|mts|m4v|r[am]|qt|divx)
+            thumbnail="$dir/$(uid "$f")"
+            if [ ! -f "$thumbnail.jpg" ]; then
+                ffmpegthumbnailer -m -s0 -q5 -i "$f" -o "$thumbnail.jpg" ||
+                    printf "[lfpreviewer]\ncouldn't generate a thumbnail for this video file."
+            fi
+            [ -f "$thumbnail.jpg" ] && image "$thumbnail.jpg"
+        ;;
+
+        *)  LC_MESSAGES=c grep -m1 '^' "$f" 2>&1 |
+                grep -qi 'grep.*binary file matches' &&
+                echo Binary file && return
+            run bat ${LF_BAT_OPTS:--pf --number} --paging=never "$f"
+        ;;
+
+    esac
+}
+
+run()
+{
+    [ "$1" = -p ] && pkg=$2 && shift 2
+    [ "$1" = -c ] && cmd=$2 && shift 2 || cmd=$1
+    [ -z "$pkg" ] && pkg=$cmd
+    if ! command -v $cmd >/dev/null; then
+        echo '[lfpreviewer]'
+        echo command "\"$cmd\"" is required for this preview.
+        echo install "\"$pkg\"".
+        exit 0
+    fi
+    "$@"
+}
+
+# make a unique identifier of the given file based on file's
+# name, filesystem, type, size, and times of birth and modification.
+uid()
+{
+    stat -c '%n%i%F%s%W%Y' -- "$(readlink -f "$f")" | sha256sum | cut -d' ' -f1
+}
+
+image()
+{
+    img="$1"
+    [ -n "$w" ] || [ -n "$h" ] || exit 1
+
+    if [ -z "$DISPLAY" ] || [ ! -p "$FIFO" ]; then
+        run chafa -s ${w}x${h} "$img"
+        return
+    fi
+
+    printf '%s%s%s\n' \
+        '{ "action": "add", "identifier": "lfpreview", "scaler": "contain",' \
+          '"path": "'"$img"'", "x": '$x', "y": '$y','  \
+          '"height": '$h', "width": '$((w-1))' }' > "$FIFO"
+
+    exit 1
+}
+
+list_archive()
+{
+    cmd="$1"
+    list="$(run "$cmd" -l "$2")"
+    begin="$(printf '%s\n' "$list" | grep -boim1 ratio | cut -d: -f1)"
+    printf '%s\n' "$list" | cut -c$((begin+1))-
+}
+
+main "$@"
+exit 0

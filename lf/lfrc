@@ -1,0 +1,21 @@
+set previewer ~/.config/lf/lfpreviewer
+cmd trash ${{
+    set -f
+    if gio trash --list > /dev/null 2>&1 ; then
+        gio trash $fx
+    else
+        mkdir -p ~/.trash
+        mv -- $fx ~/.trash
+    fi
+}}
+
+cmd delete ${{
+    set -f
+    printf "$fx\n"
+    printf "delete?[y/n]"
+    read ans
+    [ "$ans" = "y" ] && rm -rf $fx
+}}
+
+map <delete> trash
+map D delete
