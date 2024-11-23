@@ -161,7 +161,7 @@ def display_semester(semester, summary):
             str(row_data["late"]),
             str(row_data["todo"]),
             str(round(percent_done_todate(summary, type_), 2)),
-            str(round(row_data["todo"]/n_of_days, 2)),
+            str(round((row_data["todo"] + row_data["late"]) / n_of_days, 2)),
         )
     out = console.Console()
     out.print()
