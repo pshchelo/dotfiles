@@ -1,14 +1,21 @@
 #!/usr/bin/env python3
 import datetime as dt
-import sys
+import getpass
+import os
 
 import bs4
 from rich import table, console
 from selenium import webdriver
+from selenium.webdriver.support.ui import WebDriverWait
+from selenium.webdriver.firefox.options import Options
 
 """Optima online college progress report."""
 
 OPTIMA_COLLEGE_SITE = "https://b.optima-osvita.org"
+USERNAME_ENV_VAR = "OPTIMA_USERNAME"
+PASSWORD_ENV_VAR = "OPTIMA_PASSWORD"
+LOGIN_PROMPT = "login: "
+PASSWORD_PROMPT = "password: "
 LAST_DAY = dt.date(2024, 12, 27)
 EXCLUDE_WEEKDAYS = (6,)
 
@@ -168,19 +175,41 @@ def display_semester(semester, summary):
     out.print(report)
 
 
-def make_soup() -> bs4.BeautifulSoup:
-    driver = webdriver.Firefox()
+def selenium_get_html(user: str, pswd: str) -> str:
+    # TODO: add debug mode with headed browser
+    options = Options()
+    options.add_argument("--headless")
+    driver = webdriver.Firefox(options=options)
     driver.get(OPTIMA_COLLEGE_SITE)
-    # TODO: implement login and switch to headless
-    input("Login and press any key to contunue...")
+    driver.find_element("id", "username").send_keys(user)
+    driver.find_element("id", "password").send_keys(pswd)
+    driver.find_element("id", "loginbtn").click()
+    WebDriverWait(driver=driver, timeout=30).until(
+        lambda x: x.execute_script("return document.readyState === 'complete'")
+    )
     html = driver.execute_script("return document.documentElement.outerHTML")
     driver.close()
+    return html
+
+
+def make_soup(html: str) -> bs4.BeautifulSoup:
     soup = bs4.BeautifulSoup(html, "html.parser")
     return soup
 
 
+def get_input() -> (str, str):
+    user = os.getenv(USERNAME_ENV_VAR)
+    pswd = os.getenv(PASSWORD_ENV_VAR)
+    if not (user and pswd):
+        user = input(LOGIN_PROMPT)
+        pswd = getpass.getpass(PASSWORD_PROMPT)
+    return user, pswd
+
+
 def main():
-    soup = make_soup()
+    user, pswd = get_input()
+    html = selenium_get_html(user, pswd)
+    soup = make_soup(html)
     data = parse_progress_from_html(soup)
     semester = guess_semester(LAST_DAY)
     semester_data = filter_semester(data, semester)
