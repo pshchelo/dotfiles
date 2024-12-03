@@ -1,7 +1,10 @@
 #!/usr/bin/env python3
+import argparse
 import datetime as dt
 import getpass
 import os
+import sys
+import time
 
 import bs4
 from rich import table, console
@@ -175,18 +178,20 @@ def display_semester(semester, summary):
     out.print(report)
 
 
-def selenium_get_html(user: str, pswd: str) -> str:
-    # TODO: add debug mode with headed browser
+def selenium_get_html(args: argparse.Namespace) -> str:
     options = Options()
-    options.add_argument("--headless")
+    if not args.debug:
+        options.add_argument("--headless")
     driver = webdriver.Firefox(options=options)
     driver.get(OPTIMA_COLLEGE_SITE)
-    driver.find_element("id", "username").send_keys(user)
-    driver.find_element("id", "password").send_keys(pswd)
+    driver.find_element("id", "username").send_keys(args.username)
+    driver.find_element("id", "password").send_keys(args.password)
     driver.find_element("id", "loginbtn").click()
     WebDriverWait(driver=driver, timeout=30).until(
         lambda x: x.execute_script("return document.readyState === 'complete'")
     )
+    if args.timeout:
+        time.sleep(args.timeout)
     html = driver.execute_script("return document.documentElement.outerHTML")
     driver.close()
     return html
@@ -197,20 +202,46 @@ def make_soup(html: str) -> bs4.BeautifulSoup:
     return soup
 
 
-def get_input() -> (str, str):
-    user = os.getenv(USERNAME_ENV_VAR)
-    pswd = os.getenv(PASSWORD_ENV_VAR)
-    if not (user and pswd):
-        user = input(LOGIN_PROMPT)
-        pswd = getpass.getpass(PASSWORD_PROMPT)
-    return user, pswd
+def make_cli() -> argparse.Namespace:
+    parser = argparse.ArgumentParser(prog="optima-parse-progress")
+    parser.add_argument(
+        "--debug",
+        action="store_true",
+    )
+    parser.add_argument(
+        "-u", "--username",
+        default=os.getenv(USERNAME_ENV_VAR),
+    )
+    parser.add_argument(
+        "-p", "--password",
+        default=os.getenv(PASSWORD_ENV_VAR),
+    )
+    parser.add_argument(
+        "-t", "--timeout",
+        type=int,
+        default=10,
+        help="Extra time to wait for page to load",
+    )
+    args = parser.parse_args()
+    if not args.username:
+        args.username = input(LOGIN_PROMPT)
+    if not args.password:
+        args.password = getpass.getpass(PASSWORD_PROMPT)
+    return args
 
 
 def main():
-    user, pswd = get_input()
-    html = selenium_get_html(user, pswd)
+    args = make_cli()
+    html = selenium_get_html(args)
+    if not html:
+        print("Failed to scrap HTML")
+        sys.exit(1)
     soup = make_soup(html)
-    data = parse_progress_from_html(soup)
+    try:
+        data = parse_progress_from_html(soup)
+    except Exception as e:
+        print(f"Failed to parse HTML, error: {e}")
+        sys.exit(1)
     semester = guess_semester(LAST_DAY)
     semester_data = filter_semester(data, semester)
     result = parse_left(semester_data)
