@@ -1,3 +1,22 @@
+# manage host name
+## computer name
+```
+scutil [--get|--set] ComputerName
+```
+Can be changed also via Settings -> General -> About -> Name
+
+## local host name
+```
+scutil [--get|--set] LocalHostName
+```
+Can be changed via Settings -> General -> Sharing -> Local hostname
+
+## hostname
+```
+scutil [--get|--set] HostName
+```
+This is what is reported by `hostname` command in terminal.
+
 # enable sudo cred caching
 make it similar to Linux/Debian
 
