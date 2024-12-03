@@ -35,13 +35,14 @@ vim.opt.listchars = {
 -- ======
 -- COLORS
 -- ======
--- colored border column
---vim.cmd.highlight({"ColorColumn", "ctermbg=lightgrey", "guibg=lightgrey"})
--- Use this highlight group when displaying bad whitespace is desired.
-vim.cmd.highlight({"BadWhitespace", "ctermbg=red", "guibg=red"})
--- Change how spellcheck highlights wrong words
---vim.cmd.highlight({"SpellBad", "cterm=underline"})
-
+local setCustomHighlights = function()
+    -- Use this highlight group when displaying bad whitespace is desired.
+    vim.cmd.highlight({"BadWhitespace", "ctermbg=red", "guibg=red"})
+    -- Change how spellcheck highlights wrong words
+    vim.cmd.highlight({"clear", "SpellBad"})
+    vim.cmd.highlight({"SpellBad", "cterm=underline", "guisp=red"})
+    vim.cmd.highlight({"SpellBad", "gui=undercurl", "guisp=red"})
+end
 
 -- ===
 -- GUI
@@ -361,6 +362,7 @@ require("lazy").setup(allPlugins)
 vim.o.background = "dark"
 require("solarized").setup({})
 vim.cmd.colorscheme("solarized")
+setCustomHighlights()
 
 -- lualine
 -- TODO: integrate with ale? Trouble?
@@ -685,6 +687,7 @@ require("todo-comments").setup({
     },
 })
 
+
 -- =======
 -- KEYMAPS
 -- =======
@@ -703,6 +706,7 @@ local toggle_background = function()
     elseif vim.o.background == 'light' then
         vim.o.background = 'dark'
     end
+    setCustomHighlights()
 end
 
 vim.keymap.set(
