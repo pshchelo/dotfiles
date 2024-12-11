@@ -7,7 +7,8 @@ clouds:
       auth_url: https://keystone.ic-eu.ssl.mirantis.net
       project_name: oscore-team
     identity_api_version: '3'
-    region_name: RegionOne
+    regions:
+    - RegionOne
     endpoint_type: public
     interface: public
   oscore-us:
@@ -18,7 +19,8 @@ clouds:
       auth_url: https://ic-us.ssl.mirantis.net:5000/
       project_name: oscore-team
     identity_api_version: '3'
-    region_name: RegionOne
+    regions:
+    - RegionOne
     endpoint_type: public
     interface: public
   oscore-ci-us:
@@ -29,7 +31,8 @@ clouds:
       auth_url: https://ic-us.ssl.mirantis.net:5000/
       project_name: oscore-ci-team
     identity_api_version: '3'
-    region_name: RegionOne
+    regions:
+    - RegionOne
     endpoint_type: public
     interface: public
   oscore-ci-eu:
@@ -40,7 +43,8 @@ clouds:
       auth_url: https://keystone.ic-eu.ssl.mirantis.net
       project_name: oscore-ci-team
     identity_api_version: '3'
-    region_name: RegionOne
+    regions:
+    - RegionOne
     endpoint_type: public
     interface: public
   mosk-dev-admin:
@@ -52,7 +56,9 @@ clouds:
       username: superadmin
       password: superadmin
     identity_api_version: '3'
-    region_name: CustomRegion
+    regions:
+    - CustomRegion
+    - RegionOne
     endpoint_type: public
     interface: public
     insecure: true
@@ -64,7 +70,9 @@ clouds:
       password: superadmin
       system_scope: all
     identity_api_version: '3'
-    region_name: CustomRegion
+    regions:
+    - CustomRegion
+    - RegionOne
     endpoint_type: public
     interface: public
     insecure: true
@@ -76,7 +84,9 @@ clouds:
       password: viewer
       system_scope: all
     identity_api_version: '3'
-    region_name: CustomRegion
+    regions:
+    - CustomRegion
+    - RegionOne
     endpoint_type: public
     interface: public
     insecure: true
@@ -88,7 +98,9 @@ clouds:
       project_name: admin
       project_domain_name: Default
       user_domain_name: Default
-    region_name: CustomRegion
+    regions:
+    - CustomRegion
+    - RegionOne
     identity_api_version: 3
     interface: public
     insecure: true
@@ -100,7 +112,9 @@ clouds:
       project_name: demo
       project_domain_name: Default
       user_domain_name: Default
-    region_name: CustomRegion
+    regions:
+    - CustomRegion
+    - RegionOne
     identity_api_version: 3
     interface: public
     insecure: true
@@ -112,7 +126,9 @@ clouds:
       project_name: demo
       project_domain_name: Default
       user_domain_name: Default
-    region_name: CustomRegion
+    regions:
+    - CustomRegion
+    - RegionOne
     identity_api_version: 3
     interface: public
     insecure: true
@@ -124,7 +140,9 @@ clouds:
       project_name: alt-demo
       project_domain_name: Default
       user_domain_name: Default
-    region_name: CustomRegion
+    regions:
+    - CustomRegion
+    - RegionOne
     identity_api_version: 3
     interface: public
     insecure: true
@@ -136,7 +154,9 @@ clouds:
       project_name: demo
       project_domain_name: Default
       user_domain_name: Default
-    region_name: CustomRegion
+    regions:
+    - CustomRegion
+    - RegionOne
     identity_api_version: 3
     interface: public
     insecure: true
@@ -155,7 +175,9 @@ clouds:
       client_id: os
       client_secret: someRandomClientSecretMightBeNull
     identity_api_version: '3'
-    region_name: CustomRegion
+    regions:
+    - CustomRegion
+    - RegionOne
     endpoint_type: public
     interface: public
     insecure: true
@@ -171,7 +193,9 @@ clouds:
       project_name: demo
       project_domain_name: Default
       user_domain_name: Default
-    region_name: CustomRegion
+    regions:
+    - CustomRegion
+    - RegionOne
     identity_api_version: 3
     interface: public
     insecure: true
