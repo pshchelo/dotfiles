@@ -20,13 +20,17 @@ This is what is reported by `hostname` command in terminal.
 # enable sudo cred caching
 make it similar to Linux/Debian
 
-edit sudoers file with `sudo visudo`, and
-change `timestamp_timeout` to non-0 value:
-0 - no cred caching
--1 - infinite cred caching (DO NOT DO THIS!!!)
-N - cache sudo creds for that many *minutes*
-
-MacOS has it explicitly set to 0 by default for all users.
+use `visudo` to create a drop in override in `/etc/sudoers.d/` folder like
+```
+sudo visudo -f /etc/sudoers.d/timestamp
+```
+with the following content
+```
+Defaults	timestamp_timeout=N
+```
+Where `N` is desired INT value for *minutes* to cache the sudo creds for, with
+`0` meaning no cred caching (the default in MacOSX), and 
+`-1` meaning infinite cred caching (**DO NOT DO THIS!!!**)
 
 Can also change it for single user like
 ```
