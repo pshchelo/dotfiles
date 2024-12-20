@@ -120,5 +120,7 @@ links_to_create:
     src: "{{ dotfiles_dir }}/colors/k9s-solarized-dark.yaml"
   - path: "{{ userhome }}/.config/nvim/init.lua"
     src: "{{ dotfiles_dir }}/nvim/init.lua"
+  - path: "{{ userhome }}.config/lf"
+    src: "{{ dotfiles_dir }}/lf"
   - path: "{{ userhome }}/refresh.sh"
     src: "{{ dotfiles_dir }}/refresh.sh"
