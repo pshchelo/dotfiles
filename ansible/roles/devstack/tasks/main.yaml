@@ -65,3 +65,4 @@
   with_items: "{{ py3_eggs_to_remove.files }}"
   tags:
     - py3conflict
+  when: (remove_py3_conflicting_eggs|bool)

@@ -9,6 +9,7 @@ stackdev_scripts:
     path: "{{ stackdev_scripts_target_dir }}/devlog"
   - src: "{{ stackdev_dir }}/scripts/devlog"
     path: "{{ stackdev_scripts_target_dir }}/rdevlog"
+remove_py3_conflicting_eggs: false
 conflicting_py3_eggs:
   - "httplib2-*.egg-info"
   - "pyasn1_modules-*.egg-info"
