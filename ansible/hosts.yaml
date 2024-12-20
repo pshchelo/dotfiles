@@ -8,10 +8,14 @@ all:
   children:
     dsvm:
       hosts:
+        pshchelo-devstack-noble:
+        pshchelo-devstack-noble-compute:
         pshchelo-devstack-jammy:
         pshchelo-devstack-jammy-compute:
         pshchelo-devstack-xenial:
     aio:
+      hosts:
+        pshchelo-rockoon-aio:
       vars:
         ansible_ssh_common_args: "-o StrictHostKeyChecking=no -o UserKnownHostsFile=/dev/null"
         ansible_ssh_private_key_file: ~/.ssh/aio_rsa

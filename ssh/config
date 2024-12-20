@@ -16,11 +16,37 @@ Host raspas-wifi
 Host raspas-eth
     HostName 192.168.0.104
 
+Host workvm
+    HostName 172.19.114.44
+    DynamicForward 8181
+
+Host codesearch.vm.mirantis.net
+    IdentityFile ~/.ssh/aio_rsa
+    User ubuntu
+
+Host oscore-security.vm.mirantis.net
+    IdentityFile ~/.ssh/aio_rsa
+    User ubuntu
+
+Host pshchelo-rockoon-aio
+    HostName 172.19.119.123
+    User ubuntu
+    IdentityFile ~/.ssh/aio_rsa
+    StrictHostKeyChecking no
+    UserKnownHostsFile /dev/null
+    LogLevel QUIET
+
 Host pshchelo-devstack-*
     User ubuntu
     StrictHostKeyChecking no
     UserKnownHostsFile /dev/null
     LogLevel QUIET
+
+Host pshchelo-devstack-noble
+    HostName 172.19.116.20
+
+Host pshchelo-devstack-noble-compute
+    HostName 172.19.114.26
 
 Host pshchelo-devstack-jammy
     HostName 172.19.116.1
@@ -31,20 +57,9 @@ Host pshchelo-devstack-jammy-compute
 Host pshchelo-devstack-xenial
     HostName 172.19.123.19
 
-Host oscore-security.vm.mirantis.net
-    IdentityFile ~/.ssh/aio_rsa
-    User ubuntu
-
-Host codesearch.vm.mirantis.net
-    IdentityFile ~/.ssh/aio_rsa
-    User ubuntu
-
-Host workvm
-    HostName 172.19.114.44
-    DynamicForward 8181
-
-# Some ranges if private IP addresses I use for ephemeral instances
-# Virt-manager local networks, DevStack public and private networks
+# Some ranges of private IP addresses I use for ephemeral instances:
+# Virt-manager local networks, DevStack public and private networks,
+# floating IPs of clouds.
 # PubkeyAcceptedKeyTypes is a backwards compatible alias to PubkeyAcceptedAlgorithms
 Host 192.168.*.* 10.*.*.* 172.24.4.* 172.17.48.* 172.17.49.* 172.17.50.* 172.16.242.* 172.16.243.*
     StrictHostKeyChecking no
