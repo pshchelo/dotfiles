@@ -11,6 +11,7 @@ function usage() {
     echo "-s Update snap packages"
     echo "-f Update flatpak packages"
     echo "-b Update brew packages"
+    echo "-y Assume YES for interactive prompts"
     echo "-v Set verbose mode (set -x)"
     echo "-h Print this message and exit"
 }
@@ -31,12 +32,18 @@ update_mac() {
 }
 
 update_apt() {
+    APT_ENV=""
+    APT_ARGS=""
+    if [ "$ASSUME_YES" == "1" ]; then
+        APT_ENV="DEBIAN_FRONTEND=noninteractive"
+        APT_ARGS="-y"
+    fi
     echo "=== updating apt package repos ==="
-    sudo apt update
+    sudo $APT_ENV apt update "$APT_ARGS"
     echo "=== upgrading apt packages ==="
-    sudo apt upgrade
+    sudo $APT_ENV apt upgrade "$APT_ARGS"
     echo "=== removing no longer used apt packages ==="
-    sudo apt autoremove
+    sudo $APT_ENV apt autoremove "$APT_ARGS"
 }
 
 update_snap() {
@@ -49,7 +56,11 @@ update_snap() {
 update_flatpak() {
     if command -v flatpak > /dev/null; then
         echo "=== updating flatpak apps ==="
-        sudo flatpak update
+        if [ "$ASSUME_YES" == "1" ]; then
+            sudo flatpak update -y --noninteractive
+        else
+            sudo flatpak update
+        fi
     fi
 }
 
@@ -126,8 +137,9 @@ FLATPAK=0
 BREW=0
 GIT=0
 EDITORS=0
+ASSUME_YES=0
 
-while getopts ':egpbsfvh' arg; do
+while getopts ':egpbsfyvh' arg; do
     case "${arg}" in
         p) ALL=0; PKG=1;;
         s) ALL=0; SNAP=1;;
@@ -135,6 +147,7 @@ while getopts ':egpbsfvh' arg; do
         b) ALL=0; BREW=1;;
         g) ALL=0; GIT=1;;
         e) ALL=0; EDITORS=1;;
+        y) ASSUME_YES=1 ;;
         v) set -x;;
         h) usage; exit 0;;
         *) usage; exit 1;;
