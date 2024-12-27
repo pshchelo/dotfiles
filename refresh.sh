@@ -39,11 +39,11 @@ update_apt() {
         APT_ARGS="-y"
     fi
     echo "=== updating apt package repos ==="
-    sudo $APT_ENV apt update "$APT_ARGS"
+    sudo $APT_ENV apt update $APT_ARGS
     echo "=== upgrading apt packages ==="
-    sudo $APT_ENV apt upgrade "$APT_ARGS"
+    sudo $APT_ENV apt upgrade $APT_ARGS
     echo "=== removing no longer used apt packages ==="
-    sudo $APT_ENV apt autoremove "$APT_ARGS"
+    sudo $APT_ENV apt autoremove $APT_ARGS
 }
 
 update_snap() {
