@@ -19,18 +19,17 @@ USERNAME_ENV_VAR = "OPTIMA_USERNAME"
 PASSWORD_ENV_VAR = "OPTIMA_PASSWORD"
 LOGIN_PROMPT = "login: "
 PASSWORD_PROMPT = "password: "
-LAST_DAY = dt.date(2024, 12, 27)
+LAST_DAY = dt.date(2025, 6, 4)
 EXCLUDE_WEEKDAYS = (6,)
 
 now = dt.datetime.now()
 TODAY = dt.date(now.year, now.month, now.day)
+if now.hour <= 3:
+    TODAY = TODAY - dt.timedelta(days=1)
+
 
 class PParserException(Exception):
     pass
-
-
-def guess_semester(date):
-    return 2 if 1 < date.month < 8 else 1
 
 
 def days_between(fromdate, todate, exclude_weekdays=None):
@@ -242,7 +241,7 @@ def main():
     except Exception as e:
         print(f"Failed to parse HTML, error: {e}")
         sys.exit(1)
-    semester = guess_semester(LAST_DAY)
+    semester = 2 if LAST_DAY.month < 8 else 1
     semester_data = filter_semester(data, semester)
     result = parse_left(semester_data)
     display_semester(semester, result)
