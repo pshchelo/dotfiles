@@ -11,6 +11,7 @@ function usage() {
     echo "-s Update snap packages"
     echo "-f Update flatpak packages"
     echo "-b Update brew packages"
+    echo "-e Update editor plugins (vim-plug and neovim-lazy)"
     echo "-y Assume YES for interactive prompts"
     echo "-v Set verbose mode (set -x)"
     echo "-h Print this message and exit"
