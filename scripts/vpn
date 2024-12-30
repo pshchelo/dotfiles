@@ -20,22 +20,30 @@ function vpn_down {
 }
 
 function catovpn_up {
-    cato-sdp start --use-systemd-resolv --route 172.16.0.0/12 --metric 1000
-    sudo ip route add 172.16.0.0/12 dev tun0
+    if cato-sdp status | grep -q "^Cato client is disconnected"; then
+        cato-sdp start --use-systemd-resolv --route 172.16.0.0/12 --metric 1000
+        sudo ip route add 172.16.0.0/12 dev tun0
+    else
+        echo "Already connected"
+    fi
 }
 
 function catovpn_down {
-    sudo cato-sdp status | grep "^Cato client is disconnected" > /dev/null || cato-sdp stop
+    if cato-sdp status | grep -q "^Cato client is disconnected" ; then
+        echo "Already disconnected"
+    else
+        cato-sdp stop
+    fi
 }
 
 function openvpn_up {
-if [ -z  "$(nmcli connection show --active $conn)" ]; then
+if [ -z  "$(nmcli connection show --active "$conn")" ]; then
     nmcli connection up "$conn"
 fi
 }
 
 function openvpn_down {
-if [ -n "$(nmcli connection show --active $conn)" ]; then
+if [ -n "$(nmcli connection show --active "$conn")" ]; then
     nmcli connection down "$conn"
 fi
 }
