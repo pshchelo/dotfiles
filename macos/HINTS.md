@@ -1,4 +1,5 @@
 # manage host name
+see `mac-hostname.sh` script next to this file for automated way
 ## computer name
 ```
 scutil [--get|--set] ComputerName
