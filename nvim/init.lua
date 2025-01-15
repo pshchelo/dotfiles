@@ -523,6 +523,8 @@ lspconfig.pylsp.setup({
     },
 })
 
+lspconfig.gopls.setup({})
+
 vscode_servers = {
     cssls = "vscode-css-language-server",
     eslint = "vscode-eslint-language-server",

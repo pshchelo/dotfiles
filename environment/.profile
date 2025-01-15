@@ -53,3 +53,12 @@ if [ -d "$HOME/.local/bin" ]; then
             ;;
     esac
 fi
+if [ -d "$HOME/src/go/bin" ]; then
+    case "$PATH" in
+        *"$HOME/src/go/bin"*)
+            ;;
+        *)
+            PATH="$HOME/src/go/bin:$PATH"
+            ;;
+    esac
+fi
