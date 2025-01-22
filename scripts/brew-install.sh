@@ -7,12 +7,13 @@ brew_url="https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh"
 brew_install_script="/tmp/brew-install.sh"
 
 __usage="
-Usage: $(basename "$0") [-hc]
+Usage: $(basename "$0") [-hcbipv]
 Install brew on Linux, and install some software from brew
 Options:
   -b  Install brew itself
   -c  Pre-create brew installation dir manually. Useful when running as user with passwordless sudo.
   -i  Install selection of brew packages
+  -p  Create override in /etc/sudoers.d file adding brew (s)bin paths to secure path
   -v  verbose (bash -x)
   -h  Print this message and exit
 "
@@ -20,13 +21,14 @@ Options:
 function create_brew_prefix {
     me=$(whoami)
     sudo mkdir -p "$brew_dir"
-    sudo chown $me:$me "$brew_dir"
+    sudo chown "$me:$me" "$brew_dir"
 }
 
 function patch_secure_path {
-    eval $(sudo grep secure_path /etc/sudoers | awk '{print $2'})
+    eval $(sudo grep secure_path /etc/sudoers | awk '{print $2}')
     secure_path+=":$brew_dir/sbin:$brew_dir/bin"
-    sudo echo -e "Defaults\tsecure_path=\"$secure_path\"" > /etc/sudoers.d/linuxbrew_path
+    #echo -e "Defaults\tsecure_path=\"$secure_path\"" | sudo tee /etc/sudoers.d/linuxbrew_path
+    echo -e "Defaults\tsecure_path=\"$secure_path\""
 }
 
 function install_brew {
@@ -59,7 +61,7 @@ EOF
 }
 
 function install_brew_packages {
-    brew install \
+    $brew_dir/bin/brew install \
         bat \
         fd \
         fzf \
@@ -83,11 +85,12 @@ PATCH_SECURE_PATH=0
 INSTALL_BREW=0
 INSTALL_BREW_PACKAGES=0
 
-while getopts ':hcvib' arg; do
+while getopts ':hcvibp' arg; do
     case "${arg}" in
         c) CREATE_BREW_PREFIX=1 ;;
         b) INSTALL_BREW=1 ;;
         i) INSTALL_BREW_PACKAGES=1 ;;
+        p) PATCH_SECURE_PATH=1 ;;
         v) set -x ;;
         h) echo "$__usage"; exit 0;;
         *) echo "$__usage"; exit 1;;
@@ -100,4 +103,8 @@ fi
 
 if [[ "$INSTALL_BREW_PACKAGES" == "1" ]]; then
     install_brew_packages
+fi
+
+if [[ "$PATCH_SECURE_PATH" == "1" ]]; then
+    patch_secure_path
 fi
