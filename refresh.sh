@@ -163,6 +163,13 @@ if [[ $ALL -eq 1 ]]; then
     GIT=1
     EDITORS=1
 fi
+
+if [[ $PLATFORM != "Darwin" ]]; then
+    if [[ $PKG -eq 1 || $SNAP -eq 1 || $FLATPAK -eq 1 ]]; then
+        sudo -v
+    fi
+fi
+
 if [[ $GIT -eq 1 ]]; then
     update_git_repos
 fi
