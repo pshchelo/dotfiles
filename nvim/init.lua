@@ -321,11 +321,7 @@ local allPlugins = {
     {"tpope/vim-surround"}, -- work with surrounding quotes/braces/tags
     {"folke/trouble.nvim"}, -- nicer display of diagnostics
     {
-        --"folke/todo-comments.nvim", -- better work with comment prefixes
-        -- NOTE: this is PR#255 in the main repo, that can properly highlight e.g. NOTE(name):
-        -- TODO: move back to main repo once the PR is merged
-        "LunarLambda/todo-comments.nvim",
-        branch = "enhanced-matching",
+        "folke/todo-comments.nvim", -- better work with comment prefixes
         dependencies = {"nvim-lua/plenary.nvim"},
     },
     {"folke/lsp-colors.nvim"}, -- add missing LSP color groups to colorschemes
