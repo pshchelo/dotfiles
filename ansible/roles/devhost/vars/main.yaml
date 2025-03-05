@@ -110,6 +110,8 @@ links_to_create:
     src: "{{ dotfiles_dir }}/scripts/mosk/mosk-dev-connect"
   - path: "{{ local_bin_dir }}/mosk-db-admin"
     src: "{{ dotfiles_dir }}/scripts/mosk/mosk-db-admin"
+  - path: "{{ local_bin_dir }}/mosk-mycli"
+    src: "{{ dotfiles_dir }}/scripts/mosk/mosk-mycli"
   - path: "{{ userhome }}/.config/starship.toml"
     src: "{{ dotfiles_dir }}/shell/starship.toml"
   - path: "{{ userhome }}/.config/k9s/config.yaml"
