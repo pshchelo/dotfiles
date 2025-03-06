@@ -806,14 +806,11 @@ vim.keymap.set(
 )
 
 -- NERDTree
--- TODO: auto choose depent on if there's a file in the current buffer
 vim.keymap.set(
-    "n", "<F3>", ":NERDTreeToggle<CR>",
-    {desc = "Toggle NERDTREE file browser side bar"}
-)
-vim.keymap.set(
-    "n", "<s-F3>", ":NERDTreeToggle %<CR>",
-    {desc = "Toggle NERDTREE file browser side bar"}
+    "n", "<F3>", function()
+        vim.cmd("NERDTreeToggle "..vim.api.nvim_buf_get_name(0))
+    end,
+    {desc = "Toggle NERDTRee file browser side bar"}
 )
 
 -- tagbar
