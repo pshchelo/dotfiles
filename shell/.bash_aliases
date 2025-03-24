@@ -8,7 +8,11 @@ alias lss='less -fR'
 alias inishow='grep -Ev "^(#|$)"'
 
 # copy command for big files, with progress indication
-alias longcp='rsync --progress -ah --sparse'
+# -P - --partial + --progress
+# -a - archive mod (recursive + preserve perms/owners/groups/time + links etc)
+# -S - --sparse
+# -h - human-readable numbers
+alias longcp='rsync -PaSh'
 
 # terminal pastebin, use as "cat somefile | tb"
 alias tb='nc termbin.com 9999'
@@ -30,10 +34,8 @@ alias sssh="ssh -o StrictHostKeyChecking=no -o UserKnownHostsFile=/dev/null -o L
 # login to default dev VMs in the cloud via ssh
 alias aiossh="ssh -o StrictHostKeyChecking=no -o UserKnownHostsFile=/dev/null -o LogLevel=ERROR -i ~/.ssh/aio_rsa"
 alias aioscp="scp -o StrictHostKeyChecking=no -o UserKnownHostsFile=/dev/null -o LogLevel=ERROR -i ~/.ssh/aio_rsa"
-
 # login to default dev VMs in the cloud via Mosh
 alias aiomosh="mosh --ssh 'ssh -o StrictHostKeyChecking=no -o UserKnownHostsFile=/dev/null -i ~/.ssh/aio_rsa -o LogLevel=ERROR -l ubuntu'"
-
 # login to default dev VMs in the cloud via sshuttle
 alias aiosshuttle="sshuttle -e 'ssh -o StrictHostKeyChecking=no -o UserKnownHostsFile=/dev/null -i ~/.ssh/aio_rsa -o LogLevel=ERROR -l ubuntu'"
 
