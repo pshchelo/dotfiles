@@ -47,9 +47,6 @@ alias os-curl='curl -sS -k -H "X-Auth-Token: `openstack token issue -f value -c 
 alias os-https='https -A keystone --verify=false'
 alias os-http='http -A keystone --verify=false'
 
-# search files by fzf and open in vim
-alias fvim='vim $(fzf)'
-
 alias lxc-as-me="lxc exec --user 1000 --group 1000 --env HOME=\$HOME"
 
 alias tmax='tmux new -As'
