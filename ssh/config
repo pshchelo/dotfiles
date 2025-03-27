@@ -28,14 +28,6 @@ Host oscore-security.vm.mirantis.net
     IdentityFile ~/.ssh/aio_rsa
     User ubuntu
 
-Host pshchelo-rockoon-aio
-    HostName 172.19.119.123
-    User ubuntu
-    IdentityFile ~/.ssh/aio_rsa
-    StrictHostKeyChecking no
-    UserKnownHostsFile /dev/null
-    LogLevel QUIET
-
 Host pshchelo-devstack-*
     User ubuntu
     StrictHostKeyChecking no
@@ -47,15 +39,6 @@ Host pshchelo-devstack-noble
 
 Host pshchelo-devstack-noble-compute
     HostName 172.19.114.26
-
-Host pshchelo-devstack-jammy
-    HostName 172.19.116.1
-
-Host pshchelo-devstack-jammy-compute
-    HostName 172.19.114.92
-
-Host pshchelo-devstack-xenial
-    HostName 172.19.123.19
 
 # Some ranges of private IP addresses I use for ephemeral instances:
 # Virt-manager local networks, DevStack public and private networks,
