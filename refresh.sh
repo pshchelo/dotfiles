@@ -1,8 +1,17 @@
 #!/usr/bin/env bash
 
 PLATFORM="$(uname)"
+RED='\033[0;31m'
+GREEN='\033[0;32m'
+NOC='\033[0m'
+echo_green() {
+    echo -e "$GREEN$1$NOC"
+}
+echo_red() {
+    echo -e "$RED$1$NOC"
+}
 
-function usage() {
+usage() {
     echo "Usage: $(basename "$0") [-g] [-p] [-s] [-f] [-b] [-x] [-h]"
     echo "Update various software distribution systems"
     echo "if no system specified, update all supported systems"
@@ -18,7 +27,7 @@ function usage() {
 }
 
 update_git_repos() {
-    echo "=== updating git repos ==="
+    echo_green "=== updating git repos ==="
     if [ -d ~/dotfiles ]; then
         git -C ~/dotfiles pull
     fi
@@ -28,7 +37,7 @@ update_git_repos() {
 }
 
 update_mac() {
-    echo "=== updating MacOS software ==="
+    echo_green "=== updating MacOS software ==="
     softwareupdate -i -a
 }
 
@@ -39,24 +48,24 @@ update_apt() {
         APT_ENV="DEBIAN_FRONTEND=noninteractive"
         APT_ARGS="-y"
     fi
-    echo "=== updating apt package repos ==="
+    echo_green "=== updating apt package repos ==="
     sudo $APT_ENV apt update $APT_ARGS
-    echo "=== upgrading apt packages ==="
+    echo_green "=== upgrading apt packages ==="
     sudo $APT_ENV apt upgrade $APT_ARGS
-    echo "=== removing no longer used apt packages ==="
+    echo_green "=== removing no longer used apt packages ==="
     sudo $APT_ENV apt autoremove $APT_ARGS
 }
 
 update_snap() {
     if command -v snap > /dev/null; then
-        echo "=== updating snaps ==="
+        echo_green "=== updating snaps ==="
         sudo snap refresh
     fi
 }
 
 update_flatpak() {
     if command -v flatpak > /dev/null; then
-        echo "=== updating flatpak apps ==="
+        echo_green "=== updating flatpak apps ==="
         if [ "$ASSUME_YES" == "1" ]; then
             sudo flatpak update -y --noninteractive
         else
@@ -67,13 +76,12 @@ update_flatpak() {
 
 update_brew() {
     if command -v brew > /dev/null; then
-        echo "=== updating brew apps ==="
+        echo_green "=== updating brew apps ==="
         brew update
         brew upgrade
         if [ "$PLATFORM" == "Darwin" ]; then
             brew upgrade --casks # --greedy
         fi
-        
     fi
 }
 
@@ -114,19 +122,19 @@ update_vim() {
 }
 
 update_editors() {
-    echo "=== updating (neo)vim pligins ==="
+    echo_green "=== updating (neo)vim pligins ==="
     update_neovim
     update_vim
 }
 
 check_reboot_required() {
     if [ "$PLATFORM" == "Linux" ]; then
-        echo "=== check reboot pending ==="
+        echo_green "=== check reboot pending ==="
         if [ -f /var/run/reboot-required ]; then
-            cat /var/run/reboot-required
+            echo_red "*** System restart required ***"
             cat /var/run/reboot-required.pkgs
         else
-            echo "no reboot pending"
+            echo_green "no reboot pending"
         fi
     fi
 }
