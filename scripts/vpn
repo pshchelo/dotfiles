@@ -1,7 +1,11 @@
 #!/usr/bin/env bash
 HLP_MSG="Usage: $0 (u[p]|d[own]|h[elp]) [connection]"
+DEFAULT_JUMPHOST="workvm"
+DEFAULT_CONNECTION="Cato"
+PID_FILE="/tmp/vpn-ssh-tunnel.pid"
 action=$1
-conn=${2:-Cato}
+conn=${2:-$DEFAULT_CONNECTION}
+jumphost=${3:-$DEFAULT_JUMPHOST}
 
 function vpn_up {
     if [ "$conn" = "Cato" ]; then
@@ -23,6 +27,10 @@ function catovpn_up {
     if cato-sdp status | grep -q "^Cato client is disconnected"; then
         cato-sdp start --use-systemd-resolv --route 172.16.0.0/12 --metric 1000
         sudo ip route add 172.16.0.0/12 dev tun0
+        if [ -n "$jumphost" ]; then
+            ssh -fN "$jumphost"
+            pgrep -f "ssh -fN $jumphost" > $PID_FILE
+        fi
     else
         echo "Already connected"
     fi
@@ -32,6 +40,10 @@ function catovpn_down {
     if cato-sdp status | grep -q "^Cato client is disconnected" ; then
         echo "Already disconnected"
     else
+        if [ -f /tmp/vpn-ssh-tunnel.pid ]; then
+            kill -9 "$(cat $PID_FILE)"
+            rm "$PID_FILE"
+        fi
         cato-sdp stop
     fi
 }
