@@ -685,7 +685,10 @@ require("todo-comments").setup({
     },
 })
 
-
+-- Trouble
+require("trouble").setup({
+    cmd="Trouble",
+})
 -- =======
 -- KEYMAPS
 -- =======
