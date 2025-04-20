@@ -108,9 +108,11 @@ fi
 # homebrew on Linux
 if [ -f /home/linuxbrew/.linuxbrew/bin/brew ]; then
     eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"
+    HOMEBREW_PREFIX="/home/linuxbrew/.linuxbrew"
 # .. or MacOS
 elif [ -f /opt/homebrew/bin/brew ]; then
     eval "$(/opt/homebrew/bin/brew shellenv)"
+    HOMEBREW_PREFIX="/opt/homebrew"
 fi
 
 # set PATH so it includes user's local bin if exists
@@ -137,12 +139,17 @@ fi
 # sources /etc/bash.bashrc).
 if ! shopt -oq posix; then
     if [ -f /usr/share/bash-completion/bash_completion ]; then
-        . /usr/share/bash-completion/bash_completion
+        source /usr/share/bash-completion/bash_completion
     elif [ -f /etc/bash_completion ]; then
-        . /etc/bash_completion
-    # on MacOS
-    elif   [[ -r "/opt/homebrew/etc/profile.d/bash_completion.sh" ]]; then
-        . "/opt/homebrew/etc/profile.d/bash_completion.sh"
+        source /etc/bash_completion
+    fi
+    # homebrew
+    if [[ -r "${HOMEBREW_PREFIX}/etc/profile.d/bash_completion.sh" ]]; then
+        source "${HOMEBREW_PREFIX}/etc/profile.d/bash_completion.sh"
+    else
+        for COMPLETION in "${HOMEBREW_PREFIX}/etc/bash_completion.d/"*; do
+            [[ -r "${COMPLETION}" ]] && source "${COMPLETION}"
+        done
     fi
 fi
 
@@ -164,7 +171,7 @@ if [ -n "$VENVWRAPPER_SCRIPT" ]; then
     source "$VENVWRAPPER_SCRIPT"
 fi
 
-DOTFILES=${HOME}/dotfiles
+DOTFILES="${HOME}/dotfiles"
 
 # solarized scheme for Midnight Commander
 export MC_SKIN=${DOTFILES}/colors/mc-solarized.ini
