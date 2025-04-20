@@ -1,6 +1,7 @@
 #!/usr/bin/env bash
 HLP_MSG="Usage: $0 (u[p]|d[own]|h[elp]) [connection]"
-DEFAULT_JUMPHOST="workvm"
+#DEFAULT_JUMPHOST="workvm"
+DEFAULT_JUMPHOST=""
 DEFAULT_CONNECTION="Cato"
 PID_FILE="/tmp/vpn-ssh-tunnel.pid"
 action=$1
