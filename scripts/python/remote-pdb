@@ -1,0 +1,21 @@
+#!/usr/bin/env bash
+# small wraper for socat and readline, mostly intended for usage with rpdb
+# and variants, like remote-pdb, with proper readline support
+PROTO="tcp"
+HOST="127.0.0.1"
+DEFAULT_PORT="4444"
+for cmd in "rlwrap" "socat"; do
+    if ! command -v $cmd &>/dev/null; then
+        echo "can't find $cmd in PATH, ensure it is installed"
+        exit 1
+    fi
+done
+while getopts ':h:' opt; do
+    case $opt in
+        h) HOST=$OPTARG ;;
+        *) echo "$(basename "$0") [-h <HOST:127.0.0.1>] [<PORT:4444>]";exit 1;;
+    esac
+done
+shift $((OPTIND-1))
+PORT=${1:-$DEFAULT_PORT}
+rlwrap socat - "$PROTO:$HOST:$PORT" 

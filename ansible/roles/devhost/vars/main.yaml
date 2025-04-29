@@ -94,6 +94,8 @@ links_to_create:
     src: "{{ dotfiles_dir }}/scripts/python/ppclean"
   - path: "{{ local_bin_dir }}/dtestr"
     src: "{{ dotfiles_dir }}/scripts/python/dtestr"
+  - path: "{{ local_bin_dir }}/remote-pdb"
+    src: "{{ dotfiles_dir }}/scripts/python/remote-pdb"
   - path: "{{ userhome }}/.ansible.cfg"
     src: "{{ dotfiles_dir }}/ansible/ansible.cfg"
   - path: "{{ userhome }}/.local/share/bash-completion/completions/tig"
