@@ -12,7 +12,7 @@ echo_red() {
 }
 
 usage() {
-    echo "Usage: $(basename "$0") [-g] [-p] [-s] [-f] [-b] [-x] [-h]"
+    echo "Usage: $(basename "$0") [-g] [-p] [-s] [-f] [-b] [-x] [-e] [-y] [-v] [-h]"
     echo "Update various software distribution systems"
     echo "if no system specified, update all supported systems"
     echo "-g Update main git repos"
@@ -20,6 +20,7 @@ usage() {
     echo "-s Update snap packages"
     echo "-f Update flatpak packages"
     echo "-b Update brew packages"
+    echo "-x Update pipx packages"
     echo "-e Update editor plugins (vim-plug and neovim-lazy)"
     echo "-y Assume YES for interactive prompts"
     echo "-v Set verbose mode (set -x)"
@@ -127,6 +128,13 @@ update_editors() {
     update_vim
 }
 
+update_pipx() {
+    if command -v pipx > /dev/null; then
+        echo_green "=== update pipx-installed tools ==="
+        pipx upgrade-all --include-injected
+    fi
+}
+
 check_reboot_required() {
     if [ "$PLATFORM" == "Linux" ]; then
         echo_green "=== check reboot pending ==="
@@ -146,14 +154,16 @@ FLATPAK=0
 BREW=0
 GIT=0
 EDITORS=0
+PIPX=0
 ASSUME_YES=0
 
-while getopts ':egpbsfyvh' arg; do
+while getopts ':egpbsfxyvh' arg; do
     case "${arg}" in
         p) ALL=0; PKG=1;;
         s) ALL=0; SNAP=1;;
         f) ALL=0; FLATPAK=1;;
         b) ALL=0; BREW=1;;
+        x) ALL=0; PIPX=1;;
         g) ALL=0; GIT=1;;
         e) ALL=0; EDITORS=1;;
         y) ASSUME_YES=1 ;;
@@ -168,6 +178,7 @@ if [[ $ALL -eq 1 ]]; then
     SNAP=1
     FLATPAK=1
     BREW=1
+    PIPX=1
     GIT=1
     EDITORS=1
 fi
@@ -192,6 +203,9 @@ if [[ $FLATPAK -eq 1 ]]; then
 fi
 if [[ $BREW -eq 1 ]]; then
     update_brew
+fi
+if [[ $PIPX -eq 1 ]]; then
+    update_pipx
 fi
 if [[ $EDITORS -eq 1 ]]; then
     update_editors
