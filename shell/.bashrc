@@ -219,3 +219,6 @@ export GOPATH="$HOME/src/go"
 function k8s-api-ip4 {
     kubectl config view -o jsonpath="{.clusters[?(@.name == \"$1\")].cluster.server}" | awk -F ":" "{print \$2}" | cut -c3-
 }
+
+# Custom default pager for tailspin
+export TAILSPIN_PAGER="less -fR [FILE]"
