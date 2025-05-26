@@ -12,7 +12,7 @@ echo_red() {
 }
 
 usage() {
-    echo "Usage: $(basename "$0") [-g] [-p] [-s] [-f] [-b] [-x] [-e] [-y] [-v] [-h]"
+    echo "Usage: $(basename "$0") [-g] [-p] [-s] [-f] [-b] [-t] [-e] [-y] [-v] [-h]"
     echo "Update various software distribution systems"
     echo "if no system specified, update all supported systems"
     echo "-g Update main git repos"
@@ -20,7 +20,7 @@ usage() {
     echo "-s Update snap packages"
     echo "-f Update flatpak packages"
     echo "-b Update brew packages"
-    echo "-x Update pipx packages"
+    echo "-t Update python tool packages (pipx and uv)"
     echo "-e Update editor plugins (vim-plug and neovim-lazy)"
     echo "-y Assume YES for interactive prompts"
     echo "-v Set verbose mode (set -x)"
@@ -128,8 +128,12 @@ update_editors() {
     update_vim
 }
 
-update_pipx() {
-    if command -v pipx > /dev/null; then
+update_pytools() {
+    if command -v uv > /dev/null 2>&1; then
+        echo_green "=== update uv-installed tools ==="
+        uv tool update --all
+    fi
+    if command -v pipx > /dev/null 2>&1; then
         echo_green "=== update pipx-installed tools ==="
         pipx upgrade-all --include-injected
     fi
@@ -154,16 +158,16 @@ FLATPAK=0
 BREW=0
 GIT=0
 EDITORS=0
-PIPX=0
+PYTOOLS=0
 ASSUME_YES=0
 
-while getopts ':egpbsfxyvh' arg; do
+while getopts ':egpbsftyvh' arg; do
     case "${arg}" in
         p) ALL=0; PKG=1;;
         s) ALL=0; SNAP=1;;
         f) ALL=0; FLATPAK=1;;
         b) ALL=0; BREW=1;;
-        x) ALL=0; PIPX=1;;
+        t) ALL=0; PYTOOLS=1;;
         g) ALL=0; GIT=1;;
         e) ALL=0; EDITORS=1;;
         y) ASSUME_YES=1 ;;
@@ -178,7 +182,7 @@ if [[ $ALL -eq 1 ]]; then
     SNAP=1
     FLATPAK=1
     BREW=1
-    PIPX=1
+    PYTOOLS=1
     GIT=1
     EDITORS=1
 fi
@@ -204,8 +208,8 @@ fi
 if [[ $BREW -eq 1 ]]; then
     update_brew
 fi
-if [[ $PIPX -eq 1 ]]; then
-    update_pipx
+if [[ $PYTOOLS -eq 1 ]]; then
+    update_pytools
 fi
 if [[ $EDITORS -eq 1 ]]; then
     update_editors

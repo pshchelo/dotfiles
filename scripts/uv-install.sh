@@ -6,7 +6,7 @@
 # https://github.com/astral-sh/uv/issues/6314
 
 function install_uv {
-    if command -v brew > /dev/null 2>&1 ; then 
+    if command -v brew > /dev/null 2>&1 ; then
         brew install uv
     else
         # TODO: support other ways of installing
@@ -17,15 +17,17 @@ function install_uv {
 
 function install_main {
     # Python and others development tools
-    uv tool install bindep 
+    uv tool install bashate
+    uv tool install bindep
     uv tool install crudini
-    uv tool install flake8 
-    uv tool install git-review 
+    uv tool install flake8
+    uv tool install git-review
     uv tool install mycli
-    uv tool install pre-commit 
-    uv tool install shellcheck-py 
-    uv tool install sshuttle 
-    uv tool install tox 
+    uv tool install pre-commit
+    uv tool install reno
+    uv tool install shellcheck-py
+    uv tool install sshuttle
+    uv tool install tox
     uv tool install yq
     # curl with human face
     uv tool install httpie --with httpie-keystone-auth
