@@ -75,7 +75,8 @@ function install_brew_packages {
         neovim \
         ripgrep \
         starship \
-        tailspin
+        tailspin \
+        uv
 
     sudo ln -s $brew_dir/bin/mosh-server /usr/local/bin
 }
