@@ -19,7 +19,7 @@ function install_lsp {
         pylsp-mypy \
         python-lsp-black \
         python-lsp-ruff \
-        --include-deps 
+        --include-deps
     # other recoginized optional dependencies possible to inject:
     #McCabe: linter for complexity checking
     #pyls-memestra: detecting the use of deprecated APIs.
@@ -38,7 +38,7 @@ function install_lsp {
 
 function install_ansible {
     pipx install ansible --include-deps
-    pipx inject ansible openstacksdk --include-apps
+    pipx inject ansible openstacksdk pysocks --include-apps
 }
 
 __usage="

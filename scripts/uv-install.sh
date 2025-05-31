@@ -21,7 +21,7 @@ function install_main {
     uv tool install bindep
     uv tool install crudini
     uv tool install flake8
-    uv tool install git-review
+    uv tool install git-review --with pysocks
     uv tool install mycli
     uv tool install pre-commit
     uv tool install reno
@@ -30,7 +30,9 @@ function install_main {
     uv tool install tox
     uv tool install yq
     # curl with human face
-    uv tool install httpie --with httpie-keystone-auth
+    uv tool install httpie \
+        --with httpie-keystone-auth \
+        --with pysocks
 }
 
 function install_osc {
@@ -41,6 +43,7 @@ function install_osc {
     # or are deprecated in MOSK (like events(panko))
     # base OSC supports Keystone, Nova, Glance, Cinder, Neutron, Swift
     uv tool install python-openstackclient \
+        --with pysocks \
         --with python-openstackclient \
         --with aodhclient \
         --with gnocchiclient \
