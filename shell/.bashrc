@@ -153,22 +153,28 @@ if ! shopt -oq posix; then
     fi
 fi
 
-venvwrapper_file_paths="${HOME}/.local/bin/virtualenvwrapper.sh
-/usr/share/virtualenvwrapper/virtualenvwrapper.sh
-/usr/local/bin/virtualenvwrapper/virtualenvwrapper.sh
-/opt/homebrew/bin/virtualenvwrapper.sh"
-for fpath in $venvwrapper_file_paths; do
-    if [ -f "$fpath" ]; then
-        VENVWRAPPER_SCRIPT="$fpath"
-        break
+# Setup uv-virtualenvwrapper or virtualenvwrapper, prefer former
+UV_VENVVWRAPPER_SCRIPT=$(which uv-virtualenvwrapper.sh)
+if [ -n "$UV_VENVVWRAPPER_SCRIPT" ]; then
+    source "$UV_VENVVWRAPPER_SCRIPT"
+else
+    venvwrapper_file_paths="${HOME}/.local/bin/virtualenvwrapper.sh
+    /usr/share/virtualenvwrapper/virtualenvwrapper.sh
+    /usr/local/bin/virtualenvwrapper/virtualenvwrapper.sh
+    /opt/homebrew/bin/virtualenvwrapper.sh"
+    for fpath in $venvwrapper_file_paths; do
+        if [ -f "$fpath" ]; then
+            VENVWRAPPER_SCRIPT="$fpath"
+            break
+        fi
+    done
+    if [ -n "$VENVWRAPPER_SCRIPT" ]; then
+        if python3 -c 'import virtualenvwrapper' > /dev/null 2>&1; then
+            export VIRTUALENVWRAPPER_PYTHON=$(which python3)
+        fi
+        export WORKON_HOME=$HOME/.virtualenvs
+        source "$VENVWRAPPER_SCRIPT"
     fi
-done
-if [ -n "$VENVWRAPPER_SCRIPT" ]; then
-    if python3 -c 'import virtualenvwrapper' > /dev/null 2>&1; then
-        export VIRTUALENVWRAPPER_PYTHON=$(which python3)
-    fi
-    export WORKON_HOME=$HOME/.virtualenvs
-    source "$VENVWRAPPER_SCRIPT"
 fi
 
 DOTFILES="${HOME}/dotfiles"

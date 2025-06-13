@@ -28,6 +28,7 @@ function install_main {
     uv tool install shellcheck-py
     uv tool install sshuttle
     uv tool install tox
+    uv tool install uv-virtualenvwrapper
     uv tool install yq
     # curl with human face
     uv tool install httpie \
