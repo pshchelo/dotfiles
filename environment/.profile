@@ -27,14 +27,6 @@ if [ "$(uname)" = "Darwin" ]; then
     export LC_CTYPE=en_US.UTF-8
 fi
 
-# if running bash
-if [ -n "$BASH_VERSION" ]; then
-    # include .bashrc if it exists
-    if [ -f "$HOME/.bashrc" ]; then
-        . "$HOME/.bashrc"
-    fi
-fi
-
 # set vi/vim as default editor
 export EDITOR="vim"
 export VISUAL="vim"
@@ -61,4 +53,12 @@ if [ -d "$HOME/src/go/bin" ]; then
             PATH="$HOME/src/go/bin:$PATH"
             ;;
     esac
+fi
+
+# if running bash
+if [ -n "$BASH_VERSION" ]; then
+    # include .bashrc if it exists
+    if [ -f "$HOME/.bashrc" ]; then
+        . "$HOME/.bashrc"
+    fi
 fi
