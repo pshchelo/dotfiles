@@ -8,9 +8,11 @@
 function install_uv {
     if command -v brew > /dev/null 2>&1 ; then
         brew install uv
+    elif command -v pip > /dev/null 2>&1 ; then
+        PIP_BREAK_SYSTEM_PACKAGES=1 pip install --user uv
     else
         # TODO: support other ways of installing
-        echo "Brew is not detected, other installation methods are unsupported"
+        echo "Brew or pip is not detected, other installation methods are unsupported"
         exit 1
     fi
 }
@@ -22,7 +24,9 @@ function install_main {
     uv tool install crudini
     uv tool install flake8
     uv tool install git-review --with pysocks
+    uv tool install ipython
     uv tool install mycli
+    uv tool install pipx
     uv tool install pre-commit
     uv tool install reno
     uv tool install shellcheck-py

@@ -4,10 +4,18 @@
 # to install with `uv` https://github.com/astral-sh/uv/issues/6314
 
 function install_pipx {
-    # TODO: check if new enough pipx is present in apt repos,
-    # and use that if possible
-    PIP_BREAK_SYSTEM_PACKAGES=1 pip install --user pipx
-    pipx ensurepath
+    if command -v uv > /dev/null 2>&1 ; then
+        uv tool install pipx
+        pipx ensurepath
+    elif command -v pip > /dev/null 2>&1 ; then 
+        PIP_BREAK_SYSTEM_PACKAGES=1 pip install --user pipx
+        pipx ensurepath
+    else
+        # TODO: check if new enough pipx is present in apt repos,
+        # and use that if possible
+        echo "uv or pip not detected, other installation methods are not yet supported"
+        exit 1
+    fi
 }
 
 function install_lsp {
