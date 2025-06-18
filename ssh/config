@@ -18,7 +18,6 @@ Host raspas-eth
 
 Host workvm
     HostName 172.19.114.44
-    DynamicForward 8181
 
 Host codesearch.vm.mirantis.net
     IdentityFile ~/.ssh/aio_rsa
