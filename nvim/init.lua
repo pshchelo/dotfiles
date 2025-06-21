@@ -344,6 +344,8 @@ local allPlugins = {
         ft={"latex", "tex"},
         enabled=vim.fn.executable("latex")~=0,
     },
+    -- AI completion playground
+    {"supermaven-inc/supermaven-nvim"}, -- supermaven.com
     -- TODO: evaluate necessity for more plugins:
     -- mg979/vim-visual-multi? multi-cursor
     -- pshchelo/lodgeit.vim ?? re-write in lua?
@@ -368,6 +370,11 @@ require('lualine').setup({
         lualine_a = {'buffers'},
         lualine_z = {'tabs'}
     },
+})
+
+-- AI helpers
+require("supermaven-nvim").setup({
+    disable_inline_completion = true, -- using cmp for inline suggestions
 })
 
 -- LSP and autocomplete settings
@@ -422,6 +429,7 @@ cmp.setup({
         { name = 'nvim_lsp', keyword_length = 3, },
         { name = 'buffer', keyword_length = 3, },
         { name = 'nvim_lsp_signature_help' },
+        { name = "supermaven" },
         { name = 'luasnip' }, -- For luasnip users.
         --{ name = 'vsnip' }, -- For vsnip users.
         --{ name = 'ultisnips' }, -- For ultisnips users.
