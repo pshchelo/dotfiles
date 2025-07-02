@@ -30,9 +30,11 @@ usage() {
 update_git_repos() {
     echo_green "=== updating git repos ==="
     if [ -d ~/dotfiles ]; then
+        echo -e "Updating ${GREEN}dotfiles${NOC} repo..."
         git -C ~/dotfiles pull
     fi
     if [ -d ~/src/stackdev ]; then
+        echo -e "Updating ${GREEN}stackdev${NOC} repo..."
         git -C ~/src/stackdev pull
     fi
 }
