@@ -346,6 +346,10 @@ local allPlugins = {
     },
     -- AI completion playground
     {"supermaven-inc/supermaven-nvim"}, -- supermaven.com
+    {
+        "zbirenbaum/copilot-cmp", -- github's Copilot
+        dependencies = {"zbirenbaum/copilot.lua"},
+    },
     -- TODO: evaluate necessity for more plugins:
     -- mg979/vim-visual-multi? multi-cursor
     -- pshchelo/lodgeit.vim ?? re-write in lua?
@@ -376,6 +380,17 @@ require('lualine').setup({
 require("supermaven-nvim").setup({
     disable_inline_completion = true, -- using cmp for inline suggestions
 })
+require("copilot").setup({
+    suggestion = { enabled = false },
+    panel = { enabled = false },
+    filetypes = {
+        python = true,
+        --javascript = true, -- allow specific filetype
+        --typescript = true, -- allow specific filetype
+        ["*"] = false, -- disable for all other filetypes and ignore default `filetypes`
+    },
+})
+require("copilot_cmp").setup()
 
 -- LSP and autocomplete settings
 local cmp = require("cmp")
@@ -430,10 +445,8 @@ cmp.setup({
         { name = 'buffer', keyword_length = 3, },
         { name = 'nvim_lsp_signature_help' },
         { name = "supermaven" },
-        { name = 'luasnip' }, -- For luasnip users.
-        --{ name = 'vsnip' }, -- For vsnip users.
-        --{ name = 'ultisnips' }, -- For ultisnips users.
-        --{ name = 'snippy' }, -- For snippy users.
+        { name = "copilot", group_index = 2 },
+        { name = 'luasnip' },
     })
 })
 cmp.setup.filetype(
