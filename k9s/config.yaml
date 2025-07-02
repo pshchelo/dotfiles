@@ -26,7 +26,7 @@ k9s:
       namespaces: []
       labels: {}
   logger:
-    tail: 100
+    tail: -1
     buffer: 5000
     sinceSeconds: -1
     fullScreen: false
