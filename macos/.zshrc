@@ -19,6 +19,11 @@ export VISUAL='nvim'
 # brew integration
 test -e /opt/homebrew/bin/brew && eval "$(/opt/homebrew/bin/brew shellenv)"
 
+# enable autocompletion
+autoload -Uz +X compinit && compinit
+# enable bash-style autocompletion
+autoload -Uz +X bashcompinit && bashcompinit
+
 # direnv integration
 eval "$(direnv hook zsh)"
 
@@ -28,12 +33,7 @@ eval "$(fzf --zsh)"
 # starship integration
 eval "$(starship init zsh)"
 
-source virtualenvwrapper.sh
-
-# enable autocompletion
-autoload -Uz +X compinit && compinit
-# enable bash-style autocompletion
-autoload -Uz +X bashcompinit && bashcompinit
+test "$(which uv-virtualenvwrapper.sh)" && source "$(which uv-virtualenvwrapper.sh)"
 
 # make Home/End keys work as expected
 bindkey '\e[H'    beginning-of-line
