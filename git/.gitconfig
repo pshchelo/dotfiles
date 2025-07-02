@@ -23,6 +23,7 @@
     b = branch
     cp = cherry-pick
     p = pull --all --prune
+    f = fetch --all --prune
     graph = log --graph --oneline --decorate
     head = log --graph --oneline --decorate -5
     ss = status --short
