@@ -16,6 +16,18 @@ clouds:
       username: pshchelokovskyy
       project_domain_name: Default
       user_domain_name: ldap_mirantis
+      auth_url: https://keystone.ic-us.ssl.mirantis.net
+      project_name: oscore-team
+    identity_api_version: '3'
+    regions:
+    - RegionOne
+    endpoint_type: public
+    interface: public
+  oscore-mcp:
+    auth:
+      username: pshchelokovskyy
+      project_domain_name: Default
+      user_domain_name: ldap_mirantis
       auth_url: https://ic-us.ssl.mirantis.net:5000/
       project_name: oscore-team
     identity_api_version: '3'
@@ -23,7 +35,7 @@ clouds:
     - RegionOne
     endpoint_type: public
     interface: public
-  oscore-ci-us:
+  oscore-ci-mcp:
     auth:
       username: pshchelokovskyy
       project_domain_name: Default
@@ -41,6 +53,18 @@ clouds:
       project_domain_name: Default
       user_domain_name: ldap_mirantis
       auth_url: https://keystone.ic-eu.ssl.mirantis.net
+      project_name: oscore-ci-team
+    identity_api_version: '3'
+    regions:
+    - RegionOne
+    endpoint_type: public
+    interface: public
+  oscore-ci-us:
+    auth:
+      username: pshchelokovskyy
+      project_domain_name: Default
+      user_domain_name: ldap_mirantis
+      auth_url: https://keystone.ic-us.ssl.mirantis.net
       project_name: oscore-ci-team
     identity_api_version: '3'
     regions:
