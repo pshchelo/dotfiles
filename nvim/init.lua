@@ -447,7 +447,7 @@ cmp.setup({
         { name = 'nvim_lsp', keyword_length = 3, },
         { name = 'buffer', keyword_length = 3, },
         { name = 'nvim_lsp_signature_help' },
-        { name = "supermaven" },
+        { name = "supermaven", keyword_length = 3 },
         { name = "copilot", group_index = 2 },
         { name = 'luasnip' },
     })
