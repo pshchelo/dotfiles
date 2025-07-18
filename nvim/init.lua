@@ -380,17 +380,20 @@ require('lualine').setup({
 require("supermaven-nvim").setup({
     disable_inline_completion = true, -- using cmp for inline suggestions
 })
-require("copilot").setup({
-    suggestion = { enabled = false },
-    panel = { enabled = false },
-    filetypes = {
-        python = true,
-        --javascript = true, -- allow specific filetype
-        --typescript = true, -- allow specific filetype
-        ["*"] = false, -- disable for all other filetypes and ignore default `filetypes`
-    },
-})
-require("copilot_cmp").setup()
+-- copilot depends on node being installed, silently skip if not
+if vim.fn.executable("node")~=0 then
+    require("copilot").setup({
+        suggestion = { enabled = false },
+        panel = { enabled = false },
+        filetypes = {
+            python = true,
+            --javascript = true, -- allow specific filetype
+            --typescript = true, -- allow specific filetype
+            ["*"] = false, -- disable for all other filetypes and ignore default `filetypes`
+        },
+    })
+    require("copilot_cmp").setup()
+end
 
 -- LSP and autocomplete settings
 local cmp = require("cmp")
