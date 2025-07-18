@@ -8,7 +8,6 @@ JUMPHOST=""
 
 function vpn_up {
     if [ "$conn" = "Cato" ]; then
-        JUMPHOST="workvm"
         catovpn_up
     else
         openvpn_up
