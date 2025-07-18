@@ -12,16 +12,23 @@ echo_red() {
 }
 
 usage() {
-    echo "Usage: $(basename "$0") [-g] [-p] [-s] [-f] [-b] [-t] [-e] [-y] [-v] [-h]"
+    echo "Usage: $(basename "$0") [-gGpPsSfFbBtTeEyvh]"
     echo "Update various software distribution systems"
     echo "if no system specified, update all supported systems"
     echo "-g Update main git repos"
+    echo "-G Do not update main git repos"
     echo "-p Update system packages (apt or mac)"
+    echo "-P Do not update system packages (apt or mac)"
     echo "-s Update snap packages"
+    echo "-S Do not update snap packages"
     echo "-f Update flatpak packages"
+    echo "-F Do not update flatpak packages"
     echo "-b Update brew packages"
+    echo "-B Do not update brew packages"
     echo "-t Update python tool packages (pipx and uv)"
+    echo "-T Do not update python tool packages (pipx and uv)"
     echo "-e Update editor plugins (vim-plug and neovim-lazy)"
+    echo "-E Do not update editor plugins (vim-plug and neovim-lazy)"
     echo "-y Assume YES for interactive prompts"
     echo "-v Set verbose mode (set -x)"
     echo "-h Print this message and exit"
@@ -155,23 +162,37 @@ check_reboot_required() {
 
 ALL=1
 PKG=0
+SKIP_PKG=0
 SNAP=0
+SKIP_SNAP=0
 FLATPAK=0
+SKIP_FLATPAK=0
 BREW=0
+SKIP_BREW=0
 GIT=0
+SKIP_GIT=0
 EDITORS=0
+SKIP_EDITORS=0
 PYTOOLS=0
+SKIP_PYTOOLS=0
 ASSUME_YES=0
 
-while getopts ':egpbsftyvh' arg; do
+while getopts ':eEgGpPbBsSfFtTyvh' arg; do
     case "${arg}" in
         p) ALL=0; PKG=1;;
+        P) SKIP_PKG=1;;
         s) ALL=0; SNAP=1;;
+        S) SKIP_SNAP=1;;
         f) ALL=0; FLATPAK=1;;
+        F) SKIP_FLATPAK=1;;
         b) ALL=0; BREW=1;;
+        B) SKIP_BREW=1;;
         t) ALL=0; PYTOOLS=1;;
+        T) SKIP_PYTOOLS=1;;
         g) ALL=0; GIT=1;;
+        G) SKIP_GIT=1;;
         e) ALL=0; EDITORS=1;;
+        E) SKIP_EDITORS=1;;
         y) ASSUME_YES=1 ;;
         v) set -x;;
         h) usage; exit 0;;
@@ -180,13 +201,13 @@ while getopts ':egpbsftyvh' arg; do
 done
 
 if [[ $ALL -eq 1 ]]; then
-    PKG=1
-    SNAP=1
-    FLATPAK=1
-    BREW=1
-    PYTOOLS=1
-    GIT=1
-    EDITORS=1
+    [[ $SKIP_PKG -eq 0 ]] && PKG=1
+    [[ $SKIP_SNAP -eq 0 ]] && SNAP=1
+    [[ $SKIP_FLATPAK -eq 0 ]] && FLATPAK=1
+    [[ $SKIP_BREW -eq 0 ]] && BREW=1
+    [[ $SKIP_PYTOOLS -eq 0 ]] && PYTOOLS=1
+    [[ $SKIP_GIT -eq 0 ]] && GIT=1
+    [[ $SKIP_EDITORS -eq 0 ]] && EDITORS=1
 fi
 
 if [[ $PLATFORM != "Darwin" ]]; then
