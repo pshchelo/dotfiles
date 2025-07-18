@@ -35,35 +35,41 @@ usage() {
 }
 
 update_git_repos() {
-    echo_green "=== updating git repos ==="
-    if [ -d ~/dotfiles ]; then
-        echo -e "Updating ${GREEN}dotfiles${NOC} repo..."
-        git -C ~/dotfiles pull
-    fi
-    if [ -d ~/src/stackdev ]; then
-        echo -e "Updating ${GREEN}stackdev${NOC} repo..."
-        git -C ~/src/stackdev pull
+    if command -v git > /dev/null; then
+        echo_green "=== updating git repos ==="
+        if [ -d ~/dotfiles ]; then
+            echo -e "Updating ${GREEN}dotfiles${NOC} repo..."
+            git -C ~/dotfiles pull
+        fi
+        if [ -d ~/src/stackdev ]; then
+            echo -e "Updating ${GREEN}stackdev${NOC} repo..."
+            git -C ~/src/stackdev pull
+        fi
     fi
 }
 
 update_mac() {
-    echo_green "=== updating MacOS software ==="
-    softwareupdate -i -a
+    if [ "$PLATFORM" == "Darwin" ] ; then
+        echo_green "=== updating MacOS software ==="
+        softwareupdate -i -a
+    fi
 }
 
 update_apt() {
-    APT_ENV=""
-    APT_ARGS=""
-    if [ "$ASSUME_YES" == "1" ]; then
-        APT_ENV="DEBIAN_FRONTEND=noninteractive"
-        APT_ARGS="-y"
+    if command -v apt-get > /dev/null; then
+        APT_ENV=""
+        APT_ARGS=""
+        if [ "$ASSUME_YES" == "1" ]; then
+            APT_ENV="DEBIAN_FRONTEND=noninteractive"
+            APT_ARGS="-y"
+        fi
+        echo_green "=== updating apt package repos ==="
+        sudo $APT_ENV apt-get update $APT_ARGS
+        echo_green "=== upgrading apt packages ==="
+        sudo $APT_ENV apt-get upgrade $APT_ARGS
+        echo_green "=== removing no longer used apt packages ==="
+        sudo $APT_ENV apt-get autoremove $APT_ARGS
     fi
-    echo_green "=== updating apt package repos ==="
-    sudo $APT_ENV apt update $APT_ARGS
-    echo_green "=== upgrading apt packages ==="
-    sudo $APT_ENV apt upgrade $APT_ARGS
-    echo_green "=== removing no longer used apt packages ==="
-    sudo $APT_ENV apt autoremove $APT_ARGS
 }
 
 update_snap() {
@@ -96,15 +102,13 @@ update_brew() {
 }
 
 update_system() {
-    if [ "$PLATFORM" == "Darwin" ] ; then
-        update_mac
-    elif command -v apt > /dev/null; then
-        update_apt
-    fi
+    update_mac
+    update_apt
 }
 
 update_neovim() {
     if command -v nvim > /dev/null; then
+        echo_green "=== updating neovim Lazy plugins ==="
         nvim --headless "+Lazy! sync" +qall
         #nvim "+autocmd User VeryLazy Lazy! sync" +qa
     fi
@@ -128,11 +132,13 @@ detect_vim() {
 
 update_vim() {
     vim_cmd="$(detect_vim)"
-    $vim_cmd +PlugUpgrade +PlugUpdate +qa
+    if [ -n "$vim_cmd" ]; then
+        echo_green "=== updating vim-plug pligins ==="
+        $vim_cmd +PlugUpgrade +PlugUpdate +qa
+    fi
 }
 
 update_editors() {
-    echo_green "=== updating (neo)vim pligins ==="
     update_neovim
     update_vim
 }
