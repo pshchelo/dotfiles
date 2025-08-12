@@ -33,3 +33,10 @@
     cfuel = "!f() { git clone ssh://pshchelo@review.fuel-infra.org:29418/$1; }; f"
     rmcp = "!f() { git -C $1 remote add -f mcp ssh://pshchelokovskyy@gerrit.mcp.mirantis.com:29418/packaging/sources/$1 ; }; f"
     rfuel = "!f() { git -C $1 remote add -f fuel ssh://pshchelo@review.fuel-infra.org:29418/openstack/$1 ; }; f"
+# Useful commands I always forget and google for
+# 
+## list commits that are IN 'oldbranch' and NOT IN 'newbranch'
+# git log --no-merges oldbranch ^newbranch
+#
+## find most recent common ancestor of two branches
+# git merge-base oldbranch newbranch
