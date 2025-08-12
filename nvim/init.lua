@@ -305,6 +305,10 @@ local allPlugins = {
         dependencies = {"scrooloose/nerdtree"}, -- sidebar file browser + in single panel
     },
     {"will133/vim-dirdiff"}, -- use vimdiff on folders
+    {
+        "X3eRo0/dired.nvim", -- analog to emacs' dired mode
+        dependencies = {"MunifTanjim/nui.nvim"},
+    },
     {"tpope/vim-fugitive"}, -- git commands
     {
         "rbong/vim-flog", -- git log, somehow similar to tig?
@@ -688,6 +692,16 @@ vim.g.NERDCustomDelimiters = { dosini = {left = "#", leftAlt = ";"} }
 
 -- NERDTree
 vim.g.NERDTreeIgnore = {[[\.pyc$]]}
+
+-- Dired
+require("dired").setup({
+    path_separator = "/",
+    show_banner = false,
+    show_icons = false,
+    show_hidden = true,
+    show_dot_dirs = true,
+    show_colors = true,
+})
 
 -- ALE
 --vim.g.airline#extensions#ale#enabled = 1
