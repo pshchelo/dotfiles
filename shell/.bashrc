@@ -219,6 +219,10 @@ fi
 
 export GOPATH="$HOME/src/go"
 
+# API KEYS
+GEMINI_API_KEY_FILE="$HOME/.config/google/gemini-api-key.rc"
+[ -f "$GEMINI_API_KEY_FILE" ] && source "$GEMINI_API_KEY_FILE"
+
 # CUSTOM FUNCTIONS
 
 # extract kube api IPv4 from active kubeconfig by the cluster name

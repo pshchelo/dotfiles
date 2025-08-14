@@ -354,6 +354,10 @@ local allPlugins = {
         "zbirenbaum/copilot-cmp", -- github's Copilot
         dependencies = {"zbirenbaum/copilot.lua"},
     },
+    {
+        "kiddos/gemini.nvim", 
+        opts={},
+    },
     -- TODO: evaluate necessity for more plugins:
     -- mg979/vim-visual-multi? multi-cursor
     -- pshchelo/lodgeit.vim ?? re-write in lua?
