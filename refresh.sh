@@ -57,6 +57,8 @@ update_mac() {
 
 update_apt() {
     if command -v apt-get > /dev/null; then
+        local dpkg_lock_file
+        dpkg_lock_file="/var/lib/dpkg/lock-frontend"
         APT_ENV=""
         APT_ARGS=""
         if [ "$ASSUME_YES" == "1" ]; then
@@ -65,6 +67,10 @@ update_apt() {
         fi
         echo_green "=== updating apt package repos ==="
         sudo $APT_ENV apt-get update $APT_ARGS
+        if sudo lsof $dpkg_lock_file > /dev/null 2>&1 ; then
+            echo_red "Failed to acquire lock, try again laiter"
+            return
+        fi
         echo_green "=== upgrading apt packages ==="
         sudo $APT_ENV apt-get upgrade $APT_ARGS
         echo_green "=== removing no longer used apt packages ==="
