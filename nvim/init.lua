@@ -356,7 +356,6 @@ local allPlugins = {
     },
     {
         "kiddos/gemini.nvim", 
-        opts={},
     },
     -- TODO: evaluate necessity for more plugins:
     -- mg979/vim-visual-multi? multi-cursor
@@ -385,6 +384,7 @@ require('lualine').setup({
 })
 
 -- AI helpers
+-- Supermaven
 require("supermaven-nvim").setup({
     disable_inline_completion = true, -- using cmp for inline suggestions
 })
@@ -402,6 +402,16 @@ if vim.fn.executable("node")~=0 then
     })
     require("copilot_cmp").setup()
 end
+
+-- Gemini
+require("gemini").setup({
+    completion = {
+        insert_result_key = "<C-g>",
+    },
+    hints = {
+        insert_result_key = "<C-g>",
+    },
+})
 
 -- LSP and autocomplete settings
 local cmp = require("cmp")
@@ -1014,6 +1024,9 @@ vim.keymap.set(
 --
 -- ### SUMMARY OF CUSTOM KEYMAPS ###
 
+-- == Gemini.nvim ===
+-- Ctrl-g - accept Gemini completion or hint
+
 -- === Autocompletion ===
 -- Ctrl-b     - scroll docs up
 -- Ctrl-f     - scroll docs down
@@ -1051,7 +1064,7 @@ vim.keymap.set(
 -- F3 - toggle NerdTree file browser
 -- F4 - toggle code structure outline sidebar
 -- F5 - toggle between dark and light
--- Space - unhighlight search results
+-- Space - unhighlight search results in normal mode
 -- =l - toggle LocList
 -- =q - toggle QuickFixList
 -- <leader>s - toggle EN_US spellcheck
