@@ -29,6 +29,8 @@ def make_cli():
                              "defaults to 60.")
     parser.add_argument("--jira-chunk_size", type=int, default=1024*1024,
                          help="Downolad chunk size in bytes, defaults to 1MB")
+    parser.add_argument("-l", "--list", action="store_true",
+                        help="List available attachments of the issue.")
     return parser.parse_args()
 
 
@@ -54,18 +56,25 @@ def jdown(args):
 
     attachments = discover_attachments(args, s)
     if not attachments:
-        sys.exit(f"Issue {args.issue} has no requested attachments.")
+        if args.attachments:
+            msg=f"Issue {args.issue} has no requested attachments."
+        else:
+            msg=f"Issue {args.issue} has no attachments."
+        return msg
+    if args.list:
+        for a in attachments:
+            print(a["filename"])
+        return
 
-    # TODO: interactive mode, list available attachments and ask what to download
     # TODO: some progress bar / work being done feedback
     # TODO: do not overwrite existing files, may be check integrity somehow first
     # TODO: download in parallel
     # FIXME: could there be duplicate filename but different attachment id?
-    if not args.attachments:
+    if args.attachments:
+        download_dir = pathlib.Path(".")
+    else:
         download_dir = pathlib.Path(args.issue)
         os.makedirs(download_dir, exist_ok=True)
-    else:
-        download_dir = pathlib.Path(".")
     for a in attachments:
         fname = a["filename"]
         print(f"downloading {fname}")
@@ -77,4 +86,7 @@ def jdown(args):
                     f.write(chunk)
 
 if __name__ == "__main__":
-    jdown(make_cli())
+    error = jdown(make_cli())
+    if error is not None:
+        print(error)
+        sys.exit(1)
