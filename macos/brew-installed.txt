@@ -27,7 +27,6 @@ neovim
 parallel
 pcre
 pdftk-java
-pipx
 python@3.10
 ripgrep
 sha2

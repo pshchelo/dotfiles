@@ -25,8 +25,8 @@ usage() {
     echo "-F Do not update flatpak packages"
     echo "-b Update brew packages"
     echo "-B Do not update brew packages"
-    echo "-t Update python tool packages (pipx and uv)"
-    echo "-T Do not update python tool packages (pipx and uv)"
+    echo "-u Update uv tool packages"
+    echo "-U Do not update uv tool packages"
     echo "-e Update editor plugins (vim-plug and neovim-lazy)"
     echo "-E Do not update editor plugins (vim-plug and neovim-lazy)"
     echo "-y Assume YES for interactive prompts"
@@ -149,14 +149,10 @@ update_editors() {
     update_vim
 }
 
-update_pytools() {
+update_uv_tools() {
     if command -v uv > /dev/null 2>&1; then
         echo_green "=== update uv-installed tools ==="
         uv tool update --all
-    fi
-    if command -v pipx > /dev/null 2>&1; then
-        echo_green "=== update pipx-installed tools ==="
-        pipx upgrade-all --include-injected
     fi
 }
 
@@ -185,11 +181,11 @@ GIT=0
 SKIP_GIT=0
 EDITORS=0
 SKIP_EDITORS=0
-PYTOOLS=0
-SKIP_PYTOOLS=0
+UV_TOOLS=0
+SKIP_UV_TOOLS=0
 ASSUME_YES=0
 
-while getopts ':eEgGpPbBsSfFtTyvh' arg; do
+while getopts ':eEgGpPbBsSfFuUyvh' arg; do
     case "${arg}" in
         p) ALL=0; PKG=1;;
         P) SKIP_PKG=1;;
@@ -199,8 +195,8 @@ while getopts ':eEgGpPbBsSfFtTyvh' arg; do
         F) SKIP_FLATPAK=1;;
         b) ALL=0; BREW=1;;
         B) SKIP_BREW=1;;
-        t) ALL=0; PYTOOLS=1;;
-        T) SKIP_PYTOOLS=1;;
+        u) ALL=0; UV_TOOLS=1;;
+        U) SKIP_UV_TOOLS=1;;
         g) ALL=0; GIT=1;;
         G) SKIP_GIT=1;;
         e) ALL=0; EDITORS=1;;
@@ -217,7 +213,7 @@ if [[ $ALL -eq 1 ]]; then
     [[ $SKIP_SNAP -eq 0 ]] && SNAP=1
     [[ $SKIP_FLATPAK -eq 0 ]] && FLATPAK=1
     [[ $SKIP_BREW -eq 0 ]] && BREW=1
-    [[ $SKIP_PYTOOLS -eq 0 ]] && PYTOOLS=1
+    [[ $SKIP_UV_TOOLS -eq 0 ]] && UV_TOOLS=1
     [[ $SKIP_GIT -eq 0 ]] && GIT=1
     [[ $SKIP_EDITORS -eq 0 ]] && EDITORS=1
 fi
@@ -243,8 +239,8 @@ fi
 if [[ $BREW -eq 1 ]]; then
     update_brew
 fi
-if [[ $PYTOOLS -eq 1 ]]; then
-    update_pytools
+if [[ $UV_TOOLS -eq 1 ]]; then
+    update_uv_tools
 fi
 if [[ $EDITORS -eq 1 ]]; then
     update_editors
