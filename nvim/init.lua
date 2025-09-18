@@ -505,31 +505,9 @@ cmp.setup.cmdline(':', {
 local capabilities = require("cmp_nvim_lsp").default_capabilities()
 capabilities.textDocument.completion.completionItem.snippetSupport = true
 
-local lspconfig = require("lspconfig")
-
-local function find_venv()
-
-  -- If there is an active virtual env, use that
-  if vim.env.VIRTUAL_ENV then
-    return { vim.env.VIRTUAL_ENV .. "/bin/python" }
-  end
-
-  -- Search within the current git repo to see if we can find a virtual env to use.
-  local repo = lspconfig.util.find_git_ancestor(vim.fn.getcwd())
-  if not repo then
-    return nil
-  end
-
-  local candidates = vim.fs.find("pyvenv.cfg", { path = repo })
-  if #candidates == 0 then
-    return nil
-  end
-
-  return { vim.fn.resolve(candidates[1] .. "./../bin/python") }
-end
-
 -- lspconfig does not fail when langserver is not available, just prints a warning in status line
-lspconfig.pylsp.setup({
+vim.lsp.enable("pylsp")
+vim.lsp.config("pylsp", {
     capabilities = capabilities,
     settings = {
         pylsp = {
@@ -561,7 +539,7 @@ lspconfig.pylsp.setup({
     },
 })
 
-lspconfig.gopls.setup({})
+vim.lsp.enable("gopls")
 
 vscode_servers = {
     cssls = "vscode-css-language-server",
@@ -570,7 +548,8 @@ vscode_servers = {
 }
 for lspname, server in pairs(vscode_servers) do
     if vim.fn.executable(server)~=0 then
-        lspconfig[lspname].setup { capabilites = capabilites }
+        vim.lsp.enable(lspname)
+        vim.lsp.config(lspname, { capabilites = capabilites })
     end
 end
 
@@ -585,7 +564,8 @@ else
     tsserver_setup["before_init"] = before_init_container
     tsserver_setup["cmd"] = require'lspcontainers'.command('tsserver')
 end
-lspconfig.ts_ls.setup(tsserver_setup)
+vim.lsp.enable("ts_ls")
+vim.lsp.config("ts_ls", tsserver_setup)
 
 local containerized_servers = {
     html = "vscode-html-language-server",
@@ -598,11 +578,33 @@ for lspname, server in pairs(containerized_servers) do
         config["before_init"] = before_init_container
         config["cmd"] = require'lspcontainers'.command(lspname)
     end
-    lspconfig[lspname].setup(config)
+    vim.lsp.enable(lspname)
+    vim.lsp.config(lspname, config)
 end
 
 -- RST/Sphinx LSP
---lspconfig.esbonio.setup({
+--vim.lsp.enable("esbonio")
+--local function find_venv()
+
+--  -- If there is an active virtual env, use that
+--  if vim.env.VIRTUAL_ENV then
+--    return { vim.env.VIRTUAL_ENV .. "/bin/python" }
+--  end
+
+--  -- Search within the current git repo to see if we can find a virtual env to use.
+--  local repo = require("lspconfig.util").find_git_ancestor(vim.fn.getcwd())
+--  if not repo then
+--    return nil
+--  end
+
+--  local candidates = vim.fs.find("pyvenv.cfg", { path = repo })
+--  if #candidates == 0 then
+--    return nil
+--  end
+
+--  return { vim.fn.resolve(candidates[1] .. "./../bin/python") }
+--end
+--vim.lsp.config("esbonio", {
 --  settings = {
 --    sphinx = { pythonCommand = find_venv() }
 --  }
