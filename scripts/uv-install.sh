@@ -1,5 +1,6 @@
 #!/usr/bin/env bash
 # TODO: re-implement in Ansible somehow
+UV_CMD="uv tool install"
 
 function install_uv {
     if command -v brew > /dev/null 2>&1 ; then
@@ -8,31 +9,31 @@ function install_uv {
         PIP_BREAK_SYSTEM_PACKAGES=1 pip install --user uv
     else
         # TODO: support other ways of installing
-        echo "Brew or pip is not detected, other installation methods are unsupported"
+        echo "No supported installers found (brew or pip)"
         exit 1
     fi
 }
 
 function install_main {
     # Python and others development tools
-    uv tool install bashate
-    uv tool install bindep
-    uv tool install crudini
-    uv tool install flake8
-    uv tool install git-review --with pysocks
-    uv tool install ipython
-    uv tool install mycli
-    uv tool install pre-commit
-    uv tool install reno
-    uv tool install shellcheck-py
-    uv tool install sshuttle
-    uv tool install tox
-    uv tool install uv-virtualenvwrapper
-    uv tool install yq
-    uv tool install httpie \
+    $UV_CMD bashate
+    $UV_CMD bindep
+    $UV_CMD crudini
+    $UV_CMD flake8
+    $UV_CMD git-review --with pysocks
+    $UV_CMD ipython
+    $UV_CMD mycli
+    $UV_CMD pre-commit
+    $UV_CMD reno
+    $UV_CMD shellcheck-py
+    $UV_CMD sshuttle
+    $UV_CMD tox
+    $UV_CMD uv-virtualenvwrapper
+    $UV_CMD yq
+    $UV_CMD httpie \
         --with httpie-keystone-auth \
         --with pysocks
-    uv tool install python-lsp-server \
+    $UV_CMD python-lsp-server \
         --with python-lsp-ruff \
         --with-executables-from ruff \
         --with python-lsp-black \
@@ -62,7 +63,7 @@ function install_osc {
     # OpenStack but do not have HTTP API (like metering (ceilometer)),
     # or are deprecated in MOSK (like events(panko))
     # base OSC supports Keystone, Nova, Glance, Cinder, Neutron, Swift
-    uv tool install python-openstackclient \
+    $UV_CMD python-openstackclient \
         --with pysocks \
         --with python-openstackclient \
         --with aodhclient \
@@ -80,39 +81,39 @@ function install_osc {
 
 function install_demotools {
     # demo recording helpers
-    uv tool install asciinema
-    uv tool install demoshell
-    uv tool install doitlive
+    $UV_CMD asciinema
+    $UV_CMD demoshell
+    $UV_CMD doitlive
 }
 
 function install_optional {
     # file manager a-la lf but in Python
-    uv tool install ranger-fm
+    $UV_CMD ranger-fm
     # markdown files viewer
-    uv tool install frogmouth
+    $UV_CMD frogmouth
     # log viewer
-    uv tool install toolong
+    $UV_CMD toolong
 }
 
 function install_dbclients {
     # enhanced DB CLI's - https://www.dbcli.com
-    uv tool install pgcli
-    uv tool install litecli
-    uv tool install iredis
+    $UV_CMD pgcli
+    $UV_CMD litecli
+    $UV_CMD iredis
 }
 
 function install_guitools {
     # GUI
     # posterize pdf or images to multiple sheets that can be glued together
-    uv tool install plakativ
+    $UV_CMD plakativ
     # Steam's proton enhancements
-    uv tool install protontricks
+    $UV_CMD protontricks
     # rst/md editor with live HTML preview
-    uv tool install retext
+    $UV_CMD retext
 }
 
 function install_ansible {
-    uv tool install ansible \
+    $UV_CMD ansible \
         --with-executables-from ansible-core \
         --with openstacksdk
 }
@@ -129,6 +130,7 @@ Options:
 -d install less used DB clients
 -t install demo tools
 -p install random assortment of optional packages
+-r re-install selected tools
 -v verbose mode (set -x)
 -h print this message and exit
 "
@@ -141,8 +143,9 @@ INSTALL_OSC=0
 INSTALL_OPTIONAL=0
 INSTALL_DEMOTOOLS=0
 INSTALL_ANSIBLE=0
+REINSTALL=0
 
-while getopts ':hvimodbatpg' arg; do
+while getopts ':hvimodbatpgr' arg; do
     case "${arg}" in
         i) INSTALL_UV=1;;
         m) INSTALL_MAIN=1;;
@@ -152,12 +155,14 @@ while getopts ':hvimodbatpg' arg; do
         t) INSTALL_DEMOTOOLS=1;;
         p) INSTALL_OPTIONAL=1;;
         a) INSTALL_ANSIBLE=1;;
+        r) REINSTALL=1;;
         v) set -x;;
         h) echo "$__usage"; exit 0;;
         *) echo "$__usage"; exit 1;;
     esac
 done
 
+[ "$REINSTALL" == "1" ] && UV_CMD+=" --reinstall"
 [ "$INSTALL_UV" == "1" ] && install_uv
 [ "$INSTALL_MAIN" == "1" ] && install_main
 [ "$INSTALL_OSC" == "1" ] && install_osc
