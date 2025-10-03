@@ -19,6 +19,9 @@ Host raspas-eth
 Host workvm
     HostName 172.19.114.44
 
+Host jumphost
+    HostName 172.19.36.252
+
 Host codesearch.vm.mirantis.net
     IdentityFile ~/.ssh/aio_rsa
     User ubuntu
