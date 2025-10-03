@@ -725,10 +725,12 @@ vim.g.ale_sign_error = "✗"
 vim.g.ale_sign_warning = "⚠"
 vim.g.ale_sign_info = "🛈"
 vim.g.ale_open_list = 1
-vim.g.ale_linters = {python = {},}
 vim.g.ale_lint_on_enter = 0
 vim.g.ale_lint_on_insert_leave = 1
 vim.g.ale_lint_on_text_changed = "normal"
+-- specific linters settings
+vim.g.ale_linters = {python = {},}
+vim.g.ale_sh_bashate_options = "-i E006"
 
 -- todo-comments
 require("todo-comments").setup({
