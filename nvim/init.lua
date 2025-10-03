@@ -582,6 +582,13 @@ for lspname, server in pairs(containerized_servers) do
     vim.lsp.config(lspname, config)
 end
 
+vim.lsp.enable("clangd")
+vim.lsp.config("clangd", {
+    capabilities = capabilities,
+    -- pass custom options to clangd server if needed
+    -- cmd = { "clangd", "--some-flag=flag-value" },
+})
+
 -- RST/Sphinx LSP
 --vim.lsp.enable("esbonio")
 --local function find_venv()
