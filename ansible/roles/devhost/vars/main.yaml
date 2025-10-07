@@ -72,8 +72,6 @@ links_to_create:
     src: "{{ dotfiles_dir }}/shell/.bashrc"
   - path: "{{ userhome }}/.profile"
     src: "{{ dotfiles_dir }}/environment/.profile"
-  - path: "{{ userhome }}/.tmux.conf"
-    src: "{{ dotfiles_dir }}/shell/.tmux.conf"
   - path: "{{ userhome }}/.bash_aliases"
     src: "{{ dotfiles_dir }}/shell/.bash_aliases"
   - path: "{{ userhome }}/.agignore"

@@ -1,0 +1,15 @@
+- name: make a link to tmux config
+  file:
+    path: "{{ userhome }}/.tmux.conf"
+    src: "{{ dotfiles_dir }}/shell/.tmux.conf"
+    state: link
+
+- name: make dir for tmux plugins
+  file:
+    path: "{{ userhome }}/.tmux/plugins"
+    state: directory
+
+- name: install tmux plugin manager
+  git:
+    repo: "https://github.com/tmux-plugins/tpm"
+    dest: "{{ userhome }}/.tmux/plugins/tpm"
