@@ -112,14 +112,6 @@ update_system() {
     update_apt
 }
 
-update_neovim() {
-    if command -v nvim > /dev/null; then
-        echo_green "=== updating neovim Lazy plugins ==="
-        nvim --headless "+Lazy! sync" +qall
-        #nvim "+autocmd User VeryLazy Lazy! sync" +qa
-    fi
-}
-
 detect_vim() {
     # on my machines, vim is usually neovim, and vi is vim
     if command -v vim > /dev/null; then
@@ -139,8 +131,16 @@ detect_vim() {
 update_vim() {
     vim_cmd="$(detect_vim)"
     if [ -n "$vim_cmd" ]; then
-        echo_green "=== updating vim-plug pligins ==="
+        echo_green "=== updating vim-plug plugins ==="
         $vim_cmd +PlugUpgrade +PlugUpdate +qa
+    fi
+}
+
+update_neovim() {
+    if command -v nvim > /dev/null; then
+        echo_green "=== updating neovim Lazy plugins ==="
+        nvim --headless "+Lazy! sync" +qall
+        #nvim "+autocmd User VeryLazy Lazy! sync" +qa
     fi
 }
 
