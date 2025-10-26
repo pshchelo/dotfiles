@@ -115,7 +115,8 @@ function install_guitools {
 function install_ansible {
     $UV_CMD ansible \
         --with-executables-from ansible-core \
-        --with openstacksdk
+        --with openstacksdk \
+        --with-executables-from openstacksdk
 }
 
 __usage="
