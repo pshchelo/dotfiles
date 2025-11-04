@@ -1,0 +1,44 @@
+#!/usr/bin/env bash
+# syncronize directory on Mac to/from remote Linux machine
+SYNC_TO=0
+SYNC_FROM=0
+while getopts ':ht:f:' arg; do
+    case ${arg} in
+        h)
+            echo "Usage: $(basename "$0") [-h] [-t | -f ] <remote server>"
+            echo "Syncronize directory on MacOS with remote Linux server using rsync"
+            echo "Copy [-t]o or [-f]rom <remote server> dir of the 'same' path as current dir on Mac"
+            exit 0
+            ;;
+        t)
+            remote_server="${OPTARG}"
+            SYNC_TO=1
+            ;;
+        f)
+            remote_server="${OPTARG}"
+            SYNC_FROM=1
+            ;;
+        \?)
+            echo "Invalid option: -${OPTARG}" >&2
+            exit 1
+            ;;
+        :)
+            echo "Option -${OPTARG} requires an argument." >&2
+            exit 1
+            ;;
+    esac
+done
+if [ $SYNC_TO = $SYNC_FROM ]; then
+    echo "Error: You must specify either -t (to) or -f (from), but not both."
+    exit 1
+fi
+local_path="${PWD}"
+remote_path="${remote_server}:${PWD//Users/home/}"
+if [[ $SYNC_FROM = 1 ]]; then
+    src=$remote_path
+    dst=$local_path
+else
+    dst=$remote_path
+    src=$local_path
+fi
+rsync -PaSh "${src}/" "${dst}"
