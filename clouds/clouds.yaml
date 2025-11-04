@@ -86,6 +86,21 @@ clouds:
     endpoint_type: public
     interface: public
     insecure: true
+  mosk-dev-domain-admin:
+    auth:
+      user_domain_name: Default
+      auth_url: https://keystone.it.just.works
+      username: superadmin
+      password: superadmin
+      domain_name: Default
+    identity_api_version: '3'
+    regions:
+    - CustomRegion
+    - RegionOne
+    endpoint_type: public
+    interface: public
+    insecure: true
+
   mosk-dev-system-admin:
     auth:
       user_domain_name: Default
