@@ -30,16 +30,16 @@ Host oscore-security.vm.mirantis.net
     IdentityFile ~/.ssh/aio_rsa
     User ubuntu
 
-Host pshchelo-devstack-*
+Host pshchelo-devstack*
     User ubuntu
     StrictHostKeyChecking no
     UserKnownHostsFile /dev/null
     LogLevel QUIET
 
-Host pshchelo-devstack-noble
+Host pshchelo-devstack
     HostName 172.19.116.20
 
-Host pshchelo-devstack-noble-compute
+Host pshchelo-devstack-compute
     HostName 172.19.114.26
 
 # Some ranges of private IP addresses I use for ephemeral instances:

@@ -8,8 +8,8 @@ all:
   children:
     dsvm:
       hosts:
-        pshchelo-devstack-noble:
-        pshchelo-devstack-noble-compute:
+        pshchelo-devstack:
+        pshchelo-devstack-compute:
     aio:
       vars:
         ansible_ssh_common_args: "-o StrictHostKeyChecking=no -o UserKnownHostsFile=/dev/null"
