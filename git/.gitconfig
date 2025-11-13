@@ -14,6 +14,7 @@
     tool = vimdiff
 [diff]
     guitool = vimdiff
+    tool = vimdiff
 [checkout]
     defaultRemote = origin
 [gitreview]
