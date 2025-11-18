@@ -11,9 +11,10 @@
 [i18n]
     filesEncoding = utf-8
 [merge]
+    guitool = meld
     tool = vimdiff
 [diff]
-    guitool = vimdiff
+    guitool = meld
     tool = vimdiff
 [checkout]
     defaultRemote = origin
