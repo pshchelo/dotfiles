@@ -2,6 +2,7 @@ username: "{{ ansible_user_id }}"
 userhome: "{{ ansible_user_dir }}"
 dotfiles_dir: "{{ userhome }}/dotfiles"
 src_dir: "{{ userhome }}/src"
+stackdev_dir: "{{ userhome }}/src/stackdev"
 local_bin_dir: "{{ userhome }}/.local/bin"
 dev_minimal: false
 clean_apt_sources: false

@@ -55,19 +55,19 @@ pip_pkgs:
 
 dotfiles_repo: "https://github.com/pshchelo/dotfiles.git"
 dotfiles_repo_push: "git@github.com:pshchelo/dotfiles.git"
+stackdev_repo: "https://github.com/pshchelo/stackdev.git"
+stackdev_repo_push: "git@github.com:pshchelo/stackdev.git"
 
 files_to_backup:
   - "{{ userhome }}/.bashrc"
   - "{{ userhome }}/.profile"
 
-dirs_to_create:
-  - "{{ local_bin_dir }}"
-  # create all currently needed in one go
+dotfiles_dirs_to_create:
   - "{{ userhome }}/.config/nvim"
   - "{{ userhome }}/.config/k9s/skins"
   - "{{ userhome }}/.local/share/bash-completion/completions"
 
-links_to_create:
+dotfiles_links:
   - path: "{{ userhome }}/.bashrc"
     src: "{{ dotfiles_dir }}/shell/.bashrc"
   - path: "{{ userhome }}/.profile"
@@ -98,20 +98,6 @@ links_to_create:
     src: "{{ dotfiles_dir }}/ansible/ansible.cfg"
   - path: "{{ userhome }}/.local/share/bash-completion/completions/tig"
     src: "{{ dotfiles_dir }}/git/tig-completion.bash"
-  - path: "{{ local_bin_dir }}/k8s-decode-secret"
-    src: "{{ dotfiles_dir }}/scripts/k8s/k8s-decode-secret"
-  - path: "{{ local_bin_dir }}/mosk-os-shell"
-    src: "{{ dotfiles_dir }}/scripts/mosk/mosk-os-shell"
-  - path: "{{ local_bin_dir }}/rockoon-shell"
-    src: "{{ dotfiles_dir }}/scripts/mosk/rockoon-shell"
-  - path: "{{ local_bin_dir }}/rockoon-logs"
-    src: "{{ dotfiles_dir }}/scripts/mosk/rockoon-logs"
-  - path: "{{ local_bin_dir }}/mosk-dev-connect"
-    src: "{{ dotfiles_dir }}/scripts/mosk/mosk-dev-connect"
-  - path: "{{ local_bin_dir }}/mosk-db-admin"
-    src: "{{ dotfiles_dir }}/scripts/mosk/mosk-db-admin"
-  - path: "{{ local_bin_dir }}/mosk-mycli"
-    src: "{{ dotfiles_dir }}/scripts/mosk/mosk-mycli"
   - path: "{{ userhome }}/.config/starship.toml"
     src: "{{ dotfiles_dir }}/shell/starship.toml"
   - path: "{{ userhome }}/.config/k9s/config.yaml"
@@ -126,3 +112,19 @@ links_to_create:
     src: "{{ dotfiles_dir }}/lf"
   - path: "{{ userhome }}/refresh.sh"
     src: "{{ dotfiles_dir }}/refresh.sh"
+
+stackdev_links:
+  - path: "{{ local_bin_dir }}/k8s-decode-secret"
+    src: "{{ stackdev_dir }}/scripts/mosk/k8s-decode-secret"
+  - path: "{{ local_bin_dir }}/mosk-os-shell"
+    src: "{{ stackdev_dir }}/scripts/mosk/mosk-os-shell"
+  - path: "{{ local_bin_dir }}/rockoon-shell"
+    src: "{{ stackdev_dir }}/scripts/mosk/rockoon-shell"
+  - path: "{{ local_bin_dir }}/rockoon-logs"
+    src: "{{ stackdev_dir }}/scripts/mosk/rockoon-logs"
+  - path: "{{ local_bin_dir }}/mosk-dev-connect"
+    src: "{{ stackdev_dir }}/scripts/mosk/mosk-dev-connect"
+  - path: "{{ local_bin_dir }}/mosk-db-admin"
+    src: "{{ stackdev_dir }}/scripts/mosk/mosk-db-admin"
+  - path: "{{ local_bin_dir }}/mosk-mycli"
+    src: "{{ stackdev_dir }}/scripts/mosk/mosk-mycli"

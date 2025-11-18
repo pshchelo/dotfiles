@@ -1,0 +1,20 @@
+- name: create stackdev by cloning
+  git:
+    repo: "{{ stackdev_repo }}"
+    dest: "{{ stackdev_dir }}"
+    accept_hostkey: yes
+    update: no
+
+- name: set push url for stackdev repo
+  git_config:
+    repo: "{{ stackdev_dir }}"
+    scope: "local"
+    name: "remote.origin.pushurl"
+    value: "{{ stackdev_repo_push }}"
+
+- name: make links
+  file:
+    path: "{{ item.path }}"
+    src: "{{ item.src }}"
+    state: link
+  with_items: "{{ stackdev_links }}"

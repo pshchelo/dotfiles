@@ -23,11 +23,11 @@
   file:
     path: "{{ item }}"
     state: directory
-  with_items: "{{ dirs_to_create }}"
+  with_items: "{{ dotfiles_dirs_to_create }}"
 
 - name: make links
   file:
     path: "{{ item.path }}"
     src: "{{ item.src }}"
     state: link
-  with_items: "{{ links_to_create }}"
+  with_items: "{{ dotfiles_links }}"

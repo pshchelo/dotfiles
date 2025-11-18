@@ -11,6 +11,11 @@
     path: "{{ src_dir }}"
     state: directory
 
+- name: ensure dir for local binaries exists
+  file:
+    path: "{{ local_bin_dir }}"
+    state: directory
+
 - import_tasks: apt.yaml
   when: ansible_os_family == 'Debian'
   tags:
@@ -21,6 +26,10 @@
   - python
 
 - import_tasks: dotfiles.yaml
+  tags:
+  - dotfiles
+
+- import_tasks: stackdev.yaml
   tags:
   - dotfiles
 

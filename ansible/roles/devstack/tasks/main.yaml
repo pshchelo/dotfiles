@@ -14,16 +14,6 @@
 - name: ensure github.com is a known host
   shell: ssh-keyscan github.com >> {{ userhome }}/.ssh/known_hosts
 
-- name: ensure dir for sources exists
-  file:
-    path: "{{ src_dir }}"
-    state: directory
-
-- name: get my stackdev repo
-  git:
-    repo: git@github.com:pshchelo/stackdev.git
-    dest: "{{ stackdev_dir }}"
-
 - name: create stub for DevStack's local.conf
   command: cp {{ stackdev_dir }}/conf/local.conf.sample {{ stack_dir }}/devstack/local.conf
   args:
@@ -35,18 +25,6 @@
     src: "{{ stackdev_dir }}/conf/local.sh"
     state: link
 
-- name: ensure stackdev_scripts_target_dir exists
-  file:
-    path: "{{ stackdev_scripts_target_dir }}"
-    state: directory
-
-- name: make links to scripts
-  file:
-    path: "{{ item.path }}"
-    src: "{{ item.src }}"
-    state: link
-  with_items: "{{ stackdev_scripts }}"
-
 - name: find conflicting Python distutils packages
   find:
     patterns: "{{ conflicting_py3_eggs }}"
@@ -56,6 +34,7 @@
   register: py3_eggs_to_remove
   tags:
     - py3conflict
+  when: (remove_py3_conflicting_eggs|bool)
 
 - name: remove conflicting Python distutils packages
   become: yes
@@ -66,3 +45,24 @@
   tags:
     - py3conflict
   when: (remove_py3_conflicting_eggs|bool)
+
+- name: find if stackdev repo is present
+  find:
+    file_type: directory
+    paths:
+    - {{ stackdev_dir }}
+  register: stackdev_dir_exists
+
+- name: ensure target dir for stackdev scripts
+  file:
+    state: directory
+    path: {{ stackdev_scripts_target_dir }}
+  when: (stackdev_dir_exists|bool)
+
+- name: make links to stackdev scripts
+  file:
+    path: "{{ item.path }}"
+    src: "{{ item.src }}"
+    state: link
+  with_items: "{{ devstack_scripts }}"
+  when: (stackdev_dir_exists|bool)
