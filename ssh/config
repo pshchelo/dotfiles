@@ -10,11 +10,8 @@ Host cube
     HostName 192.168.0.102
     IdentityFile ~/.ssh/phys_ed25519
 
-Host raspas-wifi
+Host raspas
     HostName 192.168.0.103
-
-Host raspas-eth
-    HostName 192.168.0.104
 
 Host workvm
     HostName 172.19.114.44
