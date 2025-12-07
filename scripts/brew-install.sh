@@ -7,15 +7,16 @@ brew_url="https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh"
 brew_install_script="/tmp/brew-install.sh"
 
 __usage="
-Usage: $(basename "$0") [-hcbipv]
+Usage: $(basename "$0") [-hcbipPv]
 Install brew on Linux, and install some software from brew
 Options:
-  -b  Install brew itself
-  -c  Pre-create brew installation dir manually. Useful when running as user with passwordless sudo.
-  -i  Install selection of brew packages
-  -p  Create override in /etc/sudoers.d file adding brew (s)bin paths to secure path
-  -v  verbose (bash -x)
-  -h  Print this message and exit
+    -b  Install brew itself
+    -c  Pre-create brew installation dir manually. Useful when running as user with passwordless sudo.
+    -i  Install selection of brew packages
+    -p  Show the new needed change in /etc/sudoers to add brew (s)bin paths to secure path
+    -P  Create override file in /etc/sudoers.d/ dir to add brew (s)bin paths to secure path
+    -v  verbose (bash -x)
+    -h  Print this message and exit
 "
 
 function create_brew_prefix {
@@ -25,10 +26,17 @@ function create_brew_prefix {
 }
 
 function patch_secure_path {
-    eval $(sudo grep secure_path /etc/sudoers | awk '{print $2}')
+    local dry_run="$1"
+    eval "$(sudo grep secure_path /etc/sudoers | awk '{print $2}')"
     secure_path+=":$brew_dir/sbin:$brew_dir/bin"
-    #echo -e "Defaults\tsecure_path=\"$secure_path\"" | sudo tee /etc/sudoers.d/linuxbrew_path
-    echo -e "Defaults\tsecure_path=\"$secure_path\""
+    if [ "$dry_run" == "true" ]; then
+        echo -e "Defaults\tsecure_path=\"$secure_path\""
+    elif [ "$dry_run" == "false" ]; then
+        echo -e "Defaults\tsecure_path=\"$secure_path\"" | sudo tee /etc/sudoers.d/linuxbrew_path
+    else
+        echo "Invalid value for dry_run parameter of 'patch_secure_path', must be 'true' or 'false'"
+        exit 1
+    fi
 }
 
 function install_brew {
@@ -85,15 +93,17 @@ function install_brew_packages {
 
 CREATE_BREW_PREFIX=0
 PATCH_SECURE_PATH=0
+SHOW_SECURE_PATH=0
 INSTALL_BREW=0
 INSTALL_BREW_PACKAGES=0
 
-while getopts ':hcvibp' arg; do
+while getopts ':hcvibpP' arg; do
     case "${arg}" in
         c) CREATE_BREW_PREFIX=1 ;;
         b) INSTALL_BREW=1 ;;
         i) INSTALL_BREW_PACKAGES=1 ;;
-        p) PATCH_SECURE_PATH=1 ;;
+        p) SHOW_SECURE_PATH=1 ;;
+        P) PATCH_SECURE_PATH=1 ;;
         v) set -x ;;
         h) echo "$__usage"; exit 0;;
         *) echo "$__usage"; exit 1;;
@@ -108,6 +118,8 @@ if [[ "$INSTALL_BREW_PACKAGES" == "1" ]]; then
     install_brew_packages
 fi
 
-if [[ "$PATCH_SECURE_PATH" == "1" ]]; then
-    patch_secure_path
+if [[ "$SHOW_SECURE_PATH" == "1" ]]; then
+    patch_secure_path true
+elif [[ "$PATCH_SECURE_PATH" == "1" ]]; then
+    patch_secure_path false
 fi
