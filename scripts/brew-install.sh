@@ -68,15 +68,17 @@ function install_brew_packages {
         helm \
         jq \
         k9s \
-        kubectl \
+        kubernetes-cli \
         lf \
-        lnav \
+        micro \
         mosh \
         neovim \
         ripgrep \
         starship \
+        stern \
         tailspin \
-        uv
+        uv \
+        yazi
 
     sudo ln -s $brew_dir/bin/mosh-server /usr/local/bin
 }
