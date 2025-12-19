@@ -78,6 +78,7 @@ function install_brew_packages {
         k9s \
         kubernetes-cli \
         lf \
+        mcat \
         micro \
         mosh \
         neovim \
