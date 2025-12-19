@@ -79,11 +79,11 @@ vim.o.showmatch = true
 vim.o.hlsearch = true
 
 -- =====
--- MOUSE -- TODO: needed?
+-- MOUSE
 -- =====
--- vim.o.clipboard = "unnamedplus"
--- vim.o.mouse = "a"
--- vim.o.mousemodel = "popup_setpos"
+vim.o.clipboard = "unnamedplus"
+vim.o.mouse = "a"
+vim.o.mousemodel = "popup_setpos"
 
 -- ==========
 -- FILE TYPES
