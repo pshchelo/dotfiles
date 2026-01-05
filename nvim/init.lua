@@ -843,6 +843,25 @@ vim.api.nvim_create_autocmd(
     {
         pattern = "python",
         callback = function()
+            if vim.fn.has("python3") == 1 then
+                vim.keymap.set(
+                    "n", "<leader>b", "yyP^Cbreakpoint()  # XXX:breakpoint<Esc>",
+                    {desc = "Set py3.6+ breakpoint in Python (defaults to pdb)"}
+                )
+            else
+                vim.keymap.set(
+                    "n", "<leader>b", "yyP^Cimport pdb; pdb.set_trace()  # XXX:breakpoint<Esc>",
+                    {desc = "Set pdb breakpoint in Python"}
+                )
+            end
+        end,
+    }
+)
+vim.api.nvim_create_autocmd(
+    "Filetype",
+    {
+        pattern = "python",
+        callback = function()
             vim.keymap.set(
                 "n", "<leader>B", "yyP^Cimport rpdb; rpdb.set_trace()  # XXX:breakpoint<Esc>",
                 {desc = "Set rpdb breakpoint in Python"}
@@ -855,17 +874,10 @@ vim.api.nvim_create_autocmd(
     {
         pattern = "python",
         callback = function()
-            if vim.fn.has("python3") == 1 then
-                vim.keymap.set(
-                    "n", "<leader>b", "yyP^Cbreakpoint()  # XXX:breakpoint<Esc>",
-                    {desc = "Set py3.6+ breakpoint in Python (defaults to pdb)"}
-                )
-            else
-                vim.keymap.set(
-                    "n", "<leader>b", "yyP^Cimport pdb; pdb.set_trace()  # XXX:breakpoint<Esc>",
-                    {desc = "Set pdb breakpoint in Python"}
-                )
-            end
+            vim.keymap.set(
+                "n", "<leader>bb", "yyP^Cfrom remote_pdb import set_trace; set_trace()  # XXX:breakpoint<Esc>",
+                {desc = "Set remote-pdb breakpoint in Python"}
+            )
         end,
     }
 )

@@ -555,6 +555,9 @@ endif
 " key to insert rpdb breakpoint
 autocmd FileType python nnoremap <leader>B
             \ yyP^Cimport rpdb; rpdb.set_trace()  # XXX:breakpoint<Esc>
+" key to insert remote-pdb breakpoint
+autocmd FileType python nnoremap <leader>bb
+            \ yyP^Cimport remote_pdb; remote_pdb.set_trace()  # XXX:breakpoint<Esc>
 
 " Toggle between light and dark colorscheme, dark is default
 :silent! call togglebg#map("<F5>")
