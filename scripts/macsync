@@ -2,10 +2,11 @@
 # syncronize directory on Mac to/from remote Linux machine
 SYNC_TO=0
 SYNC_FROM=0
-while getopts ':ht:f:' arg; do
+RSYNC_ARGS=""
+while getopts ':ht:f:md' arg; do
     case ${arg} in
         h)
-            echo "Usage: $(basename "$0") [-h] [-t | -f ] <remote server>"
+            echo "Usage: $(basename "$0") [-h] [-t | -f ] [-m] [-d] <remote server>"
             echo "Syncronize directory on MacOS with remote Linux server using rsync"
             echo "Copy [-t]o or [-f]rom <remote server> dir of the 'same' path as current dir on Mac"
             exit 0
@@ -18,6 +19,10 @@ while getopts ':ht:f:' arg; do
             remote_server="${OPTARG}"
             SYNC_FROM=1
             ;;
+        m)
+            RSYNC_ARGS+=" --delete" ;;
+        d)
+            RSYNC_ARGS+=" --dry-run" ;;
         \?)
             echo "Invalid option: -${OPTARG}" >&2
             exit 1
@@ -41,4 +46,5 @@ else
     dst=$remote_path
     src=$local_path
 fi
-rsync -PaSh "${src}/" "${dst}"
+# shellcheck disable=SC2086 # word-split on RSYNC_ARGS is intended
+rsync -PaSh $RSYNC_ARGS "${src}/" "${dst}"
