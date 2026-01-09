@@ -219,9 +219,9 @@ fi
 
 export GOPATH="$HOME/src/go"
 
-# API KEYS
-GEMINI_API_KEY_FILE="$HOME/.config/google/gemini-api-key.rc"
-[ -f "$GEMINI_API_KEY_FILE" ] && source "$GEMINI_API_KEY_FILE"
+# optional env vars
+ENV_VARS_FILE="$HOME/.config/optional.env"
+[ -f "$ENV_VARS_FILE" ] && source "$ENV_VARS_FILE"
 
 # CUSTOM FUNCTIONS
 
