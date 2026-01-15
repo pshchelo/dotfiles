@@ -1,191 +1,132 @@
+definitions:
+  internal-cloud: &internal-cloud
+    identity_api_version: '3'
+    regions:
+    - RegionOne
+    endpoint_type: public
+    interface: public
+  dev-cloud: &dev-cloud
+    regions:
+    - CustomRegion
+    - RegionOne
+    identity_api_version: 3
+    endpoint_type: public
+    interface: public
+    insecure: true
+users:
+  self-eu: &self-eu-user
+    auth_url: https://keystone.ic-eu.ssl.mirantis.net
+    user_domain_name: ldap_mirantis
+    username: pshchelokovskyy
+  self-us: &self-us-user
+    auth_url: https://keystone.ic-us.ssl.mirantis.net
+    user_domain_name: ldap_mirantis
+    username: pshchelokovskyy
+  self-mcp: &self-mcp-user
+    auth_url: https://ic-us.ssl.mirantis.net:5000/
+    user_domain_name: ldap_mirantis
+    username: pshchelokovskyy
+  dev-admin: &dev-admin-user
+    auth_url: https://keystone.it.just.works
+    user_domain_name: Default
+    username: superadmin
+    password: superadmin
+  dev-demo: &dev-demo-user
+    auth_url: https://keystone.it.just.works
+    user_domain_name: Default
+    username: demo
+    password: demo
+  dev-viewer: &dev-viewer-user
+    auth_url: https://keystone.it.just.works
+    user_domain_name: Default
+    username: viewer
+    password: viewer
 clouds:
   oscore-eu:
+    <<: *internal-cloud
     auth:
-      username: pshchelokovskyy
+      <<: *self-eu-user
       project_domain_name: Default
-      user_domain_name: ldap_mirantis
-      auth_url: https://keystone.ic-eu.ssl.mirantis.net
       project_name: oscore-team
-    identity_api_version: '3'
-    regions:
-    - RegionOne
-    endpoint_type: public
-    interface: public
   oscore-us:
+    <<: *internal-cloud
     auth:
-      username: pshchelokovskyy
+      <<: *self-us-user
       project_domain_name: Default
-      user_domain_name: ldap_mirantis
-      auth_url: https://keystone.ic-us.ssl.mirantis.net
       project_name: oscore-team
-    identity_api_version: '3'
-    regions:
-    - RegionOne
-    endpoint_type: public
-    interface: public
   oscore-mcp:
+    <<: *internal-cloud
+    insecure: true
     auth:
-      username: pshchelokovskyy
+      <<: *self-mcp-user
       project_domain_name: Default
-      user_domain_name: ldap_mirantis
-      auth_url: https://ic-us.ssl.mirantis.net:5000/
       project_name: oscore-team
-    identity_api_version: '3'
-    regions:
-    - RegionOne
-    endpoint_type: public
-    interface: public
   oscore-ci-mcp:
+    <<: *internal-cloud
+    insecure: true
     auth:
-      username: pshchelokovskyy
+      <<: *self-mcp-user
       project_domain_name: Default
-      user_domain_name: ldap_mirantis
-      auth_url: https://ic-us.ssl.mirantis.net:5000/
       project_name: oscore-ci-team
-    identity_api_version: '3'
-    regions:
-    - RegionOne
-    endpoint_type: public
-    interface: public
   oscore-ci-eu:
+    <<: *internal-cloud
     auth:
-      username: pshchelokovskyy
+      <<: *self-eu-user
       project_domain_name: Default
-      user_domain_name: ldap_mirantis
-      auth_url: https://keystone.ic-eu.ssl.mirantis.net
       project_name: oscore-ci-team
-    identity_api_version: '3'
-    regions:
-    - RegionOne
-    endpoint_type: public
-    interface: public
   oscore-ci-us:
+    <<: *internal-cloud
     auth:
-      username: pshchelokovskyy
+      <<: *self-us-user
       project_domain_name: Default
-      user_domain_name: ldap_mirantis
-      auth_url: https://keystone.ic-us.ssl.mirantis.net
       project_name: oscore-ci-team
-    identity_api_version: '3'
-    regions:
-    - RegionOne
-    endpoint_type: public
-    interface: public
   mosk-dev-admin:
+    <<: *dev-cloud
     auth:
+      <<: *dev-admin-user
       project_domain_name: Default
-      user_domain_name: Default
-      auth_url: https://keystone.it.just.works
       project_name: admin
-      username: superadmin
-      password: superadmin
-    identity_api_version: '3'
-    regions:
-    - CustomRegion
-    - RegionOne
-    endpoint_type: public
-    interface: public
-    insecure: true
   mosk-dev-domain-admin:
+    <<: *dev-cloud
     auth:
-      user_domain_name: Default
-      auth_url: https://keystone.it.just.works
-      username: superadmin
-      password: superadmin
+      <<: *dev-admin-user
       domain_name: Default
-    identity_api_version: '3'
-    regions:
-    - CustomRegion
-    - RegionOne
-    endpoint_type: public
-    interface: public
-    insecure: true
-
   mosk-dev-system-admin:
+    <<: *dev-cloud
     auth:
-      user_domain_name: Default
-      auth_url: https://keystone.it.just.works
-      username: superadmin
-      password: superadmin
+      <<: *dev-admin-user
       system_scope: all
-    identity_api_version: '3'
-    regions:
-    - CustomRegion
-    - RegionOne
-    endpoint_type: public
-    interface: public
-    insecure: true
   mosk-dev-system-reader:
+    <<: *dev-cloud
     auth:
-      user_domain_name: Default
-      auth_url: https://keystone.it.just.works
-      username: viewer
-      password: viewer
+      <<: *dev-viewer-user
       system_scope: all
-    identity_api_version: '3'
-    regions:
-    - CustomRegion
-    - RegionOne
-    endpoint_type: public
-    interface: public
-    insecure: true
   mosk-dev-admin-reader:
+    <<: *dev-cloud
     auth:
-      auth_url: https://keystone.it.just.works
-      username: viewer
-      password: viewer
+      <<: *dev-viewer-user
       project_name: admin
       project_domain_name: Default
-      user_domain_name: Default
-    regions:
-    - CustomRegion
-    - RegionOne
-    identity_api_version: 3
-    interface: public
-    insecure: true
   mosk-dev-demo-reader:
+    <<: *dev-cloud
     auth:
-      auth_url: https://keystone.it.just.works
-      username: viewer
-      password: viewer
+      <<: *dev-viewer-user
       project_name: demo
       project_domain_name: Default
-      user_domain_name: Default
-    regions:
-    - CustomRegion
-    - RegionOne
-    identity_api_version: 3
-    interface: public
-    insecure: true
   mosk-dev-demo:
+    <<: *dev-cloud
     auth:
-      auth_url: https://keystone.it.just.works
-      username: demo
-      password: demo
+      <<: *dev-demo-user
       project_name: demo
       project_domain_name: Default
-      user_domain_name: Default
-    regions:
-    - CustomRegion
-    - RegionOne
-    identity_api_version: 3
-    interface: public
-    insecure: true
   mosk-dev-demo_alt:
+    <<: *dev-cloud
     auth:
-      auth_url: https://keystone.it.just.works
-      username: demo
-      password: demo
+      <<: *dev-demo-user
       project_name: alt-demo
       project_domain_name: Default
-      user_domain_name: Default
-    regions:
-    - CustomRegion
-    - RegionOne
-    identity_api_version: 3
-    interface: public
-    insecure: true
   mosk-dev-alt-demo:
+    <<: *dev-cloud
     auth:
       auth_url: https://keystone.it.just.works
       username: alt-demo
@@ -193,13 +134,8 @@ clouds:
       project_name: demo
       project_domain_name: Default
       user_domain_name: Default
-    regions:
-    - CustomRegion
-    - RegionOne
-    identity_api_version: 3
-    interface: public
-    insecure: true
   mosk-dev-fed:
+    <<: *dev-cloud
     auth_type: v3oidcpassword
     auth:
       username: writer
@@ -213,14 +149,8 @@ clouds:
       openid_scope: openid
       client_id: os
       client_secret: someRandomClientSecretMightBeNull
-    identity_api_version: '3'
-    regions:
-    - CustomRegion
-    - RegionOne
-    endpoint_type: public
-    interface: public
-    insecure: true
   mosk-dev-demo-mfa:
+    <<: *dev-cloud
     auth_type: v3multifactor
     auth:
       auth_methods:
@@ -232,12 +162,6 @@ clouds:
       project_name: demo
       project_domain_name: Default
       user_domain_name: Default
-    regions:
-    - CustomRegion
-    - RegionOne
-    identity_api_version: 3
-    interface: public
-    insecure: true
 ansible:
   use_hostnames: true
   expand_hostvars: false
