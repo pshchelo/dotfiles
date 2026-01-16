@@ -9,6 +9,11 @@ while getopts ':ht:f:md' arg; do
             echo "Usage: $(basename "$0") [-h] [-t | -f ] [-m] [-d] <remote server>"
             echo "Syncronize directory on MacOS with remote Linux server using rsync"
             echo "Copy [-t]o or [-f]rom <remote server> dir of the 'same' path as current dir on Mac"
+            echo "  -h            Display this help message"
+            echo "  -t <server>   Sync TO remote server"
+            echo "  -f <server>   Sync FROM remote server"
+            echo "  -m            Mirror (delete files on destination that don't exist on source)"
+            echo "  -d            Dry run (show what would be done without actually doing it)"
             exit 0
             ;;
         t)
