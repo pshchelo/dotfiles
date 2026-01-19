@@ -12,7 +12,7 @@ definitions:
     identity_api_version: 3
     endpoint_type: public
     interface: public
-    insecure: true
+    verify: false
 users:
   self-eu: &self-eu-user
     auth_url: https://keystone.ic-eu.ssl.mirantis.net
@@ -56,14 +56,14 @@ clouds:
       project_name: oscore-team
   oscore-mcp:
     <<: *internal-cloud
-    insecure: true
+    verify: false
     auth:
       <<: *self-mcp-user
       project_domain_name: Default
       project_name: oscore-team
   oscore-ci-mcp:
     <<: *internal-cloud
-    insecure: true
+    verify: false
     auth:
       <<: *self-mcp-user
       project_domain_name: Default
