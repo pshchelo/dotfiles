@@ -3,7 +3,7 @@
 SYNC_TO=0
 SYNC_FROM=0
 RSYNC_ARGS=""
-while getopts ':ht:f:md' arg; do
+while getopts ':ht:f:mdv' arg; do
     case ${arg} in
         h)
             echo "Usage: $(basename "$0") [-h] [-t | -f ] [-m] [-d] <remote server>"
@@ -14,8 +14,11 @@ while getopts ':ht:f:md' arg; do
             echo "  -f <server>   Sync FROM remote server"
             echo "  -m            Mirror (delete files on destination that don't exist on source)"
             echo "  -d            Dry run (show what would be done without actually doing it)"
+            echo "  -v            Verbose (set -x)"
             exit 0
             ;;
+        v)
+            set -x ;;
         t)
             remote_server="${OPTARG}"
             SYNC_TO=1
@@ -51,5 +54,9 @@ else
     dst=$remote_path
     src=$local_path
 fi
+# -P - --partial --progress
+# -a - --archive == -Dgloprt == --devices --specials --group --links --owner --perms --recursive --times
+# -S - --sparse
+# -h - --human-readable
 # shellcheck disable=SC2086 # word-split on RSYNC_ARGS is intended
 rsync -PaSh $RSYNC_ARGS "${src}/" "${dst}"
