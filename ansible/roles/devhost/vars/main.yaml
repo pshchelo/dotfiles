@@ -50,8 +50,6 @@ apt_packages:
 
 pip_pkgs:
   - rpdb
-  - virtualenvwrapper
-  - git-review
 
 dotfiles_repo: "https://github.com/pshchelo/dotfiles.git"
 dotfiles_repo_push: "git@github.com:pshchelo/dotfiles.git"
