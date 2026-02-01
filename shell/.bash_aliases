@@ -57,3 +57,6 @@ alias kopenstack="kubectl -n openstack exec -ti deploy/keystone-client -c keysto
 
 alias gitroot='cd $(git rev-parse --show-toplevel)'
 alias groot='cd $(git rev-parse --show-toplevel)'
+
+# bat installed from debian package provides 'batcat' command to not clash with some pre-existing one
+command -v bat >/dev/null 2>&1 || alias bat='batcat'
