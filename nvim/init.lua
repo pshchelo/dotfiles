@@ -349,7 +349,6 @@ local allPlugins = {
         enabled=vim.fn.executable("latex")~=0,
     },
     -- AI completion playground
-    {"supermaven-inc/supermaven-nvim"}, -- supermaven.com
     {
         "zbirenbaum/copilot-cmp", -- github's Copilot
         dependencies = {"zbirenbaum/copilot.lua"},
@@ -381,10 +380,6 @@ require('lualine').setup({
 })
 
 -- AI helpers
--- Supermaven
-require("supermaven-nvim").setup({
-    disable_inline_completion = true, -- using cmp for inline suggestions
-})
 -- copilot depends on node being installed, silently skip if not
 if vim.fn.executable("node")~=0 then
     require("copilot").setup({
@@ -452,7 +447,6 @@ cmp.setup({
         { name = 'nvim_lsp', keyword_length = 3, },
         { name = 'buffer', keyword_length = 3, },
         { name = 'nvim_lsp_signature_help' },
-        { name = "supermaven", keyword_length = 3 },
         { name = "copilot", group_index = 2 },
         { name = 'luasnip' },
     })
