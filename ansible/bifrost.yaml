@@ -11,5 +11,5 @@
   - name: clone bifrost
     git:
       repo: "{{ bifrost_git_repo }}"
-      dest: "{{ ansible_user_dir }}/bifrost"
+      dest: "{{ ansible_facts['user_dir'] }}/bifrost"
       version: "{{ bifrost_git_ref }}"

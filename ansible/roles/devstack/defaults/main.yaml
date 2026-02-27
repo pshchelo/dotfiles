@@ -1,5 +1,5 @@
-username: "{{ ansible_user_id }}"
-userhome: "{{ ansible_user_dir }}"
+username: "{{ ansible_facts['user_id'] }}"
+userhome: "{{ ansible_facts['user_dir'] }}"
 stack_dir: /opt/stack
 stackdev_dir: "{{ userhome }}/src/stackdev"
 stackdev_scripts_target_dir: "{{ userhome }}/.local/bin"

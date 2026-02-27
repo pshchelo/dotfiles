@@ -1,9 +1,9 @@
 ---
 - hosts: dsvm
   vars:
-    clean_apt_sources: yes
-    copy_keys: yes
+    copy_keys: true
   roles:
+    - role: hostname
     - role: devhost
       tags:
         - devhost

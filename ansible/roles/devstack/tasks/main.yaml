@@ -47,17 +47,15 @@
   when: (remove_py3_conflicting_eggs|bool)
 
 - name: find if stackdev repo is present
-  find:
-    file_type: directory
-    paths:
-    - {{ stackdev_dir }}
-  register: stackdev_dir_exists
+  stat:
+    path: "{{ stackdev_dir }}"
+  register: stackdev_stat
 
 - name: ensure target dir for stackdev scripts
   file:
     state: directory
-    path: {{ stackdev_scripts_target_dir }}
-  when: (stackdev_dir_exists|bool)
+    path: "{{ stackdev_scripts_target_dir }}"
+  when: stackdev_stat.stat.isdir is defined and stackdev_stat.stat.isdir
 
 - name: make links to stackdev scripts
   file:
@@ -65,4 +63,4 @@
     src: "{{ item.src }}"
     state: link
   with_items: "{{ devstack_scripts }}"
-  when: (stackdev_dir_exists|bool)
+  when: stackdev_stat.stat.isdir is defined and stackdev_stat.stat.isdir
