@@ -354,9 +354,6 @@ local allPlugins = {
         "zbirenbaum/copilot-cmp", -- github's Copilot
         dependencies = {"zbirenbaum/copilot.lua"},
     },
-    {
-        "kiddos/gemini.nvim", 
-    },
     -- TODO: evaluate necessity for more plugins:
     -- mg979/vim-visual-multi? multi-cursor
     -- pshchelo/lodgeit.vim ?? re-write in lua?
@@ -402,16 +399,6 @@ if vim.fn.executable("node")~=0 then
     })
     require("copilot_cmp").setup()
 end
-
--- Gemini
-require("gemini").setup({
-    completion = {
-        insert_result_key = "<C-g>",
-    },
-    hints = {
-        insert_result_key = "<C-g>",
-    },
-})
 
 -- LSP and autocomplete settings
 local cmp = require("cmp")
