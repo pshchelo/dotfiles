@@ -13,6 +13,9 @@ Host cube
 Host raspas
     HostName 192.168.0.103
 
+Host devstack
+    HostName 192.168.122.199
+
 Host workvm
     HostName 172.19.114.44
 
@@ -41,7 +44,7 @@ Host pshchelo-devstack-compute
 
 # Some ranges of private IP addresses I use for ephemeral instances:
 # Virt-manager local networks, DevStack public and private networks,
-# floating IPs of clouds.
+# floating IPs of internal clouds.
 # PubkeyAcceptedKeyTypes is a backwards compatible alias to PubkeyAcceptedAlgorithms
 Host 192.168.*.* 10.*.*.* 172.24.4.* 172.17.48.* 172.17.49.* 172.17.50.* 172.16.242.* 172.16.243.*
     StrictHostKeyChecking no

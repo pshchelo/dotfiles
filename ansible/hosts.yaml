@@ -8,6 +8,7 @@ all:
   children:
     dsvm:
       hosts:
+        devstack:
         pshchelo-devstack:
         pshchelo-devstack-compute:
     aio:
