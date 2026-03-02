@@ -1,42 +1,16 @@
-all:
+ungrouped:
   hosts:
     localhost:
       ansible_connection: local
+home:
+  hosts:
     swthm:
     cube:
+work:
+  hosts:
     workvm:
-  children:
-    dsvm:
-      hosts:
-        devstack:
-        pshchelo-devstack:
-        pshchelo-devstack-compute:
-    aio:
-      vars:
-        ansible_ssh_common_args: "-o StrictHostKeyChecking=no -o UserKnownHostsFile=/dev/null"
-        ansible_ssh_private_key_file: ~/.ssh/aio_rsa
-        ansible_user: ubuntu
-      children:
-        mosk:
-          children:
-            mosk.dev:
-              children:
-                mosk.dev.masters:
-                  hosts:
-                    mosk.dev.master1:
-                      # openstack stack output show <stack name/id> ucp_ips -f value -c output_value
-                      ansible_host:
-                mosk.dev.workers:
-                  hosts:
-                    mosk.dev.worker1:
-                      ansible_host:
-                    mosk.dev.worker2:
-                      ansible_host:
-                    mosk.dev.worker3:
-                      ansible_host:
-                mosk.dev.computes:
-                  hosts:
-                    mosk.dev.cmp1:
-                      ansible_host:
-                    mosk.dev.cmp2:
-                      ansible_host:
+dsvm:
+  hosts:
+    devstack:
+    pshchelo-devstack:
+    pshchelo-devstack-compute:
