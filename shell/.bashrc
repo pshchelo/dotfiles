@@ -223,6 +223,9 @@ export GOPATH="$HOME/src/go"
 ENV_VARS_FILE="$HOME/.config/optional.env"
 [ -f "$ENV_VARS_FILE" ] && source "$ENV_VARS_FILE"
 
+# iTerm2 integration on MacOS
+test -e "${HOME}/.iterm2_shell_integration.bash" && source "${HOME}/.iterm2_shell_integration.bash"
+
 # CUSTOM FUNCTIONS
 
 # extract kube api IPv4 from active kubeconfig by the cluster name
