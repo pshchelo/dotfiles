@@ -487,40 +487,19 @@ local capabilities = require("cmp_nvim_lsp").default_capabilities()
 capabilities.textDocument.completion.completionItem.snippetSupport = true
 
 -- lspconfig does not fail when langserver is not available, just prints a warning in status line
-vim.lsp.enable("pylsp")
-vim.lsp.config("pylsp", {
-    capabilities = capabilities,
-    settings = {
-        pylsp = {
-            configurationSources = {"ruff", "flake8"},
-            plugins = {
-                pycodestyle = {
-                    enabled = false
-                },
-                mccabe = {
-                    enabled = false
-                },
-                pyflakes = {
-                    enabled = false
-                },
-                flake8 = {
-                    enabled = true
-                },
-                pylsp_black = {
-                    enabled = true,
-                },
-                ruff = {
-                    enabled = true,
-                },
-                pylsp_mypy = {
-                    enabled = false,
-                },
-            },
-        },
-    },
+vim.lsp.enable("ty")
+vim.lsp.config("ty", {
+    capabilites = capabilites,
+})
+vim.lsp.enable("ruff")
+vim.lsp.config("ruff", {
+    capabilites = capabilites,
 })
 
 vim.lsp.enable("gopls")
+vim.lsp.config("gopls", {
+    capabilites = capabilites,
+})
 
 vscode_servers = {
     cssls = "vscode-css-language-server",

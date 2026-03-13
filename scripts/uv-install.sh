@@ -18,42 +18,25 @@ function install_main {
     # Python and others development tools
     $UV_CMD bashate
     $UV_CMD bindep
+    $UV_CMD black
     $UV_CMD crudini
     $UV_CMD flake8
     $UV_CMD git-review --with pysocks
     $UV_CMD ipython
     $UV_CMD mycli
+    $UV_CMD mypy
     $UV_CMD pre-commit
     $UV_CMD reno
+    $UV_CMD ruff
     $UV_CMD shellcheck-py
     $UV_CMD sshuttle
     $UV_CMD tox
+    $UV_CMD ty
     $UV_CMD uv-virtualenvwrapper
     $UV_CMD yq
     $UV_CMD httpie \
         --with httpie-keystone-auth \
         --with pysocks
-    $UV_CMD python-lsp-server \
-        --with python-lsp-ruff \
-        --with-executables-from ruff \
-        --with python-lsp-black \
-        --with-executables-from black \
-        --with pylsp-mypy \
-        --with-executables-from mypy \
-        --with pylsp-rope
-    # other recoginized optional dependencies possible to inject to pylsp:
-    #McCabe: linter for complexity checking
-    #pyls-memestra: detecting the use of deprecated APIs.
-    #
-    # taken care of by ruff and black:
-    #Pyflakes: linter to detect various errors
-    #pycodestyle: linter for style checking
-    #pydocstyle: linter for docstring style checking (disabled by default)
-    #autopep8: for code formatting
-    #YAPF: for code formatting (preferred over autopep8)
-    #flake8: for error checking (disabled by default)
-    #pylint: for code linting (disabled by default)
-    #pyls-isort: code formatting using isort (automatic import sorting).
 }
 
 function install_osc {
