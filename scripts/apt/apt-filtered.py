@@ -1,3 +1,4 @@
+import typing as ty
 import apt
 
 
@@ -10,10 +11,14 @@ def is_local(package: apt.package.Package) -> bool:
 
 
 def is_not_local(package: apt.package.Package):
+    if not package.candidate:
+        return False
     return bool(package.candidate.origins[0].origin)
 
 
 def is_ubuntu(package: apt.package.Package) -> bool:
+    if not package.candidate:
+        return False
     return package.candidate.origins[0].origin.startswith("Ubuntu")
 
 
@@ -23,8 +28,10 @@ def is_not_ubuntu(package: apt.package.Package) -> bool:
 
 # See https://apt-team.pages.debian.net/python-apt/library/apt.package.html#apt.package.Origin  # noqa
 # for further details on the meanings of the below
-def print_packages(packages: apt.package.Package) -> None:
+def print_packages(packages: ty.Iterable[apt.package.Package]) -> None:
     for package in packages:
+        if not package.candidate:
+            continue
         package_origin = package.candidate.origins[0]
         print(
             package.name,
