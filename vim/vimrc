@@ -328,37 +328,47 @@ let g:lsp_semantic_enabled = 1
 let g:lsp_format_sync_timeout = 1000
 let g:lsp_diagnostics_virtual_text_prefix = "⌦"
 let g:lsp_document_code_action_signs_hint = {'text': '‣'}
-if executable('pylsp')
+if executable('ty')
     au User lsp_setup call lsp#register_server({
-        \  'name': 'pylsp',
-        \  'cmd': {server_info->['pylsp']},
+        \  'name': 'ty',
+        \  'cmd': {server_info->['ty', 'server']},
         \  'allowlist': ['python'],
-        \  'root_uri':{server_info->lsp#utils#path_to_uri(
-        \      lsp#utils#find_nearest_parent_file_directory(
-        \          lsp#utils#get_buffer_path(),
-        \          [
-        \           'pyproject.toml',
-        \           'setup.cfg',
-        \           'setup.py',
-        \           'tox.ini',
-        \           '.git/'
-        \          ]
-        \  ))},
-        \  'workspace_config': {
-        \        'pylsp': {
-        \            'configurationSources': ['ruff'],
-        \            'plugins': {
-        \                'pylsp_black': {'enabled': v:true},
-        \                'ruff': {'enabled': v:true},
-        \                'pylsp_mypy': {'enabled': v:false},
-        \            }
-        \        }
-        \  }
+        "\  'root_uri':{server_info->lsp#utils#path_to_uri(
+        "\      lsp#utils#find_nearest_parent_file_directory(
+        "\          lsp#utils#get_buffer_path(),
+        "\          [
+        "\           'pyproject.toml',
+        "\           'setup.cfg',
+        "\           'setup.py',
+        "\           'tox.ini',
+        "\           '.git/'
+        "\          ]
+        "\  ))},
+        \  'workspace_config': {},
         \})
+endif
 " Other possible options to pass:
 " initialization_options
 " blocklist
 " config
+if executable('ruff')
+    au User lsp_setup call lsp#register_server({
+        \  'name': 'ruff',
+        \  'cmd': {server_info->['ruff', 'server']},
+        \  'allowlist': ['python'],
+        "\  'root_uri':{server_info->lsp#utils#path_to_uri(
+        "\      lsp#utils#find_nearest_parent_file_directory(
+        "\          lsp#utils#get_buffer_path(),
+        "\          [
+        "\           'pyproject.toml',
+        "\           'setup.cfg',
+        "\           'setup.py',
+        "\           'tox.ini',
+        "\           '.git/'
+        "\          ]
+        "\  ))},
+        \  'workspace_config': {},
+        \})
 endif
 " folding via LSP, does not work - at least with pylsp, vim freezes
 "set foldmethod=expr
