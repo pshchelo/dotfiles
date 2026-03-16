@@ -490,10 +490,27 @@ capabilities.textDocument.completion.completionItem.snippetSupport = true
 vim.lsp.enable("ty")
 vim.lsp.config("ty", {
     capabilites = capabilites,
+    settings = {
+        ty = {
+            showSyntaxErrors = false,
+        },
+    },
 })
 vim.lsp.enable("ruff")
 vim.lsp.config("ruff", {
     capabilites = capabilites,
+    init_options = {
+        settings = {
+            configurationPreference = "filesystemFirst",
+            lineLength = 79,
+            lint = {
+                preview = true
+            },
+            format = {
+                preview = true
+            },
+        },
+    },
 })
 
 vim.lsp.enable("gopls")
