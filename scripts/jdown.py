@@ -1,23 +1,26 @@
 #!/usr/bin/env python3
+"""Download Jira issue attachments from CLI."""
 import argparse
 import os
 import pathlib
 import sys
+
 import requests
-"""Download Jira issue attachments from CLI."""
+
 
 # TODO: proper config load from some JSON in ~/.config or smth
 def make_cli():
     parser = argparse.ArgumentParser(
         prog="jdown",
-        description="Download Jira ticket attachments via CLI"
+        description=__doc__,
+        formatter_class=argparse.ArgumentDefaultsHelpFormatter,
     )
     parser.add_argument("issue", help="Jira issue (case-insensitive)")
     parser.add_argument("attachments", nargs="*",
                         help="Attachment names. If none specified, all existing "
                              "attachments for the given issue will be downloaded")
     parser.add_argument("--jira-version", default="2",
-                        help="Jira API version (default is 2)")
+                        help="Jira API version")
     parser.add_argument("--jira-server", default=os.getenv("JIRA_SERVER"),
                         help="URL of Jira server, defaults to JIRA_SERVER env var")
     parser.add_argument("--jira-username", default=os.getenv("JIRA_USERNAME"),
@@ -25,10 +28,9 @@ def make_cli():
     parser.add_argument("--jira-token", default=os.getenv("JIRA_TOKEN"),
                         help="Jira API token, defaults to JIRA_TOKEN env var")
     parser.add_argument("--jira-timeout", type=int, default=60,
-                        help="HTTP timeout for Jira API, in seconds, "
-                             "defaults to 60.")
+                        help="HTTP timeout for Jira API, in seconds.")
     parser.add_argument("--jira-chunk_size", type=int, default=1024*1024,
-                         help="Downolad chunk size in bytes, defaults to 1MB")
+                         help="Downolad chunk size in bytes")
     parser.add_argument("-l", "--list", action="store_true",
                         help="List available attachments of the issue.")
     return parser.parse_args()
@@ -78,12 +80,13 @@ def jdown(args):
     for a in attachments:
         fname = a["filename"]
         print(f"downloading {fname}")
-        with open(download_dir / fname, "wb") as f:
-            with s.get(
-                a["content"], stream=True, timeout=args.jira_timeout
-            ) as r:
-                for chunk in r.iter_content(chunk_size=args.jira_chunk_size):
-                    f.write(chunk)
+        with (
+            open(download_dir / fname, "wb") as f,
+            s.get(a["content"], stream=True, timeout=args.jira_timeout) as r
+        ):
+            for chunk in r.iter_content(chunk_size=args.jira_chunk_size):  # noqa: FURB122
+                f.write(chunk)
+
 
 if __name__ == "__main__":
     error = jdown(make_cli())
