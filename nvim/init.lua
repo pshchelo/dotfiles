@@ -534,12 +534,20 @@ local before_init_container = function(params)
     params.processId = vim.NIL
 end
 
+local lsp_container_config = {}
+if vim.fn.executable('podman')~=0 then
+    lsp_container_config['container_runtime'] = 'podman'
+else
+    lsp_container_config['container_runtime'] = 'docker'
+end
+
 local tsserver_setup = { capabilites = capabilites }
 if vim.fn.executable('tsserver')~=0 then
     tsserver_setup["cmd"] = { 'tsserver', '--stdio' }
 else
     tsserver_setup["before_init"] = before_init_container
-    tsserver_setup["cmd"] = require'lspcontainers'.command('tsserver')
+    tsserver_setup["cmd"] = require'lspcontainers'.command(
+        'tsserver', lsp_container_config)
 end
 vim.lsp.enable("ts_ls")
 vim.lsp.config("ts_ls", tsserver_setup)
@@ -553,7 +561,8 @@ for lspname, server in pairs(containerized_servers) do
     local config = { capabilites = capabilites }
     if vim.fn.executable(server)==0 then
         config["before_init"] = before_init_container
-        config["cmd"] = require'lspcontainers'.command(lspname)
+        config["cmd"] = require'lspcontainers'.command(
+            lspname, lsp_container_config)
     end
     vim.lsp.enable(lspname)
     vim.lsp.config(lspname, config)
