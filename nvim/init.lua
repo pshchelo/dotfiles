@@ -1026,7 +1026,7 @@ vim.keymap.set(
     }
 )
 vim.keymap.set(
-    "n", "<leader>xX", ":Trouble qflist toggle<CR>",
+    "n", "<leader>xQ", ":Trouble qflist toggle<CR>",
     {
         silent = true,
         desc = "Quickfix List (Trouble)"
@@ -1077,9 +1077,6 @@ vim.keymap.set(
 --
 -- ### SUMMARY OF CUSTOM KEYMAPS ###
 
--- == Gemini.nvim ===
--- Ctrl-g - accept Gemini completion or hint
-
 -- === Autocompletion ===
 -- Ctrl-b     - scroll docs up
 -- Ctrl-f     - scroll docs down
@@ -1100,6 +1097,14 @@ vim.keymap.set(
 -- <Leader>-f - format buffer
 -- <Leader>-rn - rename symbol
 -- <leader>-a - show other code actions
+
+-- === Trouble ===
+-- <leader>xx - buffer diagnostics
+-- <leader>xX - project diagnostics
+-- <leader>cs - symbols
+-- <leader>cl - LSP definitions / references
+-- <leader>xL - Trouble Location List
+-- <leader>xQ - Trouble QuickFix list
 
 -- === Treesitter ===
 -- gnn - init selection - select innner most code unit
