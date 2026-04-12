@@ -133,7 +133,7 @@ elif [[ "$PATCH_SECURE_PATH" == "1" ]]; then
 fi
 
 if [[ "$INSTALL_BREW_DEVTOOLS" == "1" ]]; then
-    install_brew_packages
+    install_brew_devtools
 fi
 
 if [[ "$INSTALL_BREW_K8S" == "1" ]]; then
