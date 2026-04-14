@@ -46,7 +46,7 @@ if [ $SYNC_TO = $SYNC_FROM ]; then
     exit 1
 fi
 local_path="${PWD}"
-remote_path="${remote_server}:${PWD//Users/home/}"
+remote_path="${remote_server}:${PWD//Users/home}"
 if [[ $SYNC_FROM = 1 ]]; then
     src=$remote_path
     dst=$local_path
