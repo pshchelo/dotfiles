@@ -647,10 +647,23 @@ require("nvim-treesitter.configs").setup({
   },
 })
 -- FOLDING
-vim.o.foldmethod = "expr" -- for treesitter
-vim.o.foldexpr = "nvim_treesitter#foldexpr()"
+vim.o.foldmethod = "indent"
 -- start with all open folds
 vim.o.foldenable = false
+-- prevent auto-folding everything upon manual folding with zc, za etc
+vim.o.foldlevel = 99
+--vim.api.nvim_create_autocmd({ "FileType", "BufRead" }, {
+--    desc = "Set folding method with treesitter if available for filetype",
+--    callback = function()
+--        -- TODO: also check that found parser does supports folding 
+--        if require("nvim-treesitter.parsers").has_parser() then
+--            vim.o.foldmethod = "expr"
+--            vim.o.foldexpr = "nvim_treesitter#foldexpr()" -- find what's native replacement in nvim 0.12 is
+--        else
+--            vim.o.foldmethod = "indent"
+--        end
+--    end,
+--})
 
 -- INDENT-BLANKLINE
 require("ibl").setup({
