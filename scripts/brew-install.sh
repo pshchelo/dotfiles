@@ -1,4 +1,4 @@
-# #!/usr/bin/env bash
+#!/usr/bin/env bash
 set -e
 
 # see https://brew.sh/
@@ -87,6 +87,7 @@ function install_brew_devtools {
         ripgrep \
         starship \
         tailspin \
+        tree-sitter-cli \
         uv \
         yazi
 
