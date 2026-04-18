@@ -259,13 +259,10 @@ local allPlugins = {
         "nvim-lualine/lualine.nvim",
         dependencies = {"nvim-tree/nvim-web-devicons"},
     },
-    {
-        "nvim-treesitter/nvim-treesitter",
-        build = ":TSUpdate"
-    },
+    {"romus204/tree-sitter-manager.nvim"},
     {
         "nvim-treesitter/nvim-treesitter-textobjects",
-        dependencies = {"nvim-treesitter/nvim-treesitter"},
+        branch = "main",
     },
     {"neovim/nvim-lspconfig"},
     {"lspcontainers/lspcontainers.nvim"}, -- install and run LSPs in Docker
@@ -395,7 +392,7 @@ if vim.fn.executable("node")~=0 then
     require("copilot_cmp").setup()
 end
 
--- LSP and autocomplete settings
+-- autocomplete settings
 local cmp = require("cmp")
 local luasnip = require("luasnip")
 local has_words_before = function()
@@ -482,12 +479,14 @@ cmp.setup.cmdline(':', {
   matching = { disallow_symbol_nonprefix_matching = false }
 })
 
+--- LSP settings
+
 -- Add additional capabilities supported by nvim-cmp
 local capabilities = require("cmp_nvim_lsp").default_capabilities()
 capabilities.textDocument.completion.completionItem.snippetSupport = true
 
 -- lspconfig does not fail when langserver is not available, just prints a warning in status line
-vim.lsp.enable("ty")
+-- Python type checker and general LSP
 vim.lsp.config("ty", {
     capabilites = capabilites,
     settings = {
@@ -496,7 +495,9 @@ vim.lsp.config("ty", {
         },
     },
 })
-vim.lsp.enable("ruff")
+vim.lsp.enable("ty")
+
+-- Python linter and formatter
 vim.lsp.config("ruff", {
     capabilites = capabilites,
     init_options = {
@@ -512,11 +513,13 @@ vim.lsp.config("ruff", {
         },
     },
 })
+vim.lsp.enable("ruff")
 
-vim.lsp.enable("gopls")
+-- Golang lsp
 vim.lsp.config("gopls", {
     capabilites = capabilites,
 })
+vim.lsp.enable("gopls")
 
 vscode_servers = {
     cssls = "vscode-css-language-server",
@@ -549,8 +552,8 @@ else
     tsserver_setup["cmd"] = require'lspcontainers'.command(
         'tsserver', lsp_container_config)
 end
-vim.lsp.enable("ts_ls")
 vim.lsp.config("ts_ls", tsserver_setup)
+vim.lsp.enable("ts_ls")
 
 local containerized_servers = {
     html = "vscode-html-language-server",
@@ -564,19 +567,18 @@ for lspname, server in pairs(containerized_servers) do
         config["cmd"] = require'lspcontainers'.command(
             lspname, lsp_container_config)
     end
-    vim.lsp.enable(lspname)
     vim.lsp.config(lspname, config)
+    vim.lsp.enable(lspname)
 end
 
-vim.lsp.enable("clangd")
 vim.lsp.config("clangd", {
     capabilities = capabilities,
     -- pass custom options to clangd server if needed
     -- cmd = { "clangd", "--some-flag=flag-value" },
 })
+vim.lsp.enable("clangd")
 
 -- RST/Sphinx LSP
---vim.lsp.enable("esbonio")
 --local function find_venv()
 
 --  -- If there is an active virtual env, use that
@@ -602,9 +604,10 @@ vim.lsp.config("clangd", {
 --    sphinx = { pythonCommand = find_venv() }
 --  }
 --})
+--vim.lsp.enable("esbonio")
 
 -- TREE-SITTER
-require("nvim-treesitter.configs").setup({
+require("tree-sitter-manager").setup({
     ensure_installed = {
         "bash",
         "c",
@@ -633,18 +636,6 @@ require("nvim-treesitter.configs").setup({
         "xml",
         "yaml",
     },
-    sync_install = false,
-    highlight = { enable = true },
-    indent = { enable = true },
-    incremental_selection = {
-        enable = true,
-        keymaps = { -- TODO: move to keymaps section, configure separately
-            init_selection = "gnn", -- set to `false` to disable one of the mappings
-            node_incremental = "grn",
-            scope_incremental = "grc",
-            node_decremental = "grm",
-    },
-  },
 })
 -- FOLDING
 vim.o.foldmethod = "indent"
@@ -652,13 +643,28 @@ vim.o.foldmethod = "indent"
 vim.o.foldenable = false
 -- prevent auto-folding everything upon manual folding with zc, za etc
 vim.o.foldlevel = 99
+
+-- TODO: check how setup treesitter-based indent and folding in nvim 0.12 w/o nvim-treesitter
+--
+--vim.api.nvim_create_autocmd('FileType', { 
+--  desc = "Set folding and indent method with treesitter if available for filetype",
+--  callback = function() 
+--    if vim.treesitter.parsers.has_parser() then
+--        -- Enable treesitter highlighting and disable regex syntax
+--        pcall(vim.treesitter.start) 
+--        -- Enable treesitter-based indentation
+--        vim.bo.indentexpr = vim.treesitter.indentexpr() 
+--        vim.o.foldmethod = "expr"
+--        vim.o.foldexpr = "vim.treesitter#foldexpr()" -- find what's native replacement in nvim 0.12 is
+--    end
+--  end, 
+--}) 
 --vim.api.nvim_create_autocmd({ "FileType", "BufRead" }, {
 --    desc = "Set folding method with treesitter if available for filetype",
 --    callback = function()
---        -- TODO: also check that found parser does supports folding 
 --        if require("nvim-treesitter.parsers").has_parser() then
 --            vim.o.foldmethod = "expr"
---            vim.o.foldexpr = "nvim_treesitter#foldexpr()" -- find what's native replacement in nvim 0.12 is
+--            vim.o.foldexpr = "nvim_treesitter#foldexpr()"
 --        else
 --            vim.o.foldmethod = "indent"
 --        end
@@ -919,10 +925,17 @@ vim.keymap.set(
     {desc = "Search word under cursor or selected"}
 )
 
---vim.cmd("sign define LspDiagnosticsSignError text=🔴")
---vim.cmd("sign define LspDiagnosticsSignWarning text=🟠")
---vim.cmd("sign define LspDiagnosticsSignInformation text=🔵")
---vim.cmd("sign define LspDiagnosticsSignHint text=🟢")
+vim.diagnostic.config({
+  severity_sort = true,
+  signs = {
+    text = {
+      [vim.diagnostic.severity.ERROR] = "✗",
+      [vim.diagnostic.severity.WARN]  = "⚠",
+      [vim.diagnostic.severity.INFO]  = "🛈",
+      [vim.diagnostic.severity.HINT]  = "💡",
+    },
+  },
+})
 -- LSP actions
 vim.keymap.set(
     "n", "gd", vim.lsp.buf.definition,
@@ -932,24 +945,10 @@ vim.keymap.set(
     }
 )
 vim.keymap.set(
-    "n", "gi", vim.lsp.buf.implementation,
-    {
-        silent = true,
-        desc = "LSP: Go to implementation"
-    }
-)
-vim.keymap.set(
     "n", "gD", vim.lsp.buf.declaration,
     {
         silent = true,
         desc = "LSP: Go to declaration"
-    }
-)
-vim.keymap.set(
-    "n", "gr", vim.lsp.buf.references,
-    {
-        silent = true,
-        desc = "LSP: Show references"
     }
 )
 -- FIXME:
@@ -961,47 +960,12 @@ vim.keymap.set(
     }
 )
 vim.keymap.set(
-    "n", "K", vim.lsp.buf.hover,
-    {
-        silent = true,
-        desc = "LSP: Hover documentation"
-    }
-)
-vim.keymap.set(
-    "n", "<C-K>", vim.lsp.buf.signature_help,
-    {
-        silent = true,
-        desc = "LSP: Signature documentation"
-    }
-)
-vim.keymap.set(
     "n", "<leader>f", vim.lsp.buf.format,
     {
         silent = true,
         desc = "LSP: format buffer"
     }
 )
-vim.keymap.set(
-    "n", "<leader>rn", vim.lsp.buf.rename,
-    {
-        silent = true,
-        desc = "LSP: rename symbol"
-    }
-)
-vim.keymap.set(
-    {"x", "n"}, "<leader>a", vim.lsp.buf.code_action,
-    {
-        silent = true,
-        desc = "LSP: show available code actions"
-    }
-)
---vim.keymap.set(
---    "x", "<leader>a", vim.lsp.buf.range_code_action,
---    {
---        silent = true,
---        desc = "LSP: show available code actions for a range of lines"
---    }
---)
 
 vim.keymap.set(
     "n", "<leader>xx", ":Trouble diagnostics toggle filter.buf=0<CR>",
@@ -1077,8 +1041,9 @@ vim.keymap.set(
 )
 
 --  USEFUL UNICODE SYMBOLS
+--  colored balls 🔴 🟠 🔵 🟢
 --  check marks/crosses ✅ ✓ ✔ ✗ ✘ 🗴 🗶 🗸
---  more ⚠ ♨ ⚡ ⌥ ⌦ ⎇  🗲 ‣ 🛈
+--  more ⚠ ♨ ⚡ ⌥ ⌦ ⎇  🗲 ‣ 🛈 💡
 --  Powerline symbols (from private Unicode space)
 --        
 -- vertical lines from unicode 'Box Drawing' and 'Block elements'
@@ -1102,14 +1067,20 @@ vim.keymap.set(
 -- === LSP actions ===
 -- gd - go to definition
 -- gD - go to declaration
--- gi - go to implementation
--- gr - list references
 -- ge - put diagnostics into LocList
--- K  - docs popup
--- Ctrl-K - Signature docs
 -- <Leader>-f - format buffer
--- <Leader>-rn - rename symbol
--- <leader>-a - show other code actions
+
+-- default builtin LSP mappings since Neovim 0.12
+-- gra - show other code actions
+-- gri - go to implementation
+-- grt - go to type definition
+-- grr - list references
+-- grn - rename symbol
+-- grx - code lens
+--  gO - document symbol
+--  gx - textDocument/documentLink
+--   K  - docs popup
+-- Ctrl-S (insert mode) - signature documentation
 
 -- === Trouble ===
 -- <leader>xx - buffer diagnostics
@@ -1120,10 +1091,11 @@ vim.keymap.set(
 -- <leader>xQ - Trouble QuickFix list
 
 -- === Treesitter ===
--- gnn - init selection - select innner most code unit
--- grn - node incremental - expand selection one code unit level
--- grm - node decremental - shrink selection one code unit level
--- grc - scope incremental
+-- works in VISUAL mode, copied from :help treesitter-incremental-selection
+-- v_an select [count-th] parent node
+-- v_an select [count-th] previous (or first) child node
+-- v_]n select [count-th] next node
+-- v_[n select [count-th] previous node
 
 -- === Telescope ===
 -- Ctrl-p - git_files
