@@ -347,8 +347,8 @@ local allPlugins = {
     },
     -- AI completion playground
     {
-        "zbirenbaum/copilot-cmp", -- github's Copilot
-        dependencies = {"zbirenbaum/copilot.lua"},
+        "tzachar/cmp-ai", -- llm source for nvim-cmp, supports ollama and HF
+        dependencies={"nvim-lua/plenary.nvim"},
     },
     -- TODO: evaluate necessity for more plugins:
     -- mg979/vim-visual-multi? multi-cursor
@@ -377,20 +377,23 @@ require('lualine').setup({
 })
 
 -- AI helpers
--- copilot depends on node being installed, silently skip if not
-if vim.fn.executable("node")~=0 then
-    require("copilot").setup({
-        suggestion = { enabled = false },
-        panel = { enabled = false },
-        filetypes = {
-            python = true,
-            --javascript = true, -- allow specific filetype
-            --typescript = true, -- allow specific filetype
-            ["*"] = false, -- disable for all other filetypes and ignore default `filetypes`
-        },
-    })
-    require("copilot_cmp").setup()
-end
+-- ollama via cmp-ai
+require("cmp_ai.config"):setup({
+  -- TODO: figure out how to auto-toggle local or remote IP
+  --base_url = "http://127.0.0.1:11434/api/generate", -- this is default
+  max_lines = 100,
+  provider = 'Ollama',
+  provider_options = {
+    model = 'gemma4',
+    auto_unload = false, -- Set to true to automatically unload the model when
+                        -- exiting nvim.
+  },
+  notify = true,
+  notify_callback = function(msg)
+    vim.notify(msg)
+  end,
+  run_on_every_keystroke = true,
+})
 
 -- autocomplete settings
 local cmp = require("cmp")
@@ -444,7 +447,7 @@ cmp.setup({
         { name = 'nvim_lsp', keyword_length = 3, },
         { name = 'buffer', keyword_length = 3, },
         { name = 'nvim_lsp_signature_help' },
-        { name = "copilot", group_index = 2 },
+        { name = "cmp_ai", group_index = 2 },
         { name = 'luasnip' },
     })
 })
