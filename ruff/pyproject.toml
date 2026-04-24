@@ -1,0 +1,10 @@
+[tool.ruff]
+line-length = 79
+
+[tool.ruff.lint]
+# sort imports by default
+extend-select = ["I"]
+
+[tool.ruff.lint.isort]
+# sort imports by resulting module path, not simply alphabetically
+force-sort-within-sections = true

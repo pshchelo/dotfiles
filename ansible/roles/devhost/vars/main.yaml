@@ -108,6 +108,8 @@ dotfiles_links:
     src: "{{ dotfiles_dir }}/nvim/init.lua"
   - path: "{{ userhome }}/.config/lf"
     src: "{{ dotfiles_dir }}/lf"
+  - path: "{{ userhome }}/.config/ruff"
+    src: "{{ dotfiles_dir }}/ruff"
   - path: "{{ userhome }}/refresh.sh"
     src: "{{ dotfiles_dir }}/refresh.sh"
 
