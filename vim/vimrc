@@ -379,7 +379,7 @@ endif
 let g:airline#extensions#ale#enabled = 1
 let g:ale_sign_error = '✗'
 let g:ale_sign_warning = '⚠'
-let g:ale_sign_info = '🛈'
+let g:ale_sign_info = ''
 let g:ale_open_list = 1
 let g:ale_linters = {'python': ['flake8'],}
 let g:ale_lint_on_enter = 0
@@ -635,8 +635,55 @@ au BufRead * silent setlocal iminsert=0
 "map <C-k> <C-w>k
 "map <C-l> <C-w>l
 
-" USEFUL UNICODE SYMBOLS
-" check marks/crosses ✅ ✓ ✔ ✗ ✘ 🗴 🗶 🗸
-" more ⚠ ♨ ⚡ ⌥ ⌦ ⎇  🗲 ‣ 🛈
-" Powerline symbols (from private Unicode space)
-"       
+"  USEFUL UNICODE SYMBOLS (peeked by 'uni' tool https://github.com/arp242/uni)
+"              Dec    UTF8        HTML       Name
+" '✅' U+2705  9989   e2 9c 85    &#x2705;   WHITE HEAVY CHECK MARK
+" '✓'  U+2713  10003  e2 9c 93    &check;    CHECK MARK
+" '✔'  U+2714  10004  e2 9c 94    &#x2714;   HEAVY CHECK MARK
+" '✗'  U+2717  10007  e2 9c 97    &cross;    BALLOT X
+" '✘'  U+2718  10008  e2 9c 98    &#x2718;   HEAVY BALLOT X
+" '🗴'  U+1F5F4 128500 f0 9f 97 b4 &#x1f5f4;  BALLOT SCRIPT X [x mark]
+" '🗶'  U+1F5F6 128502 f0 9f 97 b6 &#x1f5f6;  BALLOT BOLD SCRIPT X
+" '🗸'  U+1F5F8 128504 f0 9f 97 b8 &#x1f5f8;  LIGHT CHECK MARK [check]
+" '⚠'  U+26A0  9888   e2 9a a0    &#x26a0;   WARNING SIGN
+" '♨'  U+2668  9832   e2 99 a8    &#x2668;   HOT SPRINGS
+" '⚡' U+26A1  9889   e2 9a a1    &#x26a1;   HIGH VOLTAGE SIGN [thunder, lightning symbol]
+" '⌥'  U+2325  8997   e2 8c a5    &#x2325;   OPTION KEY
+" '⌦'  U+2326  8998   e2 8c a6    &#x2326;   ERASE TO THE RIGHT [delete to the right key]
+" '⎇'  U+2387  9095   e2 8e 87    &#x2387;   ALTERNATIVE KEY SYMBOL
+" '🗲'  U+1F5F2 128498 f0 9f 97 b2 &#x1f5f2;  LIGHTNING MOOD [lightning bolt]
+" '‣'  U+2023  8227   e2 80 a3    &#x2023;   TRIANGULAR BULLET
+" '🛈'  U+1F6C8 128712 f0 9f 9b 88 &#x1f6c8;  CIRCLED INFORMATION SOURCE [information]
+" '💡' U+1F4A1 128161 f0 9f 92 a1 &#x1f4a1;  ELECTRIC LIGHT BULB [idea]
+" '🔴' U+1F534 128308 f0 9f 94 b4 &#x1f534;  LARGE RED CIRCLE
+" '🟠' U+1F7E0 128992 f0 9f 9f a0 &#x1f7e0;  LARGE ORANGE CIRCLE
+" '🔵' U+1F535 128309 f0 9f 94 b5 &#x1f535;  LARGE BLUE CIRCLE
+" '🟢' U+1F7E2 128994 f0 9f 9f a2 &#x1f7e2;  LARGE GREEN CIRCLE
+" '▏'  U+258F  9615   e2 96 8f    &#x258f;   LEFT ONE EIGHTH BLOCK
+" '▎'  U+258E  9614   e2 96 8e    &#x258e;   LEFT ONE QUARTER BLOCK
+" '▍'  U+258D  9613   e2 96 8d    &#x258d;   LEFT THREE EIGHTHS BLOCK
+" '▌'  U+258C  9612   e2 96 8c    &#x258c;   LEFT HALF BLOCK
+" '▋'  U+258B  9611   e2 96 8b    &#x258b;   LEFT FIVE EIGHTHS BLOCK
+" '▊'  U+258A  9610   e2 96 8a    &#x258a;   LEFT THREE QUARTERS BLOCK
+" '▉'  U+2589  9609   e2 96 89    &#x2589;   LEFT SEVEN EIGHTHS BLOCK
+" '█'  U+2588  9608   e2 96 88    &block;    FULL BLOCK [solid]
+" '│'  U+2502  9474   e2 94 82    &boxv;     BOX DRAWINGS LIGHT VERTICAL [Videotex Mosaic DG 14]
+" '┃'  U+2503  9475   e2 94 83    &#x2503;   BOX DRAWINGS HEAVY VERTICAL
+" '▕'  U+2595  9621   e2 96 95    &#x2595;   RIGHT ONE EIGHTH BLOCK
+" '▐'  U+2590  9616   e2 96 90    &#x2590;   RIGHT HALF BLOCK
+" '╎'  U+254E  9550   e2 95 8e    &#x254e;   BOX DRAWINGS LIGHT DOUBLE DASH VERTICAL
+" '╏'  U+254F  9551   e2 95 8f    &#x254f;   BOX DRAWINGS HEAVY DOUBLE DASH VERTICAL
+" '┆'  U+2506  9478   e2 94 86    &#x2506;   BOX DRAWINGS LIGHT TRIPLE DASH VERTICAL
+" '┇'  U+2507  9479   e2 94 87    &#x2507;   BOX DRAWINGS HEAVY TRIPLE DASH VERTICAL
+" '┊'  U+250A  9482   e2 94 8a    &#x250a;   BOX DRAWINGS LIGHT QUADRUPLE DASH VERTICAL
+" '┋'  U+250B  9483   e2 94 8b    &#x250b;   BOX DRAWINGS HEAVY QUADRUPLE DASH VERTICAL
+" '║'  U+2551  9553   e2 95 91    &boxV;     BOX DRAWINGS DOUBLE VERTICAL
+" ''  U+E0A0  57504  ee 82 a0    &#xe0a0;   <Private Use> Nerd Fonts nf-pl-branch
+" ''  U+E0A1  57505  ee 82 a1    &#xe0a1;   <Private Use> Nerd Fonts nf-pl-current_line nf-pl-line_number
+" ''  U+E0A2  57506  ee 82 a2    &#xe0a2;   <Private Use> Nerd Fonts nf-pl-readonly nf-pl-hostname
+" ''  U+E0B0  57520  ee 82 b0    &#xe0b0;   <Private Use> Nerd Fonts nf-pl-left_hard_divider
+" ''  U+E0B1  57521  ee 82 b1    &#xe0b1;   <Private Use> Nerd Fonts nf-pl-left_soft_divider
+" ''  U+E0B2  57522  ee 82 b2    &#xe0b2;   <Private Use> Nerd Fonts nf-pl-right_hard_divider
+" ''  U+E0B3  57523  ee 82 b3    &#xe0b3;   <Private Use> Nerd Fonts nf-pl-right_soft_divider
+" ''  U+F449  62537  ef 91 89    &#xf449;   <Private Use> Nerd Fonts nf-oct-info
+" ''  U+F400  62464  ef 90 80    &#xf400;   <Private Use> Nerd Fonts nf-oct-light_bulb
