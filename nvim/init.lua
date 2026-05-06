@@ -442,12 +442,19 @@ cmp.setup({
         -- Accept currently selected item.
         -- Set `select` to `false` to only confirm explicitly selected items.
         ["<CR>"] = cmp.mapping.confirm({ select=true }),
+        ["C-x"] = cmp.mapping.complete({
+            config = {
+                sources = cmp.config.sources({
+                    { name = "cmp_ai" },
+                })
+            }
+        },
+        {"i",}), -- explicitly ask for completion using cmp_ai
     }),
     sources = cmp.config.sources({
         { name = 'nvim_lsp', keyword_length = 3, },
         { name = 'buffer', keyword_length = 3, },
         { name = 'nvim_lsp_signature_help' },
-        { name = "cmp_ai", group_index = 2 },
         { name = 'luasnip' },
         { name = 'path', keyword_length = 3, }
     })
@@ -1105,6 +1112,7 @@ vim.keymap.set(
 -- Shift-Tab  - cycle back over completions
 -- Ctrl-e     - abort completion
 -- Enter      - accept completion
+-- Ctrl-x     - complete using cmp_ai plugin
 
 -- === LSP actions ===
 -- gd - go to definition
