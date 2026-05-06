@@ -449,6 +449,7 @@ cmp.setup({
         { name = 'nvim_lsp_signature_help' },
         { name = "cmp_ai", group_index = 2 },
         { name = 'luasnip' },
+        { name = 'path', keyword_length = 3, }
     })
 })
 cmp.setup.filetype(
@@ -456,7 +457,6 @@ cmp.setup.filetype(
     {
         sources = cmp.config.sources({
           { name = 'git', keyword_length = 3, },
-        }, {
           { name = 'buffer', keyword_length = 3, },
         })
     }
@@ -475,9 +475,8 @@ cmp.setup.cmdline({ '/', '?' }, {
 cmp.setup.cmdline(':', {
   mapping = cmp.mapping.preset.cmdline(),
   sources = cmp.config.sources({
-    { name = 'path', keyword_length = 3, }
-  }, {
-    { name = 'cmdline', keyword_length = 3, }
+    { name = 'path', keyword_length = 3, },
+    { name = 'cmdline', keyword_length = 3, },
   }),
   matching = { disallow_symbol_nonprefix_matching = false }
 })
