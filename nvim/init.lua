@@ -4,7 +4,7 @@
 vim.o.hidden = true
 
 -- allow backspacing over everything in insert mode - NEEDED?
--- vim.o.backspace = 'indent,eol,start'
+-- vim.o.backspace = "indent,eol,start"
 
 -- =======
 -- VISUALS
@@ -20,15 +20,15 @@ vim.o.number = true
 vim.o.showmode = false
 -- always show status line
 vim.o.laststatus = 2
--- nice chars for displaying special symbols with ':set list'
+-- nice chars for displaying special symbols with ":set list"
 vim.opt.listchars = {
-    tab = '→ ',
-    space = '·',
-    nbsp = '␣',
-    trail = '•',
-    eol = '¶',
-    precedes = '«',
-    extends = '»',
+    tab = "→ ",
+    space = "·",
+    nbsp = "␣",
+    trail = "•",
+    eol = "¶",
+    precedes = "«",
+    extends = "»",
 }
 
 
@@ -91,12 +91,12 @@ vim.o.mousemodel = "popup_setpos"
 vim.o.backup = false
 vim.o.swapfile = false
 vim.opt.wildignore = {
-    '*.swp',
-    '*.bak',
-    '*.pyc',
-    '*.class',
+    "*.swp",
+    "*.bak",
+    "*.pyc",
+    "*.class",
 }
--- NeoVim defaults to utf-8 for 'encoding'
+-- NeoVim defaults to utf-8 for "encoding"
 vim.opt.fileencodings:append("cp1251")
 
 -- TODO: check the C format function
@@ -105,7 +105,7 @@ vim.api.nvim_create_autocmd(
     {
         pattern = "*.c,*.h",
         callback = function()
-            if vim.fn.search('^\t', 'n', 150) then
+            if vim.fn.search("^\t", "n", 150) then
                 vim.o.shiftwidth = 8
                 vim.o.expandtab = false
             else
@@ -277,10 +277,10 @@ local allPlugins = {
         dependencies = {"nvim-lua/plenary.nvim"},
     },
     {
-        'saadparwaiz1/cmp_luasnip', -- Snippets source for nvim-cmp
+        "saadparwaiz1/cmp_luasnip", -- Snippets source for nvim-cmp
         dependencies = {
             {
-                'L3MON4D3/LuaSnip',  -- Snippet engine
+                "L3MON4D3/LuaSnip",  -- Snippet engine
                 --build = "make install_jsregexp" -- optional, 
             }
         },
@@ -328,17 +328,17 @@ local allPlugins = {
     {"folke/lsp-colors.nvim"}, -- add missing LSP color groups to colorschemes
     {"gu-fan/riv.vim"}, -- reStructouredText support
     {"HiPhish/jinja.vim"}, -- Jinja2 syntax support
-    {"towolf/vim-helm", ft='helm'}, -- yaml + gotmpl + sprig + custom, but would treesitter suffice?
+    {"towolf/vim-helm", ft="helm"}, -- yaml + gotmpl + sprig + custom, but would treesitter suffice?
     {"vmware-archive/salt-vim", ft="sls"}, -- saltstack, good for yaml + Jinja2
     {
         "fatih/vim-go", -- Golang
-        ft='go',
-        enabled=vim.fn.executable('go')~=0,
+        ft="go",
+        enabled=vim.fn.executable("go")~=0,
     },
     {
         "eagletmt/ghcmod-vim", -- Haskell
-        ft='haskell',
-        enabled=vim.fn.executable('ghc')~=0,
+        ft="haskell",
+        enabled=vim.fn.executable("ghc")~=0,
     },
     {
         "lervag/vimtex", -- LaTex
@@ -368,11 +368,11 @@ setCustomHighlights()
 
 -- lualine
 -- TODO: integrate with ale? Trouble?
-require('lualine').setup({
+require("lualine").setup({
     options = { theme = "auto" },
     tabline = {
-        lualine_a = {'buffers'},
-        lualine_z = {'tabs'}
+        lualine_a = {"buffers"},
+        lualine_z = {"tabs"}
     },
 })
 
@@ -382,9 +382,9 @@ require("cmp_ai.config"):setup({
   -- TODO: figure out how to auto-toggle local or remote IP
   --base_url = "http://127.0.0.1:11434/api/generate", -- this is default
   max_lines = 100,
-  provider = 'Ollama',
+  provider = "Ollama",
   provider_options = {
-    model = 'gemma4',
+    model = "gemma4",
     auto_unload = false, -- Set to true to automatically unload the model when
                         -- exiting nvim.
   },
@@ -433,9 +433,9 @@ cmp.setup({
        documentation = cmp.config.window.bordered(),
     },
     mapping = cmp.mapping.preset.insert({
-        ['<C-b>'] = cmp.mapping.scroll_docs(-4),
-        ['<C-f>'] = cmp.mapping.scroll_docs(4),
-        ['<C-Space>'] = cmp.mapping.complete(),
+        ["<C-b>"] = cmp.mapping.scroll_docs(-4),
+        ["<C-f>"] = cmp.mapping.scroll_docs(4),
+        ["<C-Space>"] = cmp.mapping.complete(),
         ["<Tab>"] = cmp.mapping(completeOnTab, { "i", "s" }),
         ["<s-Tab>"] = cmp.mapping(completeOnShiftTab, { "i", "s" }),
         ["C-e>"] = cmp.mapping.abort(),
@@ -452,38 +452,38 @@ cmp.setup({
         {"i",}), -- explicitly ask for completion using cmp_ai
     }),
     sources = cmp.config.sources({
-        { name = 'nvim_lsp', keyword_length = 3, },
-        { name = 'buffer', keyword_length = 3, },
-        { name = 'nvim_lsp_signature_help' },
-        { name = 'luasnip' },
-        { name = 'path', keyword_length = 3, }
+        { name = "nvim_lsp", keyword_length = 3, },
+        { name = "buffer", keyword_length = 3, },
+        { name = "nvim_lsp_signature_help" },
+        { name = "luasnip" },
+        { name = "path", keyword_length = 3, }
     })
 })
 cmp.setup.filetype(
-    'gitcommit',
+    "gitcommit",
     {
         sources = cmp.config.sources({
-          { name = 'git', keyword_length = 3, },
-          { name = 'buffer', keyword_length = 3, },
+          { name = "git", keyword_length = 3, },
+          { name = "buffer", keyword_length = 3, },
         })
     }
 )
 require("cmp_git").setup()
 
 -- Use buffer source for `/` and `?` (if you enabled `native_menu`, this won't work anymore).
-cmp.setup.cmdline({ '/', '?' }, {
+cmp.setup.cmdline({ "/", "?" }, {
   mapping = cmp.mapping.preset.cmdline(),
   sources = {
-    { name = 'buffer', keyword_length = 3, }
+    { name = "buffer", keyword_length = 3, }
   }
 })
 
--- Use cmdline & path source for ':' (if you enabled `native_menu`, this won't work anymore).
-cmp.setup.cmdline(':', {
+-- Use cmdline & path source for ":" (if you enabled `native_menu`, this won't work anymore).
+cmp.setup.cmdline(":", {
   mapping = cmp.mapping.preset.cmdline(),
   sources = cmp.config.sources({
-    { name = 'path', keyword_length = 3, },
-    { name = 'cmdline', keyword_length = 3, },
+    { name = "path", keyword_length = 3, },
+    { name = "cmdline", keyword_length = 3, },
   }),
   matching = { disallow_symbol_nonprefix_matching = false }
 })
@@ -547,19 +547,19 @@ local before_init_container = function(params)
 end
 
 local lsp_container_config = {}
-if vim.fn.executable('podman')~=0 then
-    lsp_container_config['container_runtime'] = 'podman'
+if vim.fn.executable("podman")~=0 then
+    lsp_container_config["container_runtime"] = "podman"
 else
-    lsp_container_config['container_runtime'] = 'docker'
+    lsp_container_config["container_runtime"] = "docker"
 end
 
 local tsserver_setup = { capabilites = capabilites }
-if vim.fn.executable('tsserver')~=0 then
-    tsserver_setup["cmd"] = { 'tsserver', '--stdio' }
+if vim.fn.executable("tsserver")~=0 then
+    tsserver_setup["cmd"] = { "tsserver", "--stdio" }
 else
     tsserver_setup["before_init"] = before_init_container
-    tsserver_setup["cmd"] = require'lspcontainers'.command(
-        'tsserver', lsp_container_config)
+    tsserver_setup["cmd"] = require"lspcontainers".command(
+        "tsserver", lsp_container_config)
 end
 vim.lsp.config("ts_ls", tsserver_setup)
 vim.lsp.enable("ts_ls")
@@ -573,7 +573,7 @@ for lspname, server in pairs(containerized_servers) do
     local config = { capabilites = capabilites }
     if vim.fn.executable(server)==0 then
         config["before_init"] = before_init_container
-        config["cmd"] = require'lspcontainers'.command(
+        config["cmd"] = require"lspcontainers".command(
             lspname, lsp_container_config)
     end
     vim.lsp.config(lspname, config)
@@ -655,7 +655,7 @@ vim.o.foldlevel = 99
 
 -- TODO: check how setup treesitter-based indent and folding in nvim 0.12 w/o nvim-treesitter
 --
---vim.api.nvim_create_autocmd('FileType', { 
+--vim.api.nvim_create_autocmd("FileType", { 
 --  desc = "Set folding and indent method with treesitter if available for filetype",
 --  callback = function() 
 --    if vim.treesitter.parsers.has_parser() then
@@ -683,13 +683,13 @@ vim.o.foldlevel = 99
 -- INDENT-BLANKLINE
 require("ibl").setup({
     indent = {
-        char = {'▏', '|', '¦', '┆', '┊'},
-        --char = '▏',
+        char = {"▏", "|", "¦", "┆", "┊"},
+        --char = "▏",
     }
 })
 
 -- TELESCOPE
-require('telescope').setup({
+require("telescope").setup({
   defaults = {
     layout_strategy = "horizontal",
     layout_config = {
@@ -710,10 +710,10 @@ require('telescope').setup({
     }
   }
 })
-require('telescope').load_extension('fzf')
+require("telescope").load_extension("fzf")
 
 -- GITSIGNS
-require('gitsigns').setup({
+require("gitsigns").setup({
     signs = {
         add = {text = "+"},
         change = {text = "!"},
@@ -776,7 +776,7 @@ require("trouble").setup({
 -- =======
 
 -- add Ukr lang input, toggle in insert mode with <C-6>
-vim.o.keymap = 'ukrainian-jcuken'
+vim.o.keymap = "ukrainian-jcuken"
 -- use QWERTY Eng lang by default
 vim.o.iminsert = 0
 vim.cmd("au BufRead * silent setlocal iminsert=0")
@@ -785,9 +785,9 @@ vim.cmd("au BufRead * silent setlocal iminsert=0")
 
 local toggle_background = function()
     if vim.o.background == "dark" then
-        vim.o.background = 'light'
-    elseif vim.o.background == 'light' then
-        vim.o.background = 'dark'
+        vim.o.background = "light"
+    elseif vim.o.background == "light" then
+        vim.o.background = "dark"
     end
     setCustomHighlights()
 end
@@ -813,7 +813,7 @@ vim.keymap.set(
 )
 
 vim.keymap.set(
-    "n", "<leader>zz", ':let &scrolloff=999-&scrolloff<CR>:echo "scrolloff toggled"<CR>',
+    "n", "<leader>zz", ":let &scrolloff=999-&scrolloff<CR>:echo 'scrolloff toggled'<CR>",
     {desc = "Toggle vertical centring of the cursor"}
 )
 
@@ -846,6 +846,7 @@ vim.keymap.set(
 )
 
 -- FIXME: forced sudo does not work as is
+--
 --vim.keymap.set(
 --    "c", "w!!", "execute 'silent! write !sudo tee % >/dev/null' <bar> edit!",
 --    {desc = "Write to file anyway if having enough permissions"}
@@ -918,19 +919,19 @@ vim.keymap.set(
 
 -- TELESCOPE
 vim.keymap.set(
-    'n', '<C-p>', function() require('telescope.builtin').git_files() end,
+    "n", "<C-p>", function() require("telescope.builtin").git_files() end,
     {desc = "Search files .. TODO"}
 )
 vim.keymap.set(
-    'n', '<C-P>', function() require('telescope.builtin').find_files({hidden=true,no_ignore=true}) end,
+    "n", "<C-P>", function() require("telescope.builtin").find_files({hidden=true,no_ignore=true}) end,
     {desc = "Seatch files .. TODO"}
 )
 vim.keymap.set(
-    'n', '<C-f>f', function() require('telescope.builtin').live_grep({hidden=true}) end,
+    "n", "<C-f>f", function() require("telescope.builtin").live_grep({hidden=true}) end,
     {desc = "Search for word with incremental live feedback"}
 )
 vim.keymap.set(
-    'n', '<C-f>n', function() require('telescope.builtin').grep_string({hidden=true}) end,
+    "n", "<C-f>n", function() require("telescope.builtin").grep_string({hidden=true}) end,
     {desc = "Search word under cursor or selected"}
 )
 
@@ -1021,11 +1022,11 @@ vim.keymap.set(
 
 
 vim.keymap.set(
-    'n', '=l',
+    "n", "=l",
     function()
         local win = vim.api.nvim_get_current_win()
         local ll_winid = vim.fn.getloclist(win, { winid = 0 }).winid
-        local action = ll_winid > 0 and 'lclose' or 'lopen'
+        local action = ll_winid > 0 and "lclose" or "lopen"
         vim.cmd(action)
     end,
     {
@@ -1036,11 +1037,11 @@ vim.keymap.set(
 )
 
 vim.keymap.set(
-    'n', '=q',
+    "n", "=q",
     function()
         local qf_winid = vim.fn.getqflist({ winid = 0 }).winid
-        local action = qf_winid > 0 and 'cclose' or 'copen'
-        vim.cmd('botright '..action)
+        local action = qf_winid > 0 and "cclose" or "copen"
+        vim.cmd("botright "..action)
     end,
     {
         noremap = true,
@@ -1049,58 +1050,58 @@ vim.keymap.set(
     }
 )
 
---  USEFUL UNICODE SYMBOLS (peeked by 'uni' tool https://github.com/arp242/uni)
+--  USEFUL UNICODE SYMBOLS (peeked by "uni" tool https://github.com/arp242/uni)
 --              Dec    UTF8        HTML       Name
--- '✅' U+2705  9989   e2 9c 85    &#x2705;   WHITE HEAVY CHECK MARK
--- '✓'  U+2713  10003  e2 9c 93    &check;    CHECK MARK
--- '✔'  U+2714  10004  e2 9c 94    &#x2714;   HEAVY CHECK MARK
--- '✗'  U+2717  10007  e2 9c 97    &cross;    BALLOT X
--- '✘'  U+2718  10008  e2 9c 98    &#x2718;   HEAVY BALLOT X
--- '🗴'  U+1F5F4 128500 f0 9f 97 b4 &#x1f5f4;  BALLOT SCRIPT X [x mark]
--- '🗶'  U+1F5F6 128502 f0 9f 97 b6 &#x1f5f6;  BALLOT BOLD SCRIPT X
--- '🗸'  U+1F5F8 128504 f0 9f 97 b8 &#x1f5f8;  LIGHT CHECK MARK [check]
--- '⚠'  U+26A0  9888   e2 9a a0    &#x26a0;   WARNING SIGN
--- '♨'  U+2668  9832   e2 99 a8    &#x2668;   HOT SPRINGS
--- '⚡' U+26A1  9889   e2 9a a1    &#x26a1;   HIGH VOLTAGE SIGN [thunder, lightning symbol]
--- '⌥'  U+2325  8997   e2 8c a5    &#x2325;   OPTION KEY
--- '⌦'  U+2326  8998   e2 8c a6    &#x2326;   ERASE TO THE RIGHT [delete to the right key]
--- '⎇'  U+2387  9095   e2 8e 87    &#x2387;   ALTERNATIVE KEY SYMBOL
--- '🗲'  U+1F5F2 128498 f0 9f 97 b2 &#x1f5f2;  LIGHTNING MOOD [lightning bolt]
--- '‣'  U+2023  8227   e2 80 a3    &#x2023;   TRIANGULAR BULLET
--- '🛈'  U+1F6C8 128712 f0 9f 9b 88 &#x1f6c8;  CIRCLED INFORMATION SOURCE [information]
--- '💡' U+1F4A1 128161 f0 9f 92 a1 &#x1f4a1;  ELECTRIC LIGHT BULB [idea]
--- '🔴' U+1F534 128308 f0 9f 94 b4 &#x1f534;  LARGE RED CIRCLE
--- '🟠' U+1F7E0 128992 f0 9f 9f a0 &#x1f7e0;  LARGE ORANGE CIRCLE
--- '🔵' U+1F535 128309 f0 9f 94 b5 &#x1f535;  LARGE BLUE CIRCLE
--- '🟢' U+1F7E2 128994 f0 9f 9f a2 &#x1f7e2;  LARGE GREEN CIRCLE
--- '▏'  U+258F  9615   e2 96 8f    &#x258f;   LEFT ONE EIGHTH BLOCK
--- '▎'  U+258E  9614   e2 96 8e    &#x258e;   LEFT ONE QUARTER BLOCK
--- '▍'  U+258D  9613   e2 96 8d    &#x258d;   LEFT THREE EIGHTHS BLOCK
--- '▌'  U+258C  9612   e2 96 8c    &#x258c;   LEFT HALF BLOCK
--- '▋'  U+258B  9611   e2 96 8b    &#x258b;   LEFT FIVE EIGHTHS BLOCK
--- '▊'  U+258A  9610   e2 96 8a    &#x258a;   LEFT THREE QUARTERS BLOCK
--- '▉'  U+2589  9609   e2 96 89    &#x2589;   LEFT SEVEN EIGHTHS BLOCK
--- '█'  U+2588  9608   e2 96 88    &block;    FULL BLOCK [solid]
--- '│'  U+2502  9474   e2 94 82    &boxv;     BOX DRAWINGS LIGHT VERTICAL [Videotex Mosaic DG 14]
--- '┃'  U+2503  9475   e2 94 83    &#x2503;   BOX DRAWINGS HEAVY VERTICAL
--- '▕'  U+2595  9621   e2 96 95    &#x2595;   RIGHT ONE EIGHTH BLOCK
--- '▐'  U+2590  9616   e2 96 90    &#x2590;   RIGHT HALF BLOCK
--- '╎'  U+254E  9550   e2 95 8e    &#x254e;   BOX DRAWINGS LIGHT DOUBLE DASH VERTICAL
--- '╏'  U+254F  9551   e2 95 8f    &#x254f;   BOX DRAWINGS HEAVY DOUBLE DASH VERTICAL
--- '┆'  U+2506  9478   e2 94 86    &#x2506;   BOX DRAWINGS LIGHT TRIPLE DASH VERTICAL
--- '┇'  U+2507  9479   e2 94 87    &#x2507;   BOX DRAWINGS HEAVY TRIPLE DASH VERTICAL
--- '┊'  U+250A  9482   e2 94 8a    &#x250a;   BOX DRAWINGS LIGHT QUADRUPLE DASH VERTICAL
--- '┋'  U+250B  9483   e2 94 8b    &#x250b;   BOX DRAWINGS HEAVY QUADRUPLE DASH VERTICAL
--- '║'  U+2551  9553   e2 95 91    &boxV;     BOX DRAWINGS DOUBLE VERTICAL
--- ''  U+E0A0  57504  ee 82 a0    &#xe0a0;   <Private Use> Nerd Fonts nf-pl-branch
--- ''  U+E0A1  57505  ee 82 a1    &#xe0a1;   <Private Use> Nerd Fonts nf-pl-current_line nf-pl-line_number
--- ''  U+E0A2  57506  ee 82 a2    &#xe0a2;   <Private Use> Nerd Fonts nf-pl-readonly nf-pl-hostname
--- ''  U+E0B0  57520  ee 82 b0    &#xe0b0;   <Private Use> Nerd Fonts nf-pl-left_hard_divider
--- ''  U+E0B1  57521  ee 82 b1    &#xe0b1;   <Private Use> Nerd Fonts nf-pl-left_soft_divider
--- ''  U+E0B2  57522  ee 82 b2    &#xe0b2;   <Private Use> Nerd Fonts nf-pl-right_hard_divider
--- ''  U+E0B3  57523  ee 82 b3    &#xe0b3;   <Private Use> Nerd Fonts nf-pl-right_soft_divider
--- ''  U+F449  62537  ef 91 89    &#xf449;   <Private Use> Nerd Fonts nf-oct-info
--- ''  U+F400  62464  ef 90 80    &#xf400;   <Private Use> Nerd Fonts nf-oct-light_bulb
+-- "✅" U+2705  9989   e2 9c 85    &#x2705;   WHITE HEAVY CHECK MARK
+-- "✓"  U+2713  10003  e2 9c 93    &check;    CHECK MARK
+-- "✔"  U+2714  10004  e2 9c 94    &#x2714;   HEAVY CHECK MARK
+-- "✗"  U+2717  10007  e2 9c 97    &cross;    BALLOT X
+-- "✘"  U+2718  10008  e2 9c 98    &#x2718;   HEAVY BALLOT X
+-- "🗴"  U+1F5F4 128500 f0 9f 97 b4 &#x1f5f4;  BALLOT SCRIPT X [x mark]
+-- "🗶"  U+1F5F6 128502 f0 9f 97 b6 &#x1f5f6;  BALLOT BOLD SCRIPT X
+-- "🗸"  U+1F5F8 128504 f0 9f 97 b8 &#x1f5f8;  LIGHT CHECK MARK [check]
+-- "⚠"  U+26A0  9888   e2 9a a0    &#x26a0;   WARNING SIGN
+-- "♨"  U+2668  9832   e2 99 a8    &#x2668;   HOT SPRINGS
+-- "⚡" U+26A1  9889   e2 9a a1    &#x26a1;   HIGH VOLTAGE SIGN [thunder, lightning symbol]
+-- "⌥"  U+2325  8997   e2 8c a5    &#x2325;   OPTION KEY
+-- "⌦"  U+2326  8998   e2 8c a6    &#x2326;   ERASE TO THE RIGHT [delete to the right key]
+-- "⎇"  U+2387  9095   e2 8e 87    &#x2387;   ALTERNATIVE KEY SYMBOL
+-- "🗲"  U+1F5F2 128498 f0 9f 97 b2 &#x1f5f2;  LIGHTNING MOOD [lightning bolt]
+-- "‣"  U+2023  8227   e2 80 a3    &#x2023;   TRIANGULAR BULLET
+-- "🛈"  U+1F6C8 128712 f0 9f 9b 88 &#x1f6c8;  CIRCLED INFORMATION SOURCE [information]
+-- "💡" U+1F4A1 128161 f0 9f 92 a1 &#x1f4a1;  ELECTRIC LIGHT BULB [idea]
+-- "🔴" U+1F534 128308 f0 9f 94 b4 &#x1f534;  LARGE RED CIRCLE
+-- "🟠" U+1F7E0 128992 f0 9f 9f a0 &#x1f7e0;  LARGE ORANGE CIRCLE
+-- "🔵" U+1F535 128309 f0 9f 94 b5 &#x1f535;  LARGE BLUE CIRCLE
+-- "🟢" U+1F7E2 128994 f0 9f 9f a2 &#x1f7e2;  LARGE GREEN CIRCLE
+-- "▏"  U+258F  9615   e2 96 8f    &#x258f;   LEFT ONE EIGHTH BLOCK
+-- "▎"  U+258E  9614   e2 96 8e    &#x258e;   LEFT ONE QUARTER BLOCK
+-- "▍"  U+258D  9613   e2 96 8d    &#x258d;   LEFT THREE EIGHTHS BLOCK
+-- "▌"  U+258C  9612   e2 96 8c    &#x258c;   LEFT HALF BLOCK
+-- "▋"  U+258B  9611   e2 96 8b    &#x258b;   LEFT FIVE EIGHTHS BLOCK
+-- "▊"  U+258A  9610   e2 96 8a    &#x258a;   LEFT THREE QUARTERS BLOCK
+-- "▉"  U+2589  9609   e2 96 89    &#x2589;   LEFT SEVEN EIGHTHS BLOCK
+-- "█"  U+2588  9608   e2 96 88    &block;    FULL BLOCK [solid]
+-- "│"  U+2502  9474   e2 94 82    &boxv;     BOX DRAWINGS LIGHT VERTICAL [Videotex Mosaic DG 14]
+-- "┃"  U+2503  9475   e2 94 83    &#x2503;   BOX DRAWINGS HEAVY VERTICAL
+-- "▕"  U+2595  9621   e2 96 95    &#x2595;   RIGHT ONE EIGHTH BLOCK
+-- "▐"  U+2590  9616   e2 96 90    &#x2590;   RIGHT HALF BLOCK
+-- "╎"  U+254E  9550   e2 95 8e    &#x254e;   BOX DRAWINGS LIGHT DOUBLE DASH VERTICAL
+-- "╏"  U+254F  9551   e2 95 8f    &#x254f;   BOX DRAWINGS HEAVY DOUBLE DASH VERTICAL
+-- "┆"  U+2506  9478   e2 94 86    &#x2506;   BOX DRAWINGS LIGHT TRIPLE DASH VERTICAL
+-- "┇"  U+2507  9479   e2 94 87    &#x2507;   BOX DRAWINGS HEAVY TRIPLE DASH VERTICAL
+-- "┊"  U+250A  9482   e2 94 8a    &#x250a;   BOX DRAWINGS LIGHT QUADRUPLE DASH VERTICAL
+-- "┋"  U+250B  9483   e2 94 8b    &#x250b;   BOX DRAWINGS HEAVY QUADRUPLE DASH VERTICAL
+-- "║"  U+2551  9553   e2 95 91    &boxV;     BOX DRAWINGS DOUBLE VERTICAL
+-- ""  U+E0A0  57504  ee 82 a0    &#xe0a0;   <Private Use> Nerd Fonts nf-pl-branch
+-- ""  U+E0A1  57505  ee 82 a1    &#xe0a1;   <Private Use> Nerd Fonts nf-pl-current_line nf-pl-line_number
+-- ""  U+E0A2  57506  ee 82 a2    &#xe0a2;   <Private Use> Nerd Fonts nf-pl-readonly nf-pl-hostname
+-- ""  U+E0B0  57520  ee 82 b0    &#xe0b0;   <Private Use> Nerd Fonts nf-pl-left_hard_divider
+-- ""  U+E0B1  57521  ee 82 b1    &#xe0b1;   <Private Use> Nerd Fonts nf-pl-left_soft_divider
+-- ""  U+E0B2  57522  ee 82 b2    &#xe0b2;   <Private Use> Nerd Fonts nf-pl-right_hard_divider
+-- ""  U+E0B3  57523  ee 82 b3    &#xe0b3;   <Private Use> Nerd Fonts nf-pl-right_soft_divider
+-- ""  U+F449  62537  ef 91 89    &#xf449;   <Private Use> Nerd Fonts nf-oct-info
+-- ""  U+F400  62464  ef 90 80    &#xf400;   <Private Use> Nerd Fonts nf-oct-light_bulb
 
 -- ### SUMMARY OF CUSTOM KEYMAPS ###
 
