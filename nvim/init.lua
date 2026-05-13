@@ -489,8 +489,6 @@ cmp.setup.cmdline(":", {
 })
 
 --- LSP settings
-vim.keymap.set("n", "]g", vim.diagnostic.goto_next)
-vim.keymap.set("n", "[g", vim.diagnostic.goto_prev)
 
 -- Add additional capabilities supported by nvim-cmp
 local capabilities = require("cmp_nvim_lsp").default_capabilities()
@@ -1122,8 +1120,11 @@ vim.keymap.set(
 -- gD - go to declaration
 -- ge - put diagnostics into LocList
 -- <Leader>-f - format buffer
--- ]g - go to next diagnostic
--- [g - go to prev diagnostic
+-- ]d - go to next diagnostic
+-- [d - go to prev diagnostic
+-- ]D - go to last diagnostic in the buffer 
+-- [D - go to first diagnostic in the buffer 
+-- <C-w>d - show diagnostics under cursor
 
 -- default builtin LSP mappings since Neovim 0.12
 -- gra - show other code actions
