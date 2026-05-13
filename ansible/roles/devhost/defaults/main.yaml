@@ -1,7 +1,7 @@
 username: "{{ ansible_facts['user_id'] }}"
 userhome: "{{ ansible_facts['user_dir'] }}"
 dotfiles_dir: "{{ userhome }}/dotfiles"
-src_dir: "{{ userhome }}/src"
+src_dir: "{{ userhome }}/Projects"
 stackdev_dir: "{{ userhome }}/stackdev"
 local_bin_dir: "{{ userhome }}/.local/bin"
 dev_minimal: false
