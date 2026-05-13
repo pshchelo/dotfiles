@@ -1,9 +1,9 @@
 #!/usr/bin/env bash
 
 # list installed programs
-ls -al ~/.local/bin > ls-local-bin.txt
+ls -l "$HOME/.local/bin" > ls-local-bin.txt
 ls /opt > ls-opt.txt
-command -v apt && apt list --installed | grep -v ,autmatic > apt-list-installed.txt
+command -v apt && apt list --installed | grep -v ,automatic | awk -F '/' '{print $1}'> apt-list-installed.txt
 command -v brew && brew list --installed-on-request > brew-installed-on-request.txt
 command -v uv && uv tool list > uv-tool-list.txt
 command -v snap && snap list > snap-list.txt
