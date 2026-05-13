@@ -23,6 +23,9 @@ apt_packages_dev:
 apt_packages_build:
   - build-essential
   - cmake
+  - libvirt-dev
+  - libxml2-dev
+  - libxslt1-dev
 
 apt_packages_py:
   - python3-doc
@@ -42,6 +45,15 @@ apt_packages_tools:
   - man-db
   - git-man
   - bc
+  - 7zip
+  - atool
+  - atop
+  - dos2unix
+  - parallel
+  - qemu-utils
+  - rlwrap
+  - socat
+  #- w3m-img # too much dependencies...
 
 apt_packages:
   dev: "{{ apt_packages_dev }}"
