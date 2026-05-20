@@ -23,9 +23,29 @@ apt_packages_dev:
 apt_packages_build:
   - build-essential
   - cmake
-  - libvirt-dev
-  - libxml2-dev
-  - libxslt1-dev
+
+# these are various dependencies needed to install and run tests
+# for various openstack services I am working with
+apt_packages_build_openstack:
+  - libffi-dev     # many
+  - libjpeg-dev    # barbican
+  - libldap2-dev   # keystone
+  - libnss3-dev    # barbican
+  - libpcre3-dev   # cinder and some others
+  - libpq-dev      # keystone and many others
+  - libsasl2-dev   # keystone
+  - libssl-dev     # many
+  - libvirt-dev    # many
+  - libxml2-dev    # many
+  - libxslt1-dev   # many
+  - libyaml-dev    # heat
+  #- libsqlite3-dev # keystone
+  #- libkrb5-dev    # keystoneauth
+  #- zlib1g-dev     # keystoneauth
+  #- libmysqlclient-dev # many?
+  #- libc6-dev # some clients?
+  #- libdbus-1-dev  # some clients?
+  #- libdbus-glib-1-dev  # some clients?
 
 apt_packages_py:
   - python3-doc
@@ -58,6 +78,7 @@ apt_packages_tools:
 apt_packages:
   dev: "{{ apt_packages_dev }}"
   build: "{{ apt_packages_build }}"
+  build_openstack: "{{ apt_packages_build_openstack }}"
   tools: "{{ apt_packages_tools }}"
 
 pip_pkgs:

@@ -30,6 +30,14 @@
     - upgrade packages
   when: not (dev_minimal|bool)
 
+- name: install packages for building openstack code
+  become: yes
+  apt:
+    pkg: "{{ apt_packages.build_openstack }}"
+  notify:
+    - upgrade packages
+  when: not (dev_minimal|bool)
+
 - name: install packages with extra tools
   become: yes
   apt:
