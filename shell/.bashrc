@@ -217,7 +217,7 @@ if [ -x "$(command -v thefuck)" ]; then
     eval "$(thefuck --alias)"
 fi
 
-export GOPATH="$HOME/src/go"
+export GOPATH="$HOME/Projects/go"
 
 # optional env vars
 ENV_VARS_FILE="$HOME/.config/optional.env"

@@ -32,7 +32,7 @@ export EDITOR="vim"
 export VISUAL="vim"
 export VIEWER="bat"
 
-export GOPATH="$HOME/src/go"
+export GOPATH="$HOME/Projects/go"
 
 # set PATH so it includes user's local bin if exists
 #if [ -d "$HOME/.local/bin" ] && ! [ $(echo "$PATH" | grep "$HOME/.local/bin") ]; then
@@ -45,12 +45,12 @@ if [ -d "$HOME/.local/bin" ]; then
             ;;
     esac
 fi
-if [ -d "$HOME/src/go/bin" ]; then
+if [ -d "$HOME/Projects/go/bin" ]; then
     case "$PATH" in
-        *"$HOME/src/go/bin"*)
+        *"$HOME/Projects/go/bin"*)
             ;;
         *)
-            PATH="$HOME/src/go/bin:$PATH"
+            PATH="$HOME/Projects/go/bin:$PATH"
             ;;
     esac
 fi
