@@ -5,7 +5,7 @@
 # If not running interactively, don't do anything
 case $- in
     *i*) ;;
-      *) return;;
+    *) return;;
 esac
 
 # don't put duplicate lines or lines starting with space in the history.
@@ -77,7 +77,11 @@ if [ -x /usr/bin/dircolors ] || [ "$(uname)" == "Darwin" ]; then
     if [ "$(uname)" == "Darwin" ]; then
         export CLICOLOR=1
     else
-        test -r ~/.dircolors && eval "$(dircolors -b ~/.dircolors)" || eval "$(dircolors -b)"
+        if [ -r ~/.dircolors ]; then
+            eval "$(dircolors -b ~/.dircolors)"
+        else
+            eval "$(dircolors -b)"
+        fi
     fi
     alias ls='ls --color=auto'
     #alias dir='dir --color=auto'
