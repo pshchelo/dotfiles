@@ -37,13 +37,17 @@ usage() {
 update_git_repos() {
     if command -v git > /dev/null; then
         echo_green "=== updating git repos ==="
-        if [ -d ${HOME}/dotfiles ]; then
+        if [ -d "${HOME}/dotfiles" ]; then
             echo -e "Updating ${GREEN}dotfiles${NOC} repo..."
-            git -C ${HOME}/dotfiles pull
+            git -C "${HOME}/dotfiles" pull
         fi
-        if [ -d ${HOME}/stackdev ]; then
+        if [ -d "${HOME}/stackdev" ]; then
             echo -e "Updating ${GREEN}stackdev${NOC} repo..."
-            git -C ${HOME}/stackdev pull
+            git -C "${HOME}/stackdev" pull
+        fi
+        if [ -d "$HOME/Documents/LogSeq" ]; then
+            echo -e "Updating ${GREEN}LogSeq${NOC} repo..."
+            git -C "$HOME/Documents/LogSeq" pull
         fi
     fi
 }
