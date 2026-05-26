@@ -6,6 +6,7 @@ apt_repos_desktop:
   #- "deb http://mkvtoolnix.download/ubuntu/xenial/ ./"
   #- "ppa:team-xbmc/ppa"
   #- "ppa:dwrj87/mmex-test"
+  - "ppa:mkasberg/ghostty-ubuntu"
 
 apt_keys_desktop:
   #- name: Moritz Bunkus
@@ -29,4 +30,8 @@ apt_pkgs_desktop:
   - gitk
   - git-gui
   - mmex
-  - chromium-browser
+  - ghostty
+
+dotfiles_links:
+  - path: "{{ userhome }}/.config/ghostty"
+    src: "{{ dotfiles_dir }}/ghostty"

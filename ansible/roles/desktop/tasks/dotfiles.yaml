@@ -1,0 +1,6 @@
+- name: make links
+  file:
+    path: "{{ item.path }}"
+    src: "{{ item.src }}"
+    state: link
+  with_items: "{{ dotfiles_links }}"

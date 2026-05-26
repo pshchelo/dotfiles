@@ -1,0 +1,5 @@
+font-family = "AnonymicePro Nerd Font"
+font-size = 18
+theme = dark:solarized-dark,light:solarized-light
+theme = solarized-dark
+macos-option-as-alt = true
