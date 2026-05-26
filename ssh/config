@@ -10,6 +10,10 @@ Host cube
     HostName 192.168.0.102
     IdentityFile ~/.ssh/phys_ed25519
 
+Host gamechief
+    HostName 192.168.0.119
+    IdentityFile ~/.ssh/phys_ed25519
+
 Host raspas
     HostName 192.168.0.103
 
