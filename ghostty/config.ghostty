@@ -1,5 +1,11 @@
+copy-on-select = clipboard
 font-family = "AnonymicePro Nerd Font"
 font-size = 18
+link-url = true
+macos-non-native-fullscreen = true
+macos-option-as-alt = true
+mouse-hide-while-typing = true
+shell-integration = bash
 theme = dark:solarized-dark,light:solarized-light
 theme = solarized-dark
-macos-option-as-alt = true
+window-padding-balance = true
