@@ -31,7 +31,7 @@ eval "$(direnv hook zsh)"
 eval "$(fzf --zsh)"
 
 # starship integration
-eval "$(starship init zsh)"
+#eval "$(starship init zsh)"
 
 test "$(which uv-virtualenvwrapper.sh)" && source "$(which uv-virtualenvwrapper.sh)"
 
