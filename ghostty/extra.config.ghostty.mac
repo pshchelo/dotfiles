@@ -1,0 +1,3 @@
+initial-command = /opt/homebrew/bin/bash
+command = /opt/homebrew/bin/bash
+font-size = 24
