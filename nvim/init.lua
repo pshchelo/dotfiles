@@ -1,10 +1,24 @@
--- TODO: maxmempattern? need to try on huge files
+-- Discover runtime system options
+local DISCOVERED = {uname = vim.loop.os_uname()}
+DISCOVERED.OS = DISCOVERED.uname.sysname
+DISCOVERED.IS_MAC = DISCOVERED.OS == 'Darwin'
+DISCOVERED.IS_LINUX = DISCOVERED.OS == 'Linux'
+DISCOVERED.IS_WINDOWS = DISCOVERED.OS:find 'Windows' and true or false
+DISCOVERED.IS_WSL = DISCOVERED.IS_LINUX and DISCOVERED.uname.release:find 'Microsoft' and true or false
+DISCOVERED.HAS_PYTHON3 = vim.fn.has("python3") == 1
+DISCOVERED.HAS_GOLANG = vim.fn.executable("go") == 1
+DISCOVERED.HAS_HASKELL = vim.fn.executable("ghc") == 1
+DISCOVERED.HAS_LATEX = vim.fn.executable("latex") == 1
+DISCOVERED.HAS_PODMAN = vim.fn.executable("podman") == 1
+DISCOVERED.HAS_TSSERVER = vim.fn.executable("tsserver") == 1
+DISCOVERED.HAS_OLLAMA = vim.fn.executable("ollama") == 1
 
 -- do not force to save buffers when switching to new ones
 vim.o.hidden = true
 
 -- allow backspacing over everything in insert mode - NEEDED?
 -- vim.o.backspace = "indent,eol,start"
+-- TODO: maxmempattern? need to try on huge files
 
 -- =======
 -- VISUALS
@@ -334,17 +348,17 @@ local allPlugins = {
     {
         "fatih/vim-go", -- Golang
         ft="go",
-        enabled=vim.fn.executable("go")~=0,
+        enabled=DISCOVERED.HAS_GOLANG,
     },
     {
         "eagletmt/ghcmod-vim", -- Haskell
         ft="haskell",
-        enabled=vim.fn.executable("ghc")~=0,
+        enabled=DISCOVERED.HAS_HASKELL,
     },
     {
         "lervag/vimtex", -- LaTex
         ft={"latex", "tex"},
-        enabled=vim.fn.executable("latex")~=0,
+        enabled=DISCOVERED.HAS_LATEX,
     },
     -- AI completion playground
     {
@@ -379,16 +393,29 @@ require("lualine").setup({
 
 -- AI helpers
 -- ollama via cmp-ai
+CMPAI_PROVIDER = "OpenAI"  -- needs OPENAI_API_KEY env var
+CMPAI_OPTS = {
+    --model = "gpt-4",  -- default is gpt-3.5-turbo
+}
+if DISCOVERED.HAS_OLLAMA then
+    CMPAI_PROVIDER = "Ollama"
+    CMPAI_OPTS = {
+        -- TODO: experiment here - qwen-coder, mellum(-python)
+        model = "gemma4:12b", 
+        -- Set to true to automatically unload the model when exiting nvim
+        auto_unload = false,  
+        -- TODO: fiddle with base url for running on remote?
+        -- base_url = "http://127.0.0.1:11434/api/generate"  
+    }
+    -- Mac might have optimized models (with -mlx suffix)
+    if DISCOVERED.IS_MAC and vim.system({"ollama", "show", CMPAI_OPTS.model .. "-mlx"}):wait().code == 0 then
+        CMPAI_OPTS.model = CMPAI_OPTS.model .. "-mlx"
+    end
+end
 require("cmp_ai.config"):setup({
-  -- TODO: figure out how to auto-toggle local or remote IP
-  --base_url = "http://127.0.0.1:11434/api/generate", -- this is default
   max_lines = 100,
-  provider = "Ollama",
-  provider_options = {
-    model = "gemma4",
-    auto_unload = false, -- Set to true to automatically unload the model when
-                        -- exiting nvim.
-  },
+  provider = CMPAI_PROVIDER,
+  provider_options = CMPAI_OPTS,
   notify = true,
   notify_callback = function(msg)
     vim.notify(msg)
@@ -445,6 +472,7 @@ cmp.setup({
         -- Accept currently selected item.
         -- Set `select` to `false` to only confirm explicitly selected items.
         ["<CR>"] = cmp.mapping.confirm({ select=true }),
+        -- explicitly ask for completion using cmp_ai
         ["C-x"] = cmp.mapping.complete({
             config = {
                 sources = cmp.config.sources({
@@ -452,7 +480,7 @@ cmp.setup({
                 })
             }
         },
-        {"i",}), -- explicitly ask for completion using cmp_ai
+        {"i",}), 
     }),
     sources = cmp.config.sources({
         { name = "nvim_lsp", keyword_length = 3, },
@@ -549,7 +577,7 @@ vscode_servers = {
     --markdown = "vscode-markdown-language-server",
 }
 for lspname, server in pairs(vscode_servers) do
-    if vim.fn.executable(server)~=0 then
+    if vim.fn.executable(server) == 1 then
         vim.lsp.enable(lspname)
         vim.lsp.config(lspname, { capabilites = capabilites })
     end
@@ -560,14 +588,14 @@ local before_init_container = function(params)
 end
 
 local lsp_container_config = {}
-if vim.fn.executable("podman")~=0 then
+if DISCOVERED.HAS_PODMAN then
     lsp_container_config["container_runtime"] = "podman"
 else
     lsp_container_config["container_runtime"] = "docker"
 end
 
 local tsserver_setup = { capabilites = capabilites }
-if vim.fn.executable("tsserver")~=0 then
+if DISCOVERED.HAS_TSSERVER then
     tsserver_setup["cmd"] = { "tsserver", "--stdio" }
 else
     tsserver_setup["before_init"] = before_init_container
@@ -584,7 +612,7 @@ local containerized_servers = {
 }
 for lspname, server in pairs(containerized_servers) do
     local config = { capabilites = capabilites }
-    if vim.fn.executable(server)==0 then
+    if vim.fn.executable(server) == 0 then
         config["before_init"] = before_init_container
         config["cmd"] = require"lspcontainers".command(
             lspname, lsp_container_config)
@@ -871,7 +899,7 @@ vim.api.nvim_create_autocmd(
     {
         pattern = "python",
         callback = function()
-            if vim.fn.has("python3") == 1 then
+            if DISCOVERED.HAS_PYTHON3 then
                 vim.keymap.set(
                     "n", "<leader>b", "yyP^Cbreakpoint()  # XXX:breakpoint<Esc>",
                     {desc = "Set py3.6+ breakpoint in Python (defaults to pdb)"}
