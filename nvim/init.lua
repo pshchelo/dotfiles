@@ -265,6 +265,7 @@ local allPlugins = {
         branch = "main",
     },
     {"neovim/nvim-lspconfig"},
+    {"onsails/lspkind.nvim"}, -- icons for LSP completions
     {"lspcontainers/lspcontainers.nvim"}, -- install and run LSPs in Docker
     {"hrsh7th/nvim-cmp"}, -- Autocompletion plugin
     {"hrsh7th/cmp-nvim-lsp"}, -- LSP source for completions
@@ -395,6 +396,8 @@ require("cmp_ai.config"):setup({
   run_on_every_keystroke = true,
 })
 
+local lspkind = require('lspkind')
+lspkind.setup()
 -- autocomplete settings
 local cmp = require("cmp")
 local luasnip = require("luasnip")
@@ -457,7 +460,17 @@ cmp.setup({
         { name = "nvim_lsp_signature_help" },
         { name = "luasnip" },
         { name = "path", keyword_length = 3, }
-    })
+    }),
+    formatting = {
+        fields = { 'abbr', 'icon', 'kind', 'menu' },
+        format = lspkind.cmp_format({
+          maxwidth = {
+            menu = 50,
+            abbr = 50,
+          },
+          ellipsis_char = '...',
+        })
+    }
 })
 cmp.setup.filetype(
     "gitcommit",
