@@ -1,12 +1,17 @@
-copy-on-select = clipboard
-font-family = "AnonymicePro Nerd Font"
-font-size = 18
-link-url = true
-macos-non-native-fullscreen = true
-macos-option-as-alt = true
-mouse-hide-while-typing = true
+# second theme option overrides the first.
+# comment out the second theme to have the light/dark follow system settings
 theme = dark:solarized-dark,light:solarized-light
 theme = solarized-dark
+font-family = "AnonymicePro Nerd Font"
+font-size = 18
+
+copy-on-select = clipboard
+link-url = true
+mouse-hide-while-typing = true
 window-padding-balance = true
+
 shell-integration = bash
 shell-integration-features = true
+
+macos-non-native-fullscreen = true
+macos-option-as-alt = true

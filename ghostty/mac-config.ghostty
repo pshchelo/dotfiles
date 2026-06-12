@@ -1,0 +1,4 @@
+# Place or link this file as ~/Library/Application Support/com.mitchellh.ghostty/config.ghostty 
+# It will be merged over the 'base' config at ~/.config/ghostty/config.ghostty
+# see https://ghostty.org/docs/config#macos-specific-path-(macos-only):
+font-size = 24
