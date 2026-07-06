@@ -46,3 +46,9 @@
 #
 ## find most recent common ancestor of two branches
 # git merge-base oldbranch newbranch
+#
+## cherry-pick a range of commits, including both ends (A older than B):
+# git cherry-pick A^..B
+#
+## grep for commit message text accross all branches
+# git log --all --grep <search>
