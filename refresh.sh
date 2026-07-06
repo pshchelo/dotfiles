@@ -105,9 +105,6 @@ update_brew() {
         echo_green "=== updating brew apps ==="
         brew update
         brew upgrade
-        if [ "$PLATFORM" == "Darwin" ]; then
-            brew upgrade --casks # --greedy
-        fi
     fi
 }
 
