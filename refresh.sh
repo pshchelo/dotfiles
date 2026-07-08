@@ -66,18 +66,21 @@ update_apt() {
         APT_ENV=""
         APT_ARGS=""
         if [ "$ASSUME_YES" == "1" ]; then
-            APT_ENV="DEBIAN_FRONTEND=noninteractive"
-            APT_ARGS="-y"
+            APT_ENV+="DEBIAN_FRONTEND=noninteractive"
+            APT_ARGS+=" -y "
         fi
         echo_green "=== updating apt package repos ==="
+        # shellcheck disable=SC2086 # word splitting in APT_ARGS is expected
         sudo $APT_ENV apt-get update $APT_ARGS
         if sudo lsof $dpkg_lock_file > /dev/null 2>&1 ; then
             echo_red "Failed to acquire lock, try again laiter"
             return
         fi
         echo_green "=== upgrading apt packages ==="
+        # shellcheck disable=SC2086 # word splitting in APT_ARGS is expected
         sudo $APT_ENV apt-get upgrade $APT_ARGS
         echo_green "=== removing no longer used apt packages ==="
+        # shellcheck disable=SC2086 # word splitting in APT_ARGS is expected
         sudo $APT_ENV apt-get autoremove $APT_ARGS
     fi
 }
@@ -92,11 +95,12 @@ update_snap() {
 update_flatpak() {
     if command -v flatpak > /dev/null; then
         echo_green "=== updating flatpak apps ==="
+        FLATPACK_ARGS=""
         if [ "$ASSUME_YES" == "1" ]; then
-            sudo flatpak update -y --noninteractive
-        else
-            sudo flatpak update
+            FLATPACK_ARGS+=" -y --noninteractive "
         fi
+        # shellcheck disable=SC2086 # word splitting in FLATPACK_ARGS is expected
+        sudo flatpak update $FLATPACK_ARGS
     fi
 }
 
@@ -104,7 +108,12 @@ update_brew() {
     if command -v brew > /dev/null; then
         echo_green "=== updating brew apps ==="
         brew update
-        brew upgrade
+        BREW_UPGRADE_ARGS=""
+        if [ "$ASSUME_YES" == "1" ]; then
+            BREW_UPGRADE_ARGS+=" --yes "
+        fi
+        # shellcheck disable=SC2086 # word splitting in FLATPACK_ARGS is expected
+        brew upgrade $BREW_UPGRADE_ARGS
     fi
 }
 
