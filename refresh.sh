@@ -79,6 +79,8 @@ update_apt() {
         echo_green "=== upgrading apt packages ==="
         # shellcheck disable=SC2086 # word splitting in APT_ARGS is expected
         sudo $APT_ENV apt-get upgrade $APT_ARGS
+        # shellcheck disable=SC2086 # word splitting in APT_ARGS is expected
+        sudo $APT_ENV apt-get full-upgrade $APT_ARGS
         echo_green "=== removing no longer used apt packages ==="
         # shellcheck disable=SC2086 # word splitting in APT_ARGS is expected
         sudo $APT_ENV apt-get autoremove $APT_ARGS
