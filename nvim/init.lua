@@ -361,10 +361,7 @@ local allPlugins = {
         enabled=DISCOVERED.HAS_LATEX,
     },
     -- AI completion playground
-    {
-        "tzachar/cmp-ai", -- llm source for nvim-cmp, supports ollama and HF
-        dependencies={"nvim-lua/plenary.nvim"},
-    },
+    {'milanglacier/minuet-ai.nvim'}, -- llm completion and text, multiple providers support
     -- TODO: evaluate necessity for more plugins:
     -- mg979/vim-visual-multi? multi-cursor
     -- pshchelo/lodgeit.vim ?? re-write in lua?
@@ -387,40 +384,116 @@ require("lualine").setup({
     options = { theme = "auto" },
     tabline = {
         lualine_a = {"buffers"},
-        lualine_z = {"tabs"}
+        lualine_z = {"tabs"},
+    },
+    sections = {
+        lualine_x = {
+            --{
+            --    require("minuet.lualine"),
+            --    display_name = "model",
+            --    display_on_idle = true, -- FIXME: does not seem to work
+            --},
+            "encoding",
+            "fileformat",
+            "filetype",
+        },
     },
 })
 
--- AI helpers
--- ollama via cmp-ai
-CMPAI_PROVIDER = "OpenAI"  -- needs OPENAI_API_KEY env var
-CMPAI_OPTS = {
-    --model = "gpt-4",  -- default is gpt-3.5-turbo
-}
-if DISCOVERED.HAS_OLLAMA then
-    CMPAI_PROVIDER = "Ollama"
-    CMPAI_OPTS = {
-        -- TODO: experiment here - qwen-coder, mellum(-python)
-        model = "gemma4:12b", 
-        -- Set to true to automatically unload the model when exiting nvim
-        auto_unload = false,  
-        -- TODO: fiddle with base url for running on remote?
-        -- base_url = "http://127.0.0.1:11434/api/generate"  
-    }
-    -- Mac might have optimized models (with -mlx suffix)
-    if DISCOVERED.IS_MAC and vim.system({"ollama", "show", CMPAI_OPTS.model .. "-mlx"}):wait().code == 0 then
-        CMPAI_OPTS.model = CMPAI_OPTS.model .. "-mlx"
-    end
-end
-require("cmp_ai.config"):setup({
-  max_lines = 100,
-  provider = CMPAI_PROVIDER,
-  provider_options = CMPAI_OPTS,
-  notify = true,
-  notify_callback = function(msg)
-    vim.notify(msg)
-  end,
-  run_on_every_keystroke = true,
+-- minuet-ai
+-- TODO: 
+-- given a list of models (provider, model, name) and their configuration,
+-- check if they or their -mlx variant (mac-only) exists and then add them to
+-- config
+--  vim.system({"ollama", "show", model .. "-mlx"}):wait().code == 0 then
+require("minuet").setup({
+    provider = "openai_compatible",
+    context_window = 20000,
+    request_timeout = 10,
+    throttle = 3000,
+    debounce = 1000,
+    provider_options = {
+        openai_compatible = {
+            end_point = vim.env.LITELLM_API_URL .. "/v1/chat/completions",
+            api_key = "LITELLM_API_KEY",
+            model = "claude-sonnet-5",
+            name = "Claude Sonnet 5",
+        },
+    },
+    presets = {
+        litellm_luna = {
+            provider = "openai_compatible",
+            context_window = 20000,
+            request_timeout = 10,
+            throttle = 3000,
+            debounce = 1000,
+            provider_options = {
+                openai_compatible = {
+                    end_point = vim.env.LITELLM_API_URL .. "/v1/chat/completions",
+                    api_key = "LITELLM_API_KEY",
+                    model = "openai/gpt-5.6-luna",
+                    name = "GPT 5.6 Luna",
+                },
+            },
+        },
+        ollama_gemma4mac = {
+            provider = "openai_compatible",
+            context_window = 512,
+            throttle = 400,
+            debounce = 100,
+            provider_options = {
+                openai_compatible = {
+                    end_point = "http://localhost:11434/v1/chat/completions",
+                    api_key = "TERM",
+                    model = "gemma4:12b-mlx",
+                    name = "Gemma4 12b MLX",
+                },
+            },
+        },
+        ollama_gemma4 = {
+            provider = "openai_compatible",
+            context_window = 512,
+            throttle = 400,
+            debounce = 100,
+            provider_options = {
+                openai_compatible = {
+                    end_point = "http://localhost:11434/v1/chat/completions",
+                    api_key = "TERM",
+                    model = "gemma4:12b",
+                    name = "Gemma4 12b",
+                },
+            },
+        },
+        ollama_mellum_python = {
+            provider = "openai_fim_compatible",
+            context_window = 512,
+            throttle = 400,
+            debounce = 100,
+            provider_options = {
+                openai_fim_compatible = {
+                    end_point = "http://localhost:11434/v1/completions",
+                    api_key = "TERM",
+                    model = "JetBrains/Mellum-4b-sft-python",
+                    name = "Mellum 4b Python",
+                },
+            },
+        },
+        ollama_qwen = {
+            provider = "openai_fim_compatible",
+            n_completions=1,
+            context_window = 512,
+            throttle = 400,
+            debounce = 100,
+            provider_options = {
+                openai_fim_compatible = {
+                    end_point = "http://localhost:11434/v1/completions",
+                    api_key = "TERM",
+                    model = "qwen2.5-coder:14b",
+                    name = "Qwen 2.5 Coder",
+                },
+            },
+        },
+    },
 })
 
 local lspkind = require('lspkind')
@@ -462,7 +535,7 @@ cmp.setup({
        completion = cmp.config.window.bordered(),
        documentation = cmp.config.window.bordered(),
     },
-    mapping = cmp.mapping.preset.insert({
+    mapping = {
         ["<C-b>"] = cmp.mapping.scroll_docs(-4),
         ["<C-f>"] = cmp.mapping.scroll_docs(4),
         ["<C-Space>"] = cmp.mapping.complete(),
@@ -472,23 +545,24 @@ cmp.setup({
         -- Accept currently selected item.
         -- Set `select` to `false` to only confirm explicitly selected items.
         ["<CR>"] = cmp.mapping.confirm({ select=true }),
-        -- explicitly ask for completion using cmp_ai
-        ["C-x"] = cmp.mapping.complete({
-            config = {
-                sources = cmp.config.sources({
-                    { name = "cmp_ai" },
-                })
-            }
-        },
-        {"i",}), 
-    }),
-    sources = cmp.config.sources({
-        { name = "nvim_lsp", keyword_length = 3, },
-        { name = "buffer", keyword_length = 3, },
+        -- explicitly ask for completion using minuet-ai
+        -- FIXME: does not seem to do anything
+        ["C-y"] = cmp.mapping.complete(
+            {config = {sources = cmp.config.sources({{ name = "minuet" },})}}, 
+            {"i", "s", }
+        ),
+    },
+    sources = {
+        --{ name = "minuet" }, -- disabled by default
+        { name = "nvim_lsp" },
         { name = "nvim_lsp_signature_help" },
+        { name = "buffer" },
+        { name = "path" },
         { name = "luasnip" },
-        { name = "path", keyword_length = 3, }
-    }),
+    },
+    performance = {
+        fetching_timeout = 10000,
+    },
     formatting = {
         fields = { 'abbr', 'icon', 'kind', 'menu' },
         format = lspkind.cmp_format({
@@ -812,6 +886,7 @@ require("todo-comments").setup({
 require("trouble").setup({
     cmd="Trouble",
 })
+
 -- =======
 -- KEYMAPS
 -- =======
