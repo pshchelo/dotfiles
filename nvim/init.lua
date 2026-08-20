@@ -80,6 +80,16 @@ vim.o.autoindent = true
 -- copy the previous indentation on autoindenting - needed?
 vim.o.copyindent = true
 
+-- PYTHON - until I figure out proper setup with native tree-sitter on neovim 0.12+
+vim.g.python_indent = {
+  continue = "shiftwidth()",  -- here the default is *2
+  open_paren = "shiftwidth()",  -- here the default is *2
+  nested_paren = "shiftwidth()",
+  disable_parentheses_indenting = false,
+  closed_paren_align_last_line = false,
+  searchpair_timeout = 150,
+}
+
 -- ======
 -- SEARCH
 -- ======
@@ -401,10 +411,10 @@ require("lualine").setup({
 })
 
 -- minuet-ai
--- TODO: 
--- given a list of models (provider, model, name) and their configuration,
+-- TODO: given a list of models (provider, model, name) and their configuration,
 -- check if they or their -mlx variant (mac-only) exists and then add them to
 -- config
+-- TODO: better tolerate missing env vars
 --  vim.system({"ollama", "show", model .. "-mlx"}):wait().code == 0 then
 require("minuet").setup({
     provider = "openai_compatible",
@@ -768,7 +778,7 @@ vim.o.foldenable = false
 -- prevent auto-folding everything upon manual folding with zc, za etc
 vim.o.foldlevel = 99
 
--- TODO: check how setup treesitter-based indent and folding in nvim 0.12 w/o nvim-treesitter
+-- FIXME: check how setup treesitter-based indent and folding in nvim 0.12 w/o nvim-treesitter
 --
 --vim.api.nvim_create_autocmd("FileType", { 
 --  desc = "Set folding and indent method with treesitter if available for filetype",
@@ -871,7 +881,6 @@ vim.g.ale_sh_bashate_options = "-i E006"
 -- todo-comments
 require("todo-comments").setup({
     signs = false,
-    -- NOTE: this depends on fork/PR in the original plugin repo for now
     highlight = {
       -- vimgrep regex, supporting the pattern TODO(name):
       pattern = [[.*<((KEYWORDS)%(\(.{-1,}\))?):]],
