@@ -166,8 +166,12 @@ update_editors() {
 update_uv_tools() {
     if command -v uv > /dev/null 2>&1; then
         echo_green "=== update uv-installed tools ==="
-        # TODO: check MacOs/Darwin, BSD 'date' might have some difference
-        uv tool update --all --exclude-newer "$(date -I --date='week ago')"
+        if [ "$PLATFORM" == "Darwin" ] ; then
+            week_ago=$(date -jI -v-1w)
+        else
+            week_ago=$(date -I --date='week ago')
+        fi
+        uv tool update --all --exclude-newer "$week_ago"
     fi
 }
 
