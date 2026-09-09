@@ -1,4 +1,11 @@
+# /// script
+# requires_python = ">=3.10"
+# dependencies = [
+#     "python-apt",
+# ]
+# ///
 import typing as ty
+
 import apt
 
 
@@ -26,7 +33,7 @@ def is_not_ubuntu(package: apt.package.Package) -> bool:
     return not is_ubuntu(package)
 
 
-# See https://apt-team.pages.debian.net/python-apt/library/apt.package.html#apt.package.Origin  # noqa
+# See https://apt-team.pages.debian.net/python-apt/library/apt.package.html#apt.package.Origin
 # for further details on the meanings of the below
 def print_packages(packages: ty.Iterable[apt.package.Package]) -> None:
     for package in packages:
