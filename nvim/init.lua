@@ -306,7 +306,7 @@ local allPlugins = {
         dependencies = {
             {
                 "L3MON4D3/LuaSnip",  -- Snippet engine
-                --build = "make install_jsregexp" -- optional, 
+                --build = "make install_jsregexp" -- optional,
             }
         },
     },
@@ -511,6 +511,7 @@ lspkind.setup()
 -- autocomplete settings
 local cmp = require("cmp")
 local luasnip = require("luasnip")
+require("luasnip.loaders.from_snipmate").lazy_load({paths = "~/dotfiles/nvim/snippets"})
 local has_words_before = function()
   unpack = unpack or table.unpack
   local line, col = unpack(vim.api.nvim_win_get_cursor(0))
@@ -540,7 +541,11 @@ cmp.setup({
     completion = {
         keyword_length = 3,
     },
-    snippet = {},
+    snippet = {
+      expand = function(args)
+        require'luasnip'.lsp_expand(args.body)
+      end
+    },
     window = {
        completion = cmp.config.window.bordered(),
        documentation = cmp.config.window.bordered(),
@@ -558,7 +563,7 @@ cmp.setup({
         -- explicitly ask for completion using minuet-ai
         -- FIXME: does not seem to do anything
         ["C-y"] = cmp.mapping.complete(
-            {config = {sources = cmp.config.sources({{ name = "minuet" },})}}, 
+            {config = {sources = cmp.config.sources({{ name = "minuet" },})}},
             {"i", "s", }
         ),
     },
@@ -568,6 +573,7 @@ cmp.setup({
         { name = "nvim_lsp_signature_help" },
         { name = "buffer" },
         { name = "path" },
+        --{ name = "luasnip", option = { use_show_condition = false, show_autosnippets = true }},
         { name = "luasnip" },
     },
     performance = {
