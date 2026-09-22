@@ -269,7 +269,7 @@ Plug 'saltstack/salt-vim', { 'for': 'sls' }
 " Helm charts (yaml + gotmpl + sprig + custom)
 Plug 'towolf/vim-helm'
 " best colorscheme of them all
-Plug 'altercation/vim-colors-solarized'
+"Plug 'altercation/vim-colors-solarized'
 " lightweight alternative to Powerline
 Plug 'vim-airline/vim-airline'
 " additional themes for vim-airline
@@ -456,11 +456,11 @@ let g:sls_use_jinja_syntax = 1
 
 " Set colorscheme
 set background=dark
-:silent! colorscheme solarized
+":silent! colorscheme solarized
 
 " vim-airline settings
 let g:airline_powerline_fonts = 1
-let g:airline_theme='solarized'
+"let g:airline_theme='solarized'
 let g:airline#extensions#whitespace#enabled = 1
 let g:airline#extensions#tabline#enabled = 1
 " do not live-override tmux and prompt settings with airline ones
