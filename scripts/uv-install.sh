@@ -50,7 +50,6 @@ function install_osc {
         --with pysocks \
         --with python-openstackclient \
         --with aodhclient \
-        --with gnocchiclient \
         --with osc-placement \
         --with python-barbicanclient \
         --with python-designateclient \
@@ -58,6 +57,7 @@ function install_osc {
         --with python-ironicclient \
         --with python-manilaclient \
         --with python-masakariclient \
+        --with python-observabilityclient \
         --with python-octaviaclient # this one better from downstream for support of force-delete
     openstack complete > ~/.local/share/bash-completion/completions/openstack
 }
