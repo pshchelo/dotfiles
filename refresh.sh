@@ -73,7 +73,7 @@ update_apt() {
         # shellcheck disable=SC2086 # word splitting in APT_ARGS is expected
         sudo $APT_ENV apt-get update $APT_ARGS
         if sudo lsof $dpkg_lock_file > /dev/null 2>&1 ; then
-            echo_red "Failed to acquire lock, try again laiter"
+            echo_red "Failed to acquire lock, try again later"
             return
         fi
         echo_green "=== upgrading apt packages ==="

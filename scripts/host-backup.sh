@@ -13,7 +13,7 @@ command -v podman && podman images > podman-images.txt && podman ps -a > podman-
 command -v lsvirtualenv && lsvirtualenv > lsvirtualenv.txt
 
 # save config files
-tar -caf etc.tar.gz "/etc"
+sudo tar -caf etc.tar.gz "/etc"
 tar -caf configs.tar.gz "$HOME/.config"
-tar -caf docker.tar.gz "$HOME/.docker"
+[ -d "$HOME/.docker" ] && tar -caf docker.tar.gz "$HOME/.docker"
 # TODO: add more directories as I remember them
