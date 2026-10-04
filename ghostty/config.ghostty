@@ -1,7 +1,8 @@
 # second theme option overrides the first.
 # comment out the second theme to have the light/dark follow system settings
-theme = dark:solarized-dark,light:solarized-light
+theme = dark:iTerm2 Solarized Dark,light:iTerm2 Solarized Light
 theme = solarized-dark
+#theme = iTerm2 Solarized Dark
 font-family = "AnonymicePro Nerd Font"
 font-size = 18
 
