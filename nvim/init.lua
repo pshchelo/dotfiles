@@ -673,22 +673,22 @@ for lspname, server in pairs(vscode_servers) do
     end
 end
 
-local before_init_container = function(params)
+-- process detection does not work with containerized LSPs because
+-- container has no access to host's PID space by default
+local disable_pid = function(params)
     params.processId = vim.NIL
 end
 
-local lsp_container_config = {}
+local lsp_container_config = {network = "bridge"}
 if DISCOVERED.HAS_PODMAN then
     lsp_container_config["container_runtime"] = "podman"
-else
-    lsp_container_config["container_runtime"] = "docker"
 end
 
 local tsserver_setup = { capabilites = capabilites }
 if DISCOVERED.HAS_TSSERVER then
     tsserver_setup["cmd"] = { "tsserver", "--stdio" }
 else
-    tsserver_setup["before_init"] = before_init_container
+    tsserver_setup["before_init"] = disable_pid
     tsserver_setup["cmd"] = require"lspcontainers".command(
         "tsserver", lsp_container_config)
 end
@@ -703,7 +703,7 @@ local containerized_servers = {
 for lspname, server in pairs(containerized_servers) do
     local config = { capabilites = capabilites }
     if vim.fn.executable(server) == 0 then
-        config["before_init"] = before_init_container
+        config["before_init"] = disable_pid
         config["cmd"] = require"lspcontainers".command(
             lspname, lsp_container_config)
     end
