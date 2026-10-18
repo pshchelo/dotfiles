@@ -49,6 +49,12 @@ update_git_repos() {
             echo -e "Updating ${GREEN}LogSeq${NOC} repo..."
             git -C "$HOME/Documents/LogSeq" pull
         fi
+        if [ -d "$HOME/Documents/Noteriv" ]; then
+            for fldr in "$HOME/Documents/Noteriv"/*/ ; do
+                echo -e "Updating ${GREEN}${fldr}${NOC} repo..."
+                git -C "$fldr" pull
+            done
+        fi
     fi
 }
 
