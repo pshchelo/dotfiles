@@ -893,7 +893,7 @@ require("todo-comments").setup({
     },
     search = {
       -- ripgrep regex, supporting the pattern TODO(name):
-      pattern = [[\b(KEYWORDS)(\(\w*\))*:]],
+      pattern = [[\b(KEYWORDS)(\(\S*\))*:]],
     },
 })
 
