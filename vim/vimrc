@@ -157,6 +157,10 @@ let g:vim_json_conceal=0
 " treat *.conf files as in dosini format
 autocmd BufRead,BufNewFile *.conf set filetype=dosini
 
+" Git commit messages
+" reduce visual guide for max line length
+autocmd Filetype gitcommit setlocal colorcolumn=72
+
 "=============
 " AUTO CORRECT
 "=============

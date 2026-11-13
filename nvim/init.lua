@@ -222,6 +222,14 @@ vim.api.nvim_create_autocmd(
     }
 )
 vim.api.nvim_create_autocmd(
+    {"Filetype"},
+    {
+        pattern = "gitcommit",
+        command = "setlocal colorcolumn=72",
+        desc = "Set visual guide for max line length in git commit message",
+    }
+)
+vim.api.nvim_create_autocmd(
     {"BufRead","BufNewFile"},
     {
         pattern = "*.yaml,*.yml,*.hot",
