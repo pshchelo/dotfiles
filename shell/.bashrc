@@ -236,3 +236,7 @@ test -e "${HOME}/.iterm2_shell_integration.bash" && source "${HOME}/.iterm2_shel
 function k8s-api-ip4 {
     kubectl config view -o jsonpath="{.clusters[?(@.name == \"$1\")].cluster.server}" | awk -F ":" "{print \$2}" | cut -c3-
 }
+
+export NVM_DIR="$HOME/.nvm"
+[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
+[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
