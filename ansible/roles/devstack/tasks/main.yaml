@@ -6,56 +6,34 @@
     owner: "{{ username }}"
     recurse: yes
 
+- name: create directory for openstack source files
+  file:
+    path: {{ openstack_src_dir }}
+    state: directory
+
 - name: get latest DevStack
   git:
     repo: https://opendev.org/openstack/devstack.git
-    dest: "{{ stack_dir }}/devstack"
+    dest: "{{ openstack_src_dir }}/devstack"
 
 - name: ensure github.com is a known host
   shell: ssh-keyscan github.com >> {{ userhome }}/.ssh/known_hosts
 
 - name: create stub for DevStack's local.conf
-  command: cp {{ stackdev_dir }}/conf/local.conf.sample {{ stack_dir }}/devstack/local.conf
+  command: cp {{ stackdev_dir }}/conf/local.conf.sample {{ openstack_src_dir }}/devstack/local.conf
   args:
-    creates: "{{ stack_dir }}/devstack/local.conf"
+    creates: "{{ openstack_src_dir }}/devstack/local.conf"
 
 - name: make a link to local.sh file for DevStack
   file:
-    path: "{{ stack_dir }}/devstack/local.sh"
+    path: "{{ openstack_src_dir }}/devstack/local.sh"
     src: "{{ stackdev_dir }}/conf/local.sh"
     state: link
-
-- name: find conflicting Python distutils packages
-  find:
-    patterns: "{{ conflicting_py3_eggs }}"
-    file_type: any
-    paths:
-      - /usr/lib/python3/dist-packages
-  register: py3_eggs_to_remove
-  tags:
-    - py3conflict
-  when: (remove_py3_conflicting_eggs|bool)
-
-- name: remove conflicting Python distutils packages
-  become: yes
-  file:
-    state: absent
-    path: "{{ item.path }}"
-  with_items: "{{ py3_eggs_to_remove.files }}"
-  tags:
-    - py3conflict
-  when: (remove_py3_conflicting_eggs|bool)
-
-- name: find if stackdev repo is present
-  stat:
-    path: "{{ stackdev_dir }}"
-  register: stackdev_stat
 
 - name: ensure target dir for stackdev scripts
   file:
     state: directory
     path: "{{ stackdev_scripts_target_dir }}"
-  when: stackdev_stat.stat.isdir is defined and stackdev_stat.stat.isdir
 
 - name: make links to stackdev scripts
   file:
@@ -63,4 +41,3 @@
     src: "{{ item.src }}"
     state: link
   with_items: "{{ devstack_scripts }}"
-  when: stackdev_stat.stat.isdir is defined and stackdev_stat.stat.isdir

@@ -1,5 +1,7 @@
 username: "{{ ansible_facts['user_id'] }}"
 userhome: "{{ ansible_facts['user_dir'] }}"
+src_dir: "{{ userhome }}/Projects"
+openstack_src_dir: "{{ src_dir }}/openstack"
 stack_dir: /opt/stack
 stackdev_dir: "{{ userhome }}/stackdev"
 stackdev_scripts_target_dir: "{{ userhome }}/.local/bin"
@@ -8,8 +10,3 @@ devstack_scripts:
     path: "{{ stackdev_scripts_target_dir }}/devlog"
   - src: "{{ stackdev_dir }}/scripts/devlog"
     path: "{{ stackdev_scripts_target_dir }}/rdevlog"
-remove_py3_conflicting_eggs: false
-conflicting_py3_eggs:
-  - "httplib2-*.egg-info"
-  - "pyasn1_modules-*.egg-info"
-  - "PyYAML-*.egg-info"
